@@ -45,18 +45,20 @@ self.addEventListener('install', function(event) {
   });
 //#region push
 self.addEventListener('push', (event) => {
-  if (event.data.text() == 'new-email') {
-    event.waitUntil(async function() {
-      const cache = await caches.open('mysite-dynamic');
-      const response = await fetch('/inbox.json');
-      await cache.put('/inbox.json', response.clone());
-      const emails = await response.json();
-      registration.showNotification("New email", {
-        body: "From " + emails[0].from.name,
-        tag: "new-email"
-      });
-    }());
-  }
+  // if (event.data.text() == 'new-email') {
+  //   event.waitUntil(async function() {
+  //     const cache = await caches.open('mysite-dynamic');
+  //     const response = await fetch('/inbox.json');
+  //     await cache.put('/inbox.json', response.clone());
+  //     const emails = await response.json();
+  //     registration.showNotification("New email", {
+  //       body: "From " + emails[0].from.name,
+  //       tag: "new-email"
+  //     });
+  //   }());
+  // }
+  console.log(event.data.text());
+  registration.showNotification("New email", {body: "Body", tag: "tag"})
 });
 
 self.addEventListener('notificationclick', function(event) {
