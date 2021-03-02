@@ -1,0 +1,149 @@
+<body style="background-color: #558888;">
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+    <%# <script src="./js/cdn/gun.js"></script>
+    <script src="./js/cdn/sea.js"></script> %>
+    <textarea id="message" placeholder="message"></textarea>
+    <br>
+    <textarea id="topic" placeholder="topic"></textarea>
+    <br>
+    <input type="text" name="put_to" list="srvrList" class="border-2" id="gun_server" placeholder="Put to">
+    <datalist id="srvrList">
+      <option value="https://localhost:8765/gun">
+    </datalist>
+    <br>
+    <input type="text" name="keys" list="keyList" class="border-2" id="keys" placeholder="Key">
+    <datalist id="keyList">
+    </datalist>
+    <br>
+    <button onclick="submit_()">Submit</button>
+    <button  onclick="">Listen</button>
+    <p id="on"></p>
+    <br>
+    <br>
+    <br>
+    <input type="text" name="enc_alg" list="kdfList" class="border-2" id="kdfs" placeholder="Kustom kdf" value="default sea">
+    <datalist id="kdfList">
+      <option value="PBKDF2">
+      <option value="Argon2">
+      <option value="Scrypt">
+    </datalist>
+    <br>
+    <input type="text" name="key_name" placeholder="key description" id="key_desc">
+    <button  onclick="add_key()">Add key</button>
+    <br>
+    <br>
+    <input type="text" name="key_name" placeholder="gun server url" id="gun_url">
+    <input type="text" name="key_name" placeholder="description" id="gun_desc">
+    <button  onclick="add_gun()">Add gun</button>
+    
+    <script>
+    var keyring = [];
+    var guns = [];
+    var pfx = "pfx"
+    var testWorker = new Worker("./js/workers/schat.js");
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./js/workers/scsw.js').then(function(registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+    // <%# var default_storage = Gun() %>
+    // <%# var default_storage = Gun({localStorage:false}) %>
+    // <%# var default_storage = Gun("http://90.189.214.114:8765/gun"); %>
+    // <%# var default_storage = Gun({peers:["https://gundb-multiserver.glitch.me/"+"yang2"], musticast: false, localStorage: false, radisk: false, file: false}); %>
+    async function init(){
+        // <%# keyring=default_storage.get(pfx).get("keyring").val() %>
+        // <%# keyring=JSON.parse(localStorage.getItem("keyring"))
+        // guns=JSON.parse(localStorage.getItem("guns"))
+        // console.log(guns) %>
+        testWorker.postMessage([1,2]);
+      console.log('sent to worker');
+    }
+    testWorker.onmessage = function(e) {
+    //   <%# result.textContent = e.data; %>
+      console.log('got msg from worker'+e.data);
+    }
+    init();
+    function submit_(){
+        let message = document.getElementById("message").value
+        let topic = document.getElementById("topic").value
+        let url = document.getElementById("gun_server").value
+        let text="message: " + message + "\ntopic: " + topic + "\ngun server: " + url
+    if(!topic){console.log("topic is empty")}
+    if(!message){console.log("message is empty")}
+    else{console.log(text)}
+    }
+    let update_keyring=()=>{
+        let keyList = document.getElementById("keyList")
+        keyList.innerHTML =""
+        keyring.forEach(function(item) {
+      let option = document.createElement('option');
+      option.value = item.pub;
+      option.text = item.description;
+      keyList.appendChild(option)})
+      localStorage.setItem("keyring",keyring)
+    //   <%# default_storage.get(pfx).get("keyring").put(keyring) %>
+      };
+    let update_gun_list=()=>{
+        let srvrList = document.getElementById("srvrList")
+        srvrList.innerHTML =""
+        guns.forEach(function(item) {
+      let option = document.createElement('option');
+      option.value = item.url;
+      option.text = item.description;
+      srvrList.appendChild(option)})
+      localStorage.setItem("guns",guns)
+      };
+        update_gun_list();
+        update_keyring();
+        // <%# var gun=Gun(); %>
+        var SEA = Gun.SEA;
+        async function add_key(){
+            var flag=true;
+            let description = document.getElementById("key_desc").value;
+            if(!description){alert("description should not be empty");flag=false}
+            let key=await SEA.pair()
+            console.log(key.pub)
+            console.log(key.priv)
+            console.log(key.epub)
+            console.log(key.epriv)
+                keyring.forEach(function(item) {
+                    if(description==item.description){
+                    alert("Key with this name already exists!")
+                    flag=false;
+                    return;}
+                    else {}
+                })
+                if(flag){
+            keyring.push({"pub":key.pub, "priv":key.priv, "epub":key.epub, "epriv":key.epriv, "description":description})
+            update_keyring();}
+        };
+        async function add_gun(){
+            let url = document.getElementById("gun_url").value;
+            let desc = document.getElementById("gun_desc").value;
+            var flag=true;
+            if(!url){alert("url should not be empty");flag=false;
+            return;}
+            if(!url_validate(url)){alert("Invalid url");flag=false;return;}
+            if(flag){
+            guns.push({"url": url, "description":desc})
+            update_gun_list();}
+        }
+        function url_validate(str){
+            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+      return !!pattern.test(str);
+        }
+    </script>
+    </body>
+    

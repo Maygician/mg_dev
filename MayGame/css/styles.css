@@ -1,0 +1,128 @@
+/* #region vars */
+:root {
+    --font_size: 1vmin;
+  }
+  /* #endregion */
+  /* #region utils */
+  .inactive{
+    display: none;
+    pointer-events: none;
+  }
+  .inactive *{
+    display: none;
+    pointer-events: none;
+  }
+  .noninteractive{
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .interactive{
+    pointer-events: all;
+  }
+  html, body{
+    height: 100%;
+    width: 100%;
+    margin : 0px;
+    overflow: hidden;
+    cursor: crosshair;
+    /* cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.png"), pointer; */
+  }
+  
+  
+  /* #endregion */
+    .difr {
+      position: fixed;
+      /* position: absolute; */
+    /* height: 100vh;
+    width: 100vh; */
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    top:0; left:0; bottom:0; right:0;  border:none; margin:0; padding:0; overflow:hidden; 
+    }
+  
+  .icn1{
+    background: none; 
+    font-size: 5*var(--font_size);
+    position: relative;
+  }
+  /* #region layer */
+    .layer{
+    pointer-events: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    border:none; 
+    margin:0; 
+    padding:0; 
+    overflow:hidden;
+    background: none; 
+    user-select: none;
+    display: flex;
+    align-items: center;
+    
+    }
+    .layer div{
+      pointer-events: all;
+    }
+    /* #endregion */
+  
+    /* #region a */
+  
+    /* #endregion */
+  .anc{
+  display: inline-block;
+  cursor: pointer;
+  }
+    
+    /* Tooltip text */
+      .anc .iconhint {
+          visibility: hidden;
+          width: 120px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          padding: 5px 0;
+          border-radius: 6px;
+          font-size: 1vmin;
+  
+          /* Position the tooltip text - see examples below! */
+          position: absolute;
+          z-index: 1;
+          width: 120px;
+          bottom: 100%;
+          left: 50%;
+          margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+        }
+    .anc:hover .iconhint {
+      visibility: visible;
+    }
+    .centr{
+      height: 100%;
+      width: 100%;
+      top: 50%;
+      bottom: 50%;
+      left: 50%;
+      right: 50%;
+      margin: 0 auto;
+    }
+    .hcentr{
+      width: 100%;
+      left: 50%;
+      right: 50%;
+      /* margin: 0 auto; */
+    }
+    .vcentr{
+      height: 100%;
+      top: 50%;
+      bottom: 50%;
+      /* margin: 0 auto; */
+  
+    }
+  
+  
