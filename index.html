@@ -47,7 +47,7 @@
     <button  onclick="add_gun()">Add gun</button>
     <br>
     <button  onclick="notification_allow()">Allow notification</button>
-    <button  onclick="Notification('Just did')">Notify</button>
+    <button  onclick="notify('just did')">Notify</button>
 
 
     <script>
@@ -167,6 +167,7 @@
     Notification.requestPermission()//.then(function (permission) {
       // If the user accepts, let's create a notification    }    );
   }
+  function notify(text) { new Notification(text)}
     </script>
     </body>
     </html>
