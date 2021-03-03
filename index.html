@@ -45,7 +45,10 @@
     <input type="text" name="key_name" placeholder="gun server url" id="gun_url">
     <input type="text" name="key_name" placeholder="description" id="gun_desc">
     <button  onclick="add_gun()">Add gun</button>
-    
+    <br>
+    <button  onclick="notification_allow()">Allow notification</button>
+
+
     <script>
     var keyring = [];
     var guns = [];
@@ -153,6 +156,16 @@
         '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
       return !!pattern.test(str);
         }
+    </script>
+    <script type="text/javascript">
+    function notification_allow(){
+      if (!("Notification" in window)) {
+    alert("This browser does not support desktop notification");
+  }
+
+    Notification.requestPermission()//.then(function (permission) {
+      // If the user accepts, let's create a notification    }    );
+  }
     </script>
     </body>
     </html>
