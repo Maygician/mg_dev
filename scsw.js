@@ -1,5 +1,6 @@
-window.require = require;
-// self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
+const window = self;
+const urlToOpen = new URL('/', self.location.origin).href;
+self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = []
 // var urlsToCache = [
