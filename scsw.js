@@ -1,3 +1,4 @@
+self.importScripts("https://cdn.jsdelivr.net/npm/gun/gun.js", "https://cdn.jsdelivr.net/npm/gun/sea.js")
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = []
 // var urlsToCache = [
