@@ -1,4 +1,4 @@
-self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
+// self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
 
 onmessage = function(e) {
     console.log(' got msg from the main script');
