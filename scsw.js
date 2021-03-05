@@ -53,7 +53,8 @@ self.addEventListener('install', function(event) {
     console.log(event.request.URL)
     console.log(event.request)
     console.log(event.body)
-    if(event.request.URL==""){
+    console.log(urlToOpen)
+        if(event.request.URL==urlToOpen+"/your_cache"){
       event.respondWith(caches.match(event.request));
     }
     // event.respondWith(caches.match(event.request));
