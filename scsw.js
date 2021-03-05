@@ -50,11 +50,12 @@ self.addEventListener('install', function(event) {
     // If a match isn't found in the cache, the response
     // will look like a connection error
     console.log(event.request.body)
-    console.log(event.request.URL)
+    console.log(event.request.URL.href)
     console.log(event.request)
     console.log(event.body)
-    console.log(urlToOpen)
-        if(event.request.URL==urlToOpen+"/your_cache"){
+    console.log(urlToOpen.href)
+    console.log(self.location.origin)
+        if(event.request.URL==self.location.origin+"/your_cache"){
       event.respondWith(caches.match(event.request));
     }
     // event.respondWith(caches.match(event.request));
