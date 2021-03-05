@@ -174,10 +174,8 @@
         }
     </script>
     <script type="text/javascript">
-    ;(async ()=>{
-      const cache = await caches.open('cachee');
-    })();
-   function cache_put(){
+    async function cache_put(){
+     const cache = await caches.open('cachee');
       var response = document.getElementById("cache_input")
       cache.put('/your_cache', new Response(response));
     }
