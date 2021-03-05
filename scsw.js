@@ -1,7 +1,7 @@
 const window = self;
 const urlToOpen = new URL('/', self.location.origin).href;
 self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
-var CACHE_NAME = 'my-site-cache-v1';
+var CACHE_NAME = 'cachee';
 var urlsToCache = []
 // var urlsToCache = [
 //   '/',
@@ -53,6 +53,9 @@ self.addEventListener('install', function(event) {
     console.log(event.request.URL)
     console.log(event.request)
     console.log(event.body)
+    if(event.request.URL==""){
+      event.respondWith(caches.match(event.request));
+    }
     // event.respondWith(caches.match(event.request));
   });
 //#region push
