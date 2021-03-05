@@ -50,6 +50,9 @@ self.addEventListener('install', function(event) {
     // If a match isn't found in the cache, the response
     // will look like a connection error
     console.log(event.request.body)
+    console.log(event.request.URL)
+    console.log(event.request)
+    console.log(event.body)
     // event.respondWith(caches.match(event.request));
   });
 //#region push
