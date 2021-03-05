@@ -46,6 +46,12 @@ self.addEventListener('install', function(event) {
       );
     }());
   });
+  self.addEventListener('fetch', (event) => {
+    // If a match isn't found in the cache, the response
+    // will look like a connection error
+    console.log(event.request.body)
+    // event.respondWith(caches.match(event.request));
+  });
 //#region push
 self.addEventListener('push', (event) => {
   // if (event.data.text() == 'new-email') {
