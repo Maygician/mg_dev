@@ -53,7 +53,7 @@
     <br>
     <textarea id="cache_input" placeholder="cache response"></textarea>
     <button  onclick="cache_put()">Put to cache</button>
-    <a href="/your_cache">Here.</a>
+    <a href="/your_cache.html">Here.</a>
     <br>
     <br>
     <h1>Todo:</h1>
@@ -175,11 +175,23 @@
     </script>
     <script type="text/javascript">
     async function cache_put(){
-     const cache = await caches.open('cachee');
-      var response_text = document.getElementById("cache_input")
-      var response =new Response(response_text)
-      console.log(response)
-      cache.put('/your_cache', response );
+    //  const cache = await caches.open('cachee');
+     /*
+     const jsonResponse = new Response(JSON.stringify(data), {
+  headers: {
+    'content-type': 'application/json'
+  }
+});
+caches.open('json-cache').then(cache => cache.put('/data.json', jsonResponse));
+*/
+var response_text = document.getElementById("cache_input")
+var response =new Response(response_text, {
+  headers: {
+  }
+})
+caches.open('cachee').then(cache => cache.put('/your_cache.html',response))
+      // cache.put('/your_cache.html', response );
+caches.match('/your_cache.html').then(r => r).then(console.log)
     }
     function notification_allow(){
       if (!("Notification" in window)) {
