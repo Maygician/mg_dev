@@ -15,7 +15,7 @@ self.addEventListener('install', function(event) {
       caches.open(CACHE_NAME)
         .then(function(cache) {
           console.log('Opened cache');
-          console.log('me = v1');
+          console.log('me = v2');
           return cache.addAll(urlsToCache);
         })
     );
