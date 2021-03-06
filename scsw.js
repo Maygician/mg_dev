@@ -47,6 +47,10 @@ self.addEventListener('install', function(event) {
       );
     }());
   });
+  /* 
+  base64url encode-> qr
+  qr->base64url decode-> json->cache ->link
+  */
   self.addEventListener('fetch', (event) => {
     // If a match isn't found in the cache, the response
     // will look like a connection error

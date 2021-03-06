@@ -176,8 +176,10 @@
     <script type="text/javascript">
     async function cache_put(){
      const cache = await caches.open('cachee');
-      var response = document.getElementById("cache_input")
-      cache.put('/your_cache', new Response(response));
+      var response_text = document.getElementById("cache_input")
+      var response =new Response(response_text)
+      console.log(response)
+      cache.put('/your_cache', response );
     }
     function notification_allow(){
       if (!("Notification" in window)) {
