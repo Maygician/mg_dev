@@ -91,11 +91,11 @@
         // guns=JSON.parse(localStorage.getItem("guns"))
         // console.log(guns) %>
         testWorker.postMessage([1,2]);
-      console.log('sent to worker');
+      // console.log('sent to worker');
     }
     testWorker.onmessage = function(e) {
     //   <%# result.textContent = e.data; %>
-      console.log('got msg from worker'+e.data);
+      // console.log('got msg from worker'+e.data);
     }
     init();
     function submit_(){

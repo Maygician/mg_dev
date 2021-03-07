@@ -2,8 +2,8 @@ const window = self;
 const urlToOpen = new URL('/', self.location.origin).href;
 self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
 onmessage = function(e) {
-    console.log(' got msg from the main script');
+    // console.log(' got msg from the main script');
     var workerResult = 'result: ' + (e.data[0] * e.data[1]);
-    console.log('sent back to main');
+    // console.log('sent back to main');
     postMessage(workerResult);
   }
