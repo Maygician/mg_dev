@@ -55,6 +55,7 @@
     <button  onclick="cache_put()">Put to cache</button>
     <a href="/your_cache.html">Here.</a>
     <br>
+    <button  onclick="ble_request()">Request bluetooth</button>
     <br>
     <h1>Todo:</h1>
     <p>Persist keyring and guns</p>
@@ -206,6 +207,11 @@ caches.match('/your_cache.html').then(r => r).then(console.log)
       // If the user accepts, let's create a notification    }    );
   }
   function notify(text) { new Notification(text)}
+  function ble_request(){
+    requestDevice({
+  acceptAllDevices:true
+})
+  }
     </script>
     </body>
     </html>

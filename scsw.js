@@ -15,7 +15,7 @@ self.addEventListener('install', function(event) {
       caches.open(CACHE_NAME)
         .then(function(cache) {
           console.log('Opened cache');
-          console.log('me = v01');
+          console.log('me = v000');
           return cache.addAll(urlsToCache);
         })
     );
@@ -71,8 +71,8 @@ self.addEventListener('install', function(event) {
       // }));
     }
     else{console.log("inside if statement. not matches")
-    // console.log(event.request.url)
-    // console.log(self.location.origin+"/your_cache.html")
+    console.log(event.request.url)
+    console.log(self.location.origin+"/your_cache.html")
 
   }
     // event.respondWith(caches.match(event.request));
