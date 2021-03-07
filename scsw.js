@@ -15,7 +15,7 @@ self.addEventListener('install', function(event) {
       caches.open(CACHE_NAME)
         .then(function(cache) {
           console.log('Opened cache');
-          console.log('me = v6');
+          console.log('me = v7');
           return cache.addAll(urlsToCache);
         })
     );
@@ -56,11 +56,13 @@ self.addEventListener('install', function(event) {
     // will look like a connection error
     // console.log(event.request.body)
     // console.log(event.request.URL.href)
-    console.log("event.request: "+event.request)
-    // console.log(event.body)
-    console.log("url: "+urlToOpen)
-    console.log("self.location.origin: "+self.location.origin)
-        if(event.request.URL==self.location.origin+"/your_cache.html"){
+    console.log("event.request: ")
+    console.log(event.request)
+    console.log("Caches: ")
+    console.log(caches)
+    // console.log("url: "+urlToOpen)
+    if(event.request.URL==self.location.origin+"/your_cache.html"){
+          console.log("inside if statement in sw fetching cache")
       event.respondWith(caches.match(event.request));
     }
     // event.respondWith(caches.match(event.request));
