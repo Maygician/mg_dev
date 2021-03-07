@@ -15,7 +15,7 @@ self.addEventListener('install', function(event) {
       caches.open(CACHE_NAME)
         .then(function(cache) {
           console.log('Opened cache');
-          console.log('me = v9');
+          console.log('me = v10');
           return cache.addAll(urlsToCache);
         })
     );
@@ -71,7 +71,11 @@ self.addEventListener('install', function(event) {
       //     'Content-Type': 'text/html'}
       // }));
     }
-    else{console.log("inside if statement. not matches")}
+    else{console.log("inside if statement. not matches")
+    console.log(event.request.URL)
+    console.log(self.location.origin+"/your_cache.html")
+
+  }
     // event.respondWith(caches.match(event.request));
   });
 //#region push
