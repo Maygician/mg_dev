@@ -208,7 +208,7 @@ caches.match('/your_cache.html').then(r => r).then(console.log)
   }
   function notify(text) { new Notification(text)}
   function ble_request(){
-    requestDevice({
+    navigator.bluetooth.requestDevice({
   acceptAllDevices:true
 })
   }
