@@ -96,6 +96,7 @@
     testWorker.onmessage = function(e) {
     //   <%# result.textContent = e.data; %>
       // console.log('got msg from worker'+e.data);
+      // console.log('got msg from worker'+e.data);
     }
     init();
     function submit_(){
@@ -186,8 +187,11 @@ caches.open('json-cache').then(cache => cache.put('/data.json', jsonResponse));
 */
 var response_text = document.getElementById("cache_input")
 var response =new Response(response_text, {
+  // headers: {
+  url: self.location.origin+'/your_cache.html', 
+  status: 200,
   headers: {
-  }
+    'Content-Type': 'text/html'}
 })
 caches.open('cachee').then(cache => cache.put('/your_cache.html',response))
       // cache.put('/your_cache.html', response );
