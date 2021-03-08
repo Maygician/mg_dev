@@ -35,6 +35,23 @@ var scope={};
 scope.public_read={};
 scope.groups={};
 
+// pubsub
+
+function publish(topic, message){
+    var receivers = resolve(topic)
+    receivers.publish(message)
+}
+function resolve(topic){
+    receivers = topic.list
+}
+var store ={};
+store.cache={}
+store.file={}
+store.remote={}
+store.indexeddb={}
+/*
+device specific adapters, implementing only minimal set of methods for pubsub/stream 
+*/
 /*
 from?
 has access?

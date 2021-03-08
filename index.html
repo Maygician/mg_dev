@@ -57,12 +57,17 @@
     <br>
     <button  onclick="ble_request()">Request bluetooth</button>
     <br>
+    <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+<label for="fileElem">Select some files</label>
+    <br>
+    <br>
     <h1>Todo:</h1>
     <p>Persist keyring and guns</p>
-    <p>Create cached page from user's input</p>
+    <p>Create cached page from user's input: - check</p> 
     <p>Put keyring behind the auth</p>
     <p>Wire two random channels</p>
     <p>Gun.on Print object</p>
+    <p>Ble webpage pairing</p>
     <p></p>
     <p></p>
 
@@ -208,10 +213,22 @@ caches.match('/your_cache.html').then(r => r).then(console.log)
   }
   function notify(text) { new Notification(text)}
   function ble_request(){
+      console.log(navigator.bluetooth.referringDevice)
+
+    navigator.bluetooth.getAvailability();
     navigator.bluetooth.requestDevice({
-  acceptAllDevices:true
+  acceptAllDevices:true,
+  optionalServices:[]
 })
+function ble_then(){
+  navigator.bluetooth.getDevices();
+
+}
+// navigator.bluetooth.requestDevice({
+//   filters: [ {services: [A, B]} ]
+// });
   }
+  // navigator.bluetooth.onavailabilitychanged
     </script>
     </body>
     </html>
