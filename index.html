@@ -60,6 +60,7 @@
     <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
 <label for="fileElem">Select some files</label>
     <br>
+    <p id="dropbox">Or drop them here.</p>
     <br>
     <h1>Todo:</h1>
     <p>Persist keyring and guns</p>
@@ -70,7 +71,32 @@
     <p>Ble webpage pairing</p>
     <p></p>
     <p></p>
+<script>
+  var dropbox;
 
+dropbox = document.getElementById("dropbox");
+dropbox.addEventListener("dragenter", dragenter, false);
+dropbox.addEventListener("dragover", dragover, false);
+dropbox.addEventListener("drop", drop, false);
+function dragenter(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+function dragover(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+function drop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+
+  var dt = e.dataTransfer;
+  var files = dt.files;
+
+  handleFiles(files);
+}
+</script>
     <script>
     var keyring = [];
     var guns = [];
