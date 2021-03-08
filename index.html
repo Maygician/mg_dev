@@ -62,6 +62,8 @@
     <br>
     <p id="dropbox">Or drop them here.</p>
     <br>
+    <div id="preview"></div>
+    <br>
     <h1>Todo:</h1>
     <p>Persist keyring and guns</p>
     <p>Create cached page from user's input: - check</p> 
@@ -73,7 +75,7 @@
     <p></p>
 <script>
   var dropbox;
-
+  var preview = document.getElementById("preview")
 dropbox = document.getElementById("dropbox");
 dropbox.addEventListener("dragenter", dragenter, false);
 dropbox.addEventListener("dragover", dragover, false);
@@ -95,6 +97,22 @@ function drop(e) {
   var files = dt.files;
 
   handleFiles(files);
+}
+function handleFiles(files) {
+  for (var i = 0; i < files.length; i++) {
+    var file = files[i];
+
+    if (!file.type.startsWith('image/')){ continue }
+
+    var img = document.createElement("img");
+    img.classList.add("obj");
+    img.file = file;
+    preview.appendChild(img); // preview -> div to display it to.
+
+    var reader = new FileReader();
+    reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
+    reader.readAsDataURL(file);
+  }
 }
 </script>
     <script>
