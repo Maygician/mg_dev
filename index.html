@@ -74,6 +74,7 @@
     <div id="preview"></div>
     <br>
     <button onclick="ask_geopos()">Alert position</button>
+    <p id="my_coords"></p>
     <br>
     <div id="mapid" style="height: 180px; width: 180px;"> </div>
     <br>
@@ -263,13 +264,15 @@ function onMapClick(e) {
 mymap.on('click', onMapClick);
  function ask_geopos(){
   // alert(Geolocation.getCurrentPosition())
+  var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters"
   function success(pos) {
   var crd = pos.coords;
-  alert("Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters")
-  // console.log('Current pos:');
-  // console.log(`Lat: ${crd.latitude}`);
-  // console.log(`Long: ${crd.longitude}`);
-  // console.log(`+- ${crd.accuracy} meters.`);
+  alert(text)
+  console.log('Current pos:');
+  console.log(`Lat: ${crd.latitude}`);
+  console.log(`Long: ${crd.longitude}`);
+  console.log(`+- ${crd.accuracy} meters.`);
+  document.getElementById("my_coords").innerHTML=text
 };
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
