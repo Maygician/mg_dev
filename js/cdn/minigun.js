@@ -49,6 +49,7 @@ store.cache={}
 store.file={}
 store.remote={}
 store.indexeddb={}
+// agent.quota={}//save and transfer only this much per agent
 /*
 device specific adapters, implementing only minimal set of methods for pubsub/stream 
 */

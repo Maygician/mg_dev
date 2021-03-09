@@ -8,6 +8,13 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/styles.css" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
   </head>
     <body style="background-color: #558888;">
     <!-- <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script> -->
@@ -64,6 +71,8 @@
     <br>
     <div id="preview"></div>
     <br>
+    <div id="mapid" style="height: 180px;"> </div>
+    <br>
     <h1>Todo:</h1>
     <p>Persist keyring and guns</p>
     <p>Create cached page from user's input: - check</p> 
@@ -71,6 +80,9 @@
     <p>Wire two random channels</p>
     <p>Gun.on Print object</p>
     <p>Ble webpage pairing</p>
+    <p>Unload mem to file, load from (gun state)</p>
+    <p>Chose what to sync with what</p>
+    <p>Dropboxes for background, everywhere</p>
     <p></p>
     <p></p>
 <script>
@@ -223,6 +235,20 @@ function handleFiles(files) {
         '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
       return !!pattern.test(str);
         }
+    </script>
+    <script>
+      
+	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+  maxZoom: 18,
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  id: 'mapbox/streets-v11',
+  tileSize: 512,
+  zoomOffset: -1
+}).addTo(mymap);
+
     </script>
     <script type="text/javascript">
     async function cache_put(){
