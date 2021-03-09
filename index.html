@@ -61,8 +61,8 @@
     <textarea id="cache_input" placeholder="cache response"></textarea>
     <button  onclick="cache_put()">Put to cache</button>
     <!-- <a href="/your_cache.html">Here.</a> -->
-    <button onclick="toggle_cache_sandbox()">Here.</button>
     <div id="cache_sandbox"></div>
+    <button onclick="toggle_cache_sandbox()">Here.</button>
     <br>
     <button  onclick="ble_request()">Request bluetooth</button>
     <br>
@@ -268,7 +268,7 @@ mymap.on('click', onMapClick);
     <script>
       var cache_toggled=false;
       function toggle_cache_sandbox() {
-        var sandbox = document.getElementById(cache_sandbox)
+        var sandbox = document.getElementById("cache_sandbox")
         if(cache_toggled)
         sandbox.innerHTML ='<iframe src="/your_cache.html"  sandbox="allow-scripts allow-forms"></iframe>'
         else sandbox.innerHTML = ""
