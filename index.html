@@ -73,7 +73,7 @@
     <br>
     <div id="preview"></div>
     <br>
-    <button onclick="ask_geopos()">Allow gps</button>
+    <button onclick="ask_geopos()">Alert position</button>
     <br>
     <div id="mapid" style="height: 180px; width: 180px;"> </div>
     <br>
@@ -265,10 +265,11 @@ mymap.on('click', onMapClick);
   // alert(Geolocation.getCurrentPosition())
   function success(pos) {
   var crd = pos.coords;
-  console.log('Current pos:');
-  console.log(`Lat: ${crd.latitude}`);
-  console.log(`Long: ${crd.longitude}`);
-  console.log(`+- ${crd.accuracy} meters.`);
+  alert("Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters")
+  // console.log('Current pos:');
+  // console.log(`Lat: ${crd.latitude}`);
+  // console.log(`Long: ${crd.longitude}`);
+  // console.log(`+- ${crd.accuracy} meters.`);
 };
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
