@@ -262,7 +262,24 @@ function onMapClick(e) {
 
 mymap.on('click', onMapClick);
  function ask_geopos(){
-  alert(Geolocation.getCurrentPosition())
+  // alert(Geolocation.getCurrentPosition())
+  function success(pos) {
+  var crd = pos.coords;
+  console.log('Current pos:');
+  console.log(`Lat: ${crd.latitude}`);
+  console.log(`Long: ${crd.longitude}`);
+  console.log(`+- ${crd.accuracy} meters.`);
+};
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+};
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
  }
     </script>
     <script>
