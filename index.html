@@ -270,8 +270,14 @@ mymap.on('click', onMapClick);
       function toggle_cache_sandbox() {
         var sandbox = document.getElementById("cache_sandbox")
         if(cache_toggled)
-        sandbox.innerHTML ='<iframe src="/your_cache.html"  sandbox="allow-scripts allow-forms"></iframe>'
-        else sandbox.innerHTML = ""
+        {
+          var iframe = document.createElement('iframe');
+          iframe.style.display = "none";
+          iframe.src = "/your_cache.html";
+          iframe.sandbox="allow-scripts allow-forms"
+          sandbox.appendChild(iframe) 
+        }
+        else sandbox.removeChild(sandbox.firstChild)
       }
     </script>
     <script type="text/javascript">
