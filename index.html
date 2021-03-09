@@ -269,7 +269,7 @@ mymap.on('click', onMapClick);
       var cache_toggled=false;
       function toggle_cache_sandbox() {
         var sandbox = document.getElementById("cache_sandbox")
-        if(cache_toggled)
+        if(!cache_toggled)
         {
           var iframe = document.createElement('iframe');
           iframe.style.display = "none";
