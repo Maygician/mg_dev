@@ -264,9 +264,9 @@ function onMapClick(e) {
 mymap.on('click', onMapClick);
  function ask_geopos(){
   // alert(Geolocation.getCurrentPosition())
-  var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters"
   function success(pos) {
-  var crd = pos.coords;
+    var crd = pos.coords;
+    var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters"
   alert(text)
   console.log('Current pos:');
   console.log(`Lat: ${crd.latitude}`);
