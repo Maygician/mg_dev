@@ -16,7 +16,7 @@
  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
  crossorigin=""></script>
   </head>
-    <body style="background-color: #558888;">
+    <body style="background-color: #558888; opacity: 70%;">
     <!-- <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script> -->
     <script src="/js/cdn/gun.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script> -->
@@ -60,7 +60,9 @@
     <br>
     <textarea id="cache_input" placeholder="cache response"></textarea>
     <button  onclick="cache_put()">Put to cache</button>
-    <a href="/your_cache.html">Here.</a>
+    <!-- <a href="/your_cache.html">Here.</a> -->
+    <a onclick="toggle_cache_sandbox()">Here.</a>
+    <div id="cache_sandbox"></div>
     <br>
     <button  onclick="ble_request()">Request bluetooth</button>
     <br>
@@ -71,7 +73,13 @@
     <br>
     <div id="preview"></div>
     <br>
-    <div id="mapid" style="height: 180px;"> </div>
+    <button onclick="ask_geopos()">Allow gps</button>
+    <br>
+    <div id="mapid" style="height: 180px; width: 180px;"> </div>
+    <br>
+    <input type="checkbox" id="allow_high_accuracy_checkbox">
+    <button  onclick="track_me()">Track me</button>
+    <br>
     <br>
     <h1>Todo:</h1>
     <p>Persist keyring and guns</p>
@@ -83,7 +91,8 @@
     <p>Unload mem to file, load from (gun state)</p>
     <p>Chose what to sync with what</p>
     <p>Dropboxes for background, everywhere</p>
-    <p></p>
+    <p>Get predictions about the user status</p>
+    <p>high accuracy checkbox</p>
     <p></p>
 <script>
   var dropbox;
@@ -237,7 +246,6 @@ function handleFiles(files) {
         }
     </script>
     <script>
-      
 	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -248,7 +256,23 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   tileSize: 512,
   zoomOffset: -1
 }).addTo(mymap);
+function onMapClick(e) {
+    alert("You clicked the map at " + e.latlng);
+}
 
+mymap.on('click', onMapClick);
+ function ask_geopos(){
+
+ }
+    </script>
+    <script>
+      var cache_toggled=false;
+      function toggle_cache_sandbox() {
+        var sandbox = document.getElementById(cache_sandbox)
+        if(cache_toggled)
+        sandbox.innerHTML ='<iframe src="/your_cache.html"  sandbox="allow-scripts allow-forms"></iframe>'
+        else sandbox.innerHTML = ""
+      }
     </script>
     <script type="text/javascript">
     async function cache_put(){
