@@ -271,6 +271,7 @@ function show_position(pos){
   console.log("from show_position, last_coord:")
     console.log(last_coord)
   mymap.setView([last_coord.latitude, last_coord.longitude],map_radius)
+  if(circle != undefined)
   mymap.removeLayer(circle)//todo: trycatch
     circle = L.circle([last_coord.latitude, last_coord.longitude], {
     color: 'red',
@@ -278,6 +279,7 @@ function show_position(pos){
     fillOpacity: 0.5,
     radius: last_coord.accuracy
 }).addTo(mymap);
+if(marker != undefined)
 mymap.removeLayer(marker)
 marker=L.marker([last_coord.latitude, last_coord.longitude]).addTo(mymap)
   // let accuracy = crd.accuracy
