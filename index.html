@@ -80,6 +80,8 @@
     <br>
     <input type="checkbox" id="allow_high_accuracy_checkbox">
     <button  onclick="track_me()">Track me</button>
+    <button  onclick="show_position()">Show me on the map</button>
+    <br>
     <br>
     <br>
     <h1>Todo:</h1>
@@ -93,7 +95,8 @@
     <p>Chose what to sync with what</p>
     <p>Dropboxes for background, everywhere</p>
     <p>Get predictions about the user status</p>
-    <p>high accuracy checkbox</p>
+    <p>high accuracy checkbox: not needed - default option</p>
+    <p>screen one screen two cache switch share</p>
     <p></p>
 <script>
   var dropbox;
@@ -247,8 +250,8 @@ function handleFiles(files) {
         }
     </script>
     <script>
-	var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-
+      var map_radius = 13;
+	var mymap = L.map('mapid').setView([51.505, -0.09], map_radius);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
   maxZoom: 18,
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -260,19 +263,33 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 function onMapClick(e) {
     alert("You clicked the map at " + e.latlng);
 }
-
 mymap.on('click', onMapClick);
+var last_coord = undefined;
+var circle = undefined;
+function show_position(pos){
+  mymap.setView([last_coord.lat, last_coord.lng],map_radius)
+  mymap.removeLayer(circle)//todo: trycatch
+    circle = L.circle([last_coord.lat, last_coord.lng], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: last_coord.accuracy
+}).addTo(mymap);
+  let accuracy = crd.accuracy
+
+}
  function ask_geopos(){
   // alert(Geolocation.getCurrentPosition())
   function success(pos) {
     var crd = pos.coords;
-    var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters"
-  alert(text)
+    last_coord = crd;
+    var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters";
+  alert(text);
   console.log('Current pos:');
   console.log(`Lat: ${crd.latitude}`);
   console.log(`Long: ${crd.longitude}`);
   console.log(`+- ${crd.accuracy} meters.`);
-  document.getElementById("my_coords").innerHTML=text
+  document.getElementById("my_coords").innerHTML=text;
 };
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
