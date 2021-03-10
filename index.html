@@ -266,6 +266,7 @@ function onMapClick(e) {
 mymap.on('click', onMapClick);
 var last_coord = undefined;
 var circle = undefined;
+var marker = undefined;
 function show_position(pos){
   console.log("from show_position, last_coord:")
     console.log(last_coord)
@@ -277,6 +278,8 @@ function show_position(pos){
     fillOpacity: 0.5,
     radius: last_coord.accuracy
 }).addTo(mymap);
+mymap.removeLayer(marker)
+marker=L.marker([last_coord.latitude, last_coord.longitude]).addTo(mymap)
   // let accuracy = crd.accuracy
 
 }
