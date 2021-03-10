@@ -269,15 +269,15 @@ var circle = undefined;
 function show_position(pos){
   console.log("from show_position, last_coord:")
     console.log(last_coord)
-  mymap.setView([last_coord.lat, last_coord.lng],map_radius)
+  mymap.setView([last_coord.latitude, last_coord.longitude],map_radius)
   mymap.removeLayer(circle)//todo: trycatch
-    circle = L.circle([last_coord.lat, last_coord.lng], {
+    circle = L.circle([last_coord.latitude, last_coord.longitude], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: last_coord.accuracy
 }).addTo(mymap);
-  let accuracy = crd.accuracy
+  // let accuracy = crd.accuracy
 
 }
  function ask_geopos(){
