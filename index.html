@@ -259,8 +259,8 @@ function handleFiles(files) {
         }
     </script>
     <script>
-      window.ondrag=function(e) {alert("drag: "+event.target.id);}
-      window.onclick=function(e) {alert("click:  "+event.target.id);}
+      // window.ondrag=function(e) {alert("drag: "+event.target.id);}
+      // window.onclick=function(e) {alert("click:  "+event.target.id);}
       document.addEventListener('click', (event)=> { 
     console.log('emitting click events');
 })
@@ -279,6 +279,9 @@ document.addEventListener('mouseenter',(event)=> {
 
 document.addEventListener('mouseleave', (event)=> {
 console.log("hovering finished")
+})
+document.addEventListener('drag', (event)=> {
+console.log("drag event")
 })
       // function flugegeheimen(id) {
       //   if(1)
