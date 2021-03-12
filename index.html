@@ -282,7 +282,7 @@ function get_pointer_position(e) {
 function spawn_ctxt_menu(e){
   var xpos = e.clientX;
   var ypos = e.clientY;
-  if(e.target.tagName != 'body')
+  if(e.target.tagName != 'BODY')
   {
   e.target.style.position=`fixed`
   // e.target.style.transform=`translate3d(${xpos}, ${ypos}, 0)`
@@ -307,7 +307,7 @@ console.log('not implemented')
     console.log('context menu. target: '+event.target.id);
     console.log('tagName: '+event.target.tagName)
     get_pointer_position(event);
-    // spawn_ctxt_menu(event);
+    spawn_ctxt_menu(event);
     // show_related_data_channels();
 }, false);
 
