@@ -282,10 +282,13 @@ function get_pointer_position(e) {
 function spawn_ctxt_menu(e){
   var xpos = e.clientX;
   var ypos = e.clientY;
+  if(e.target.tagName != 'body')
+  {
   e.target.style.position=`fixed`
   // e.target.style.transform=`translate3d(${xpos}, ${ypos}, 0)`
   e.target.style.left=xpos+'px'
   e.target.style.top=ypos+'px'
+  }
 }
 function show_related_data_channels(e){
   // e.target.
