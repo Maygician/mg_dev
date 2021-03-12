@@ -267,7 +267,9 @@ function handleFiles(files) {
 // })
 ;(()=> {
   var pars = document.getElementsByTagName('p')
-  pars.forEach(e => {console.log(e);});
+  // pars.forEach(e => {console.log(e);});
+  pars.forEach(element => console.log(element));
+
   document.addEventListener('dblclick',(event)=>{
     console.log('emitting double click events');
 } )
