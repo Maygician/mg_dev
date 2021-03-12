@@ -267,11 +267,13 @@ function handleFiles(files) {
 // })
 ;(()=> {
   var pars = document.getElementsByTagName('p')
+  for(var i = 0, max = pars.length; i < max; i++) 
+  {console.log(pars[i].innerHTML)}
   // pars.forEach(e => {console.log(e);});
-  pars.forEach(element => console.log(element));
-  pars.forEach(element => element.addEventListener('dblclick',(event)=>{
-    console.log('emitting double click events');
-}));
+//   pars.forEach(element => console.log(element));
+//   pars.forEach(element => element.addEventListener('dblclick',(event)=>{
+//     console.log('emitting double click events');
+// }));
 
 
 //   document.addEventListener('dblclick',(event)=>{
