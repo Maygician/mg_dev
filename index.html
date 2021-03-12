@@ -285,9 +285,10 @@ function handleFiles(files) {
 // } )
 
 document.addEventListener('contextmenu', (event)=>{
-  preventDefault();
+  event.preventDefault();
     console.log('emitting right click events');
-})
+}, false);
+//
 
 document.addEventListener('mouseenter',(event)=> {
    console.log("mouse enter, hovering started")
