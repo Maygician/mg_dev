@@ -283,7 +283,13 @@ function spawn_ctxt_menu(e){
   var xpos = e.clientX;
   var ypos = e.clientY;
   e.target.style.position=`fixed`
-  e.target.style.transform=`translate3d(${xpos}, ${ypos}, 0)`
+  // e.target.style.transform=`translate3d(${xpos}, ${ypos}, 0)`
+  e.target.style.left=xpos+'px'
+  e.target.style.top=ypos+'px'
+}
+function show_related_data_channels(e){
+  // e.target.
+console.log('not implemented')
 }
 ;(()=> {
   var pars = document.getElementsByTagName('p')
@@ -298,6 +304,7 @@ function spawn_ctxt_menu(e){
     console.log('context menu. target: '+event.target.id);
     get_pointer_position(event);
     spawn_ctxt_menu(event);
+    show_related_data_channels();
 }, false);
 
 document.addEventListener('mouseenter',(event)=> {
