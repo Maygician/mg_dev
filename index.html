@@ -261,15 +261,16 @@ function handleFiles(files) {
     <script>
       // window.ondrag=function(e) {alert("drag: "+event.target.id);}
       // window.onclick=function(e) {alert("click:  "+event.target.id);}
-      document.addEventListener('click', (event)=> { 
+      window.addEventListener('click', (event)=> { 
+      // document.addEventListener('click', (event)=> { 
     console.log('emitting click events');
 })
 
-document.addEventListener('dblclick',(event)=>{
+window.addEventListener('dblclick',(event)=>{
     console.log('emitting double click events');
 } )
 
-document.addEventListener('contextmenu', (event)=>{
+window.addEventListener('contextmenu', (event)=>{
     console.log('emitting right click events');
 })
 
@@ -280,9 +281,9 @@ document.addEventListener('contextmenu', (event)=>{
 // document.addEventListener('mouseleave', (event)=> {
 // console.log("hovering finished")
 // })
-document.addEventListener('drag', (event)=> {
-console.log("drag event")
-})
+// document.addEventListener('drag', (event)=> {
+// console.log("drag event")
+// })
       // function flugegeheimen(id) {
       //   if(1)
       //   id.context();
