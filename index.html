@@ -286,6 +286,7 @@ function get_pointer_position(e) {
     pars[i].addEventListener('dblclick',(event)=>{
     // console.log('emitting double click events');
     get_pointer_position(event);
+    console.log(event.target.id);
 })
   }
   // pars.forEach(e => {console.log(e);});
