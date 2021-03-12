@@ -310,7 +310,21 @@ console.log('not implemented')
     spawn_ctxt_menu(event);
     // show_related_data_channels();
 }, false);
-
+document.addEventListener('mousedown',(event)=> {
+  switch (event.which){
+    case 1: 
+    console.log("mouse 1")
+    break;
+    case 2:
+    console.log("mouse 2")
+    break;
+    case 3: 
+    console.log("mouse 3")
+    break;
+    default:
+      console.log("Weird mouse event")
+  }
+});
 document.addEventListener('mouseenter',(event)=> {
    console.log("mouse enter, hovering started")
 })
