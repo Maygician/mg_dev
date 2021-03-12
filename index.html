@@ -279,31 +279,25 @@ function get_pointer_position(e) {
   console.log('xpos'+ xpos+' ypos'+ ypos)
   // var translate3dValue = "translate3d(" +xpos + "px," +ypos + "px,0)"
 }
+function spawn_ctxt_menu(e){
+  var xpos = e.clientX;
+  var ypos = e.clientY;
+  e.target.style.transform.translate3d(xpos, ypos,0)
+}
 ;(()=> {
   var pars = document.getElementsByTagName('p')
   for(var i = 0, max = pars.length; i < max; i++) 
   {console.log(pars[i].innerHTML)
     pars[i].addEventListener('dblclick',(event)=>{
-    // console.log('emitting double click events');
     get_pointer_position(event);
     console.log(event.target.id);
-})
-  }
-  // pars.forEach(e => {console.log(e);});
-//   pars.forEach(element => console.log(element));
-//   pars.forEach(element => element.addEventListener('dblclick',(event)=>{
-//     console.log('emitting double click events');
-
-//   document.addEventListener('dblclick',(event)=>{
-//     console.log('emitting double click events');
-// } )
-
-document.addEventListener('contextmenu', (event)=>{
+  })}
+ document.addEventListener('contextmenu', (event)=>{
   event.preventDefault();
     console.log('context menu. target: '+event.target.id);
     get_pointer_position(event);
+    spawn_ctxt_menu(event);
 }, false);
-//
 
 document.addEventListener('mouseenter',(event)=> {
    console.log("mouse enter, hovering started")
