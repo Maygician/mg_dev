@@ -301,6 +301,7 @@ function get_pointer_position(e) {
 document.addEventListener('contextmenu', (event)=>{
   event.preventDefault();
     console.log('context menu. target: '+event.target.id);
+    get_pointer_position(event);
 }, false);
 //
 
