@@ -104,8 +104,8 @@
     <p>Craft system, recipes, tech integration, pipeline (in, intermediate, out)... Example: put "x" on device 1, wire it to device 2, put "y" on device 2...</p>
     <p>Operant conditioning templates (forcing an addiction/habbit); Mood guessing, target mood, route, optimal reward... </p>
     <p>Hints: Layers. Buttons: onclick do. And there are context changing ones. Two types basically, applies to all the UI elements. onclick: check type, apply the stuff by context</p>
-    <p></p>
-    <p></p>
+    <p>Plaintext sync</p>
+    <p>Cache versioning (multiple pages, save as, add to index)</p>
     <p></p>
 <script>
   var dropbox;
@@ -265,12 +265,15 @@ function handleFiles(files) {
 //       // document.addEventListener('click', (event)=> { 
 //     console.log('emitting click events');
 // })
-
-document.addEventListener('dblclick',(event)=>{
+;(()=> {
+  var pars = document.getElementsByTagName('p')
+  pars.forEach(e => {console.log(e)})
+  document.addEventListener('dblclick',(event)=>{
     console.log('emitting double click events');
 } )
 
 document.addEventListener('contextmenu', (event)=>{
+  preventDefault();
     console.log('emitting right click events');
 })
 
@@ -280,7 +283,8 @@ document.addEventListener('mouseenter',(event)=> {
 
 document.addEventListener('mouseleave', (event)=> {
 console.log("hovering finished")
-})
+})})();
+
 // document.addEventListener('drag', (event)=> {
 // console.log("drag event")
 // })
