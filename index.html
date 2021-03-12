@@ -113,6 +113,8 @@
       <label class="menu-open-button" for="menu-open"> <span class="lines line-1"></span> <span class="lines line-2"></span> <span class="lines line-3"></span> </label>
       <a href="#" class="menu-item item-1"> <i class="fa fa-anchor"></i> </a> <a href="#" class="menu-item item-2"> <i class="fa fa-coffee"></i> </a> <a href="#" class="menu-item item-3"> <i class="fa fa-heart"></i> </a> <a href="#" class="menu-item item-4"> <i class="fa fa-microphone"></i> </a> <a href="#" class="menu-item item-5"> <i class="fa fa-star"></i> </a> <a href="#" class="menu-item item-6"> <i class="fa fa-diamond"></i> </a> </nav>
      -->
+     <br>
+     <a id="ctxt_menu">Menu mockup</a>
 <script>
   var dropbox;
   var preview = document.getElementById("preview")
@@ -271,12 +273,19 @@ function handleFiles(files) {
 //       // document.addEventListener('click', (event)=> { 
 //     console.log('emitting click events');
 // })
+function get_pointer_position(e) {
+  var xpos = e.clientX;
+  var ypos = e.clientY;
+  console.log('xpos'+ xpos+' ypos'+ ypos)
+  // var translate3dValue = "translate3d(" +xpos + "px," +ypos + "px,0)"
+}
 ;(()=> {
   var pars = document.getElementsByTagName('p')
   for(var i = 0, max = pars.length; i < max; i++) 
   {console.log(pars[i].innerHTML)
     pars[i].addEventListener('dblclick',(event)=>{
-    console.log('emitting double click events');
+    // console.log('emitting double click events');
+    get_pointer_position();
 })
   }
   // pars.forEach(e => {console.log(e);});
