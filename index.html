@@ -305,9 +305,10 @@ console.log('not implemented')
  document.addEventListener('contextmenu', (event)=>{
   event.preventDefault();
     console.log('context menu. target: '+event.target.id);
+    console.log('tagName: '+event.target.tagName)
     get_pointer_position(event);
-    spawn_ctxt_menu(event);
-    show_related_data_channels();
+    // spawn_ctxt_menu(event);
+    // show_related_data_channels();
 }, false);
 
 document.addEventListener('mouseenter',(event)=> {
