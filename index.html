@@ -282,7 +282,7 @@ function get_pointer_position(e) {
 function spawn_ctxt_menu(e){
   var xpos = e.clientX;
   var ypos = e.clientY;
-  e.target.style.transform.translate3d(xpos, ypos,0)
+  e.target.style.transform=translate3d(xpos, ypos,0)
 }
 ;(()=> {
   var pars = document.getElementsByTagName('p')
