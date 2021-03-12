@@ -285,7 +285,7 @@ function get_pointer_position(e) {
   {console.log(pars[i].innerHTML)
     pars[i].addEventListener('dblclick',(event)=>{
     // console.log('emitting double click events');
-    get_pointer_position();
+    get_pointer_position(event);
 })
   }
   // pars.forEach(e => {console.log(e);});
