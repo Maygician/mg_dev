@@ -259,6 +259,27 @@ function handleFiles(files) {
         }
     </script>
     <script>
+      window.ondrag=function(e) {alert("drag: "+event.target.id);}
+      window.ondrag=function(e) {alert("click:  "+event.target.id);}
+      // function flugegeheimen(id) {
+      //   if(1)
+      //   id.context();
+      //   else id.defaultCallback();
+      // }
+      // var mode="default"//top level context
+      // function do_something_with(ui_element, mode) {
+      //   if(context.fuzzy){ask_for_details()}
+      // }
+      // function do_something_with(ui_element){
+      //   if(mode=="default"){}
+      //   else if(mode=="none"){}
+      //   else if(mode=="hint"){}
+      //   else if(mode=="change"){}
+      //   else if(mode=="share"){}
+      //   else if(mode=="get_id"){}
+      // }
+    </script>
+    <script>
       var map_radius = 13;
 	var mymap = L.map('mapid').setView([51.505, -0.09], map_radius);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
