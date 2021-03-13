@@ -114,7 +114,7 @@
       <a href="#" class="menu-item item-1"> <i class="fa fa-anchor"></i> </a> <a href="#" class="menu-item item-2"> <i class="fa fa-coffee"></i> </a> <a href="#" class="menu-item item-3"> <i class="fa fa-heart"></i> </a> <a href="#" class="menu-item item-4"> <i class="fa fa-microphone"></i> </a> <a href="#" class="menu-item item-5"> <i class="fa fa-star"></i> </a> <a href="#" class="menu-item item-6"> <i class="fa fa-diamond"></i> </a> </nav>
      -->
      <br>
-     <p id="ctxt_menu">Menu mockup</p>
+     <div id="ctxt_menu">Menu mockup</div>
 <script>
   var dropbox;
   var preview = document.getElementById("preview")
@@ -279,12 +279,16 @@ function get_pointer_position(e) {
   console.log('xpos'+ xpos+' ypos'+ ypos)
   // var translate3dValue = "translate3d(" +xpos + "px," +ypos + "px,0)"
 }
+var global_context={}
+global_context.context_menu = `<button>Button</button>`
 function spawn_ctxt_menu(e){
+  global_context.ctxt_menu_open = true
   var ctxt_menu = document.querySelector('#ctxt_menu');
-  ctxt_menu.style.position="fixed"
-  ctxt_menu.style.left = e.clientX+'px'
-  ctxt_menu.style.top = e.clientY+'px'
-  // ctxt_menu.innerHTML="<p>Ctxt menu mockup text</p>"
+  ctxt_menu.style.display = 'flex';
+  ctxt_menu.style.position="fixed";
+  ctxt_menu.style.left = e.clientX+'px';
+  ctxt_menu.style.top = e.clientY+'px';
+  ctxt_menu.innerHTML=global_context.ctxt_menu;
 }
 function fix_move(){
   var xpos = e.clientX;
@@ -329,6 +333,10 @@ document.addEventListener('mousedown',(event)=> {
   switch (event.which){
     case 1: 
     console.log("mouse 1")
+    if(global_context.ctxt_menu_open)
+    {global_context.ctxt_menu_open=false;
+    document.querySelector('#ctxt_menu').style.display="none";
+    }
     break;
     case 2:
     console.log("mouse 2")
@@ -356,6 +364,7 @@ window.addEventListener("keypress",function(event) {
     case '_':
       zoom(1/1.1);
       break;
+
     default:
       console.log("no one hears you screaming, little key: "+event.key)
   }
