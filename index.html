@@ -328,6 +328,13 @@ document.addEventListener('mousedown',(event)=> {
 window.addEventListener("keypress",function(event) {
   event.preventDefault();
   console.log("key pressed: "+event.key)
+  switch(event.key){
+    case '+':
+      console.log("Plus pressed. Wanna zoom?")
+      break;
+    default:
+      console.log("no one hears you screaming, little key: "+event.key)
+  }
 })
 window.addEventListener('wheel', function(event)
 {
