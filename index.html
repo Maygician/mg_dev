@@ -294,9 +294,9 @@ function show_related_data_channels(e){
   // e.target.
 console.log('not implemented')
 }
-function zoom(){
+function zoom(scale){
   var e = window.event;
-e.target.style.transform+='scale(1.1)'
+e.target.style.transform+=`scale(${scale})`
 }
 ;(()=> {
   var pars = document.getElementsByTagName('p')
@@ -335,11 +335,19 @@ window.addEventListener("keypress",function(event) {
   switch(event.key){
     case '+':
       console.log("Plus pressed. Wanna zoom?")
-      zoom();
+      zoom(1.1);
       break;
     case '=':
       console.log("Let's assume equals is a plus sign")
-      zoom();
+      zoom(1.1);
+      break;
+    case '-':
+      console.log("Let's assume equals is a plus sign")
+      zoom(1/1.1);
+      break;
+    case '_':
+      console.log("Let's assume equals is a plus sign")
+      zoom(1/1.1);
       break;
     default:
       console.log("no one hears you screaming, little key: "+event.key)
