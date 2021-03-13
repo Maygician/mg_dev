@@ -296,6 +296,7 @@ console.log('not implemented')
 }
 function zoom(scale){
   var e = window.event;
+  if(e.target.tagName != 'BODY')
 e.target.style.transform+=`scale(${scale})`
 }
 ;(()=> {
@@ -334,19 +335,15 @@ window.addEventListener("keypress",function(event) {
   console.log("key pressed: "+event.key)
   switch(event.key){
     case '+':
-      console.log("Plus pressed. Wanna zoom?")
       zoom(1.1);
       break;
     case '=':
-      console.log("Let's assume equals is a plus sign")
       zoom(1.1);
       break;
     case '-':
-      console.log("Let's assume equals is a plus sign")
       zoom(1/1.1);
       break;
     case '_':
-      console.log("Let's assume equals is a plus sign")
       zoom(1/1.1);
       break;
     default:
