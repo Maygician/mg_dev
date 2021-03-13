@@ -325,6 +325,10 @@ document.addEventListener('mousedown',(event)=> {
       console.log("Was pressed mouse button #"+event.which)
   }
 });
+window.addEventListener("keypress",function(event) {
+  event.preventDefault();
+  console.log("key pressed: "+event.key)
+})
 window.addEventListener('wheel', function(event)
 {
  if (event.deltaY < 0)
