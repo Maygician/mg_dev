@@ -282,8 +282,8 @@ function get_pointer_position(e) {
 function spawn_ctxt_menu(e){
   var ctxt_menu = document.querySelector('#ctxt_menu');
   ctxt_menu.style.position="fixed"
-  ctxt_menu.style.left = e.clientX
-  ctxt_menu.style.top = e.clientY
+  ctxt_menu.style.left = e.clientX+'px'
+  ctxt_menu.style.top = e.clientY+'px'
   // ctxt_menu.innerHTML="<p>Ctxt menu mockup text</p>"
 }
 function fix_move(){
