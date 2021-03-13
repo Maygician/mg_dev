@@ -280,6 +280,13 @@ function get_pointer_position(e) {
   // var translate3dValue = "translate3d(" +xpos + "px," +ypos + "px,0)"
 }
 function spawn_ctxt_menu(e){
+  var ctxt_menu = document.querySelector('#ctxt_menu');
+  ctxt_menu.style.position="fixed"
+  ctxt_menu.style.left = e.clientX
+  ctxt_menu.style.top = e.clientY
+  ctxt_menu.innerHTML="<p>Ctxt menu mockup text</p>"
+}
+function fix_move(){
   var xpos = e.clientX;
   var ypos = e.clientY;
   if(e.target.tagName != 'BODY')
@@ -290,15 +297,18 @@ function spawn_ctxt_menu(e){
   e.target.style.top=ypos+'px'
   }
 }
+
 function show_related_data_channels(e){
   // e.target.
 console.log('not implemented')
 }
+var zoom_active = false;
 function zoom(scale){
+  if(zoom_active){
   var e = window.event;
   if(e.target.tagName != 'BODY')
 e.target.style.transform+=`scale(${scale})`
-}
+}}
 ;(()=> {
   var pars = document.getElementsByTagName('p')
   for(var i = 0, max = pars.length; i < max; i++) 
