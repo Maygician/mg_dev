@@ -21,9 +21,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script> -->
     <script src="/js/cdn/gun.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script> -->
-    <div style="position: absolute; z-index: -1; size: 100%;">
-      <iframe width="100vw" height="100vh" src="https://www.youtube.com/embed/1M6k9kyrnV4?start=850" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+
     <script src="/js/cdn/sea.js"></script>
     <textarea id="message" placeholder="message"></textarea>
     <br>
@@ -293,11 +291,15 @@ function get_pointer_position(e) {
 }
 var global_context={}
 global_context.context_menu = `
-<button>Share as an image</button>
-<button>Show related data streams</button>
-<button>Show related users</button>
-<button>Additional actions</button>
+<iframe width="1920" height="1080" src="https://www.youtube.com/embed/WntFEcG7Wt8?start=180" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 `
+// global_context.context_menu = `
+// <button>Share as an image</button>
+// <button>Show related data streams</button>
+// <button>Show related users</button>
+// <button>Additional actions</button>
+// `
 function spawn_ctxt_menu(e){
   global_context.ctxt_menu_open = true
   var ctxt_menu = document.querySelector('#ctxt_menu');
