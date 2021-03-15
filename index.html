@@ -16,7 +16,7 @@
  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
  crossorigin=""></script>
  </head>
-    <body style="background-color: #558888; opacity: 90%;">
+    <body style="background-image: url('resources/img/screenshot_sample.jpg'); opacity: 90%;">
     <!-- <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script> -->
     <script src="/js/cdn/gun.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script> -->
@@ -106,6 +106,14 @@
     <p>Hints: Layers. Buttons: onclick do. And there are context changing ones. Two types basically, applies to all the UI elements. onclick: check type, apply the stuff by context</p>
     <p>Plaintext sync</p>
     <p>Cache versioning (multiple pages, save as, add to index)</p>
+    <p>Become a monster guide</p>
+    <p>cultivation technique scrolls</p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
     <p></p>
     <!-- Stolen from https://www.cssscript.com/demo/animated-round-popup-menu-with-pure-css/# -->
     <!-- <nav class="menu">
@@ -280,7 +288,12 @@ function get_pointer_position(e) {
   // var translate3dValue = "translate3d(" +xpos + "px," +ypos + "px,0)"
 }
 var global_context={}
-global_context.context_menu = `<button>Button</button>`
+global_context.context_menu = `
+<button>Share as an image</button>
+<button>Show related data streams</button>
+<button>Show related users</button>
+<button>Additional actions</button>
+`
 function spawn_ctxt_menu(e){
   global_context.ctxt_menu_open = true
   var ctxt_menu = document.querySelector('#ctxt_menu');
