@@ -307,6 +307,10 @@ function spawn_ctxt_menu(e){
   ctxt_menu.style.top = e.clientY+'px';
   ctxt_menu.innerHTML=global_context.context_menu;//fixme
 }
+function close_ctxt_menu(){    if(global_context.ctxt_menu_open)
+    {global_context.ctxt_menu_open=false;
+    document.querySelector('#ctxt_menu').style.display="none";
+    }}
 function fix_move(){
   var xpos = e.clientX;
   var ypos = e.clientY;
@@ -346,10 +350,7 @@ e.target.style.transform+=`scale(${scale})`
     spawn_ctxt_menu(event);
     // show_related_data_channels();
 }, false);
-function close_ctxt_menu(){    if(global_context.ctxt_menu_open)
-    {global_context.ctxt_menu_open=false;
-    document.querySelector('#ctxt_menu').style.display="none";
-    }}
+
 document.addEventListener('mousedown',(event)=> {
   switch (event.which){
     case 1: 
