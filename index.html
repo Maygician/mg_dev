@@ -292,11 +292,13 @@ function get_pointer_position(e) {
 var global_context={}
 
 global_context.context_menu = `
+<div style="height: 30vh; width: 30vv;">
 <button>Share as an image</button><br>
 <button>Show related data streams</button><br>
 <button>Show related users</button><br>
 <button>Additional actions</button><br>
 <button onclick="close_ctxt_menu()">Close</button><br>
+</div>
 `
 function spawn_ctxt_menu(e){
   global_context.ctxt_menu_open = true
