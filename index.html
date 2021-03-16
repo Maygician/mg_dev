@@ -290,16 +290,14 @@ function get_pointer_position(e) {
   // var translate3dValue = "translate3d(" +xpos + "px," +ypos + "px,0)"
 }
 var global_context={}
-global_context.context_menu = `
-<iframe width="1920" height="1080" src="https://www.youtube.com/embed/WntFEcG7Wt8?start=180" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+global_context.context_menu = `
+<button>Share as an image</button><br>
+<button>Show related data streams</button><br>
+<button>Show related users</button><br>
+<button>Additional actions</button><br>
+<button onclick="close_ctxt_menu()">Close</button><br>
 `
-// global_context.context_menu = `
-// <button>Share as an image</button>
-// <button>Show related data streams</button>
-// <button>Show related users</button>
-// <button>Additional actions</button>
-// `
 function spawn_ctxt_menu(e){
   global_context.ctxt_menu_open = true
   var ctxt_menu = document.querySelector('#ctxt_menu');
@@ -307,7 +305,7 @@ function spawn_ctxt_menu(e){
   ctxt_menu.style.position="fixed";
   ctxt_menu.style.left = e.clientX+'px';
   ctxt_menu.style.top = e.clientY+'px';
-  ctxt_menu.innerHTML=global_context.context_menu;
+  ctxt_menu.innerHTML=global_context.context_menu;//fixme
 }
 function fix_move(){
   var xpos = e.clientX;
@@ -348,14 +346,15 @@ e.target.style.transform+=`scale(${scale})`
     spawn_ctxt_menu(event);
     // show_related_data_channels();
 }, false);
+function close_ctxt_menu(){    if(global_context.ctxt_menu_open)
+    {global_context.ctxt_menu_open=false;
+    document.querySelector('#ctxt_menu').style.display="none";
+    }}
 document.addEventListener('mousedown',(event)=> {
   switch (event.which){
     case 1: 
     console.log("mouse 1")
-    if(global_context.ctxt_menu_open)
-    {global_context.ctxt_menu_open=false;
-    document.querySelector('#ctxt_menu').style.display="none";
-    }
+
     break;
     case 2:
     console.log("mouse 2")
