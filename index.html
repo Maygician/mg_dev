@@ -125,7 +125,7 @@
      -->
      <br>
      <button  onclick="test_js()">Test button</button>
-     <button  onclick="change_js()">Change button</button>
+     <button  onclick="change_js('Js_test_container',`function test_js() {alert('Modified test')}`)">Change button</button>
      <div id="ctxt_menu">Menu mockup</div>
 <script id="Js_core" type="text/javascript">
   var dropbox;
@@ -480,13 +480,11 @@ var options = {
       function test_js() {alert("original test_js")}
     </script>
     <script >
-      function change_js() {
-        // document.getElementById("Js_test_container").text=`function test_js() {alert("Modified test")}`
-        var cont = document.getElementById("Js_test_container");
-
+      function change_js(id, value) {
+        var cont = document.getElementById(id);
         var script = document.createElement("script");
-        script.text=`function test_js() {alert("Modified test")}`
-        script.setAttribute("id","Js_test_container")
+        script.text=value;
+        script.setAttribute("id",id);
         cont.replaceWith(script);
         }
     </script>
