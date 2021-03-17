@@ -1,10 +1,11 @@
 <button onclick="create()">create</button>
 
-<form>
+<form style="display: none; position: absolute;" id="create_form">
     <label>Task</label>
     <textarea></textarea>
     <label>Reward</label>
     <textarea></textarea>
+    <button>submit</button>
 </form>
 
 <br>
@@ -15,7 +16,7 @@
 
 <script>
 function create() {
-
+document.getElementById("create_form").style.display="flex"
 
 }
 </script>
