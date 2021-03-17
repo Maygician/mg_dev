@@ -124,8 +124,10 @@
       <a href="#" class="menu-item item-1"> <i class="fa fa-anchor"></i> </a> <a href="#" class="menu-item item-2"> <i class="fa fa-coffee"></i> </a> <a href="#" class="menu-item item-3"> <i class="fa fa-heart"></i> </a> <a href="#" class="menu-item item-4"> <i class="fa fa-microphone"></i> </a> <a href="#" class="menu-item item-5"> <i class="fa fa-star"></i> </a> <a href="#" class="menu-item item-6"> <i class="fa fa-diamond"></i> </a> </nav>
      -->
      <br>
+     <button  onclick="test_js()">Test button</button>
+     <button  onclick="change_js()">Change button</button>
      <div id="ctxt_menu">Menu mockup</div>
-<script>
+<script id="Js_core" type="text/javascript">
   var dropbox;
   var preview = document.getElementById("preview")
 dropbox = document.getElementById("dropbox");
@@ -167,7 +169,7 @@ function handleFiles(files) {
   }
 }
 </script>
-    <script>
+<script id="Js_workers" type="text/javascript">
     var keyring = [];
     var guns = [];
     var pfx = "pfx"
@@ -276,13 +278,7 @@ function handleFiles(files) {
       return !!pattern.test(str);
         }
     </script>
-    <script>
-      // window.ondrag=function(e) {alert("drag: "+event.target.id);}
-      // window.onclick=function(e) {alert("click:  "+event.target.id);}
-//       window.addEventListener('click', (event)=> { 
-//       // document.addEventListener('click', (event)=> { 
-//     console.log('emitting click events');
-// })
+<script id="Js_events" type="text/javascript">
 function get_pointer_position(e) {
   var xpos = e.clientX;
   var ypos = e.clientY;
@@ -417,7 +413,7 @@ console.log("hovering finished")
 // })
 
     </script>
-    <script>
+    <script id="Js_map" type="text/javascript">
       var map_radius = 13;
 	var mymap = L.map('mapid').setView([51.505, -0.09], map_radius);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -479,6 +475,12 @@ var options = {
 
   navigator.geolocation.getCurrentPosition(success, error, options);
  }
+    </script>
+    <script id="Js_test_container">
+      function test_js() {alert("original test_js")}
+    </script>
+    <script >
+      function change_js() {document.getElementById("Js_test_container").innerHTML=`function test_js() {alert("Modified test")}`}
     </script>
     <script>
       var cache_toggled=false;
