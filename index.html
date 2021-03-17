@@ -481,11 +481,13 @@ var options = {
     </script>
     <script >
       function change_js() {
-        document.getElementById("Js_test_container").text=`function test_js() {alert("Modified test")}`
-        // var cont = document.getElementById("Js_test_container");
-        // document.removeChild(cont);
-        // var script = document.createElement("script");
-        // script.text=`function test_js() {alert("Modified test")}`
+        // document.getElementById("Js_test_container").text=`function test_js() {alert("Modified test")}`
+        var cont = document.getElementById("Js_test_container");
+
+        var script = document.createElement("script");
+        script.text=`function test_js() {alert("Modified test")}`
+        script.setAttribute("id","Js_test_container")
+        document.replaceChild(cont, script);
         }
     </script>
     <script>
