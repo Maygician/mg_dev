@@ -19,11 +19,12 @@
         var progress = document.getElementById('progress');
         var progress2 = document.getElementById('progress2');
         var loop = function(){
-            while(1){
-                setTimeout(() => {
-                    updateValue(Math.floor(Math.random()*100));
+            let timerId = setTimeout(function tick() {
+       updateValue(Math.floor(Math.random()*100));
                     progress2.style.width = Math.floor(Math.random()*100)+'%';
-  }, 1000);}
+  timerId = setTimeout(tick, 2000); // (*)
+}, 2000);
+
         }
         loop();
         function updateValue(perc) {
