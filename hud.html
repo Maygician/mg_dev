@@ -5,29 +5,34 @@
 </head>
 <body>
       <style>
-        #progress-holder{width:400px;height:20px;background:grey}
-        #progress{width:0;height:100%;background:black;-webkit-transition:width 500ms}
+        /* #progress-holder{width:400px;height:20px;background:grey} */
+        /* #progress{width:0;height:100%;background:black;-webkit-transition:width 500ms} */
     </style>
-    <div id="progress-holder">
-        <div id="progress"></div>
+    <div id="progress-holder" style="width: 400px; height: 20px; background: grey" >
+        <div id="progress" style = "width:0;height:100%;background:black;-webkit-transition:width 500ms;"></div>
+    </div>
+    <div  style="width: 400px; height: 20px; background: grey" >
+        <div id="progress2" style = "width:0;height:100%;background:black;-webkit-transition:width 500ms;"></div>
     </div>
     <button id="button">Click me</button>
-    <script>
+    <script> 
+        var progress = document.getElementById('progress');
+        var progress2 = document.getElementById('progress2');
         var loop = function(){
             while(1){
                 setTimeout(() => {
                     updateValue(Math.floor(Math.random()*100));
-  }, 1000);
-
-            }
+                    progress2.style.width = Math.floor(Math.random()*100)+'%';
+  }, 1000);}
         }
-        var progress = document.getElementById('progress');
+   
         function updateValue(perc) {
             progress.style.width = perc+'%';
         }
         document.getElementById('button').onclick = function() {
             updateValue(Math.floor(Math.random()*100));
         }
+        var onUpdate = function() {}
     </script>
 </body>
 </html>
