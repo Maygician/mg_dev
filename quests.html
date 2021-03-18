@@ -13,7 +13,11 @@
     }
     function gun_load() {
         var field = document.getElementById("gun_output")
-        let val = gun.get("test").get("1").val();
+        var val=""
+        gun.get("test").get("1").once(function(value){
+  // render it, but only once. No updates.
+  val = value
+})
         console.log(val);
         field.value = val;
     }
