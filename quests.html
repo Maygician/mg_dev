@@ -1,3 +1,22 @@
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+<button id="gun_put" onclick="gun_save()">save</button>
+<textarea id="gun_input"></textarea>
+<button id="gun_load" onclick=gun_load()>load</button>
+<textarea id="gun_output"></textarea>
+
+<script>
+    var gun = new Gun();
+    function gun_save() {
+        var data = document.getElementById("gun_input").value;
+        gun.get("test").get("1").put(data);
+    }
+    function gun_load() {
+        var field = document.getElementById("gun_output")
+        field.value = gun.get("test").get("1").val();
+    }
+</script>
+
 <button onclick="create()">create</button>
 
 <form style="display: none; position: absolute; background: grey;" id="create_form">
@@ -45,9 +64,31 @@
 <br>
 <h1>Auto generated</h1>
 <h2>By utility</h2>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Schema:</h1>
+<h2>Secure one (important stuff):</h2>
+<p>Trusted agent (third party?) knows conditions, can verify</p>
+<p>Condition usually includes getting specific type of message from known source</p>
+<p></p>
+<p></p>
+<h2>Simplified</h2>
+<p></p>
+<p></p>
 <script>
 function create() {
 document.getElementById("create_form").style.display="flex"
 
 }
+
+function create_form_submit(){
+
+}
+var parsers = {};
+// parsers.simple.=function (){}
 </script>
