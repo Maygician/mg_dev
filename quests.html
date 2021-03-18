@@ -13,7 +13,9 @@
     }
     function gun_load() {
         var field = document.getElementById("gun_output")
-        field.value = gun.get("test").get("1").val();
+        let val = gun.get("test").get("1").val();
+        console.log(val);
+        field.value = val;
     }
 </script>
 
