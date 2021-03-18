@@ -27,12 +27,12 @@
     var gun2 = new Gun();
     function gun_save2() {
         var data = document.getElementById("gun_input2").value;
-        gun.get("test").get("1").put(data);
+        gun2.get("test").get("1").put(data);
     }
     function gun_load2() {
         var field = document.getElementById("gun_output2")
         var val=""
-        gun.get("test").get("1").once(function(value){
+        gun2.get("test").get("1").once(function(value){
   val = value
 })
         field.value = val;
