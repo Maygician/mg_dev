@@ -1,15 +1,16 @@
 <h2>Core</h2>
 <p></p>
 <p></p>
-<h2>Guilds
 <div id="Guilds">
+<h2>Guilds</h2>
     <h3>Server side</h3>
     <p></p>
     <p></p>
     <h3>Client side</h3>
     <p></p>
     <p></p>
-</div></h2>
+</div>
+
     <h2>Guilds</h2>
 <p></p>
 <p></p>
@@ -19,6 +20,9 @@
 <p></p>
 <script>
     document.getElementsByTagName('H2').addEventListener('click',function(e) {
-        e.target.child.style.display="none";
+       c= e.target.parentNode.children()
+       for (i = 0; i < c.length; i++) {
+  if(c[i].tagName!="H2"){c[i].style.display="none"}
+}
     })
 </script>
