@@ -4,6 +4,11 @@
 <textarea id="gun_input"></textarea>
 <button id="gun_load" onclick=gun_load()>load</button>
 <textarea id="gun_output"></textarea>
+<br>
+<button id="gun_put2" onclick="gun_save2()">save</button>
+<textarea id="gun_input2"></textarea>
+<button id="gun_load2" onclick=gun_load2()>load</button>
+<textarea id="gun_output2"></textarea>
 
 <script>
     var gun = new Gun();
@@ -15,10 +20,21 @@
         var field = document.getElementById("gun_output")
         var val=""
         gun.get("test").get("1").once(function(value){
-  // render it, but only once. No updates.
   val = value
 })
-        console.log(val);
+        field.value = val;
+    }
+    var gun2 = new Gun();
+    function gun_save2() {
+        var data = document.getElementById("gun_input2").value;
+        gun.get("test").get("1").put(data);
+    }
+    function gun_load2() {
+        var field = document.getElementById("gun_output2")
+        var val=""
+        gun.get("test").get("1").once(function(value){
+  val = value
+})
         field.value = val;
     }
 </script>
