@@ -4,10 +4,10 @@
 <div id="Guilds">
 <h2>Guilds</h2>
     <h3>Server side</h3>
-    <p></p>
+    <h4>Api</h4>
     <p></p>
     <h3>Client side</h3>
-    <p></p>
+    <h4>Ui</h4>
     <p></p>
 </div>
 
@@ -20,6 +20,7 @@
 <p></p>
 <script>
     document.getElementsByTagName('H2').addEventListener('click',function(e) {
+        console.log("h2 clicked")
        c= e.target.parentNode.children()
        for (i = 0; i < c.length; i++) {
   if(c[i].tagName!="H2"){c[i].style.display="none"}
