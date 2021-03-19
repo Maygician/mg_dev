@@ -3,8 +3,10 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 
 <div id="add_quest">
-    <label for="">what do?</label>
-    <textarea id="q_whatdo"></textarea>
+    <label for="whatdo">what do?</label>
+    <textarea id="q_whatdo" name="whatdo"></textarea>
+    <label for="name">what do?</label>
+    <textarea id="q_name" name="name"></textarea>
     <button onclick="q_submit()">Submit</button>
 </div>
 <div id="my_quests"></div>
@@ -13,7 +15,9 @@
     var gun = new Gun();
     function q_submit(){
         var whatdo = document.getElementById("q_whatdo").value
+        var q_name = document.getElementById("q_name").value
         console.log(whatdo)
+        console.log(name)
 
     }
 </script>
