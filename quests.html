@@ -10,7 +10,10 @@
     <button onclick="q_submit()">Submit</button>
 </div>
 <div id="my_quests">
+    <label for="my_quests">My Quests</label>
     <textarea id="my_quests" name="my_quests"></textarea>
+    <br>
+    <button onclick="q_show()">Show quests</button>
 </div>
 
 <script id="js_quest_core">
@@ -21,5 +24,8 @@
         console.log(whatdo)
         console.log(q_name)
         gun.get(quests).get(q_name).put(whatdo)
+    }
+    function q_show(){
+        gun.get("quests").once(console.log)
     }
 </script>
