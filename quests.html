@@ -4,22 +4,26 @@
 <!-- todo: blockly -->
 <div id="add_quest">
     <label for="name">quest name</label>
+    <br>
     <textarea id="q_name" name="name"></textarea>
     <br>
     <label for="q_id">quest id. that's a tag under which it is saved</label>
+    <br>
     <textarea id="q_id" name="id"></textarea>
     <br>
     <label for="whatdo">what do?</label>
+    <br>
     <textarea id="q_whatdo" name="whatdo"></textarea>
     <br>
     <label for="trigger">trigger.  </label>
+    <br>
     <input type="text" list="q_trigger" name="trigger">
     <datalist id="q_trigger">
         <option value="todo: fetch triggers">
     </datalist>
     <br>
-    <label>Legal enforcement</label>
     <input type="checkbox" id="q_legal_check">
+    <label>Legal enforcement</label>
     <br>
     <button onclick="q_submit()">Submit</button>
 
