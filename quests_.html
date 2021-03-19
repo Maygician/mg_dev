@@ -9,7 +9,11 @@
 <textarea id="gun_input2"></textarea>
 <button id="gun_load2" onclick=gun_load2()>load</button>
 <textarea id="gun_output2"></textarea>
-
+<br>
+<button id="y_put" onclick="y_save()"> y save</button>
+<textarea id="y_input"></textarea>
+<button id="y_load" onclick=y_load()>y load</button>
+<textarea id="y_output"></textarea>
 <script>
     var gun = new Gun();
     function gun_save() {
@@ -37,8 +41,64 @@
 })
         field.value = val;
     }
-</script>
+    function y_save(){
+        var data = document.getElementById("y_input").value;
 
+    }
+    function y_load() {
+        var data = document.getElementById("y_output").value;}
+</script>
+<script id="js_utils">
+function get_from(source,key){return source.get(key)}
+</script>
+<script id="js_Source">class Source{
+    constructor(type, params){
+        switch(type){
+            case "indexeddb":
+                // this.instance=var request = window.indexedDB.open("MyTestDatabase", 3);
+                this.init=function(){};
+                this.get=function(key){return 1};
+                this.put=function(key,value){}
+                break;
+            case "gun":
+                this.init=function(){};
+                this.get=function(key){return 1};
+                this.put=function(key,value){}
+                break;
+            case "yjs":
+            this.init=function(){};
+                this.get=function(key){return 1};
+                this.put=function(key,value){}
+            default:
+                {}
+            }
+        this.subscribe=subscribe
+    }
+    static Default(){return new Source()}
+}</script>
+<script>
+    var instance1=new Sync()
+    class Sync{ 
+        constructor(sources, key, keypair,encrypt,decrypt,sign) {
+        var ret = {}
+        for(var i= 0;i <sources.length;i++){
+            sources[i].subscribe(key)
+        }
+        this.encrypt=encrypt
+        this.decrypt=decrypt
+        this.key=keypair;
+        this.sources=sources;
+        this.get=function(key){return 1};
+        this.put=function(key,value){};
+        this.sign=sign
+    }
+    static Simple(){return new Sync(sources,null,null,null,null,null)}
+    static Default(){}
+}
+var knownSources={}
+
+    instance1.put("test","test value")
+</script>
 <button onclick="create()">create</button>
 
 <form style="display: none; position: absolute; background: grey;" id="create_form">
