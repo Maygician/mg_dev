@@ -1,7 +1,7 @@
 <!-- no generalization, simplified -->
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
-
+<!-- todo: blockly -->
 <div id="add_quest">
     <label for="name">quest name</label>
     <textarea id="q_name" name="name"></textarea>
@@ -12,7 +12,17 @@
     <label for="whatdo">what do?</label>
     <textarea id="q_whatdo" name="whatdo"></textarea>
     <br>
+    <label for="trigger">trigger.  </label>
+    <input type="text" list="q_trigger" name="trigger">
+    <datalist id="q_trigger">
+        <option value="todo: fetch triggers">
+    </datalist>
+    <br>
+    <label>Legal enforcement</label>
+    <input type="checkbox" id="q_legal_check">
+    <br>
     <button onclick="q_submit()">Submit</button>
+
 </div>
 <div id="my_quests">
     <label for="my_quests">My Quests</label>
@@ -27,11 +37,12 @@
         var whatdo = document.getElementById("q_whatdo").value
         var q_name = document.getElementById("q_name").value
         var q_id = document.getElementById("q_id").value
-        gun.get("quests").get(q_id).put({"whatdo":whatdo,"q_name":q_name})
+        gun.get("quests").get(q_id).put({"type":"simple","whatdo":whatdo,"q_name":q_name})
     }
     function q_show(){
+        let version="1"
         let retval={}
-        gun.get("quests").map().once((arg)=>{
+        gun.get("quests").get(version).map().once((arg)=>{
 
             console.log(arg)
         })
