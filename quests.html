@@ -26,7 +26,9 @@
         gun.get("quests").get(q_name).put(whatdo)
     }
     function q_show(){
-        gun.get("quests").map().once(console.log)
+        let retval
+        gun.get("quests").map().once((arg)=>retval=arg)
         // gun.get("quests").once(console.log)
+        console.log(retval)
     }
 </script>
