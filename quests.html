@@ -5,8 +5,13 @@
 <div id="add_quest">
     <label for="name">quest name</label>
     <textarea id="q_name" name="name"></textarea>
+    <br>
+    <label for="q_id">quest id. that's a tag under which it is saved</label>
+    <textarea id="q_id" name="id"></textarea>
+    <br>
     <label for="whatdo">what do?</label>
     <textarea id="q_whatdo" name="whatdo"></textarea>
+    <br>
     <button onclick="q_submit()">Submit</button>
 </div>
 <div id="my_quests">
@@ -21,9 +26,8 @@
     function q_submit(){
         var whatdo = document.getElementById("q_whatdo").value
         var q_name = document.getElementById("q_name").value
-        console.log(whatdo)
-        console.log(q_name)
-        gun.get("quests").get(q_name).put(whatdo)
+        var q_id = document.getElementById("q_id").value
+        gun.get("quests").get(q_id).put({"whatdo":whatdo,"q_name":q_name})
     }
     function q_show(){
         let retval={}
