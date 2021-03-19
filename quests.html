@@ -5,9 +5,15 @@
 <div id="add_quest">
     <label for="">what do?</label>
     <textarea id="q_whatdo"></textarea>
-    <submit id="q_submit"></submit>
+    <button onclick="q_submit()">Submit</button>
 </div>
 <div id="my_quests"></div>
 
 <script id="js_quest_core">
+    var gun = new Gun();
+    function q_submit(){
+        var whatdo = document.getElementById("q_whatdo")
+        console.log(whatdo)
+        
+    }
 </script>
