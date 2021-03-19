@@ -23,7 +23,7 @@
         var q_name = document.getElementById("q_name").value
         console.log(whatdo)
         console.log(q_name)
-        gun.get(quests).get(q_name).put(whatdo)
+        gun.get("quests").get(q_name).put(whatdo)
     }
     function q_show(){
         gun.get("quests").once(console.log)
