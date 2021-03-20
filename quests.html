@@ -39,8 +39,8 @@
 <script id="js_quest_core">
     var gun = new Gun();
     ;(()=>{//sample triggers
-        gun.get("triggers").put("1_key","1_value")
-        gun.get("triggers").put("2_key","2_value")
+        gun.get("triggers").put({"key":"1_key","value":"1_value"})
+        gun.get("triggers").put({"key":"2_key","value":"2_value"})
     })();
     function q_load_triggers(){
         var datalist = document.getElementById("q_trigger")
