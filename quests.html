@@ -39,7 +39,7 @@
 <script id="js_quest_core">
     var gun = new Gun();
     ;(()=>{//sample triggers
-        gun.get("triggers").map().once((e)=>{gun.get("triggers").get(e).put(null)})
+        gun.path("triggers").put(null)
         gun.get("triggers").get("1").put({"key":"1_key","value":"1_value"})
         gun.get("triggers").get("0").put({"key":"0_key","value":"0_value"})
     })();
