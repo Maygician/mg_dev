@@ -29,10 +29,7 @@
     <label>Legal enforcement</label>
     <br>
     <button onclick="q_submit()">Submit</button>
-    <br>
-    <label>Key</label>
-    <input type="text" id="trigger_key" name="trigger_key">
-    <button onclick="create_trigger()">Create trigger</button>
+
 </div>
 <div id="my_quests">
     <label for="my_quests">My Quests</label>
@@ -40,7 +37,10 @@
     <br>
     <button onclick="q_show()">Show quests</button>
 </div>
-
+<br>
+<label>Key</label>
+<input type="text" id="trigger_key" name="trigger_key">
+<button onclick="create_trigger()">Create trigger</button>
 <script id="js_quest_core">
     var gun = new Gun();
     function clear_triggers() {gun.get("triggers").map().once((data,key)=>{gun.get("triggers").get(key).put(null)})}
