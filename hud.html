@@ -22,8 +22,8 @@
             let timerId = setTimeout(function tick() {
        updateValue(Math.floor(Math.random()*100));
                     progress2.style.width = Math.floor(Math.random()*100)+'%';
-  timerId = setTimeout(tick, 2000); // (*)
-}, 2000);
+  timerId = setTimeout(tick, 4000); // (*)
+}, 4000);
 
         }
         loop();
@@ -33,7 +33,10 @@
         document.getElementById('button').onclick = function() {
             updateValue(Math.floor(Math.random()*100));
         }
-        var onUpdate = function() {}
+        function updateEvery(ms){
+            let timerId = setTimeout(function tick() {
+        }}
+        // var onUpdate = function() {}
     </script>
 </body>
 </html>
