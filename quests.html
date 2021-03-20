@@ -46,7 +46,7 @@
     function q_load_triggers(){
         var datalist = document.getElementById("q_trigger")
         var array =[]
-        gun.get("triggers").map((e)=>array.push(e))
+        gun.get("triggers").map((e)=>{if(e)array.push(e)})
         console.log(array)
         var options=''
         array.forEach((j)=>{      
