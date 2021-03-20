@@ -21,6 +21,7 @@
     <datalist id="q_trigger">
         <option value="todo: fetch triggers">
     </datalist>
+    <button onclick="q_load_triggers()">Load triggers</button>
     <br>
     <input type="checkbox" id="q_legal_check">
     <label>Legal enforcement</label>
@@ -37,6 +38,16 @@
 
 <script id="js_quest_core">
     var gun = new Gun();
+    ;(()=>{//sample triggers
+        gun.get("triggers").put("1_key","1_value")
+        gun.get("triggers").put("2_key","2_value")
+    })();
+    function q_load_triggers(){
+        var datalist = document.getElementById("q_trigger")
+        var array =[]
+        gun.get("triggers").map((e)=>array.push(e))
+        console.log(array)
+    }
     function q_submit(){
         var whatdo = document.getElementById("q_whatdo").value
         var q_name = document.getElementById("q_name").value
