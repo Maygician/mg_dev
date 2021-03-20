@@ -48,8 +48,8 @@
         gun.get("triggers").map((e)=>array.push(e))
         console.log(array)
         var options=''
-        array.forEach(()=>{      
-            options += '<option value="' + array[i].value + '" />';
+        array.forEach((j)=>{      
+            options += '<option value="' + j.value + '" />';
         })
         datalist.innerHTML=options;
     }
