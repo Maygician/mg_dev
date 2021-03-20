@@ -22,6 +22,8 @@
         <option value="todo: fetch triggers">
     </datalist>
     <button onclick="q_load_triggers()">Load triggers</button>
+    <button onclick="clear_triggers()">Clear triggers</button>
+    <button onclick="init_triggers()">Init triggers</button>
     <br>
     <input type="checkbox" id="q_legal_check">
     <label>Legal enforcement</label>
@@ -39,14 +41,11 @@
 <script id="js_quest_core">
     var gun = new Gun();
     function clear_triggers() {gun.get("triggers").map().once((data,key)=>{gun.get("triggers").get(key).put(null)})}
-    function load_triggers() {        
+    function init_triggers() {        
         gun.get("triggers").get("1").put({"key":"1_key","value":"1_value"})
         gun.get("triggers").get("0").put({"key":"0_key","value":"0_value"})
 }
-    ;(()=>{//sample triggers
-        clear_triggers();
-        load_triggers();
-    })();
+
     function q_load_triggers(){
         var datalist = document.getElementById("q_trigger")
 
