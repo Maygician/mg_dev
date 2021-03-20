@@ -47,7 +47,11 @@
         var array =[]
         gun.get("triggers").map((e)=>array.push(e))
         console.log(array)
-        array.forEach(console.log)
+        var options=''
+        array.forEach(()=>{      
+            options += '<option value="' + array[i].value + '" />';
+        })
+        datalist.innerHTML=options;
     }
     function q_submit(){
         var whatdo = document.getElementById("q_whatdo").value
