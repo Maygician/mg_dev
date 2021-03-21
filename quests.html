@@ -68,7 +68,8 @@
     var gun = new Gun();
     var a1=gun.get("test").get("a").on(()=>console.log("a1"))
     var a2=gun.get("test").get("a").on(()=>console.log("a2"))
-    a2.off()
+    a2.on(null)
+
     function gun_test(){gun.get("test").get("a").put({a:1})}
     function whois(pubkey){
         return gun.get("users").get("pubkey_list").get(pubkey).once((e)=>e);
