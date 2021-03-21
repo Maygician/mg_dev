@@ -1,6 +1,13 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+<!--  -->
 <textarea oninput="sync()" id="text"></textarea>
+<br>
+<br>
+<br>
+<textarea id="btn_event" oninput="btn_name()"></textarea>
+<button onclick="clicked()" id="btn_">Button</button>
+<!--  -->
 <script id="js_quest_core">
     var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
     function sync(){
@@ -10,4 +17,7 @@
         gun.get("test").get("quests").get("pushups").get("text").on((text)=>{
             document.getElementById("text").value=text.innertext
         })
+    function btn_name(){
+        document.getElementById("btn_").innertext=document.getElementById("btn_event").value
+    }
 </script>
