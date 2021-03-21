@@ -38,11 +38,29 @@
     <button onclick="q_show()">Show quests</button>
 </div>
 <br>
+<!-- todo: blockly -->
+<label>Name</label>
+<input type="text" id="var_name" name="var_name">
+<label>Description</label>
+<input type="text" id="var_description" name="var_description">
 <label>Key</label>
-<input type="text" id="trigger_key" name="trigger_key">
+<input type="text" id="var_gun_route" name="var_gun_route">
+<label>Keyring</label>
+<input type="text" id="trigger_key" name="trigger_key" list="keyring">
+<datalist id="var_keyring">
+<option value=""></option>
+</datalist>
+<button onclick="load_keyring('var_keyring')">Load keyList</button>
+<br>
 <button onclick="create_trigger()">Create trigger</button>
 <script id="js_quest_core">
     var gun = new Gun();
+    function create_trigger() {
+        let name = document.getElementById("var_name")
+        let description = document.getElementById("var_description")
+        let key = document.getElementById("var_gun_routes")
+
+    }
     function clear_triggers() {gun.get("triggers").map().once((data,key)=>{gun.get("triggers").get(key).put(null)})}
     function init_triggers() {        
         gun.get("triggers").get("1").put({"key":"1_key","value":"1_value"})
@@ -51,7 +69,6 @@
 
     function q_load_triggers(){
         var datalist = document.getElementById("q_trigger")
-
         var array =[]
         gun.get("triggers").map((j)=>{if(j)array.push(j)})
         console.log(array)
