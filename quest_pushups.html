@@ -23,5 +23,10 @@
     function clicked(obj){
         var text = obj.textContent
         console.log(text)
+        gun.get("test").get("quests").get("pushups").get("btn_text").put({event: text})
     }
+    function pushup_check(event){
+        if(event=="pushup"){alert("Gut jop!")}
+    }
+    gun.get("test").get("quests").get("pushups").get("btn_text").on(pushup_check(e))
 </script>
