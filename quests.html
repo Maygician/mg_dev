@@ -19,11 +19,13 @@
     <br>
     <input type="text" list="q_trigger" name="trigger">
     <datalist id="q_trigger">
-        <option value="todo: fetch triggers">
     </datalist>
     <button onclick="q_load_triggers()">Load triggers</button>
     <button onclick="clear_triggers()">Clear triggers</button>
     <button onclick="init_triggers()">Init triggers</button>
+    <br>
+    <label for="">trigger target value</label>
+    <input type="text" name="trigger_target_value" id="trigger_target_value">
     <br>
     <input type="checkbox" id="q_legal_check">
     <label>Legal enforcement</label>
