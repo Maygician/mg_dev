@@ -41,10 +41,13 @@
 <!-- todo: blockly -->
 <label>Name</label>
 <input type="text" id="var_name" name="var_name">
+<br>
 <label>Description</label>
 <input type="text" id="var_description" name="var_description">
+<br>
 <label>Key</label>
 <input type="text" id="var_gun_route" name="var_gun_route">
+<br>
 <label>Keyring</label>
 <input type="text" id="trigger_key" name="trigger_key" list="keyring">
 <datalist id="var_keyring">
@@ -55,6 +58,15 @@
 <button onclick="create_trigger()">Create trigger</button>
 <script id="js_quest_core">
     var gun = new Gun();
+    function load_keyring(where){
+        var datalist = document.getElementById(where)
+        var array=[]
+        var options=''
+        array.forEach((j)=>{      
+            options += '<option value="' + j.value + '" />';
+        })
+        datalist.innerHTML=options;
+    }
     function create_trigger() {
         let name = document.getElementById("var_name")
         let description = document.getElementById("var_description")
