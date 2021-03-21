@@ -63,8 +63,15 @@
 <button onclick="load_keyring('var_keyring')">Load keyList</button>
 <br>
 <button onclick="create_trigger()">Create trigger</button>
+<button onclick="gun_test()">gun test</button>
 <script id="js_quest_core">
     var gun = new Gun();
+    gun.get("test").get("a").on(console.log("a1"))
+    gun.get("test").get("a").on(console.log("a2"))
+    function gun_test(){gun.get("test").get("a").put("a")}
+    function whois(pubkey){
+        return gun.get("users").get("pubkey_list").get(pubkey).once((e)=>e);
+    }
     function load_keyring(where){
         var datalist = document.getElementById(where)
         var array=[]
