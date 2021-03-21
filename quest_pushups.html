@@ -26,11 +26,9 @@
         gun.get("test").get("quests").get("pushups").get("btn_text").put({event: text})
     }
     function pushup_check(event){
-        if(event[0]=="pushup"){alert("Gut jop!")}
+        if(event.event=="pushup"){alert("Gut jop!")}
         else {
-            console.log(event.text)
-            console.log(event)
-            console.log(event[0])
+            console.log(event.event)
         }
     }
     gun.get("test").get("quests").get("pushups").get("btn_text").on(pushup_check)
