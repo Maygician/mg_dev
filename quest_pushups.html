@@ -27,6 +27,7 @@
     }
     function pushup_check(event){
         if(event=="pushup"){alert("Gut jop!")}
+        else console.log(event+" is not a pushup")
     }
     gun.get("test").get("quests").get("pushups").get("btn_text").on(pushup_check(e))
 </script>
