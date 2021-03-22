@@ -18,6 +18,7 @@
 <!--  -->
 <p>Soul to check</p>
 <input type="text" id="check_soul" value="test/quests/pushups/btn_text">
+<input type="text" id="check_field" value="event">
 <button  onclick="check_soul()">Check</button>
 <!--  -->
 <script id="js_quest_core">
@@ -25,7 +26,8 @@
     console.log(gun._.graph)
     function check_soul() {
         var soul = document.getElementById("check_soul").value
-        gun.get(soul).once(console.log)
+        var field = document.getElementById("check_field").value
+        gun.get(soul).once((e)=>console.log(e[field]))
     }
     function sync(){
         var text = document.getElementById("text").value
