@@ -23,6 +23,10 @@
 <script id="js_quest_core">
     var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
     console.log(gun._.graph)
+    function check_soul() {
+        var soul = document.getElementById("check_soul").value
+        gun.get(soul).once(console.log)
+    }
     function sync(){
         var text = document.getElementById("text").value
         gun.get("test").get("quests").get("pushups").get("text").put({innertext: text})
