@@ -25,8 +25,16 @@
 <button  onclick="check_soul()">Check</button>
 <!--  -->
 <script id="js_quest_core">
+    var key_sample={
+pub:    "DRlzD8zyOs0dJ3H36hCUHewRI6Z7Os0oT7kFKN3LeBQ.MQADonU2RWmFD6lEW1zXl1vQj_v_VbXhK2zPzf9xsns",
+priv:   "9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0",
+epub:   "TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU",
+epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
+    }
     var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
     console.log(gun._.graph)
+    console.log("user:")
+    console.log(gun.user())
     function check_soul() {
         var target = document.getElementById("check_target_value").value
         var value
