@@ -8,6 +8,10 @@
 </datalist>
 <button onclick="load_keyring()">load options</button>
 <br>
+<label>key name</label>
+<input type="text" id="new_key_name">
+<button onclick="new_to_keyring()">Add key</button>
+<br>
 <br>
 <button onclick="update_id()">update my id</button>
 <br>
@@ -37,6 +41,14 @@ var keyring={
     sample:{pub:"DRlzD8zyOs0dJ3H36hCUHewRI6Z7Os0oT7kFKN3LeBQ.MQADonU2RWmFD6lEW1zXl1vQj_v_VbXhK2zPzf9xsns", priv:"9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0"},
     sample2:{pub:"TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU", priv:"dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"}
 };
+async function new_to_keyring(){
+    var name = document.getElementById("new_key_name").value;
+    if(!keyring[name]){
+        let key=await SEA.pair()
+        keyring[name] = {"pub":key.pub, "priv":key.priv}
+    }
+    else{alert("One with that name already exists")}
+}
 var current_id=key_sample.pub
 ;(async () => {
 
