@@ -74,8 +74,8 @@ function update_id(){
     var current = document.getElementById("iam_input").value;
     current_id=current
     Fix_Iams();
-    pair.epub=keyring[current_id].priv
-    pair.epriv=keyring[current_id].pub
+    pair.epub=keyring[current_id].pub
+    pair.epriv=keyring[current_id].priv
 }
 function Fix_Iams(){
 var iams=document.getElementsByClassName("iam")
