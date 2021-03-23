@@ -6,12 +6,14 @@
 <datalist id="iam_list">
     <option label="DRlzD8zyOs0dJ3H36hCUHewRI6Z7Os0oT7kFKN3LeBQ.MQADonU2RWmFD6lEW1zXl1vQj_v_VbXhK2zPzf9xsns" value="key_sample"></option>
 </datalist>
+<button onclick="load_keyring()">load options</button>
 <br>
 <br>
 <button onclick="update_id()">update my id</button>
 <br>
 <br>
 <p>I am logged in as <a class="iam"></a></p>
+<p>Also, me: <a class="iam"></a></p>
 <!--  -->
 <script id="js_profile">
 var gun = new Gun();
@@ -22,6 +24,19 @@ priv:   "9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0",
 epub:   "TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU",
 epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
     }
+function load_keyring() {
+    var list = document.getElementById("iam_list")
+    let text = '';
+    for (const [key, value] of Object.entries(keyring)) {
+//   console.log(`${key}: ${value}`);
+    text+=`<option value="${key}" label="${value.pub}">\n`
+}
+    list.innerHTML = text;
+}
+var keyring={
+    sample:{pub:"DRlzD8zyOs0dJ3H36hCUHewRI6Z7Os0oT7kFKN3LeBQ.MQADonU2RWmFD6lEW1zXl1vQj_v_VbXhK2zPzf9xsns", priv:"9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0"},
+    sample2:{pub:"TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU", priv:"dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"}
+};
 var current_id=key_sample.pub
 ;(async () => {
 
