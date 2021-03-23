@@ -6,7 +6,13 @@
 <datalist id="iam_list">
     <option value="DRlzD8zyOs0dJ3H36hCUHewRI6Z7Os0oT7kFKN3LeBQ.MQADonU2RWmFD6lEW1zXl1vQj_v_VbXhK2zPzf9xsns" label="key_sample"></option>
 </datalist>
-<button onclick="to_rename()">Action</button>
+<br>
+<br>
+<button onclick="Fix_Iams()">fixme</button>
+<br>
+<br>
+<p>I am logged in as <a class="iam"></a></p>
+<!--  -->
 <script id="js_profile">
 var gun = new Gun();
 var SEA= Gun.SEA;
@@ -16,10 +22,14 @@ priv:   "9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0",
 epub:   "TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU",
 epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
     }
+var current_id=key_sample.pub
 ;(async () => {
 
 })();
-function to_rename(){
-
+function Fix_Iams(){
+var iams=document.getElementsByClassName("iam")
+Array.prototype.forEach.call(iams, function(el){
+    el.innerHTML=current_id;
+})
 }
 </script>
