@@ -34,9 +34,13 @@ epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
     var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
     gun.get("test").get("quests").get("pushups").get("text").on(function(data, key, msg, eve){
         console.log(`.on(function(data, key, msg, eve)`)
+        console.log("data:")
         console.log(data)
+        console.log("key:")
         console.log(key)
+        console.log("msg:")
         console.log(msg)
+        console.log("eve:")
         console.log(eve)
 
     });
