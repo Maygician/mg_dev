@@ -8,7 +8,7 @@
 </datalist>
 <br>
 <br>
-<button onclick="Fix_Iams()">fixme</button>
+<button onclick="update_id()">update my id</button>
 <br>
 <br>
 <p>I am logged in as <a class="iam"></a></p>
@@ -26,6 +26,11 @@ var current_id=key_sample.pub
 ;(async () => {
 
 })();
+function update_id(){
+    var current = document.getElementById("iam_list").value;
+    iams=current
+    Fix_Iams();
+}
 function Fix_Iams(){
 var iams=document.getElementsByClassName("iam")
 Array.prototype.forEach.call(iams, function(el){
