@@ -29,7 +29,8 @@
 <!--  -->
 <script id="js_profile">
 var gun = new Gun();
-var SEA= Gun.SEA;
+var SEA = Gun.SEA;
+var pair = null
 function load_keyring() {
     var list = document.getElementById("iam_list")
     let text = '';
@@ -62,7 +63,7 @@ async function new_to_keyring(){
 var current_id=null
 ;(async () => {//init
 load_keyring()
-var pair = await SEA.pair();
+pair = await SEA.pair();
 })();
 function update_id(){
     var current = document.getElementById("iam_input").value;
