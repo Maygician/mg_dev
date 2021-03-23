@@ -21,7 +21,7 @@
 <p>My pubkey: <a class="iam_pub"></a></p>
 <br>
 <h1>Encrypt-decrypt sample:</h1>
-<label>to_encrypt</label>
+<label>To encrypt</label>
 <input type="text" id="to_encrypt" oninput="encrypt(this.value)"><br>
 <label>Result</label>
 <input type="text" id="encrypted"><br>
@@ -74,8 +74,8 @@ function update_id(){
     var current = document.getElementById("iam_input").value;
     current_id=current
     Fix_Iams();
-    pair.epub=keyring[current_id].pub
-    pair.epriv=keyring[current_id].priv
+    pair.epub=keyring[current_id].priv
+    pair.epriv=keyring[current_id].pub
 }
 function Fix_Iams(){
 var iams=document.getElementsByClassName("iam")
