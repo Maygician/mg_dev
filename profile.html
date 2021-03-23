@@ -21,10 +21,15 @@
 <p>My pubkey: <a class="iam_pub"></a></p>
 <br>
 <h1>Encrypt-decrypt sample:</h1>
-<input type="text" id="to_encrypt" oninput="encrypt(this.value)">
-<input type="text" id="encrypted">
-<input type="text" id="to_decrypt" oninput="decrypt(this.value)">
-<input type="text" id="decrypted">
+<label>to_encrypt</label>
+<input type="text" id="to_encrypt" oninput="encrypt(this.value)"><br>
+<label>Result</label>
+<input type="text" id="encrypted"><br>
+<label>To decrypt</label>
+<input type="text" id="to_decrypt" oninput="decrypt(this.value)"><br>
+<label>Result</label>
+<input type="text" id="decrypted"><br>
+
 
 <!--  -->
 <script id="js_profile">
