@@ -45,6 +45,7 @@ epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
     var sub1 = sub_(obj,(data, key)=>console.log(data.event+"_1"))
     var sub2 = sub_(obj,(data, key)=>console.log(data.event+"_2"))
     var sub3 = sub_(obj,(data, key)=>console.log(data.event+"_3"))
+    sub2.off()
     gun.get("test").get("quests").get("pushups").get("text").on(function(data, key, msg, eve){
         console.log(`.on(function(data, key, msg, eve)`)
         console.log("data:")
