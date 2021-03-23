@@ -18,6 +18,7 @@
 <br>
 <p>I am logged in as <a class="iam"></a></p>
 <p>Also, me: <a class="iam"></a></p>
+<p>My pubkey: <a class="iam_pub"></a></p>
 <!--  -->
 <script id="js_profile">
 var gun = new Gun();
@@ -60,8 +61,12 @@ function update_id(){
 }
 function Fix_Iams(){
 var iams=document.getElementsByClassName("iam")
+var iam_pubs=document.getElementsByClassName("iam_pub")
 Array.prototype.forEach.call(iams, function(el){
     el.innerHTML=current_id;
+})
+Array.prototype.forEach.call(iam_pubs, function(el){
+    el.innerHTML=keyring[current_id];
 })
 }
 </script>
