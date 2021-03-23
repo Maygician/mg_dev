@@ -23,12 +23,6 @@
 <script id="js_profile">
 var gun = new Gun();
 var SEA= Gun.SEA;
-var key_sample={
-pub:    "DRlzD8zyOs0dJ3H36hCUHewRI6Z7Os0oT7kFKN3LeBQ.MQADonU2RWmFD6lEW1zXl1vQj_v_VbXhK2zPzf9xsns",
-priv:   "9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0",
-epub:   "TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU",
-epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
-    }
 function load_keyring() {
     var list = document.getElementById("iam_list")
     let text = '';
@@ -50,9 +44,9 @@ async function new_to_keyring(){
     }
     else{alert("One with that name already exists")}
 }
-var current_id=key_sample.pub
-;(async () => {
-
+var current_id=null
+;(async () => {//init
+load_keyring()
 })();
 function update_id(){
     var current = document.getElementById("iam_input").value;
