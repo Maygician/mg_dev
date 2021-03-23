@@ -31,7 +31,20 @@ priv:   "9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0",
 epub:   "TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU",
 epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
     }
+    function sub_(gun_obj,callback){
+        ev=null
+        gun_obj.on((data,key,msg, eve)=>{
+            ev=eve
+            callback(data,key)
+        })
+        return ev
+    }
+
     var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
+    obj=gun.get("test").get("quests").get("pushups").get("btn_text")
+    var sub1 = sub_(obj,(data, key)=>console.log(data.event+"_1"))
+    var sub2 = sub_(obj,(data, key)=>console.log(data.event+"_2"))
+    var sub3 = sub_(obj,(data, key)=>console.log(data.event+"_3"))
     gun.get("test").get("quests").get("pushups").get("text").on(function(data, key, msg, eve){
         console.log(`.on(function(data, key, msg, eve)`)
         console.log("data:")
