@@ -60,6 +60,14 @@ async function decrypt(value){
     let where = document.getElementById("decrypted")
     where.value = await SEA.decrypt(value,pair)
 }
+async function encrypt_to(value,pub){
+    let where = document.getElementById("encrypted")
+    where.value = await SEA.encrypt(value,await SEA.secret(pub, pair))
+}
+async function decrypt_to(value,pub){
+    let where = document.getElementById("decrypted")
+    where.value = await SEA.decrypt(value,await SEA.secret(pub, pair)
+}
 async function new_to_keyring(){
     var name = document.getElementById("new_key_name").value;
     if(!keyring[name]){
