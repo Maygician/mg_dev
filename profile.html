@@ -31,6 +31,9 @@
 <input type="text" id="decrypted"><br>
 
 
+<button onclick="triggers_certify()">Certify triggers</button>
+
+
 <!--  -->
 <script id="js_profile">
 var gun = new Gun();
@@ -45,7 +48,7 @@ function load_keyring() {
 }
     list.innerHTML = text;
 }
-var keyring={
+var keyring={ //todo: add meta (source of key). trust index
     sample:{pub:"DRlzD8zyOs0dJ3H36hCUHewRI6Z7Os0oT7kFKN3LeBQ.MQADonU2RWmFD6lEW1zXl1vQj_v_VbXhK2zPzf9xsns", priv:"9gsGxY1bLShaTmZTCoNjYVQrQ5A256hhlUp7YlLMRn0"},
     sample2:{pub:"TiXr1gTKfNyvstAd7f-DOymG2UXfoWEs4fIsFpdPlqs.vd3FIRpLU2g3XmWaE9JLonbq0cEpimZ2lZa9UafaQoU", priv:"dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"}
 };
