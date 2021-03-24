@@ -1,15 +1,20 @@
 <!-- attempt to comprehend sea.certify -->
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
-
+<button onclick="put()">Put stuff</button>
 <script>
     var gun = new Gun();
     var sea = Gun.SEA
+    var names={}
     ;(async () => {//init
-    var antoin = await sea.pair();
-    var bob = await sea.pair();
-    var carl = await sea.pair();
-    var dave = await sea.pair();
+    names.antoin = await sea.pair();
+    names.bob = await sea.pair();
+    names.carl = await sea.pair();
+    names.dave = await sea.pair();
     console.log(gun._.graph)
-    })();
+})();
+function put() {
+    gun.user(names.antoin.pub).get("test").get("stuff").put({a:"a"})
+}
+
 </script>
