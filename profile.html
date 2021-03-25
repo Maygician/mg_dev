@@ -44,14 +44,23 @@
 <input type="password" id="password">
 <label>password</label>
 <br>
-<button onclick="">Submit</button>
-
+<button onclick="login()">Submit</button>
 
 <!--  -->
 <script id="js_profile">
 var personal_node = ""
 var gun = new Gun();
 var SEA = Gun.SEA;
+function login(){
+    // todo: localStorage
+    var server = document.getElementById("server").value;
+    //todo: validate against single server pattern
+    var login = document.getElementById("login").value;
+    var password = document.getElementById("password").value;
+    console.log(server)
+    console.log(login)
+    console.log(password)
+}
 var pair = null
 function load_keyring() {
     var list = document.getElementById("iam_list")
