@@ -1,7 +1,7 @@
 <!-- attempt to comprehend sea.certify -->
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
-<button onclick="put()">Put stuff</button>
+<button onclick="puta()">Put stuff</button>
 <script>
     var gun = new Gun();
     var sea = Gun.SEA
@@ -13,8 +13,8 @@
     names.dave = await sea.pair();
     console.log(gun._.graph)
 })();
-function put() {
-    gun.user(names.antoin.pub).get("test").get("stuff").put({a:"a"})
+function puta() {
+    gun.user(names.antoin.pub).get("test").get("stuff").put({a:"madre"})
 }
 
 </script>
