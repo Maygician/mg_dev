@@ -38,10 +38,10 @@
 <input type="text" id="server" value="https://vine-mature-morocco.glitch.me/gun" placeholder="your_node.address/gun">
 <label>server address</label>
 <br>
-<input type="text" id="login">
+<input type="text" id="login" value="YetAnotherGuy">
 <label>login</label>
 <br>
-<input type="password" id="password">
+<input type="password" id="password" value="MJ4e">
 <label>password</label>
 <br>
 <button onclick="login()">Submit</button>
@@ -49,7 +49,7 @@
 <!--  -->
 <script id="js_profile">
 var personal_node = ""
-var gun = new Gun();
+var gun = null //= new Gun();
 var SEA = Gun.SEA;
 function login(){
     // todo: localStorage
@@ -60,6 +60,7 @@ function login(){
     console.log(server)
     console.log(login)
     console.log(password)
+    var gun = new Gun(server)
 }
 var pair = null
 function load_keyring() {
