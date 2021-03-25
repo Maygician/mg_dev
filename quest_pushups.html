@@ -40,7 +40,7 @@ epriv:  "dD05YyOixOzBVcAsydkLoAPkdE5s8AvvQa_C2k7jiFU"
         })
         return ev
     }
-
+    var goal_pushups = 1000000
     var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
     obj=gun.get("test").get("quests").get("pushups").get("btn_text")
     var sub1 = sub_(obj,(data, key)=>console.log(data.event+"_1"))
