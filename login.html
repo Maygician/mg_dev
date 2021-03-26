@@ -1,8 +1,7 @@
-<input type="file" id="fileElem" accept=".json" style="display:none" onchange="handleFile(this.target.files[0])">
-<!-- <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)"> -->
-<label for="fileElem">Press here to upload you key.json</label>
-<h1 id="key_dropbox">Drop file with your key here</h1>
-<h1><strong>OR</strong></h1>
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+<!--  -->
+<button onclick="create_key()">Create key</button>
 <p>Enter your login/password to decrypt your key saved elsewhere.</p>
 <label>Where</label>
 <input type="text" id="server" value="https://vine-mature-morocco.glitch.me/gun" placeholder="your_node.address/gun"><br>
@@ -14,54 +13,10 @@
 <!--  -->
 <!--  -->
 <script>
-var dropbox;
-var preview = document.getElementById("preview")
-dropbox = document.getElementById("key_dropbox");
-dropbox.addEventListener("dragenter", dragenter, false);
-dropbox.addEventListener("dragover", dragover, false);
-dropbox.addEventListener("drop", drop, false);
-function dragenter(e) {
-e.stopPropagation();
-e.preventDefault();
-}
-
-function dragover(e) {
-e.stopPropagation();
-e.preventDefault();
-}
-function drop(e) {
-e.stopPropagation();
-e.preventDefault();
-
-var dt = e.dataTransfer;
-var files = dt.files;
-
-handleFiles(files);
-}
-const parsed = jsonText => JSON.parse(jsonText);
-
-function handleFile(file) {
-   var reader = new FileReader();
-  reader.onload = e => {
-    //fuction runs when file is fully loaded
-    console.log(parsed(e.target.files[0]));
-  };
-  reader.readAsText(file);
-}
-function handleFiles(files) {
-for (var i = 0; i < files.length; i++) {
-  var file = files[i];
-
-  if (!file.type.startsWith('image/')){ continue }
-
-  var img = document.createElement("img");
-  img.classList.add("obj");
-  img.file = file;
-  preview.appendChild(img); // preview -> div to display it to.
-
-  var reader = new FileReader();
-  reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-  reader.readAsDataURL(file);
-}
+var sea = Gun.SEA
+var temp_key = null
+function create_key() {
+temp_key = sea.pair();
+console.log(temp_key)
 }
 </script>
