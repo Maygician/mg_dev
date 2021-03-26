@@ -3,7 +3,12 @@
 <!--  -->
 <button onclick="create_key()">Create key</button><br>
 <label>Your key</label>
-<textarea id="generated_key"></textarea>
+<textarea id="current_key"></textarea><br>
+<label>Paste your key here</label>
+<textarea id="pasted_key"></textarea><br>
+<button onclick="key_pasted()">Submit</button><br>
+<button onclick="log_key()">Log my key</button><br>
+<br>
 <p>Enter your login/password to decrypt your key saved elsewhere.</p>
 <label>Where</label>
 <input type="text" id="server" value="https://vine-mature-morocco.glitch.me/gun" placeholder="your_node.address/gun"><br>
@@ -17,8 +22,16 @@
 <script>
 var sea = Gun.SEA
 var temp_key = null
+function key_pasted(){
+    var val = document.getElementById("pasted_key").value
+    temp_key = val
+    document.getElementById("current_key").value=temp_key;
+}
 async function create_key() {
 temp_key =  await sea.pair();
-document.getElementById("generated_key").value=temp_key;
+document.getElementById("current_key").value=temp_key;
+}
+function log_key(){
+    console.log(temp_key)
 }
 </script>
