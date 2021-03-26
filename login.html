@@ -79,8 +79,9 @@ gun.user().recall({ sessionStorage: true }, () => {
 gun.on('auth', () => {
   logIn()
 })
+user.create(temp_key)
 
-// user.auth(temp_key)
+user.auth(temp_key)
 // console.log(gun._.graph)
 }
 function logIn() {
