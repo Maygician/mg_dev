@@ -72,7 +72,8 @@ function log_key(){
 }
 function auth_(){
 gun = new Gun()
-user = gun.user().recall({ sessionStorage: true }, () => {
+user = gun.user()
+user.recall({ sessionStorage: true }, () => {
   logIn()
 })
 
