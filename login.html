@@ -26,6 +26,7 @@ function key_pasted(){
     var val = document.getElementById("pasted_key").value
     temp_key = val
     document.getElementById("current_key").value=temp_key;
+    temp_key=JSON.parse(val)
 }
 async function create_key() {
 temp_key =  await sea.pair();
