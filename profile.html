@@ -65,19 +65,35 @@ async function login(){
     // ----------------------------------------------------------------
     var sea = Gun.SEA;
 var pair = await sea.pair(); // generate a new key pair
-console.log(pair);
+// console.log(pair);
 var alias = "alice"
 var pass = "secret";
 var salt = 1; // random
 var proof = await sea.work(alias, pass); // don't do this! (pass, salt) instead!
+console.log(proof)
 var auth = await sea.encrypt(pair, proof);
-console.log(auth); // data saved in a cryptographically linked user graph
+// console.log(auth); // data saved in a cryptographically linked user graph
 // now on another machine...
 var login = await sea.work(alias, pass);
 var keys = await sea.decrypt(auth, login); // encrypted auth loaded from graph
-console.log(keys); // equal to the original key pair
+console.log(login); // equal to the original key pair
     // ----------------------------------------------------------------
 }
+/*
+user creates a profile
+it's stored in client's local storage
+user choses the server to store their data in
+user connects to gun server
+synchronizes their node
+get keyring
+
+explainer: 
+user gets their encrypted key from server
+
+
+*/
+
+
 var pair = null
 function load_keyring() {
     var list = document.getElementById("iam_list")
