@@ -45,12 +45,12 @@ var sea = Gun.SEA
 var temp_key = null
 var gun=null
 var user = null//gun.user().recall({sessionStorage: true});
-const account = reactive({
+const account = {
   is: null,
   profile: {
     name: '',
   },
-})
+}
 
 function hide_not_implemented(){
     var all = document.getElementsByClassName("not_implemented")
