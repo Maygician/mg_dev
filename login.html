@@ -29,7 +29,7 @@ function key_pasted(){
 }
 async function create_key() {
 temp_key =  await sea.pair();
-document.getElementById("current_key").value=temp_key;
+document.getElementById("current_key").value=JSON.stringify(temp_key);
 }
 function log_key(){
     console.log(temp_key)
