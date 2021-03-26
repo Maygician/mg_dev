@@ -52,6 +52,9 @@ var personal_node = ""
 var gun = null //= new Gun();
 var SEA = Gun.SEA;
 async function login(){
+    /*
+    either fetch encrypted key from server, and do pow, or login with a keypair from file/other way
+    */
     // todo: localStorage
     var server = document.getElementById("server").value;
     //todo: validate against single server pattern
@@ -69,14 +72,17 @@ var pair = await sea.pair(); // generate a new key pair
 var alias = "alice"
 var pass = "secret";
 var salt = 1; // random
-var proof = await sea.work(alias, pass); // don't do this! (pass, salt) instead!
+// var proof = await sea.work(alias, pass); // don't do this! (pass, salt) instead!
+var proof = await sea.work(pass, salt); //(pass, salt) instead!
 console.log(proof)
 var auth = await sea.encrypt(pair, proof);
-// console.log(auth); // data saved in a cryptographically linked user graph
+console.log(auth); // data saved in a cryptographically linked user graph
 // now on another machine...
-var login = await sea.work(alias, pass);
+salt=2
+var login = await sea.work(pass, salt);
 var keys = await sea.decrypt(auth, login); // encrypted auth loaded from graph
-console.log(login); // equal to the original key pair
+console.log(login); // 
+console.log(keys); // equal to the original key pair
     // ----------------------------------------------------------------
 }
 /*
