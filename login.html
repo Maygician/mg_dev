@@ -14,6 +14,7 @@
 <label>Your key</label>
 <textarea id="current_key" placeholder="not logged in"></textarea><br>
 <button onclick="log_key()">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
+<button style="background-color: rgb(177, 27, 236);" onclick="test_auth()">Test auth</button><br>
 <br>
 <br>
 <br>
@@ -43,6 +44,7 @@
 var sea = Gun.SEA
 var temp_key = null
 var gun=null
+var user = null//gun.user().recall({sessionStorage: true});
 function hide_not_implemented(){
     var all = document.getElementsByClassName("not_implemented")
     Array.prototype.forEach.call(all, function(el){
@@ -63,7 +65,13 @@ function log_key(){
 }
 function auth_(){
 gun = new Gun()
-gun.user().auth(temp_key)
+user = gun.user().recall({sessionStorage: true});
+user.auth(temp_key)
 console.log(gun._.graph)
+}
+function test_auth(){
+    gun.user(temp_key).get("test").get("stuff").put("test_auth")
+    console.log(gun._.graph)
+
 }
 </script>
