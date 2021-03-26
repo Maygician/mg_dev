@@ -45,6 +45,13 @@ var sea = Gun.SEA
 var temp_key = null
 var gun=null
 var user = null//gun.user().recall({sessionStorage: true});
+const account = reactive({
+  is: null,
+  profile: {
+    name: '',
+  },
+})
+
 function hide_not_implemented(){
     var all = document.getElementsByClassName("not_implemented")
     Array.prototype.forEach.call(all, function(el){
@@ -65,9 +72,30 @@ function log_key(){
 }
 function auth_(){
 gun = new Gun()
-user = gun.user().recall({sessionStorage: true});
+gun.user().recall({ sessionStorage: true }, () => {
+  logIn()
+})
+
+gun.on('auth', () => {
+  logIn()
+})
+
 user.auth(temp_key)
 console.log(gun._.graph)
+}
+function logIn() {
+  account.is = gun.user().is
+  console.info('Logged in as ', account.is.pub)
+  loadProfile(account.is.pub)
+}
+export function loadProfile(pub) {
+  gun
+    .user()
+    .get('profile')
+    .map()
+    .on((data, key) => {
+      account.profile[key] = data
+    })
 }
 function test_auth(){
     gun.user(temp_key).get("test").get("stuff").put({some_key:"test_auth"})
