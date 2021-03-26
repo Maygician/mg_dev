@@ -17,8 +17,8 @@
 <script>
 var sea = Gun.SEA
 var temp_key = null
-function create_key() {
-temp_key = sea.pair();
+async function create_key() {
+temp_key =  await sea.pair();
 document.getElementById("generated_key").value=temp_key;
 }
 </script>
