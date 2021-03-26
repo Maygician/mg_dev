@@ -88,7 +88,7 @@ function logIn() {
   console.info('Logged in as ', account.is.pub)
   loadProfile(account.is.pub)
 }
-export function loadProfile(pub) {
+function loadProfile(pub) {
   gun
     .user()
     .get('profile')
