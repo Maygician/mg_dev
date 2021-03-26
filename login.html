@@ -1,14 +1,18 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 <!--  -->
-<button onclick="create_key()">Create key</button><br>
-<label>Your key</label>
-<textarea id="current_key"></textarea><br>
-<label>Paste your key here</label>
+<button onclick="hide_not_implemented()">Hide not implemented stuff</button>
+<br>
+<label>Paste your key here to log in</label>
 <textarea id="pasted_key"></textarea><br>
 <button onclick="key_pasted()">Submit</button><br>
+<br>
+<label>Your key</label>
+<textarea id="current_key" placeholder="not logged in"></textarea><br>
 <button onclick="log_key()">Log my key</button><br>
 <br>
+<p>Or create a new one <button onclick="create_key()">Create key</button></p>
+<div class="not_implemented">
 <p>Enter your login/password to decrypt your key saved elsewhere.</p>
 <label>Where</label>
 <input type="text" id="server" value="https://vine-mature-morocco.glitch.me/gun" placeholder="your_node.address/gun"><br>
@@ -17,6 +21,7 @@
 <label>Password</label>
 <input type="password" id="password" value="MJ4e"><br>
 <button onclick="alert('Not implemented yet')">login</button>
+</div>
 <br>
 <br>
 <input list="dl_pages" id="page_version" placeholder="page version to load">
@@ -29,6 +34,11 @@
 <script>
 var sea = Gun.SEA
 var temp_key = null
+function hide_not_implemented(){
+    var all = document.getElementsByClassName("not_implemented")
+    Array.prototype.forEach.call(all, function(el){
+    el.style.display="none";
+    })}
 function key_pasted(){
     var val = document.getElementById("pasted_key").value
     temp_key = val
