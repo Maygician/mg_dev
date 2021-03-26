@@ -43,7 +43,7 @@ function handleFile(file) {
    var reader = new FileReader();
   reader.onload = e => {
     //fuction runs when file is fully loaded
-    console.log(parsed(e.target.result));
+    console.log(parsed(e.target.files[0]));
   };
 //   reader.readAsDataURL(file);
 }
