@@ -1,7 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 <!--  -->
-<button onclick="create_key()">Create key</button>
+<button onclick="create_key()">Create key</button><br>
+<label>Your key</label>
+<textarea id="generated_key"></textarea>
 <p>Enter your login/password to decrypt your key saved elsewhere.</p>
 <label>Where</label>
 <input type="text" id="server" value="https://vine-mature-morocco.glitch.me/gun" placeholder="your_node.address/gun"><br>
@@ -17,6 +19,6 @@ var sea = Gun.SEA
 var temp_key = null
 function create_key() {
 temp_key = sea.pair();
-console.log(temp_key)
+document.getElementById("generated_key").value=temp_key;
 }
 </script>
