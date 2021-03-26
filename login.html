@@ -70,7 +70,7 @@ user.auth(temp_key)
 console.log(gun._.graph)
 }
 function test_auth(){
-    gun.user(temp_key).get("test").get("stuff").put("test_auth")
+    gun.user(temp_key).get("test").get("stuff").put({some_key:"test_auth"})
     console.log(gun._.graph)
 
 }
