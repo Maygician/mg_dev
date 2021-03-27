@@ -14,8 +14,6 @@
 <label>Your key</label>
 <textarea id="current_key" placeholder="not logged in"></textarea><br>
 <button onclick="log_key()">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
-<button style="background-color: rgb(177, 27, 236);" onclick="test_auth()">Test auth</button><br>
-<button style="background-color: rgb(93, 236, 27);" onclick="test_auth2()">Test auth2</button><br>
 <br>
 <br>
 <br>
@@ -80,35 +78,16 @@ function auth_(){
 gun = new Gun()
 user = gun.user()
 user.recall({ sessionStorage: true }, () => {
-  logIn()
+//   logIn()
 })
 
 gun.on('auth', () => {
-  logIn()
+//   logIn()
 })
-// user.create(temp_key)
-
 user.auth(temp_key)
 // console.log(gun._.graph)
 }
-function logIn() {
-  account.is = gun.user().is
-  console.info('Logged in as ', account.is.pub)
-  loadProfile(account.is.pub)
-}
-function loadProfile(pub) {
-  gun
-    .user()
-    .get('profile')
-    .map()
-    .on((data, key) => {
-      account.profile[key] = data
-    })
-}
-function test_auth(){
-    gun.user().get("test").get("stuff").put({some_key:"test_auth"})
-    // gun.user(temp_key).get("test").get("stuff").put({some_key:"test_auth"})
-    console.log(gun._.graph)
 
-}
+
+
 </script>
