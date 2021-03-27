@@ -16,6 +16,7 @@
 <button onclick="log_key()" style="background-color: beige;">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
 <button onclick="console.log(gun._.graph)" style="background-color: beige;">log graph</button>
 <br>
+<button onclick="downloadPair()" style="background-color: red;">download pair</button>
 <br>
 <br>
 <p>Or create a new one <button onclick="create_key()">Create key</button></p>
@@ -86,6 +87,31 @@ user.auth(temp_key)
 console.log(user.is)
 console.log(user._.sea)
 }
+function updateProfile(field, data) {if (data !== undefined)gun.user().get('profile').get(field).put(data)}
+function downloadText(text, fileType, fileName) {
+  var blob = new Blob([text], { type: fileType })
 
+  var a = document.createElement('a')
+  a.download = fileName
+  a.href = URL.createObjectURL(blob)
+  a.dataset.downloadurl = [fileType, a.download, a.href].join(':')
+  a.style.display = 'none'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  setTimeout(function () {
+    URL.revokeObjectURL(a.href)
+  }, 1500)
+}
+function downloadPair() {
+  let pair = gun.user()._.sea
+  pair = JSON.stringify(pair)
 
+  downloadText(
+    pair,
+    'application/json',
+    // account.profile.name + '@key.json',
+    '@key.json',
+  )
+}
 </script>
