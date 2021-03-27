@@ -15,6 +15,7 @@
 <textarea id="current_key" placeholder="not logged in"></textarea><br>
 <button onclick="log_key()">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
 <button style="background-color: rgb(177, 27, 236);" onclick="test_auth()">Test auth</button><br>
+<button style="background-color: rgb(93, 236, 27);" onclick="test_auth2()">Test auth2</button><br>
 <br>
 <br>
 <br>
@@ -69,6 +70,11 @@ document.getElementById("current_key").value=JSON.stringify(temp_key);
 }
 function log_key(){
     console.log(temp_key)
+}
+function test_auth2(){
+    gun = new Gun()
+user = gun.user()
+user.auth(temp_key)
 }
 function auth_(){
 gun = new Gun()
