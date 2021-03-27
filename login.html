@@ -13,7 +13,8 @@
 <br>
 <label>Your key</label>
 <textarea id="current_key" placeholder="not logged in"></textarea><br>
-<button onclick="log_key()">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
+<button onclick="log_key()" style="background-color: beige;">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
+<button onclick="console.log(gun._.graph)" style="background-color: beige;">log graph</button>
 <br>
 <br>
 <br>
@@ -82,7 +83,6 @@ gun.on('auth', () => {
 init()
 function auth_(){
 user.auth(temp_key)
-console.log(gun._.graph)
 console.log(user.is)
 console.log(user._.sea)
 }
