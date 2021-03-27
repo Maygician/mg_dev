@@ -69,9 +69,8 @@ document.getElementById("current_key").value=JSON.stringify(temp_key);
 function log_key(){
     console.log(temp_key)
 }
-
-function auth_(){
-gun = new Gun()
+function init(){
+    gun = new Gun()
 user = gun.user()
 user.recall({ sessionStorage: true }, () => {
 //   logIn()
@@ -79,6 +78,9 @@ user.recall({ sessionStorage: true }, () => {
 gun.on('auth', () => {
 //   logIn()
 })
+}
+init()
+function auth_(){
 user.auth(temp_key)
 // console.log(gun._.graph)
 }
