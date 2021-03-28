@@ -41,28 +41,16 @@
 <button onclick="load_page()">Load page version </button><a id="page_href">last one loaded</a>
 <!--  -->
 <br>
-<label>Html snippet</label>
-<textarea id="html_snippet"></textarea>
+<label>id</label>
+<input type="text" id="elem_id">
+<button onclick="edit_element()">Edit element</button>
 <br>
-<label>name</label>
-<input id="snippet_name" value="1" type="text">
+<textarea id="elem_textarea"></textarea>
+<button onclick="submit_edit_element()">Submit</button>
 <br>
-<button onclick="save_snippet()">Save snippet</button>
-<br>
-<button onclick="replace()">replace</button>
-<button onclick="replace_all()">replace all</button>
-<!--  -->
 <script id="test_js"></script>
 <script id="js_snippet_core">
-    // snippet: html element by id
-    function save_snippet(){
-        let name = document.getElementById("snippet_name").value+".html"
-        let data = document.getElementById("html_snippet").value
-        console.log(`save "${data}" to ${name}`)
 
-    }
-    function replace(){}
-    function replace_all(){}
 </script>
 <script>
 var sea = Gun.SEA
