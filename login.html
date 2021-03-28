@@ -55,9 +55,16 @@ function edit_element() {
     let id = document.getElementById("elem_id").value
     let el = document.getElementById(id)
     if(el){
+        edit=id
     let area = document.getElementById("elem_textarea")
     area.innerText=el.innerHTML}
     else console.log("not loaded")
+}
+function submit_edit_element() {
+    let property = "innerHTML"//default. todo: pass as argument
+    let area = document.getElementById("elem_textarea")
+    document.getElementById(edit)[property]=area.innerText
+    area.innerText=""
 }
 </script>
 <script>
