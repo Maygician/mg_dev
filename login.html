@@ -88,7 +88,10 @@ function load_edit_element() {
     })
 }
 function load_all_elements(){
-    var val = user.get("pages").get(page_version).get("elements").map().once((data, key)=>console.log(data))
+    var val = user.get("pages").get(page_version).get("elements").map().once((data, key)=>{
+        let el = document.getElementById(key)
+        Object.entries(data).forEach(([key_, value_]) => el[key_]=value_)
+    })
     // .get(edit).map().once((data, key) =>{ 
 
 }
