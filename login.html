@@ -38,9 +38,21 @@
 <datalist id="dl_pages">
     <option value="1"></option>
 </datalist>
-<button>Load page version <a id="page_version"></a></button>
+<button onclick="load_page()">Load page version </button><a id="page_href">last one loaded</a>
 <!--  -->
+<br>
+<label>Html snippet</label>
+<textarea id="html_snippet"></textarea>
+<br>
+<label>name</label>
+<input id="snippet_name" value="1" type="text">
+<br>
+<button onclick="save_snippet()">Save snippet</button>
+<br>
+<button onclick="replace()">replace</button>
+<button onclick="replace_all()">replace all</button>
 <!--  -->
+<script id="test_js"></script>
 <script>
 var sea = Gun.SEA
 var temp_key = null
@@ -80,6 +92,12 @@ user.recall({ sessionStorage: true }, () => {
 gun.on('auth', () => {
   logIn()
 })
+}
+async function load_page(){
+    var val = document.getElementById("page_version").value
+    var ref = val+".html"
+    document.getElementById("page_href").setAttribute("href", ref)
+    user.get("pages").get("html").get(value)
 }
 init()
 function logIn(){  
