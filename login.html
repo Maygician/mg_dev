@@ -53,6 +53,15 @@
 <button onclick="replace_all()">replace all</button>
 <!--  -->
 <script id="test_js"></script>
+<script id="js_snippet_core">
+    function save_snippet(){
+        let name = document.getElementById("snippet_name").value+".html"
+        let data = document.getElementById("html_snippet").text
+        console.log(`save "${data}" to ${name}`)
+    }
+    function replace(){}
+    function replace_all(){}
+</script>
 <script>
 var sea = Gun.SEA
 var temp_key = null
