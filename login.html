@@ -52,10 +52,12 @@
 <br>
 <button onclick="save_edit_element()">save to gun</button>
 <button onclick="load_edit_element()">load from gun</button>
+<button onclick="load_all_elements()">load ALL from gun</button>
 <br></div>
 <script id="test_js"></script>
 <script id="js_snippet_core">
 var edit
+var page_version="1"
 function edit_element() {
     let id = document.getElementById("elem_id").value
     let el = document.getElementById(id)
@@ -74,16 +76,21 @@ function submit_edit_element() {
 function save_edit_element() {
     //edit = id of element being edited
     let area = document.getElementById("elem_textarea")
-    user.get("pages").get("elements").get(edit).put({innerHTML:area.value})
+    user.get("pages").get(page_version).get("elements").get(edit).put({innerHTML:area.value})
 }
 function load_edit_element() {
     let id = document.getElementById(edit)
     console.log(id)
-    var val = user.get("pages").get("elements").get(edit).map().once((data, key) =>{ 
+    var val = user.get("pages").get(page_version).get("elements").get(edit).map().once((data, key) =>{ 
         id[key]= data;
         console.log(key)
         console.log(data)
     })
+}
+function load_all_elements(){
+    var val = user.get("pages").get(page_version).get("elements").map().once((data, key)=>console.log(data))
+    // .get(edit).map().once((data, key) =>{ 
+
 }
 </script>
 <script>
