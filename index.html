@@ -8,28 +8,23 @@
     }
 </style>
 <!--  -->
-<div id="menu" style="position: absolute; z-index: 999999;">
+<div id="menu" style="position: absolute; z-index: 999999; display: block; float: right;">
 <button onclick="toggle(login_page)" style="background-color: beige;">Toggle Login</button>
+<button onclick="toggle(login_page_2)" style="background-color: beige;">Toggle Login2</button>
 </div>
 <div id="login_page" class="layer">
     <div id="login_wrapper" style="display: grid; height: 100vh; width: 100vw;">
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
 <br>
-<br>
-<br>
 <label>Paste your key here to log in</label>
 <textarea id="pasted_key">{"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}</textarea><br>
 <button onclick="key_pasted()">Submit</button><br>
-<br>
-<br>
 <br>
 <label>Your key</label>
 <textarea id="current_key" placeholder="not logged in"></textarea><br>
 <button onclick="log_key()" style="background-color: beige;">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
 <button onclick="console.log(gun._.graph)" style="background-color: beige;">log graph</button>
-<br>
 <button onclick="downloadPair()" style="background-color: red;">download pair</button>
-<br>
 <br>
 <p>Or create a new one <button onclick="create_key()">Create key</button></p>
 <div class="not_implemented">
@@ -42,11 +37,12 @@
 <input type="password" id="password" value="MJ4e"><br>
 <button onclick="alert('Not implemented yet')">login</button>
 </div>
-<br>
-<br>
 <div id="test_div"></div>
 <br>
-<br>
+
+</div>
+</div>
+<div id="login_page_2" class="layer"><div id="lp2_inner">
 <button onclick="load_page()">Load page version </button>
 <input list="dl_pages" id="page_version" placeholder="page version to load">
 <datalist id="dl_pages">
@@ -69,8 +65,7 @@
 <input type="text" id="target_property" value="innerHTML">
 <button onclick="change_target_property()">Set target property</button>
 <br>
-</div>
-</div>
+</div></div>
 <script id="test_js"></script>
 <script id="js_snippet_core">
 var edit
