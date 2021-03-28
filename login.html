@@ -1,7 +1,11 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+<script src="js/core/wsjs.js"></script>
 <!--  -->
-<div id="login_page">
+<div id="menu" style="position: absolute;">
+<button onclick="toggle('login_page')" style="background-color: beige; z-index: 999999;">Toggle Login</button>
+</div>
+<div id="login_page" >
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
 <br>
 <br>
@@ -57,7 +61,8 @@
 <button onclick="load_all_elements()">load ALL from gun</button><br>
 <input type="text" id="target_property" value="innerHTML">
 <button onclick="change_target_property()">Set target property</button>
-<br></div>
+<br>
+</div>
 <script id="test_js"></script>
 <script id="js_snippet_core">
 var edit
