@@ -64,7 +64,7 @@ function edit_element() {
 function submit_edit_element() {
     let property = "innerHTML"//default. todo: pass as argument
     let area = document.getElementById("elem_textarea")
-    document.getElementById(edit)[property]=area.innerText
+    document.getElementById(edit)[property]=area.value
     area.innerText=""
 }
 </script>
