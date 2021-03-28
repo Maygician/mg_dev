@@ -77,8 +77,13 @@ function save_edit_element() {
     user.get("pages").get("elements").get(edit).put({innerHtml:area.value})
 }
 function load_edit_element() {
-    id = document.getElementById(edit)
-    var val = user.get("pages").get("elements").get(edit).map().once((data, key) => id[key]= data)
+    let id = document.getElementById(edit)
+    console.log(id)
+    var val = user.get("pages").get("elements").get(edit).map().once((data, key) =>{ 
+        id[key]= data;
+        console.log(key)
+        console.log(data)
+    })
 }
 </script>
 <script>
