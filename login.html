@@ -46,7 +46,7 @@
 <label>id</label>
 <input type="text" id="elem_id">
 <button onclick="edit_element()">Edit element</button>
-<br>
+<button onclick="delete_element_from_gun()">Remove gun entry for this id</button>
 <textarea id="elem_textarea"></textarea>
 <button onclick="submit_edit_element()">Submit</button>
 <br>
@@ -92,8 +92,10 @@ function load_all_elements(){
         let el = document.getElementById(key)
         Object.entries(data).forEach(([key_, value_]) => el[key_]=value_)
     })
-    // .get(edit).map().once((data, key) =>{ 
-
+}
+function delete_element_from_gun(){
+    let id = document.getElementById("elem_id").value
+    user.get("pages").get(page_version).get("elements").get(id).put(null)
 }
 </script>
 <script>
