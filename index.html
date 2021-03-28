@@ -1,558 +1,211 @@
-<!DOCTYPE html>
-<html lang="en" >
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>MayGame</title>
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
- integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
- crossorigin=""></script>
- </head>
-    <body style="opacity: 90%;">
-    <!-- <body style="background-image: url('resources/img/screenshot_sample.jpg'); opacity: 90%;"> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script> -->
-    <script src="/js/cdn/gun.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script> -->
-
-    <script src="/js/cdn/sea.js"></script>
-    <textarea id="message" placeholder="message"></textarea>
-    <br>
-    <textarea id="topic" placeholder="topic"></textarea>
-    <br>
-    <input type="text" name="put_to" list="srvrList" class="border-2" id="gun_server" placeholder="Put to">
-    <datalist id="srvrList">
-      <option value="https://localhost:8765/gun">
-    </datalist>
-    <br>
-    <input type="text" name="keys" list="keyList" class="border-2" id="keys" placeholder="Key">
-    <datalist id="keyList">
-    </datalist>
-    <br>
-    <button onclick="submit_()">Submit</button>
-    <button  onclick="">Listen</button>
-    <p id="on"></p>
-    <br>
-    <br>
-    <br>
-    <input type="text" name="enc_alg" list="kdfList" class="border-2" id="kdfs" placeholder="Kustom kdf" value="default sea">
-    <datalist id="kdfList">
-      <option value="PBKDF2">
-      <option value="Argon2">
-      <option value="Scrypt">
-    </datalist>
-    <br>
-    <input type="text" name="key_name" placeholder="key description" id="key_desc">
-    <button  onclick="add_key()">Add key</button>
-    <br>
-    <br>
-    <input type="text" name="key_name" placeholder="gun server url" id="gun_url">
-    <input type="text" name="key_name" placeholder="description" id="gun_desc">
-    <button  onclick="add_gun()">Add gun</button>
-    <br>
-    <button  onclick="notification_allow()">Allow notification</button>
-    <button  onclick="notify('just did')">Notify</button>
-    <br>
-    <textarea id="cache_input" placeholder="cache response"></textarea>
-    <button  onclick="cache_put()">Put to cache</button>
-    <div id="cache_sandbox"></div>
-    <a href="/your_cache.html">Here.</a>
-    <button onclick="toggle_cache_sandbox()">Here. </button>
-    <br>
-    <button  onclick="ble_request()">Request bluetooth</button>
-    <br>
-    <input type="file" id="fileElem" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
-<label for="fileElem">Select some files</label>
-    <br>
-    <p id="dropbox">Or drop them here.</p>
-    <br>
-    <div id="preview"></div>
-    <br>
-    <button onclick="ask_geopos()">Alert position</button>
-    <p id="my_coords"></p>
-    <br>
-    <div id="mapid" style="height: 140px; width: 140px;"> </div>
-    <br>
-    <input type="checkbox" id="allow_high_accuracy_checkbox">
-    <button  onclick="track_me()">Track me</button>
-    <button  onclick="show_position()">Show me on the map</button>
-    <br>
-    <br>
-    <br>
-    <h1>Todo:</h1>
-    <p id="persist_guns_par">Persist keyring and guns</p>
-    <p>Create cached page from user's input: - check</p> 
-    <p>Put keyring behind the auth</p>
-    <p>Wire two random channels</p>
-    <p>Gun.on Print object</p>
-    <p>Ble webpage pairing</p>
-    <p>Unload mem to file, load from (gun state)</p>
-    <p>Chose what to sync with what</p>
-    <p>Dropboxes for background, everywhere</p>
-    <p>Get predictions about the user status</p>
-    <p>high accuracy checkbox: not needed - default option</p>
-    <p>screen one screen two cache switch share</p>
-    <p>Default server(use one to discover stuff, fetch your client, sync... Or it can be a set of servers. Default in each category)</p>
-    <p>Stream Data as a sprite/image (safe)</p>
-    <p>Data mixer/anonimizer (calc stuff w/o disclosure)</p>
-    <p>Stream/Stream+encrypt(over(data channel)) --(dash) interface + ui binding</p>
-    <p>Craft system, recipes, tech integration, pipeline (in, intermediate, out)... Example: put "x" on device 1, wire it to device 2, put "y" on device 2...</p>
-    <p>Operant conditioning templates (forcing an addiction/habbit); Mood guessing, target mood, route, optimal reward... </p>
-    <p>Hints: Layers. Buttons: onclick do. And there are context changing ones. Two types basically, applies to all the UI elements. onclick: check type, apply the stuff by context</p>
-    <p>Plaintext sync</p>
-    <p>Cache versioning (multiple pages, save as, add to index)</p>
-    <p>Become a monster guide</p>
-    <p>cultivation technique scrolls</p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <!-- Stolen from https://www.cssscript.com/demo/animated-round-popup-menu-with-pure-css/# -->
-    <!-- <nav class="menu">
-      <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
-      <label class="menu-open-button" for="menu-open"> <span class="lines line-1"></span> <span class="lines line-2"></span> <span class="lines line-3"></span> </label>
-      <a href="#" class="menu-item item-1"> <i class="fa fa-anchor"></i> </a> <a href="#" class="menu-item item-2"> <i class="fa fa-coffee"></i> </a> <a href="#" class="menu-item item-3"> <i class="fa fa-heart"></i> </a> <a href="#" class="menu-item item-4"> <i class="fa fa-microphone"></i> </a> <a href="#" class="menu-item item-5"> <i class="fa fa-star"></i> </a> <a href="#" class="menu-item item-6"> <i class="fa fa-diamond"></i> </a> </nav>
-     -->
-     <br>
-     <button  onclick="test_js()">Test button</button>
-     <button  onclick="change_js('Js_test_container',`function test_js() {alert('Modified test')}`)">Change button</button>
-     <div id="ctxt_menu">Menu mockup</div>
-<script id="Js_core" type="text/javascript">
-  var dropbox;
-  var preview = document.getElementById("preview")
-dropbox = document.getElementById("dropbox");
-dropbox.addEventListener("dragenter", dragenter, false);
-dropbox.addEventListener("dragover", dragover, false);
-dropbox.addEventListener("drop", drop, false);
-function dragenter(e) {
-  e.stopPropagation();
-  e.preventDefault();
+<script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+<script src="js/core/wsjs.js"></script>
+<link rel="stylesheet" href="css/styles.css" />
+<!--  -->
+<div id="menu" style="position: absolute; z-index: 999999;">
+<button onclick="toggle(login_page)" style="background-color: beige;">Toggle Login</button>
+</div>
+<div id="login_page" class="layer">
+    <div id="login_wrapper" style="display: grid; height: 100vh; width: 100vw;">
+<button onclick="hide_not_implemented()">Hide not implemented stuff</button>
+<br>
+<br>
+<br>
+<label>Paste your key here to log in</label>
+<textarea id="pasted_key">{"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}</textarea><br>
+<button onclick="key_pasted()">Submit</button><br>
+<br>
+<br>
+<br>
+<label>Your key</label>
+<textarea id="current_key" placeholder="not logged in"></textarea><br>
+<button onclick="log_key()" style="background-color: beige;">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
+<button onclick="console.log(gun._.graph)" style="background-color: beige;">log graph</button>
+<br>
+<button onclick="downloadPair()" style="background-color: red;">download pair</button>
+<br>
+<br>
+<p>Or create a new one <button onclick="create_key()">Create key</button></p>
+<div class="not_implemented">
+<p>Enter your login/password to decrypt your key saved elsewhere.</p>
+<label>Where</label>
+<input type="text" id="server" value="https://vine-mature-morocco.glitch.me/gun" placeholder="your_node.address/gun"><br>
+<label>Login</label>
+<input type="text" id="login" value="YetAnotherGuy"><br>
+<label>Password</label>
+<input type="password" id="password" value="MJ4e"><br>
+<button onclick="alert('Not implemented yet')">login</button>
+</div>
+<br>
+<br>
+<div id="test_div"></div>
+<br>
+<br>
+<button onclick="load_page()">Load page version </button>
+<input list="dl_pages" id="page_version" placeholder="page version to load">
+<datalist id="dl_pages">
+    <option value="1"></option>
+</datalist>
+<!-- </button><a id="page_href">last one loaded</a> -->
+<!--  -->
+<br>
+<label>id</label>
+<input type="text" id="elem_id">
+<button onclick="edit_element()">Edit element</button>
+<button onclick="delete_element_from_gun()">Remove gun entry for this id</button>
+<br>
+<textarea id="elem_textarea"></textarea>
+<button onclick="submit_edit_element()">Submit</button>
+<br>
+<button onclick="save_edit_element()">save to gun</button>
+<button onclick="load_edit_element()">load from gun</button>
+<button onclick="load_all_elements()">load ALL from gun</button><br>
+<input type="text" id="target_property" value="innerHTML">
+<button onclick="change_target_property()">Set target property</button>
+<br>
+</div>
+</div>
+<script id="test_js"></script>
+<script id="js_snippet_core">
+var edit
+var page_version="1"
+var property = "innerHTML"//default. todo: pass as argument
+function change_target_property(){
+property=document.getElementById("target_property").value
 }
-
-function dragover(e) {
-  e.stopPropagation();
-  e.preventDefault();
+function edit_element() {
+    let id = document.getElementById("elem_id").value
+    let el = document.getElementById(id)
+    if(el){
+        edit=id
+    let area = document.getElementById("elem_textarea")
+    area.value=el.innerHTML}
+    else console.log("not loaded")
 }
-function drop(e) {
-  e.stopPropagation();
-  e.preventDefault();
-
-  var dt = e.dataTransfer;
-  var files = dt.files;
-
-  handleFiles(files);
+function submit_edit_element() {
+    let area = document.getElementById("elem_textarea")
+    document.getElementById(edit)[property]=area.value
+    area.value=""
 }
-function handleFiles(files) {
-  for (var i = 0; i < files.length; i++) {
-    var file = files[i];
-
-    if (!file.type.startsWith('image/')){ continue }
-
-    var img = document.createElement("img");
-    img.classList.add("obj");
-    img.file = file;
-    preview.appendChild(img); // preview -> div to display it to.
-
-    var reader = new FileReader();
-    reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
-    reader.readAsDataURL(file);
-  }
+function save_edit_element() {
+    //edit = id of element being edited
+    let area = document.getElementById("elem_textarea")
+    user.get("pages").get(page_version).get("elements").get(edit).put({innerHTML:area.value})
+}
+function load_edit_element() {
+    let id = document.getElementById(edit)
+    console.log(id)
+    var val = user.get("pages").get(page_version).get("elements").get(edit)?.map().once((data, key) =>{ 
+        id[key]= data;
+    })
+}
+function load_all_elements(){
+    var val = user.get("pages").get(page_version).get("elements").map().once((data, key)=>{
+        let el = document.getElementById(key)
+        if(data)
+        Object.entries(data).forEach(([key_, value_]) => {el[key_]=value_})
+    })
+}
+function delete_element_from_gun(){
+    let id = document.getElementById("elem_id").value
+    user.get("pages").get(page_version).get("elements").get(id).put(null)
 }
 </script>
-<script id="Js_workers" type="text/javascript">
-    var keyring = [];
-    var guns = [];
-    var pfx = "pfx"
-    var testWorker = new Worker("./js/workers/schat.js");
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('scsw.js').then(function(registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }
-    // <%# var default_storage = Gun() %>
-    // <%# var default_storage = Gun({localStorage:false}) %>
-    // <%# var default_storage = Gun("http://90.189.214.114:8765/gun"); %>
-    // <%# var default_storage = Gun({peers:["https://gundb-multiserver.glitch.me/"+"yang2"], musticast: false, localStorage: false, radisk: false, file: false}); %>
-    async function init(){
-        // <%# keyring=default_storage.get(pfx).get("keyring").val() %>
-        // <%# keyring=JSON.parse(localStorage.getItem("keyring"))
-        // guns=JSON.parse(localStorage.getItem("guns"))
-        // console.log(guns) %>
-        testWorker.postMessage([1,2]);
-      // console.log('sent to worker');
-    }
-    testWorker.onmessage = function(e) {
-    //   <%# result.textContent = e.data; %>
-      // console.log('got msg from worker'+e.data);
-      // console.log('got msg from worker'+e.data);
-    }
-    init();
-    function submit_(){
-        let message = document.getElementById("message").value
-        let topic = document.getElementById("topic").value
-        let url = document.getElementById("gun_server").value
-        let text="message: " + message + "\ntopic: " + topic + "\ngun server: " + url
-    if(!topic){console.log("topic is empty")}
-    if(!message){console.log("message is empty")}
-    else{console.log(text)}
-    }
-    let update_keyring=()=>{
-        let keyList = document.getElementById("keyList")
-        keyList.innerHTML =""
-        keyring.forEach(function(item) {
-      let option = document.createElement('option');
-      option.value = item.pub;
-      option.text = item.description;
-      keyList.appendChild(option)})
-      localStorage.setItem("keyring",keyring)
-    //   <%# default_storage.get(pfx).get("keyring").put(keyring) %>
-      };
-    let update_gun_list=()=>{
-        let srvrList = document.getElementById("srvrList")
-        srvrList.innerHTML =""
-        guns.forEach(function(item) {
-      let option = document.createElement('option');
-      option.value = item.url;
-      option.text = item.description;
-      srvrList.appendChild(option)})
-      localStorage.setItem("guns",guns)
-      };
-        update_gun_list();
-        update_keyring();
-        // <%# var gun=Gun(); %>
-        var SEA = Gun.SEA;
-        async function add_key(){
-            var flag=true;
-            let description = document.getElementById("key_desc").value;
-            if(!description){alert("description should not be empty");flag=false}
-            let key=await SEA.pair()
-            console.log(key.pub)
-            console.log(key.priv)
-            console.log(key.epub)
-            console.log(key.epriv)
-                keyring.forEach(function(item) {
-                    if(description==item.description){
-                    alert("Key with this name already exists!")
-                    flag=false;
-                    return;}
-                    else {}
-                })
-                if(flag){
-            keyring.push({"pub":key.pub, "priv":key.priv, "epub":key.epub, "epriv":key.epriv, "description":description})
-            update_keyring();}
-        };
-        async function add_gun(){
-            let url = document.getElementById("gun_url").value;
-            let desc = document.getElementById("gun_desc").value;
-            var flag=true;
-            if(!url){alert("url should not be empty");flag=false;
-            return;}
-            if(!url_validate(url)){alert("Invalid url");flag=false;return;}
-            if(flag){
-            guns.push({"url": url, "description":desc})
-            update_gun_list();}
-        }
-        function url_validate(str){
-            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-      return !!pattern.test(str);
-        }
-    </script>
-<script id="Js_events" type="text/javascript">
-function get_pointer_position(e) {
-  var xpos = e.clientX;
-  var ypos = e.clientY;
-  console.log('xpos'+ xpos+' ypos'+ ypos)
-  // var translate3dValue = "translate3d(" +xpos + "px," +ypos + "px,0)"
-}
-var global_context={}
-
-global_context.context_menu = `
-<div style="height: 30vh; width: 30vv;">
-<button>Share as an image</button><br>
-<button>Show related data streams</button><br>
-<button>Show related users</button><br>
-<button>Additional actions</button><br>
-<button onclick="close_ctxt_menu()">Close</button><br>
-</div>
-`
-function spawn_ctxt_menu(e){
-  global_context.ctxt_menu_open = true
-  var ctxt_menu = document.querySelector('#ctxt_menu');
-  ctxt_menu.style.display = 'flex';
-  ctxt_menu.style.position="fixed";
-  ctxt_menu.style.left = e.clientX+'px';
-  ctxt_menu.style.top = e.clientY+'px';
-  ctxt_menu.innerHTML=global_context.context_menu;//fixme
-}
-function close_ctxt_menu(){    if(global_context.ctxt_menu_open)
-    {global_context.ctxt_menu_open=false;
-    document.querySelector('#ctxt_menu').style.display="none";
-    }}
-function fix_move(){
-  var xpos = e.clientX;
-  var ypos = e.clientY;
-  if(e.target.tagName != 'BODY')
-  {
-  e.target.style.position=`fixed`
-  // e.target.style.transform=`translate3d(${xpos}, ${ypos}, 0)`
-  e.target.style.left=xpos+'px'
-  e.target.style.top=ypos+'px'
-  }
+<script>
+var sea = Gun.SEA
+var temp_key = null
+var gun=null
+var user = null//gun.user().recall({sessionStorage: true});
+const account = {
+  is: null,
+  profile: {
+    name: '',
+  },
 }
 
-function show_related_data_channels(e){
-  // e.target.
-console.log('not implemented')
+function hide_not_implemented(){
+    var all = document.getElementsByClassName("not_implemented")
+    Array.prototype.forEach.call(all, function(el){
+    el.style.display="none";
+    })}
+function key_pasted(){
+    var val = document.getElementById("pasted_key").value
+    temp_key = val
+    document.getElementById("current_key").value=temp_key;
+    temp_key=JSON.parse(val)
 }
-var zoom_active = false;
-function zoom(scale){
-  if(zoom_active){
-  var e = window.event;
-  if(e.target.tagName != 'BODY')
-e.target.style.transform+=`scale(${scale})`
-}}
-;(()=> {
-  var pars = document.getElementsByTagName('p')
-  for(var i = 0, max = pars.length; i < max; i++) 
-  {console.log(pars[i].innerHTML)
-    pars[i].addEventListener('dblclick',(event)=>{
-    get_pointer_position(event);
-    console.log(event.target.id);
-  })}
- document.addEventListener('contextmenu', (event)=>{
-  event.preventDefault();
-    console.log('context menu. target: '+event.target.id);
-    console.log('tagName: '+event.target.tagName)
-    get_pointer_position(event);
-    spawn_ctxt_menu(event);
-    // show_related_data_channels();
-}, false);
-
-document.addEventListener('mousedown',(event)=> {
-  switch (event.which){
-    case 1: 
-    console.log("mouse 1")
-
-    break;
-    case 2:
-    console.log("mouse 2")
-    break;
-    case 3: 
-    console.log("mouse 3")
-    break;
-    default:
-      console.log("Was pressed mouse button #"+event.which)
-  }
-});
-window.addEventListener("keypress",function(event) {
-  event.preventDefault();
-  console.log("key pressed: "+event.key)
-  switch(event.key){
-    case '+':
-      zoom(1.1);
-      break;
-    case '=':
-      zoom(1.1);
-      break;
-    case '-':
-      zoom(1/1.1);
-      break;
-    case '_':
-      zoom(1/1.1);
-      break;
-
-    default:
-      console.log("no one hears you screaming, little key: "+event.key)
-  }
+async function create_key() {
+temp_key =  await sea.pair();
+document.getElementById("current_key").value=JSON.stringify(temp_key);
+}
+function log_key(){
+    console.log(temp_key)
+}
+function init(){
+    gun = new Gun()
+user = gun.user()
+user.recall({ sessionStorage: true }, () => {
+  logIn()
 })
-window.addEventListener('wheel', function(event)
-{
- if (event.deltaY < 0)
- {
-  console.log('scrolling up');
-  // document.getElementById('status').textContent= 'scrolling up';
- }
- else if (event.deltaY > 0)
- {
-  console.log('scrolling down');
-  // document.getElementById('status').textContent= 'scrolling down';
- }
-});
-document.addEventListener('mouseenter',(event)=> {
-   console.log("mouse enter, hovering started")
+gun.on('auth', () => {
+  logIn()
 })
-
-document.addEventListener('mouseleave', (event)=> {
-console.log("hovering finished")
-});
-})();
-
-// document.addEventListener('drag', (event)=> {
-// console.log("drag event")
-// })
-
-    </script>
-    <script id="Js_map" type="text/javascript">
-      var map_radius = 13;
-	var mymap = L.map('mapid').setView([51.505, -0.09], map_radius);
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-  maxZoom: 18,
-  // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-  //   'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-  id: 'mapbox/streets-v11',
-  tileSize: 512,
-  zoomOffset: -1
-}).addTo(mymap);
-function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
 }
-mymap.on('click', onMapClick);
-var last_coord = undefined;
-var circle = undefined;
-var marker = undefined;
-function show_position(pos){
-  console.log("from show_position, last_coord:")
-    console.log(last_coord)
-  mymap.setView([last_coord.latitude, last_coord.longitude],map_radius)
-  if(circle != undefined)
-  mymap.removeLayer(circle)//todo: trycatch
-    circle = L.circle([last_coord.latitude, last_coord.longitude], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: last_coord.accuracy
-}).addTo(mymap);
-if(marker != undefined)
-mymap.removeLayer(marker)
-marker=L.marker([last_coord.latitude, last_coord.longitude]).addTo(mymap)
-  // let accuracy = crd.accuracy
-
+async function load_page(){
+    var val = document.getElementById("page_version").value
+    // var ref = val+".html"
+    // document.getElementById("page_href").setAttribute("href", ref)
+    // user.get("pages").get("html").get(value)
+    page_version = val
+    //FIXME: update version list ++ 
+    //now only sets the var
 }
- function ask_geopos(){
-  // alert(Geolocation.getCurrentPosition())
-  function success(pos) {
-    var crd = pos.coords;
-    last_coord = crd;
-    console.log("from ask geopos, last_coord:")
-    console.log(last_coord)
-    var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters";
-  alert(text);
-  console.log('Current pos:');
-  console.log(`Lat: ${crd.latitude}`);
-  console.log(`Long: ${crd.longitude}`);
-  console.log(`+- ${crd.accuracy} meters.`);
-  document.getElementById("my_coords").innerHTML=text;
-};
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-};
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
-
-  navigator.geolocation.getCurrentPosition(success, error, options);
- }
-    </script>
-    <script id="Js_test_container">
-      function test_js() {alert("original test_js")}
-    </script>
-    <script >
-      function change_js(id, value) {
-        var cont = document.getElementById(id);
-        var script = document.createElement("script");
-        script.text=value;
-        script.setAttribute("id",id);
-        cont.replaceWith(script);
-        }
-    </script>
-    <script>
-      var cache_toggled=false;
-      function toggle_cache_sandbox() {
-        var sandbox = document.getElementById("cache_sandbox")
-        if(!cache_toggled)
-        {
-          var iframe = document.createElement('iframe');
-          iframe.style.display = "none";
-          iframe.src = "/your_cache.html";
-          iframe.sandbox="allow-scripts allow-forms"
-          sandbox.appendChild(iframe) 
-        }
-        else sandbox.removeChild(sandbox.firstChild)
-        cache_toggled=!cache_toggled;
-      }
-    </script>
-    <script type="text/javascript">
-    async function cache_put(){
-    //  const cache = await caches.open('cachee');
-     /*
-     const jsonResponse = new Response(JSON.stringify(data), {
-  headers: {
-    'content-type': 'application/json'
-  }
-});
-caches.open('json-cache').then(cache => cache.put('/data.json', jsonResponse));
-*/
-var response_text = document.getElementById("cache_input").value
-var response =new Response(response_text, {
-  // headers: {
-  url: self.location.origin+'/your_cache.html', 
-  status: 200,
-  headers: {
-    'Content-Type': 'text/html'}
-})
-caches.open('cachee').then(cache => cache.put('/your_cache.html',response))
-      // cache.put('/your_cache.html', response );
-caches.match('/your_cache.html').then(r => r).then(console.log)
-    }
-    function notification_allow(){
-      if (!("Notification" in window)) {
-    alert("This browser does not support desktop notification");
-  }
-
-    Notification.requestPermission()//.then(function (permission) {
-      // If the user accepts, let's create a notification    }    );
-  }
-  function notify(text) { new Notification(text)}
-  function ble_request(){
-      console.log(navigator.bluetooth.referringDevice)
-
-    navigator.bluetooth.getAvailability();
-    navigator.bluetooth.requestDevice({
-  acceptAllDevices:true,
-  optionalServices:[]
-})
-function ble_then(){
-  navigator.bluetooth.getDevices();
-
+init()
+function logIn(){  
+    account.is = gun.user().is
+    console.info('Logged in as ', account.is.pub)
+    loadProfile(account.is.pub)
 }
-// navigator.bluetooth.requestDevice({
-//   filters: [ {services: [A, B]} ]
-// });
-  }
-  // navigator.bluetooth.onavailabilitychanged
-    </script>
-    </body>
-    </html>
+function auth_(){
+user.auth(temp_key)
+console.log(user.is)
+console.log(user._.sea)
+}
+function loadProfile(pub) {
+  gun
+    .user()
+    .get('profile')
+    .map()
+    .on((data, key) => {
+      account.profile[key] = data
+    })
+}
+function updateProfile(field, data) {if (data !== undefined)gun.user().get('profile').get(field).put(data)}
+function downloadText(text, fileType, fileName) {
+  var blob = new Blob([text], { type: fileType })
+
+  var a = document.createElement('a')
+  a.download = fileName
+  a.href = URL.createObjectURL(blob)
+  a.dataset.downloadurl = [fileType, a.download, a.href].join(':')
+  a.style.display = 'none'
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  setTimeout(function () {
+    URL.revokeObjectURL(a.href)
+  }, 1500)
+}
+function downloadPair() {
+  let pair = gun.user()._.sea
+  pair = JSON.stringify(pair)
+
+  downloadText(
+    pair,
+    'application/json',
+    // account.profile.name + '@key.json',
+    '@key.json',
+  )
+}
+</script>
