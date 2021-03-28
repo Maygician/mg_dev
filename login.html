@@ -146,9 +146,12 @@ gun.on('auth', () => {
 }
 async function load_page(){
     var val = document.getElementById("page_version").value
-    var ref = val+".html"
-    document.getElementById("page_href").setAttribute("href", ref)
-    user.get("pages").get("html").get(value)
+    // var ref = val+".html"
+    // document.getElementById("page_href").setAttribute("href", ref)
+    // user.get("pages").get("html").get(value)
+    page_version = val
+    //FIXME: update version list ++ 
+    //now only sets the var
 }
 init()
 function logIn(){  
