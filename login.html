@@ -54,8 +54,10 @@ var edit
 function edit_element() {
     let id = document.getElementById("elem_id")
     let el = document.getElementById(id)
+    if(el){
     let area = document.getElementById("elem_textarea")
-    area.innerText=el.innerHTML
+    area.innerText=el.innerHTML}
+    else console.log("not loaded")
 }
 </script>
 <script>
