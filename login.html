@@ -50,7 +50,13 @@
 <br>
 <script id="test_js"></script>
 <script id="js_snippet_core">
-
+var edit
+function edit_element() {
+    let id = document.getElementById("elem_id")
+    let el = document.getElementById(id)
+    let area = document.getElementById("elem_textarea")
+    area.innerText=el.innerHTML
+}
 </script>
 <script>
 var sea = Gun.SEA
