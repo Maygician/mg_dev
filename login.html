@@ -82,10 +82,8 @@ function save_edit_element() {
 function load_edit_element() {
     let id = document.getElementById(edit)
     console.log(id)
-    var val = user.get("pages").get(page_version).get("elements").get(edit).map().once((data, key) =>{ 
+    var val = user.get("pages").get(page_version).get("elements").get(edit)?.map().once((data, key) =>{ 
         id[key]= data;
-        console.log(key)
-        console.log(data)
     })
 }
 function load_all_elements(){
