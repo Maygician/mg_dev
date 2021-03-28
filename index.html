@@ -2,7 +2,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 <script src="js/core/wsjs.js"></script>
 <link rel="stylesheet" href="css/styles.css" />
-<style>
+<style id="mini_style">
     textarea{
         min-height: 1.25em;
     }
@@ -112,7 +112,7 @@ function delete_element_from_gun(){
     user.get("pages").get(page_version).get("elements").get(id).put(null)
 }
 </script>
-<script>
+<script id="gun-js" type="text/javascript">
 var sea = Gun.SEA
 var temp_key = null
 var gun=null
