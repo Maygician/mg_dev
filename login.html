@@ -74,7 +74,7 @@ function submit_edit_element() {
 function save_edit_element() {
     //edit = id of element being edited
     let area = document.getElementById("elem_textarea")
-    user.get("pages").get("elements").get(edit).put({innerHtml:area.value})
+    user.get("pages").get("elements").get(edit).put({innerHTML:area.value})
 }
 function load_edit_element() {
     let id = document.getElementById(edit)
