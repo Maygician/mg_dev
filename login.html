@@ -1,6 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 <!--  -->
+<div id="login_page">
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
 <br>
 <br>
@@ -49,6 +50,9 @@
 <textarea id="elem_textarea"></textarea>
 <button onclick="submit_edit_element()">Submit</button>
 <br>
+<button onclick="save_edit_element()">save to gun</button>
+<button onclick="load_edit_element()">load from gun</button>
+<br></div>
 <script id="test_js"></script>
 <script id="js_snippet_core">
 var edit
@@ -66,6 +70,15 @@ function submit_edit_element() {
     let area = document.getElementById("elem_textarea")
     document.getElementById(edit)[property]=area.value
     area.value=""
+}
+function save_edit_element() {
+    //edit = id of element being edited
+    let area = document.getElementById("elem_textarea")
+    user.get("pages").get("elements").get(edit).put({innerHtml:area.value})
+}
+function load_edit_element() {
+    id = document.getElementById(edit)
+    var val = user.get("pages").get("elements").get(edit).map().once((data, key) => id[key]= data)
 }
 </script>
 <script>
