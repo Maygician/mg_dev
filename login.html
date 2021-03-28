@@ -75,17 +75,31 @@ function init(){
     gun = new Gun()
 user = gun.user()
 user.recall({ sessionStorage: true }, () => {
-//   logIn()
+  logIn()
 })
 gun.on('auth', () => {
-//   logIn()
+  logIn()
 })
 }
 init()
+function logIn(){  
+    account.is = gun.user().is
+    console.info('Logged in as ', account.is.pub)
+    loadProfile(account.is.pub)
+}
 function auth_(){
 user.auth(temp_key)
 console.log(user.is)
 console.log(user._.sea)
+}
+function loadProfile(pub) {
+  gun
+    .user()
+    .get('profile')
+    .map()
+    .on((data, key) => {
+      account.profile[key] = data
+    })
 }
 function updateProfile(field, data) {if (data !== undefined)gun.user().get('profile').get(field).put(data)}
 function downloadText(text, fileType, fileName) {
