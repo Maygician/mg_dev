@@ -11,10 +11,11 @@
 <div id="menu" style="position: absolute; z-index: 999999; display: block; float: right; top: 0; bottom: 0; right: 0;">
 <button onclick="toggle(login_page)" style="background-color: beige;">Login</button>
 <button onclick="toggle(login_page_2)" style="background-color: beige;">Edit</button>
-</div>
-<div id="login_page" class="layer" style="background-color: bisque;">
-    <div id="lp_inner" style="height: 100vh; width: 100vw;">
+<br>
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
+</div>
+<div id="login_page" class="layer" style="background-color: bisque; display: none;">
+    <div id="lp_inner" style="height: 100vh; width: 100vw;">
 <br>
 <label>Paste your key here to log in</label>
 <textarea id="pasted_key">{"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}</textarea><br>
@@ -42,7 +43,7 @@
 
 </div>
 </div>
-<div id="login_page_2" class="layer"  style="background-color: bisque;"><div id="lp2_inner">
+<div id="login_page_2" class="layer"  style="background-color: bisque; display: none;"><div id="lp2_inner">
 <button onclick="load_page()">Load page version </button>
 <input list="dl_pages" id="page_version" placeholder="page version to load">
 <datalist id="dl_pages">
