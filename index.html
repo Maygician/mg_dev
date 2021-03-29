@@ -147,8 +147,7 @@ function log_key(){
 }
 function init(){
     gun = new Gun()
-user = gun.user()
-user.recall({ sessionStorage: true }, () => {
+user = gun.user().recall({ sessionStorage: true }, () => {
   logIn()
 })
 gun.on('auth', () => {
