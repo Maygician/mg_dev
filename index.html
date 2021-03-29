@@ -72,10 +72,39 @@
 </div></div>
 <div id="triggers_page" class="layer">
     <div id="triggers_inner">
-        <p>Triggers</p>
+        <h3>Triggers:</h3>
+        <label>Soul to check</label>
+<input type="text" id="check_soul" value="test/quests/pushups/btn_text"><br>
+<label>Field</label>
+<input type="text" id="check_field" value="event"><br>
+<label>Target value</label>
+<input type="text" id="check_target_value" value="Button"><br>
+<button  onclick="check_soul()">Check</button>
     </div>
 </div>
 <script id="test_js"></script>
+<script id="js_trigger_core">
+     function check_soul() {
+        var target = document.getElementById("check_target_value").value
+        var value
+        var soul = document.getElementById("check_soul").value
+        var field = document.getElementById("check_field").value
+        gun.get(soul).once((e)=>{
+            console.log(e[field]);
+            if(e[field]==target)alert("Triggered")
+            else console.log("not really")
+        })
+    }
+    // var trigger_ = Gun.SEA.certify(device_id)
+    function sub_(gun_obj,callback){ //
+        ev=null
+        gun_obj.on((data,key,msg, eve)=>{
+            ev=eve
+            callback(data,key)
+        })
+        return ev
+    }
+</script>
 <script id="js_snippet_core">
 var edit
 var page_version="1"
