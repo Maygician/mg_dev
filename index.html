@@ -154,7 +154,7 @@ function delete_element_from_gun(){
 </script>
 <script id="gun-js" type="text/javascript">
 var sea = Gun.SEA
-var server = document.getElementById("login_server")
+var server = document.getElementById("login_server").value
 var gun = new Gun(server);
     gun.on('auth', () => {
         logIn()
