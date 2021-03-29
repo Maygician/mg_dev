@@ -22,6 +22,8 @@
 <textarea id="pasted_key">{"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}</textarea><br>
 <button onclick="key_pasted()">Submit</button><br>
 <br>
+<label>Where</label>
+<input type="text" id="login_server" value="https://vine-mature-morocco.glitch.me/gun" placeholder="your_node.address/gun"><br>
 <label>Your key</label>
 <textarea id="current_key" placeholder="not logged in"></textarea><br>
 <button onclick="log_key()" style="background-color: beige;">Log my key</button><button style="background-color: aquamarine;" onclick="auth_()">Auth with this key</button><br>
@@ -180,8 +182,8 @@ document.getElementById("current_key").value=JSON.stringify(temp_key);
 function log_key(){
     console.log(temp_key)
 }
-function init(){
-    gun = new Gun()
+function init(server){
+    gun = new Gun(server)
     gun.on('auth', () => {
         logIn()
     })
@@ -208,6 +210,8 @@ function auth_(){
 user.auth(temp_key)
 console.log(user.is)
 console.log(user._.sea)
+var server = document.getElementById("login_server")
+init(server)
 }
 function loadProfile(pub) {
   gun
