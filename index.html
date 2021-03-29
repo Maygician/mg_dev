@@ -183,6 +183,7 @@ function log_key(){
     console.log(temp_key)
 }
 function init(server){
+    var server = document.getElementById("login_server")
     gun = new Gun(server)
     gun.on('auth', () => {
         logIn()
@@ -210,8 +211,7 @@ function auth_(){
 user.auth(temp_key)
 console.log(user.is)
 console.log(user._.sea)
-var server = document.getElementById("login_server")
-init(server)
+// init(server)
 }
 function loadProfile(pub) {
   gun
