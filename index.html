@@ -202,9 +202,10 @@ async function load_page(){
 }
 
 function logIn(){  
-    account.is = gun.user().is
-    console.info('Logged in as ', account.is.pub)
-    loadProfile(account.is.pub)
+    // account.is = gun.user().is
+    console.info('Logged in as ', user.is)
+    // console.info('Logged in as ', account.is.pub)
+    // loadProfile(account.is.pub)
 }
 function auth_(){
 user.auth(temp_key)
