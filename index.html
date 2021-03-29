@@ -154,9 +154,17 @@ function delete_element_from_gun(){
 </script>
 <script id="gun-js" type="text/javascript">
 var sea = Gun.SEA
+var server = document.getElementById("login_server")
+var gun = new Gun(server);
+    gun.on('auth', () => {
+        logIn()
+    })
+var user = gun.user().recall({ sessionStorage: true }, () => {
+      logIn()
+    })
 var temp_key
-var gun
-var user//gun.user().recall({sessionStorage: true});
+// var gun
+// var user//gun.user().recall({sessionStorage: true});
 const account = {
   is: null,
   profile: {
@@ -182,16 +190,7 @@ document.getElementById("current_key").value=JSON.stringify(temp_key);
 function log_key(){
     console.log(temp_key)
 }
-function init(server){
-    var server = document.getElementById("login_server")
-    gun = new Gun(server)
-    gun.on('auth', () => {
-        logIn()
-    })
-    user = gun.user().recall({ sessionStorage: true }, () => {
-      logIn()
-    })
-}
+
 async function load_page(){
     var val = document.getElementById("page_version").value
     // var ref = val+".html"
@@ -201,7 +200,7 @@ async function load_page(){
     //FIXME: update version list ++ 
     //now only sets the var
 }
-init()
+
 function logIn(){  
     account.is = gun.user().is
     console.info('Logged in as ', account.is.pub)
