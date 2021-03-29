@@ -153,12 +153,12 @@ function log_key(){
 }
 function init(){
     gun = new Gun()
-user = gun.user().recall({ sessionStorage: true }, () => {
-  logIn()
-})
-gun.on('auth', () => {
-  logIn()
-})
+    gun.on('auth', () => {
+        logIn()
+    })
+    user = gun.user().recall({ sessionStorage: true }, () => {
+      logIn()
+    })
 }
 async function load_page(){
     var val = document.getElementById("page_version").value
