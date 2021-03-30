@@ -7,9 +7,10 @@
         Papa.parse(sheet_url, {
         download: true,
         header: true,
-        complete: (results) => shops = results.data
+        complete: (results) =>{ shops = results.data;
+                  console.log(shops); }
       });
-      console.log(shops)
+
     }
 
 </script>
