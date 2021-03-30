@@ -112,7 +112,7 @@ function load_shops(){
     })
 }
 function populate_shops(){
-    var pubs = ["8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8"]
+    var pubs = ["8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","oT8AboD9u7mgc8Z1tm19Ybh1jrNiN5TuLobFKCxRfmw.epdMaHePFvkQWeJnVdmw-s04qSIW-TXWnpvh1OYq8xs"]
     var shops={}
     pubs.forEach(pub => {
         shop={table1:[
@@ -124,7 +124,7 @@ function populate_shops(){
         // gun.get("test").get('shops').get(pub).put(null)
         gun.get("test").get('shops').get(pub).put(JSON.stringify(shop))
     })
-    console.log(shops)
+    // console.log(shops)
 }
 var paper_clips_list={}
 </script>
