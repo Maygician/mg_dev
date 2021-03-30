@@ -156,14 +156,14 @@ function get_paper_clips_count(){return paper_clips_list.length}
 function load_currencies(){
 var cont = document.getElementById("currencies_container")
 var fetched = `
-<table>
+<table id="currencies_table">
 <th><td> Currency </td><td> Description </td><td> Stats </td><td> </td></th>    
 <tr><td> Platinum </td><td> </td><td> </td><td> </td></tr>    
 <tr><td> Gold </td><td> </td><td> </td><td> </td></tr>    
 <tr><td> Silver </td><td> </td><td> </td><td> </td></tr>    
 <tr><td> Bronze </td><td> </td><td> </td><td> </td></tr>    
 </table>
-<button onclick="mock_add_cur()">Add</button>
+<button onclick="mock_add_cur('New')">Add</button>
 `//gun response mockup
 
 inner = `
@@ -173,6 +173,8 @@ inner = `
 inner+=fetched
 cont.innerHTML = inner
 }
+function mock_add_cur(name){
+    document.getElementById("currencies_table").insertAdjacentHTML("beforeend",`<tr><td> ${name} </td><td> </td><td> </td><td> </td></tr>`)}
 function introduce_new_currency(pub,name){
     if(!gun.user(pub).get("test").get("currencies").get(name).once((e)=>{e?true:false}))
     gun.user(pub).get("test").get("currencies").put(name)
