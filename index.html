@@ -122,7 +122,7 @@ function populate_shops(){
     ]}
     shops[pub]=shop
         // gun.get("test").get('shops').get(pub).put(null)
-        gun.get("test").get('shops').get(pub).put(shop)
+        gun.get("test").get('shops').get(pub).put(JSON.stringify(shop))
     })
     console.log(shops)
 }
