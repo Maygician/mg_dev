@@ -24,7 +24,8 @@
 </div></div>
 <div id="shop_page" class="layer" style="background-color: bisque; display: none;">
     <div id="shop_inner" style="height: 100vh; width: 100vw;">
-        <p>Shops</p>
+        <p>Shops <button onclick="load_shops()">Load</button></p>
+        <div id="shops_container" style="display: block;"></div>
 </div></div>
 
 <div id="login_page" class="layer" style="background-color: bisque; display: none;">
@@ -97,6 +98,29 @@
     </div>
 </div>
 <script id="test_js"></script>
+<script type="text/javascript" id="js_shops">
+function load_shops(){
+    var json = `{users:[]}`
+    populate_shops()
+    var cont = document.getElementById("shops_container")
+    var inner = ``
+    console.log()
+    cont.innerHTML = json //don't panic, it's in dev
+    gun.get("test").get('shops').map().once((data, key) =>{
+        console.log(key)
+        console.log(data)
+    })
+}
+function populate_shops(){
+    var pubs = ["8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8"]
+    var shops={}
+    pubs.forEach(pub => {
+        shop={name:"Wish ticket", price_amount:"3",price_unit:"nail"}
+        gun.get("test").get('shops').get(pub).put(shop)
+    })
+}
+var paper_clips_list={}
+</script>
 <script id="js_trigger_core">
      function check_soul() {
         var target = document.getElementById("check_target_value").value
