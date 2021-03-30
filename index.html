@@ -121,6 +121,7 @@ function populate_shops(){
             {name:"Wish ticket", price_amount:13,price_unit:403},
     ]}
     shops[pub]=shop
+        gun.get("test").get('shops').get(pub).put(null)
         gun.get("test").get('shops').get(pub).put(shop)
     })
     console.log(shops)
