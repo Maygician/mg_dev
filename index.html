@@ -157,11 +157,13 @@ function load_currencies(){
 var cont = document.getElementById("currencies_container")
 var fetched = `
 <table>
+<th><td> Currency </td><td> Description </td><td> Stats </td><td> </td></th>    
 <tr><td> Platinum </td><td> </td><td> </td><td> </td></tr>    
 <tr><td> Gold </td><td> </td><td> </td><td> </td></tr>    
 <tr><td> Silver </td><td> </td><td> </td><td> </td></tr>    
 <tr><td> Bronze </td><td> </td><td> </td><td> </td></tr>    
 </table>
+<button onclick="mock_add_cur()">Add</button>
 `//gun response mockup
 
 inner = `
