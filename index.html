@@ -105,7 +105,8 @@ function load_shops(){
     var inner = ``
     console.log()
     gun.get("test").get('shops').map().once((data, key) =>{
-        inner+= data
+        inner += key + "'s shop:\n"
+        inner+= data += "\n"
     })
     cont.innerHTML = inner
 }
