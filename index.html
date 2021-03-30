@@ -115,7 +115,11 @@ function populate_shops(){
     var pubs = ["8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8"]
     var shops={}
     pubs.forEach(pub => {
-        shop={name:"Wish ticket", price_amount:"3",price_unit:"nail"}
+        shop={table1:[
+            {name:"Wish ticket", price_amount:40,price_unit:207},//price unit - ID
+            {name:"Wish ticket", price_amount:1,price_unit:105},
+            {name:"Wish ticket", price_amount:13,price_unit:403},
+    ]}
         gun.get("test").get('shops').get(pub).put(shop)
     })
 }
