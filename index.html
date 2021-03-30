@@ -124,7 +124,10 @@ function populate_shops(){
         // gun.get("test").get('shops').get(pub).put(null)
         gun.get("test").get('shops').get(pub).put(JSON.stringify(shop))
     })
-    // console.log(shops)
+    var units = {"105":"Pushups","207":"Lives saved"}//403 not defined
+    for (const [key, value] of Object.entries(units)) {
+        gun.get("test").get("items").get("names").get(key).put(value)
+    }
 }
 var paper_clips_list={}
 </script>
