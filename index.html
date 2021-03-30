@@ -1,3 +1,4 @@
+<!-- #region -->
 <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
 <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 <script id="wsjs_innerscript" src="js/core/wsjs.js"></script>
@@ -28,6 +29,7 @@
         <p>Shops <button onclick="load_shops()">Load</button></p>
         <div id="shops_container" style="display: block;"></div>
 </div></div>
+<!-- #endregion -->
 <div id="currencies_page" class="layer" style="background-color: bisque; display: none;">
     <div id="currencies_inner" style="height: 100vh; width: 100vw;">
         <p>Currencies <button onclick="load_currencies()">Load</button></p>
@@ -153,10 +155,33 @@ function get_paper_clips_count(){return paper_clips_list.length}
 <script id="currencies_js" type="text/javascript">
 function load_currencies(){
 var cont = document.getElementById("currencies_container")
-cont.innerHTML = `
+var fetched = `
+<table>
+<tr><td> Platinum </td><td> </td><td> </td><td> </td></tr>    
+<tr><td> Gold </td><td> </td><td> </td><td> </td></tr>    
+<tr><td> Silver </td><td> </td><td> </td><td> </td></tr>    
+<tr><td> Bronze </td><td> </td><td> </td><td> </td></tr>    
+</table>
+`//gun response mockup
+
+inner = `
 <p>all:</p>
 
-`}
+`
+inner+=fetched
+cont.innerHTML = inner
+}
+function introduce_new_currency(pub,name){
+    if(!gun.user(pub).get("test").get("currencies").get(name).once((e)=>{e?true:false}))
+    gun.user(pub).get("test").get("currencies").put(name)
+}
+function fetch_currencies(pub){
+    gun.user(pub).get("test").get("currencies").once((e)=>console.log())
+}
+function mock_put_currencies(pub){
+    let obj = {}
+    gun.user(pub).get("test").get("currencies").put(obj)
+}
 </script>
 <script id="js_trigger_core">
      function check_soul() {
