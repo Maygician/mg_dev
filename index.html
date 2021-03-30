@@ -100,16 +100,14 @@
 <script id="test_js"></script>
 <script type="text/javascript" id="js_shops">
 function load_shops(){
-    var json = `{users:[]}`
     populate_shops()
     var cont = document.getElementById("shops_container")
     var inner = ``
     console.log()
-    cont.innerHTML = json //don't panic, it's in dev
     gun.get("test").get('shops').map().once((data, key) =>{
-        console.log(key)
-        console.log(data)
+        inner+= data
     })
+    cont.innerHTML = inner
 }
 function populate_shops(){
     var pubs = ["8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","oT8AboD9u7mgc8Z1tm19Ybh1jrNiN5TuLobFKCxRfmw.epdMaHePFvkQWeJnVdmw-s04qSIW-TXWnpvh1OYq8xs"]
