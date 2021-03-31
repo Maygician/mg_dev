@@ -167,7 +167,7 @@ var cont = document.getElementById("currencies_container")
 var currs = {};
 gun.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
 Object.entries(currs).forEach(([key_, value_]) => {//value -> currency
-text+=`<tr><td><img src="data:image/png;base64, ${value_.icon} </td><td>${value_.name}</td> <td> </td></tr> `
+text+=`<tr><td><img src="data:image/png;base64, ${value_.icon}"></td><td>${value_.name}</td> <td> </td></tr> `
 })
 text+=`</table>
 <button onclick="mock_add_cur('New')">Add</button>
