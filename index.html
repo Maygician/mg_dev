@@ -46,7 +46,10 @@ position: absolute;
     opacity: 1;
 }
 </style>
-<div id="hint_div" onclick="on_hint_click(this)"></div>
+<div id="hint_parent">
+    <p>Some static hint stuff</p>
+    <div id="hint_div" onclick="on_hint_click(this)"></div>
+</div>
 <div id="login_page" class="layer" style="background-color: bisque; display: none;">
     <div id="lp_inner" style="height: 100vh; width: 100vw;">
 <br>
@@ -180,12 +183,16 @@ function get_paper_clips_count(){return paper_clips_list.length}
 // }
 </script>
 <script id="currencies_js" type="text/javascript">
-function on_hint_click(el){
-el.style.display="none";
+// function on_hint_click(el){
+function close_parent(el){
+    el.parentNode.style.display="none";
+
+// el.style.display="none";
 }
 function hint(text,e){//el-this
     var target = document.getElementById("hint_div")
     target.innerHTML = text
+    target=target.parentElement
     var xpos = e.clientX-3;
     var ypos = e.clientY-3;
     target.style.left = e.clientX+'px';
