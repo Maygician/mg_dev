@@ -220,6 +220,7 @@ function mock_add_cur(){
     // document.getElementById("currencies_table").insertAdjacentHTML("beforeend",`<tr><td> ${name} </td><td> </td><td> </td><td> </td></tr>`)}
     var name = document.getElementById("add_curr_name_input").value
     console.log(user._.graph)
+    console.log(user)
     if(name)
     user.get("test").get("currencies").get(name).put({"name":name})
 }
