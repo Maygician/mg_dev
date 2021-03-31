@@ -37,6 +37,9 @@
         <div id="currencies_container" style="display: block;"></div>
 </div></div>
 <style id="hoverboard_deleteme">
+#hint_parent{
+    position: absolute;
+}    
 #hint_div{
 background-color: beige;
 position: absolute;
@@ -47,8 +50,8 @@ position: absolute;
 }
 </style>
 <div id="hint_parent">
-    <p>Some static hint stuff</p>
-    <div id="hint_div" onclick="on_hint_click(this)"></div>
+    <p onclick="close_parent(this)">(x)</p>
+    <div id="hint_div"></div>
 </div>
 <div id="login_page" class="layer" style="background-color: bisque; display: none;">
     <div id="lp_inner" style="height: 100vh; width: 100vw;">
@@ -173,17 +176,11 @@ var paper_clips_list={}
 function get_paper_clips_count(){return paper_clips_list.length}
 </script>
 <script id="mouse_js" type="text/javascript">
-// function mouse(e){//fixme: rename
-//     var target = document.getElementById()
-//     var xpos = e.clientX;
-//     var ypos = e.clientY;
-//     target.style.left = e.clientX+'px';
-//     target.style.top = e.clientY+'px';
 
-// }
 </script>
 <script id="currencies_js" type="text/javascript">
-// function on_hint_click(el){
+function on_hint_click(el){
+    close_parent(el);}
 function close_parent(el){
     el.parentNode.style.display="none";
 
