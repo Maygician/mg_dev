@@ -58,6 +58,7 @@ position: relative;
     <div id="hint_text"></div>
     <div id="hint_menu"></div>
     <div id="hint_div"></div>
+    <div id="hint_hidden" style="display: none;"><p>No one sees me.</p></div>
 </div>
 <div id="login_page" class="layer" style="background-color: bisque; display: none;">
     <div id="lp_inner" style="height: 100vh; width: 100vw;">
@@ -199,7 +200,7 @@ function hint(text,e){//el-this
     var ypos = e.clientY-3;
     parent.style.left = e.clientX+'px';
     parent.style.top = e.clientY+'px';
-    parent.style.display="flex";
+    parent.style.display="block";
     document.getElementById("hint_menu").innerHTML=`
     <button onclick="edit(this)">Edit</button>
     `
