@@ -41,7 +41,7 @@
     position: absolute;
     display: none;
     background-color: beige;
-    opacity:0.2; 
+    opacity:0.4; 
 
 }    
 #hint_div{
@@ -55,6 +55,8 @@ position: relative;
 </style>
 <div id="hint_parent">
     <p onclick="close_parent(this)" style="background-color: beige; position: relative;">(x)</p>
+    <div id="hint_text"></div>
+    <div id="hint_menu"></div>
     <div id="hint_div"></div>
 </div>
 <div id="login_page" class="layer" style="background-color: bisque; display: none;">
@@ -191,14 +193,16 @@ function close_parent(el){
 // el.style.display="none";
 }
 function hint(text,e){//el-this
-    var target = document.getElementById("hint_div")
+    document.getElementById("hint_text").innerHTML=text;
     var parent = document.getElementById("hint_parent")
-    target.innerHTML = text
     var xpos = e.clientX-3;
     var ypos = e.clientY-3;
     parent.style.left = e.clientX+'px';
     parent.style.top = e.clientY+'px';
     parent.style.display="flex";
+    document.getElementById("hint_menu").innerHTML=`
+    <button onclick="edit(this)">Edit</button>
+    `
 }
 async function load_currencies(){
 var inner = `
