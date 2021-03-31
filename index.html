@@ -193,7 +193,10 @@ function close_parent(el){
 
 // el.style.display="none";
 }
-function hint(text,e){//el-this
+function hint(text,e,menu){//el-this
+    console.log("hint log:")
+    console.log(menu.data);
+    console.log(menu.template);
     document.getElementById("hint_text").innerHTML=text;
     var parent = document.getElementById("hint_parent")
     var xpos = e.clientX-3;
@@ -214,7 +217,8 @@ var hint_example="Some ..useful piece of intel.. about paper clips"
 var text =`
 <table id="currencies_table">
     <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
-    <tr><td><img src="data:image/png;base64,${clip}"></td><td> Paper clips </td><td> Quest log files... </td><td><button onmouseover="hint('${hint_example}',event)">?</button></td></tr>
+    <tr><td><img src="data:image/png;base64,${clip}"></td><td> Paper clips </td>
+        <td> Quest log files... </td><td><button onmouseover="hint('${hint_example}',event,{data:'menu data', template:'menu_template'})">?</button></td></tr>
 `
 var cont = document.getElementById("currencies_container")
 if(!user.is){alert("please authorize first");
