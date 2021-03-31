@@ -152,7 +152,25 @@ function populate_shops(){
 var paper_clips_list={}
 function get_paper_clips_count(){return paper_clips_list.length}
 </script>
+<script id="mouse_js" type="text/javascript">
+// function mouse(e){//fixme: rename
+//     var target = document.getElementById()
+//     var xpos = e.clientX;
+//     var ypos = e.clientY;
+//     target.style.left = e.clientX+'px';
+//     target.style.top = e.clientY+'px';
+
+// }
+</script>
 <script id="currencies_js" type="text/javascript">
+function hint(text,e){
+    var target = document.getElementById("hint_div")
+    target.innerHTML = text
+    var xpos = e.clientX;
+    var ypos = e.clientY;
+    target.style.left = e.clientX+'px';
+    target.style.top = e.clientY+'px';
+}
 function load_currencies(){
 var inner = `
 <p>all:</p>
