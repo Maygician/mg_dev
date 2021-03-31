@@ -191,7 +191,7 @@ var text =`
 `
 var cont = document.getElementById("currencies_container")
 var currs = {};
-gun.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
+user.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
 Object.entries(currs).forEach(([key_, value_]) => {//value -> currency
     console.log("currs")
     console.log(key_)
