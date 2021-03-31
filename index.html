@@ -163,7 +163,7 @@ function get_paper_clips_count(){return paper_clips_list.length}
 // }
 </script>
 <script id="currencies_js" type="text/javascript">
-function hint(text,e){
+function hint(text,e){//el-this
     var target = document.getElementById("hint_div")
     target.innerHTML = text
     var xpos = e.clientX;
@@ -180,7 +180,7 @@ var hint_example="Some ..useful piece of intel.. about paper clips"
 var text =`
 <table id="currencies_table">
     <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
-    <tr><td><img src="data:image/png;base64,${clip}"></td><td> Paper clips </td><td> Quest log files... </td><td><button onmouseover="hint('${hint_example}')">?</button></td></tr>
+    <tr><td><img src="data:image/png;base64,${clip}"></td><td> Paper clips </td><td> Quest log files... </td><td><button onmouseover="hint('${hint_example}',event)">?</button></td></tr>
 `
 var cont = document.getElementById("currencies_container")
 var currs = {};
