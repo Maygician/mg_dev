@@ -191,7 +191,8 @@ var text =`
 `
 var cont = document.getElementById("currencies_container")
 var currs = {};
-user.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
+// user.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
+gun.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
 Object.entries(currs).forEach(([key_, value_]) => {//value -> currency
     console.log("currs")
     console.log(key_)
@@ -222,7 +223,8 @@ function mock_add_cur(){
     console.log(user._.graph)
     console.log(user)
     if(name)
-    user.get("test").get("currencies").get(name).put({"name":name})
+    gun.get("test").get("currencies").get(name).put({"name":name})
+    // user.get("test").get("currencies").get(name).put({"name":name})
 }
 function introduce_new_currency(name){
     if(!gun.user().get("test").get("currencies").get(name).once((e)=>{e?true:false}))
