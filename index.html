@@ -110,8 +110,6 @@
     function dev_init(){
         var key = {"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}
         user.auth(key)
-        console.log("logged in as")
-        console.log(user.is)
     }
 </script>
 <script id="test_js"></script>
@@ -195,11 +193,15 @@ var cont = document.getElementById("currencies_container")
 var currs = {};
 gun.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
 Object.entries(currs).forEach(([key_, value_]) => {//value -> currency
+    console.log("currs")
+    console.log(key_)
+    console.log(value_)
+    console.log("end currs")
 text+=`<tr><td><img src="data:image/png;base64, ${value_.icon}"></td><td>${value_.name}</td> <td> </td></tr> `
 })
 text+=`</table>
 <input type="text" id="add_curr_name_input" placeholder="Name">
-<button onclick="mock_add_cur('New')">Add</button>
+<button onclick="mock_add_cur()">Add</button>
 <button onclick="refresh_curr()">Refresh</button>
 `
 inner += text
@@ -214,11 +216,14 @@ function refresh_curr(){
 function delete_curr(){
     //check if issued == null or all spent/invalid. 
 }
-function mock_add_cur(name){
+function mock_add_cur(){
     // document.getElementById("currencies_table").insertAdjacentHTML("beforeend",`<tr><td> ${name} </td><td> </td><td> </td><td> </td></tr>`)}
+    var name = document.getElementById("add_curr_name_input").value
+    if(name)
+    user.get("test").get("currencies").get(name).put({"name":name})
 }
-function introduce_new_currency(pub,name){
-    if(!gun.user(pub).get("test").get("currencies").get(name).once((e)=>{e?true:false}))
+function introduce_new_currency(name){
+    if(!gun.user().get("test").get("currencies").get(name).once((e)=>{e?true:false}))
     gun.user(pub).get("test").get("currencies").put(name)
 }
 function fetch_currencies(pub){
