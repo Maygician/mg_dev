@@ -39,9 +39,8 @@
 <style id="hoverboard_deleteme">
 #hint_div{
 background-color: beige;
-pointer-events: none;
 position: absolute;
- opacity:0.1; 
+ opacity:0; 
 }
 #hint_div:hover{
     opacity: 1;
@@ -184,8 +183,8 @@ function get_paper_clips_count(){return paper_clips_list.length}
 function hint(text,e){//el-this
     var target = document.getElementById("hint_div")
     target.innerHTML = text
-    var xpos = e.clientX;
-    var ypos = e.clientY;
+    var xpos = e.clientX-3;
+    var ypos = e.clientY-3;
     target.style.left = e.clientX+'px';
     target.style.top = e.clientY+'px';
 }
