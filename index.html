@@ -217,7 +217,7 @@ var text =`
     <tr><td><img src="data:image/png;base64,${clip}"></td><td> Paper clips </td><td> Quest log files... </td><td><button onmouseover="hint('${hint_example}',event)">?</button></td></tr>
 `
 var cont = document.getElementById("currencies_container")
-if(!user){alert("please authorize first");
+if(!user.is){alert("please authorize first");
     return;}
 await user.get("test").get("currencies").map().once((data, key) =>{
 // await gun.get("test").get("currencies").map().once((data, key) =>{
@@ -227,8 +227,6 @@ text+=`<tr><td><img src="data:image/png;base64, ${data.icon}"></td><td>${data.na
 
 console.log(data)
 }).then(() =>{
-console.log(currs)
-
 text+=`</table>
 <input type="text" id="add_curr_name_input" placeholder="Name">
 <button onclick="mock_add_cur()">Add</button>
