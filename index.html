@@ -169,22 +169,11 @@ gun.get("test").get("currencies").map().once((data, key) =>{currs[key]=data})
 Object.entries(currs).forEach(([key_, value_]) => {//value -> currency
 text+=`<tr><td><img src="data:image/png;base64, ${value_.icon} </td><td>${value_.name}</td> <td> </td></tr> `
 })
-text+=`</table>`
-var fetched = `
-<table id="currencies_table">
-<th><td> Currency </td><td> Description </td><td> Stats </td><td> </td></th>    
-<tr><td> Paper clips </td><td> Quest log files... </td><td> </td><td> </td></tr>    
-<tr><td> Platinum </td><td> </td><td> </td><td> </td></tr>    
-<tr><td> Gold </td><td> </td><td> </td><td> </td></tr>    
-<tr><td> Silver </td><td> </td><td> </td><td> </td></tr>    
-<tr><td> Bronze </td><td> </td><td> </td><td> </td></tr>    
-</table>
+text+=`</table>
 <button onclick="mock_add_cur('New')">Add</button>
 <button onclick="refresh_curr()">Refresh</button>
-`//gun response mockup
-
-
-inner+= text+=fetched
+`
+inner += text
 cont.innerHTML = inner
 }
 var currency = {}
