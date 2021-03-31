@@ -39,10 +39,12 @@
 <style id="hoverboard_deleteme">
 #hint_parent{
     position: absolute;
+    display: block;
 }    
 #hint_div{
+display: block;
 background-color: beige;
-position: absolute;
+position: relative;
  opacity:0; 
 }
 #hint_div:hover{
@@ -194,7 +196,7 @@ function hint(text,e){//el-this
     var ypos = e.clientY-3;
     target.style.left = e.clientX+'px';
     target.style.top = e.clientY+'px';
-    target.style.display="flex";
+    target.style.display="block";
 }
 async function load_currencies(){
 var inner = `
