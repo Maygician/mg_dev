@@ -52,7 +52,7 @@ position: relative;
 }
 </style>
 <div id="hint_parent">
-    <p onclick="close_parent(this)">(x)</p>
+    <p onclick="close_parent(this)" style="background-color: beige; position: relative;">(x)</p>
     <div id="hint_div"></div>
 </div>
 <div id="login_page" class="layer" style="background-color: bisque; display: none;">
@@ -190,13 +190,13 @@ function close_parent(el){
 }
 function hint(text,e){//el-this
     var target = document.getElementById("hint_div")
+    var parent = document.getElementById("hint_parent")
     target.innerHTML = text
-    target=target.parentElement
     var xpos = e.clientX-3;
     var ypos = e.clientY-3;
-    target.style.left = e.clientX+'px';
-    target.style.top = e.clientY+'px';
-    target.style.display="block";
+    parent.style.left = e.clientX+'px';
+    parent.style.top = e.clientY+'px';
+    parent.style.display="block";
 }
 async function load_currencies(){
 var inner = `
