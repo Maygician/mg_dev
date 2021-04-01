@@ -35,18 +35,32 @@
 <button onclick="toggle(currencies_page)" style="background-color: beige;">My currencies</button>
 <br>
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
+<button onclick="() => { toggle(menu); toggle(menu2) } ">Second menu</button>
+</div>
+<div id="menu2" style="position: absolute; z-index: 999999; display: block; float: right; top: 0; bottom: 0; right: 0;">
+    <button onclick="() => { toggle(menu); toggle(menu2) } ">First menu</button>
 </div>
 <div id="todo_page" class="layer" style="background-color: #bb00bb; display: none;">
 <ul>
     <li>Teach girls to inspire.</li>
     <li>Breed human compatible pink unicorn (chimera)</li>
     <li>Breed eleporn (elephant/unicorn hybrid)</li>
-    <li>Fix education worldwide.</li>
+    <li>Fix education worldwide.</li><!-- better guides -->
     <li>Colonize Venus.</li>
-    <li>Build underwater moonlight temple out of single piece of diamond.</li>
-    <li>Human design programm, from basic level onwards.</li>
-    <li>Popularize RISC-V Smart heaters</li>
+    <li>Build underwater moonlight temple out of single piece of diamond.</li><!-- That's where you put excess CO2 -->
+    <li>Human design programm, from basic level onwards.</li><!-- Gene design, then training plan -->
+    <li>Popularize RISC-V Smart heaters</li><!-- 200 tops, passive cooling-->
     <li>Have fun</li>
+    <!-- 
+        also: 
+        -catgirls
+        -dragons
+        -magic system
+        -elves, goblins, giants, 
+        -monsters?
+        -Make arch vision all over the world evolve (level design)
+        -make The Sacred World of Jemayr prosper
+     -->
 </ul>
 </div>
 <div id="social_page" class="layer" style="background-color: bisque; display: none;">
