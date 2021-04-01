@@ -261,8 +261,8 @@ function put_template(){
     user.get("test").get("templates").get("currencies").get("hint").put(curr_template).once(data=>console.log(data._['#']))
 }
 async function edit_currency(el){
-    id=el.parentNode.firstChild.value
-    await user.get("test").get("currencies").get(id).once(console.log)
+    id=el.parentNode.firstChild.value;
+    await user.get("test").get("currencies").get(id).once(console.log);
 
 }
 
