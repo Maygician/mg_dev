@@ -30,6 +30,11 @@ var toggle = function (elem) {
 	toggled.push(elem);
 
 };
+function toggle2(el1, el2) //convenience wrapper
+{
+	toggle(el1);
+	toggle(el2);
+}
 var clear_screen = function(){
 	var i =0
 		while (i<toggled.length){
