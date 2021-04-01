@@ -36,7 +36,7 @@
 <button onclick="toggle(currencies_page)" style="background-color: beige;">My currencies</button>
 <br>
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
-<button onclick="(()=>{toggle(menu2);toggle(menu_outer);})();">Second menu</button>
+<button onclick="(()=>{toggle(menu2);toggle(menu_outer); console.log('log1'); console.log('log2');})();">Second menu</button>
 </div></div>
 <div id="menu2" class="layer" style="display: none;">
     <div style="position: absolute; z-index: 999999; display: none; float: right; top: 0; bottom: 0; right: 0;">
