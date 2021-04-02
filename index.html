@@ -278,12 +278,13 @@ var inner = `
 var menu_data_obj = {"id":"Paper clips"}
 var menu_template = JSON.stringify({})
 var menu_data = JSON.stringify(menu_data_obj)
+let img_size = 20
 var clip='iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHeSURBVDhPY/z//z8DNvDl/cd///7xCQtC+TCARcPT+49P7zp+7/R1bSdd96ggqCgMIDT8+P7j/KEzF/ee+PD09b/fP9mFOBWNtNk5WL3jwiEKIIAJSjMwPHnwZN/cdS9vP/jO8INVku/Xl9839p3//fUrVBoGWKA0AwMvPw8zHwfjd0bGvww/Hn4QURD3To+QVJb9+eMHIyMjGzs7RBlCw4Mb9/98+s7MxKhqrHX70m1hVZndC9Z/fv/pHxtLQkO2EEwDwg+fP31+9fS5rKI8Gwf7uhlLXzx+8u72M5Z/TC5ZoSZOVhA1QIASSl+/fH18+8H/f3///P+3Y97av7//qOprBufEQaXBAOGk79++zyzt+fXiA8P//3wKIl9efeRXF7cOdIVKwwAilJ49ePTjwxeG//9+//715t6z/4x/pcUkJKQlodIwgNAgoyjHKyHAwMbMwsFm6GWpbWnw9c1nqBwyAPoBDr59+Tq/bdLlY2f//f13ZPPeqQVt//7+hcrBAMIGIODk5vr85v21o2e/fvp87ei5989e/vr5EyoHA+hp6eTOA/vmbPzPzvj35x/bSE+HIE+oBAyga3h6/9HhDbuYmZnUjHX1rU2hokgAXQMy+PvnDzMLItxBgIEBAJ7T9FEBlGKvAAAAAElFTkSuQmCC'
 var hint_example="Some ..useful piece of intel.. about paper clips"
 var text =`
 <table id="currencies_table">
     <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
-    <tr><td>Paper clips</td><td><img src="data:image/png;base64,${clip}" width="1.25em" height="1.25em"></td>
+    <tr><td>Paper clips</td><td><img src="data:image/png;base64,${clip}" width="${img_size}" height="${img_size}"></td>
         <td> Quest log files... </td><td><button onmouseover=\'hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})\'>?</button></td></tr>
         `
         // <td> Quest log files... </td><td><button onmouseover=\'hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})\'>?</button></td></tr>
