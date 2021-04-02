@@ -260,7 +260,14 @@ async function edit_currency(id){
     // bookmark
     })
 }
-
+function ecd_submit(){
+    id=document.getElementById("ecd_id").innerHTML
+    description=document.getElementById("ecd_description").value
+    icon=document.getElementById("ecd_img_base64").value
+    hint_text=document.getElementById("ecd_hint_text").value
+    user.get("test").get("currencies").get(id).put({"name":id,"description":description,"icon":icon,"hint_text":hint_text})
+    toggle(edit_currency_div)
+}
 async function load_currencies(){
 var inner = `
 <p>Sometimes you have to load it twice (bug?)</p>
