@@ -250,13 +250,13 @@ function put_template(){
 }
 async function edit_currency(id){
     let result
-    await user.get("test").get("currencies").get(id).once(e=>result=e);
+    await user.get("test").get("currencies").get(id).once(e=>result=e).then(()=>{
     form_div = document.getElementById("edit_currency_div")
-    document.getElementById("ecd_id").innerHTML=result.id
-    document.getElementById("ecd_description")=result.description
-    document.getElementById("ecd_img_base64")=result.icon
+    document.getElementById("ecd_id").innerHTML=result.id||""
+    document.getElementById("ecd_description")=result.description||""
+    document.getElementById("ecd_img_base64")=result.icon||""
     // bookmark
-
+    })
 }
 
 async function load_currencies(){
