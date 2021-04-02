@@ -263,7 +263,7 @@ await user.get("test").get("currencies").map().once((data, key) =>{
 // await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
 var _menu_data = JSON.stringify({"id":key})
-var _menu_template = {}
+var _menu_template = JSON.stringify({})
 var icon=`<img src="data:image/png;base64, ${data.icon}">`||""
 var description = data.description||""
 var hint_text = data.hint_text||""
