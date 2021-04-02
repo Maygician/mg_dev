@@ -277,7 +277,6 @@ function ecd_submit(){
     user.get("test").get("currencies").get(id).put({"name":id,"description":description,"icon":icon,"hint_text":hint_text})
     toggle(edit_currency_div)
 }
-//  function load_currencies(){
 async function load_currencies(){
     console.log("curr load started")
 var inner = `
@@ -299,8 +298,8 @@ var text =`
 var cont = document.getElementById("currencies_container")
 if(!user.is){alert("please authorize first");
     return;}
-// await user.get("test").get("currencies").map().once((data_, key) =>{
-gun.get("test").get("currencies").map().once((data_, key) =>{
+await user.get("test").get("currencies").map().once((data_, key) =>{
+// await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
     var data = data_||{};
         var _menu_data = JSON.stringify({"id":key})//id = name
@@ -312,8 +311,8 @@ text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseo
 
 console.log(data)
 
-// }).then(() =>{
 })
+// .then(() =>{
     console.log(text)
 text+=`</table>
 <input type="text" id="add_curr_name_input" placeholder="Name">
@@ -321,10 +320,9 @@ text+=`</table>
 <button onclick="refresh_curr()">Refresh</button>
 `
 inner += text
-cont.innerHTML = inner};
-// cont.innerHTML = inner});
-// console.log("curr loaded")
-// }
+cont.innerHTML = inner;
+console.log("curr loaded")
+}
 var currency = {}
 currency.onHover="Hint text. Example: 'belongs to $pub, description, ammount..' "
 currency.history = "Db soul/source for logs"
