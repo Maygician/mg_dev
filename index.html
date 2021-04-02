@@ -217,10 +217,11 @@ function close_parent(el){
 // el.style.display="none";
 }
 function hint(text,e,menu){//el-this
+    let header = `<p> ${menu.data.id}</p>`
     console.log("hint log:")
     console.log(menu.data);
     console.log(menu.template);
-    document.getElementById("hint_text").innerHTML=text;
+    document.getElementById("hint_text").innerHTML=header+text;
     var parent = document.getElementById("hint_parent")
     var xpos = e.clientX-3;
     var ypos = e.clientY-3;
