@@ -254,7 +254,7 @@ var text =`
 <table id="currencies_table">
     <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
     <tr><td>Paper clips</td><td><img src="data:image/png;base64,${clip}"></td>
-        <td> Quest log files... </td><td><button onmouseover='hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})'>?</button></td></tr>
+        <td> Quest log files... </td><td><button onmouseover=\'hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})\'>?</button></td></tr>
 `
 var cont = document.getElementById("currencies_container")
 if(!user.is){alert("please authorize first");
@@ -267,7 +267,7 @@ var _menu_template = {}
 var icon=`<img src="data:image/png;base64, ${data.icon}">`||""
 var description = data.description||""
 var hint_text = data.hint_text||""
-text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover='hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})'>?</button></td></tr>`
+text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
 
 console.log(data)
 }).then(() =>{
