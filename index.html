@@ -298,22 +298,24 @@ var text =`
 var cont = document.getElementById("currencies_container")
 if(!user.is){alert("please authorize first");
     return;}
-await user.get("test").get("currencies").map().once((data_, key) =>{
-// await gun.get("test").get("currencies").map().once((data, key) =>{
+// await user.get("test").get("currencies").map().once((data_, key) =>{
+await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
-    var data = data_||{};
-        var _menu_data = JSON.stringify({"id":key})//id = name
-var _menu_template = JSON.stringify({})
-var icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
-var description = data.description||""
-var hint_text = data.hint_text||""
+    // var data = data_||{};
+    if(data){
+        var _menu_data = await JSON.stringify({"id":key})//id = name
+var _menu_template = await JSON.stringify({})
+var icon= await `<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
+var description = await data.description||""
+var hint_text = await data.hint_text||""
 text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
 
-console.log(data)
-
-})
+await console.log(data)
+}
+});
 // .then(() =>{
-    console.log(text)
+ await (() => {  
+     console.log(text)
 text+=`</table>
 <input type="text" id="add_curr_name_input" placeholder="Name">
 <button onclick="mock_add_cur()">Add</button>
@@ -322,7 +324,7 @@ text+=`</table>
 inner += text
 cont.innerHTML = inner;
 console.log("curr loaded")
-}
+})();}
 var currency = {}
 currency.onHover="Hint text. Example: 'belongs to $pub, description, ammount..' "
 currency.history = "Db soul/source for logs"
