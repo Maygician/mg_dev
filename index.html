@@ -299,6 +299,7 @@ var cont = document.getElementById("currencies_container")
 if(!user.is){alert("please authorize first");
     return;}
 // await user.get("test").get("currencies").map().once((data_, key) =>{
+await user.get("test").get("currencies").map().once((data_, key) =>{console.log(data_, key)})
 await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
     // var data = data_||{};
