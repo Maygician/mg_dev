@@ -59,17 +59,23 @@
     <input type="text" id="ecd_hint_text"><br>
     <button onclick="ecd_submit()">Submit</button>
 </div></div>
-<!-- bookmark -->
 <div id="shop_page" class="layer" style="background-color: bisque; display: none;">
     <div id="shop_inner">
         <p>Shops <button onclick="load_shops()">Load</button></p>
         <div id="shops_container" style="display: block;"></div>
-</div></div>
+    </div></div>
+    <!-- bookmark -->
 <!-- #endregion -->
 <div id="currencies_page" class="layer" style="background-color: bisque; display: none;">
     <div id="currencies_inner">
         <p>Currencies <button onclick="load_currencies()">Load</button></p>
-        <div id="currencies_container" style="display: block;"></div>
+        <div id="currencies_container" style="display: block;">
+            <table id="currencies_table">
+                <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
+            </table>
+        <button onclick="fixme()/*document, add onclick listener, get table row id, modify*/">Edit field</button>
+        <button onclick=`document.getElementById('currencies_table').insertAdjacentHTML("beforeend","<tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>")`>Test</button>
+        </div>
 </div></div>
 <style id="hoverboard_deleteme">
 #hint_parent{
@@ -277,6 +283,14 @@ function ecd_submit(){
     user.get("test").get("currencies").get(id).put({"name":id,"description":description,"icon":icon,"hint_text":hint_text})
     toggle(edit_currency_div)
 }
+var subs={}
+function sub_e()//fixme: rename
+{//subscribes
+//bookmark
+}
+function update_currency_table(){
+
+}
 async function load_currencies(){
     console.log("curr load started")
 var inner = `
@@ -301,8 +315,6 @@ if(!user.is){alert("please authorize first");
 // await user.get("test").get("currencies").map().once((data_, key) =>{
 await user.get("test").get("currencies").map().once((data_, key) =>{console.log(data_, key)})
 await gun.get("test").get("currencies").map().once((data, key) =>{
-    // currs[key]=data
-    // var data = data_||{};
     if(data){
         var _menu_data = JSON.stringify({"id":key})//id = name
 var _menu_template = JSON.stringify({})
