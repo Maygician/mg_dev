@@ -243,7 +243,7 @@ function hint(text,e,menu){//el-this
     parent.style.display="block";
     document.getElementById("hint_menu").innerHTML=`
     <button onclick="edit_currency('${menu.data.id}'); close_parent(this.parentNode); toggle(edit_currency_div);">Edit</button><br>
-    <button onclick="ecd_try_delete('${menu.data.id}')">Try Delete</button><br>
+    <button onclick="ecd_try_delete('${menu.data.id}'); close_parent(this.parentNode);">Try Delete</button><br>
     <button>Details</button>
     `//fixme
     //details - emit, logs and more
