@@ -242,10 +242,13 @@ function hint(text,e,menu){//el-this
     parent.style.top = e.clientY+'px';
     parent.style.display="block";
     document.getElementById("hint_menu").innerHTML=`
-    <button onclick="edit_currency('${menu.data.id}'); close_parent(this.parentNode); toggle(edit_currency_div);">Edit</button>
+    <button onclick="edit_currency('${menu.data.id}'); close_parent(this.parentNode); toggle(edit_currency_div);">Edit</button><br>
+    <button>Try Delete</button><br>
+    <button>Details</button>
     `//fixme
+    //details - emit, logs and more
 }
-
+// bookmark
 function put_template(){
     var curr_template = {func:"()=>{}"}
     user.get("test").get("templates").get("currencies").get("hint").put(curr_template).once(data=>console.log(data._['#']))
@@ -257,7 +260,7 @@ async function edit_currency(id){
     document.getElementById("ecd_description").value=result.description||""
     document.getElementById("ecd_img_base64").value=result.icon||""
     document.getElementById("ecd_hint_text").value=result.hint_text||""
-    // bookmark
+    
     })
 }
 function ecd_submit(){
