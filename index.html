@@ -299,14 +299,11 @@ if(!user.is){alert("please authorize first");
     return;}
 await user.get("test").get("currencies").map().once((data, key) =>{
 // await gun.get("test").get("currencies").map().once((data, key) =>{
+    let icon
     // currs[key]=data
     if(data){
-let _menu_data = JSON.stringify({"id":key})//id = name
-let _menu_template = JSON.stringify({})
-let icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
-let description = data.description||""
-let hint_text = data.hint_text||""
-text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
+    icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
+text+=`<tr><td>${key}</td><td>${icon}<td>${data.description||""}</td><td><button onmouseover=\'hint("${data.hint_text||""}",event,{data:${JSON.stringify({"id":key})}, template:${_menu_template = JSON.stringify({})}})\'>?</button></td></tr>`
 console.log(data)}  
 }).then(() =>{
 text+=`</table>
