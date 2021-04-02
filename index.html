@@ -240,7 +240,7 @@ function hint(text,e,menu){//el-this
     parent.style.top = e.clientY+'px';
     parent.style.display="block";
     document.getElementById("hint_menu").innerHTML=`
-    <button onclick="edit_currency('${menu.data.id}'); close_parent(this.parentNode);">Edit</button>
+    <button onclick="edit_currency('${menu.data.id}'); close_parent(this.parentNode); toggle(edit_currency_div);">Edit</button>
     `//fixme
 }
 
