@@ -47,6 +47,17 @@
     <div id="soc_inner">
         <p>Social</p>
 </div></div>
+<div id="edit_currency_div" class="layer" style="display: none;">
+    <p>Edit <a id="ecd_id"></a></p>
+    <label>Description</label>
+    <input type="text" id="ecd_description"><br>
+    <label>Icon base64</label>
+    <input type="text" id="ecd_img_base64" placeholder="paste your image's base64 here"><br>
+    <label>Hint text</label>
+    <input type="text" id="ecd_hint_text"><br>
+    <button onclick="ecd_submit()">Submit</button>
+</div>
+<!-- bookmark -->
 <div id="shop_page" class="layer" style="background-color: bisque; display: none;">
     <div id="shop_inner">
         <p>Shops <button onclick="load_shops()">Load</button></p>
@@ -238,7 +249,13 @@ function put_template(){
     user.get("test").get("templates").get("currencies").get("hint").put(curr_template).once(data=>console.log(data._['#']))
 }
 async function edit_currency(id){
-    await user.get("test").get("currencies").get(id).once(console.log);
+    let result
+    await user.get("test").get("currencies").get(id).once(e=>result=e);
+    form_div = document.getElementById("edit_currency_div")
+    document.getElementById("ecd_id").innerHTML=result.id
+    document.getElementById("ecd_description")=result.description
+    document.getElementById("ecd_img_base64")=result.icon
+    // bookmark
 
 }
 
@@ -256,7 +273,8 @@ var text =`
     <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
     <tr><td>Paper clips</td><td><img src="data:image/png;base64,${clip}"></td>
         <td> Quest log files... </td><td><button onmouseover=\'hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})\'>?</button></td></tr>
-`
+        `
+        // <td> Quest log files... </td><td><button onmouseover=\'hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})\'>?</button></td></tr>
 var cont = document.getElementById("currencies_container")
 if(!user.is){alert("please authorize first");
     return;}
