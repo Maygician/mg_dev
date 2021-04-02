@@ -75,7 +75,8 @@
             </table>
         <button onclick="fixme()/*document, add onclick listener, get table row id, modify*/">Edit field</button>
         <button onclick="document.getElementById('currencies_table').insertAdjacentHTML('beforeend','<tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>')">Test</button>
-        </div>
+        <button onclick="document.getElementById('currencies_table').lastElementChild.remove()">DeleteLast</button>
+    </div>
 </div></div>
 <style id="hoverboard_deleteme">
 #hint_parent{
