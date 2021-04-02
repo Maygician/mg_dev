@@ -297,15 +297,19 @@ var text =`
 var cont = document.getElementById("currencies_container")
 if(!user.is){alert("please authorize first");
     return;}
-await user.get("test").get("currencies").map().once((data, key) =>{
+await user.get("test").get("currencies").map().once((data_, key) =>{
 // await gun.get("test").get("currencies").map().once((data, key) =>{
-    let icon
     // currs[key]=data
-    if(data){
-    icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
-text+=`<tr><td>${key}</td><td>${icon}<td>${data.description||""}</td><td><button onmouseover=\'hint("${data.hint_text||""}",event,{data:${JSON.stringify({"id":key})}, template:${_menu_template = JSON.stringify({})}})\'>?</button></td></tr>`
-// console.log(text)
-}  
+    var data = data_||{};
+        var _menu_data = JSON.stringify({"id":key})//id = name
+var _menu_template = JSON.stringify({})
+var icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
+var description = data.description||""
+var hint_text = data.hint_text||""
+text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
+
+console.log(data)
+
 }).then(() =>{
     console.log(text)
 text+=`</table>
