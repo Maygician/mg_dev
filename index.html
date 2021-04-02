@@ -304,7 +304,7 @@ await user.get("test").get("currencies").map().once((data, key) =>{
     if(data){
     icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
 text+=`<tr><td>${key}</td><td>${icon}<td>${data.description||""}</td><td><button onmouseover=\'hint("${data.hint_text||""}",event,{data:${JSON.stringify({"id":key})}, template:${_menu_template = JSON.stringify({})}})\'>?</button></td></tr>`
-console.log(data)}  
+console.log(text)}  
 }).then(() =>{
 text+=`</table>
 <input type="text" id="add_curr_name_input" placeholder="Name">
