@@ -252,10 +252,11 @@ function put_template(){
 }
 async function edit_currency(id){
     user.get("test").get("currencies").get(id).once(result=>{
-    form_div = document.getElementById("edit_currency_div")
+        console.log(result)
     document.getElementById("ecd_id").innerHTML=result.id||""
     document.getElementById("ecd_description").value=result.description||""
     document.getElementById("ecd_img_base64").value=result.icon||""
+    document.getElementById("ecd_hint_text").value=result.hint_text||""
     // bookmark
     })
 }
