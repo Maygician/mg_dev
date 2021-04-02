@@ -278,6 +278,7 @@ function ecd_submit(){
     toggle(edit_currency_div)
 }
 async function load_currencies(){
+    console.log("curr load started")
 var inner = `
 <p>Sometimes you have to load it twice (bug?)</p>
 `
@@ -319,6 +320,7 @@ text+=`</table>
 `
 inner += text
 cont.innerHTML = inner});
+console.log("curr loaded")
 }
 var currency = {}
 currency.onHover="Hint text. Example: 'belongs to $pub, description, ammount..' "
