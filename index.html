@@ -251,7 +251,9 @@ function hint(text,e,menu){//el-this
 // bookmark
 async function ecd_try_delete(id) {
     //fixme: validate++
-    user.get("test").get("currencies").get(id).put(null)
+    
+    user.get("test").get("currencies").get(id).once((data)=>{if(data){user.get("test").get("currencies").get(id).put(null)}})
+    
 }
 function put_template(){
     var curr_template = {func:"()=>{}"}
