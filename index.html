@@ -301,15 +301,14 @@ await user.get("test").get("currencies").map().once((data, key) =>{
 // await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
     if(data){
-var _menu_data = JSON.stringify({"id":key})//id = name
-var _menu_template = JSON.stringify({})
-var icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
-var description = data.description||""
-var hint_text = data.hint_text||""
+let _menu_data = JSON.stringify({"id":key})//id = name
+let _menu_template = JSON.stringify({})
+let icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
+let description = data.description||""
+let hint_text = data.hint_text||""
 text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
-
-console.log(data)
-}}).then(() =>{
+console.log(data)}  
+}).then(() =>{
 text+=`</table>
 <input type="text" id="add_curr_name_input" placeholder="Name">
 <button onclick="mock_add_cur()">Add</button>
