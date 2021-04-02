@@ -308,9 +308,10 @@ var _menu_template = JSON.stringify({})
 var icon= `<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
 var description = data.description||""
 var hint_text = data.hint_text||""
-text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
-
+var tmp_text=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
+text+=tmp_text
  console.log(data)
+ console.log(tmp_text)
 }
 });
 // .then(() =>{
