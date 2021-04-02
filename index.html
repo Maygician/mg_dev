@@ -303,14 +303,14 @@ await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
     // var data = data_||{};
     if(data){
-        var _menu_data = await JSON.stringify({"id":key})//id = name
-var _menu_template = await JSON.stringify({})
-var icon= await `<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
-var description = await data.description||""
-var hint_text = await data.hint_text||""
+        var _menu_data = JSON.stringify({"id":key})//id = name
+var _menu_template = JSON.stringify({})
+var icon= `<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
+var description = data.description||""
+var hint_text = data.hint_text||""
 text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
 
-await console.log(data)
+ console.log(data)
 }
 });
 // .then(() =>{
