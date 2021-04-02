@@ -40,7 +40,7 @@
 <button onclick="toggle(menu2);toggle(menu_outer);">Second menu</button>
 </div></div>
 <div id="menu2" class="layer" style="display: none;">
-    <div style="position: absolute; z-index: 999999; display: block; float: right; top: 0; bottom: 0; right: 0;">
+    <div style="position: absolute; z-index: 9999999; display: block; float: right; top: 0; bottom: 0; right: 0;">
     <button onclick="toggle(menu2);toggle(menu_outer);">First menu</button>
 </div></div>
 <div id="social_page" class="layer" style="background-color: bisque; display: none;">
@@ -296,7 +296,7 @@ await user.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
 var _menu_data = JSON.stringify({"id":key})//id = name
 var _menu_template = JSON.stringify({})
-var icon=`<img src="data:image/png;base64, ${data.icon}">`||""
+var icon=`<img src="data:image/png;base64, ${data.icon}" width="${img_size}" height="${img_size}">`||""
 var description = data.description||""
 var hint_text = data.hint_text||""
 text+=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmouseover=\'hint("${hint_text}",event,{data:${_menu_data}, template:${_menu_template}})\'>?</button></td></tr>`
