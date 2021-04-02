@@ -253,7 +253,7 @@ function put_template(){
 async function edit_currency(id){
     user.get("test").get("currencies").get(id).once(result=>{
         console.log(result)
-    document.getElementById("ecd_id").innerHTML=result.id||""
+    document.getElementById("ecd_id").innerHTML=result.name||""
     document.getElementById("ecd_description").value=result.description||""
     document.getElementById("ecd_img_base64").value=result.icon||""
     document.getElementById("ecd_hint_text").value=result.hint_text||""
@@ -283,7 +283,7 @@ if(!user.is){alert("please authorize first");
 await user.get("test").get("currencies").map().once((data, key) =>{
 // await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
-var _menu_data = JSON.stringify({"id":key})
+var _menu_data = JSON.stringify({"id":key})//id = name
 var _menu_template = JSON.stringify({})
 var icon=`<img src="data:image/png;base64, ${data.icon}">`||""
 var description = data.description||""
