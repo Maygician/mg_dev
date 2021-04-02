@@ -31,7 +31,6 @@
 <button onclick="toggle(login_page_2)" style="background-color: beige;">Edit</button>
 <button onclick="toggle(triggers_page)" style="background-color: beige;">Triggers</button>
 <button onclick="toggle(social_page)" style="background-color: beige;">Social</button>
-<button onclick="toggle(todo_page)" style="background-color: beige;">Todo</button>
 <!-- todo: hover menu -->
 <button onclick="toggle(shop_page)" style="background-color: beige;">My stores</button>
 <button onclick="toggle(currencies_page)" style="background-color: beige;">My currencies</button>
@@ -44,29 +43,6 @@
     <div style="position: absolute; z-index: 999999; display: block; float: right; top: 0; bottom: 0; right: 0;">
     <button onclick="toggle(menu2);toggle(menu_outer);">First menu</button>
 </div></div>
-<div id="todo_page" class="layer" style="background-color: #bb00bb; display: none;">
-<ul>
-    <li>Teach girls to inspire.</li>
-    <li>Breed human compatible pink unicorn (chimera)</li>
-    <li>Breed eleporn (elephant/unicorn hybrid)</li>
-    <li>Fix education worldwide.</li><!-- better guides -->
-    <li>Colonize Venus.</li>
-    <li>Build underwater moonlight temple out of single piece of diamond.</li><!-- That's where you put excess CO2 -->
-    <li>Human design programm, from basic level onwards.</li><!-- Gene design, then training plan -->
-    <li>Popularize RISC-V Smart heaters</li><!-- 200 tops, passive cooling-->
-    <li>Have fun</li>
-    <!-- 
-        also: 
-        -catgirls
-        -dragons
-        -magic system
-        -elves, goblins, giants, 
-        -monsters?
-        -Make arch vision all over the world evolve (level design)
-        -make The Sacred World of Jemayr prosper
-     -->
-</ul>
-</div>
 <div id="social_page" class="layer" style="background-color: bisque; display: none;">
     <div id="soc_inner">
         <p>Social</p>
@@ -252,7 +228,7 @@ function hint(text,e,menu){//el-this
     parent.style.top = e.clientY+'px';
     parent.style.display="block";
     document.getElementById("hint_menu").innerHTML=`
-    <button onclick="edit_currency(this)">Edit</button>
+    <button onclick="edit_currency('${menu.data.id}')">Edit</button>
     `//fixme
 }
 
@@ -260,8 +236,7 @@ function put_template(){
     var curr_template = {func:"()=>{}"}
     user.get("test").get("templates").get("currencies").get("hint").put(curr_template).once(data=>console.log(data._['#']))
 }
-async function edit_currency(el){
-    id=el.parentNode.firstChild.value;
+async function edit_currency(id){
     await user.get("test").get("currencies").get(id).once(console.log);
 
 }
@@ -270,7 +245,7 @@ async function load_currencies(){
 var inner = `
 <p>Sometimes you have to load it twice (bug?)</p>
 `
-var menu_data_obj = {}
+var menu_data_obj = {"id":"Paper clips"}
 var menu_template = ""//gun soul for template
 var menu_data = JSON.stringify(menu_data_obj)
 var clip='iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHeSURBVDhPY/z//z8DNvDl/cd///7xCQtC+TCARcPT+49P7zp+7/R1bSdd96ggqCgMIDT8+P7j/KEzF/ee+PD09b/fP9mFOBWNtNk5WL3jwiEKIIAJSjMwPHnwZN/cdS9vP/jO8INVku/Xl9839p3//fUrVBoGWKA0AwMvPw8zHwfjd0bGvww/Hn4QURD3To+QVJb9+eMHIyMjGzs7RBlCw4Mb9/98+s7MxKhqrHX70m1hVZndC9Z/fv/pHxtLQkO2EEwDwg+fP31+9fS5rKI8Gwf7uhlLXzx+8u72M5Z/TC5ZoSZOVhA1QIASSl+/fH18+8H/f3///P+3Y97av7//qOprBufEQaXBAOGk79++zyzt+fXiA8P//3wKIl9efeRXF7cOdIVKwwAilJ49ePTjwxeG//9+//715t6z/4x/pcUkJKQlodIwgNAgoyjHKyHAwMbMwsFm6GWpbWnw9c1nqBwyAPoBDr59+Tq/bdLlY2f//f13ZPPeqQVt//7+hcrBAMIGIODk5vr85v21o2e/fvp87ei5989e/vr5EyoHA+hp6eTOA/vmbPzPzvj35x/bSE+HIE+oBAyga3h6/9HhDbuYmZnUjHX1rU2hokgAXQMy+PvnDzMLItxBgIEBAJ7T9FEBlGKvAAAAAElFTkSuQmCC'
@@ -287,8 +262,9 @@ if(!user.is){alert("please authorize first");
 await user.get("test").get("currencies").map().once((data, key) =>{
 // await gun.get("test").get("currencies").map().once((data, key) =>{
     // currs[key]=data
-    
-text+=`<tr><td>${key}</td><td><img src="data:image/png;base64, ${data.icon}"></td> <td> </td></tr> `
+var _menu_data = JSON.stringify({"id":key})
+var _menu_template = {}
+text+=`<tr><td>${key}</td><td><img src="data:image/png;base64, ${data.icon}"><td>${data.description}</td><td><button onmouseover="hint('${data.hint_text}',event,{data:'${_menu_data}', template:'${_menu_template}'})">?</button></td></tr>`
 
 console.log(data)
 }).then(() =>{
