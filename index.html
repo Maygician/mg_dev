@@ -249,8 +249,7 @@ function put_template(){
     user.get("test").get("templates").get("currencies").get("hint").put(curr_template).once(data=>console.log(data._['#']))
 }
 async function edit_currency(id){
-    let result
-    await user.get("test").get("currencies").get(id).once(e=>result=e).then(()=>{
+    user.get("test").get("currencies").get(id).once(result=>{
     form_div = document.getElementById("edit_currency_div")
     document.getElementById("ecd_id").innerHTML=result.id||""
     document.getElementById("ecd_description").value=result.description||""
