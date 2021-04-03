@@ -104,7 +104,20 @@
 }
 })
  ">
+ <button onclick="update_currency('3','<tr><th>1</th><th>2</th></tr>')">update 3</button> 
+<script>
+    function update_currency(id,text){
+        let table= document.getElementById('currencies_table')
+        table.childNodes.forEach( function(currentValue){
+            if(currentValue.firstElementChild){ 
+                let val = currentValue.firstElementChild.firstElementChild
+                if(val.innerHTML==id)
+                currentValue.innerHTML=text
+            }
+        })
 
+    }
+</script>
     </div>
 </div></div>
 <style id="hoverboard_deleteme">
