@@ -65,17 +65,46 @@
         <div id="shops_container" style="display: block;"></div>
     </div></div>
     <!-- bookmark -->
+    <script id="vars_js">
+        var tmpvar0=0
+    </script>
 <!-- #endregion -->
-<div id="currencies_page" class="layer" style="background-color: bisque; display: none;">
+<div id="currencies_page" class="layer" style="background-color: bisque; display: flex;"><!-- tmp, should be display none, fixme -->
     <div id="currencies_inner">
         <p>Currencies <button onclick="load_currencies()">Load</button></p>
         <div id="currencies_container" style="display: block;">
+            <p id="tmpvar0_div"></p>
             <table id="currencies_table">
                 <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
             </table>
         <button onclick="fixme()/*document, add onclick listener, get table row id, modify*/">Edit field</button>
-        <button onclick="document.getElementById('currencies_table').insertAdjacentHTML('beforeend','<tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>')">Test</button>
-        <button onclick="document.getElementById('currencies_table').lastElementChild.remove()">DeleteLast</button>
+        <button onclick="tmpvar0+=1; tmpvar0_div.innerHTML=tmpvar0; document.getElementById('currencies_table').insertAdjacentHTML('beforeend','<tr><th>'+tmpvar0+'</th><th>Name</th><th>Description</th><th>More</th></tr>'); 
+        ">Test</button>
+        <button onclick="document.getElementById('currencies_table').lastElementChild.remove()
+        tmpvar0-=1
+        ">DeleteLast</button><br>
+        <label>delete</label>
+        <input type="number" onchange="let a=this.value;
+        let table= document.getElementById('currencies_table').childNodes[a].remove();
+        tmpvar0-=1
+         console.log(a);"><br>
+ <label>delete2</label>
+ <input type="number" onchange="
+ let b = this;
+ let a=this.value;
+ let table= document.getElementById('currencies_table')
+ table.childNodes.forEach( function(currentValue, currentIndex, listObj) {
+    if(currentValue.firstElementChild){ 
+        let val = currentValue.firstElementChild.firstElementChild
+    console.log(val.innerHTML,a);
+    if(val.innerHTML==a){
+        table.removeChild(currentValue);
+        b.onchange();
+    }
+}
+})
+ ">
+
     </div>
 </div></div>
 <style id="hoverboard_deleteme">
