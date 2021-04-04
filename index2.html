@@ -14,7 +14,10 @@
 </head>
 <body id="dev2_body">
     <div id="dev2_div"></div>
-      <script id="device_js">
+    <script id="device_js">
+               var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
+        var sea = Gun.SEA
+        var user = gun.user()
         var this_device="device2";
         var key = {"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}
         function dev_init() {
@@ -45,10 +48,6 @@
       })
     </script>
     <script id="target"></script>
-    <script id="gun_js">
-        var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
-        var sea = Gun.SEA
-        var user = gun.user()
-    </script>
+
 </body>
 </html>
