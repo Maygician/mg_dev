@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>MayGame</title>
+  <meta name="description" content="No description">
+  <meta name="author" content="Some dude">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+  <script id="wsjs_innerscript" src="js/core/wsjs.js"></script>
+  <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
+  <link id="css_bootstrap_min" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div id="render_div"></div>
+    <script id="device_js">
+        var this_device="device2";
+        var key = {"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}
+//for now all devices use the same key
+        var key2 = {"pub":"iuUKJ9ixi-wgBq47v1gyVa38WsFY497BGHCJIkXyx4g.SMCY9_dSzMJY6K6UdQMOXv2dIBhPENWWwT_AQqJGi-A","priv":"u3HGmL_-tawRf_7tQ4EhR8--2UOgsQAG9AfdiYyV-vo","epub":"7Qb54P7-QcZuiVRxijSW3JPbqNwszRvc9W5_fHkzZj8.LpfdlA6p47hvivb05HKy9ez68YkmDj_PsvHIHpi7HHM","epriv":"JWXfvfABMWjvzC44LgniF6ug4cmDICW6k2JFjo5kqyI"}
+        function dev_init() {
+            user.auth(key);
+            // let render_div = document.getElementById("render_div");
+            render_sub_topic('test',render_div)
+        }
+        setTimeout(dev_init,1000)
+
+        function render_sub_topic(topic,target){//target - element
+        user.get("test").get("devices").get(this_device).get(topic).on((data, key)=>{
+            target.innerHTML=data;
+            console.log(data);
+        })
+      }
+    </script>
+    <script id="gun_js">
+        var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
+        var sea = Gun.SEA
+        var user = gun.user()
+    </script>
+</body>
+</html>

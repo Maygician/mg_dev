@@ -50,10 +50,17 @@
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
 <button class="not_implemented" onclick="alert('todo')">Load last stable version</button><!-- Versioning, instead of second branch. Load from gun or fetching otherwise. Maybe cache -->
 <button onclick="toggle(menu2);toggle(menu_outer);">Second menu</button><br>
-<button onclick="toggle(fixme_form);">Toggle edit div</button>
+<button onclick="toggle(fixme_form);">Toggle edit div</button><label>This device is: </label><input type="text" id="this_device_input" list="device_list" onchange="this_device=this.value; alert('device: '+this_device)">
+<datalist id="device_list">
+<option value="1"></option>
+<option value="2"></option>
+</datalist>
+<button onclick="frame_send_to_device('device2','test','<button onclick=&quot;alert()&quot;>Name3</button>')">Test render</button>
+<!-- Subscribe to changes, turn on rendering -->
+<!-- Unsubscribe from changes, turn off rendering -->
 </div></div>
 <div id="menu2" class="layer" style="display: none; z-index: 9999999;">
-    <div style="position: absolute; z-index: 9999999; display: block; float: right; top: 0; bottom: 0; right: 0;">
+    <div style="position: absolute; z-index: 9999999; display: block; float: right; top: 0; right: 0;">
     <button onclick="toggle(menu2);toggle(menu_outer);">First menu</button>
 </div></div>
 <div id="social_page" class="layer" style="background-color: bisque; display: none;">
@@ -78,11 +85,31 @@
         <div id="shops_container" style="display: block;"></div>
     </div></div>
     <!-- bookmark -->
-    <script id="vars_js">
-        var tmpvar0=0
+    <script id="render_js">
+        var this_device=undefined;
+        function render_to(text,opts){//arguments:
+            console.log(opts.id)
+            console.log(opts.device)
+            console.log(opts.firstChild)
+            if(opts.device==this_device){
+                if(opts.firstChild)
+                document.getElementById(opts.id).firstElementChild.innerHTML=text
+            }
+        }
+      function frame_send_to_device(device, topic, frame){
+          user.get("test").get("devices").get(device).get(topic).put(frame)
+      }
+      function render_sub_topic(topic,target){//target - element
+        user.get("test").get("devices").get(this_device).get(topic).on((data, key)=>{
+            target.innerHTML=data;
+        })
+      }
     </script>
+    <script id="vars_js">
+        var tmpvar0=0;
+        </script>
 <!-- #endregion -->
-<div id="currencies_page" class="layer" style="background-color: bisque; display: none;"><!-- tmp, should be display none, fixme -->
+<div id="currencies_page" class="layer" style="background-color: bisque; display: none;">
     <div id="currencies_inner">
         <!-- <p>Currencies <button onclick="if(user.is)load_currencies();else alert('Sign in')">Load</button></p> -->
         <div id="currencies_container" style="display: block;">
@@ -90,36 +117,7 @@
             <table id="currencies_table">
                 <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
             </table>
-        <!--button onclick="fixme()/*document, add onclick listener, get table row id, modify*/">Edit field</button>
-        <button onclick="tmpvar0+=1; tmpvar0_div.innerHTML=tmpvar0; document.getElementById('currencies_table').insertAdjacentHTML('beforeend','<tr><th>'+tmpvar0+'</th><th>Name</th><th>Description</th><th>More</th></tr>'); 
-        ">Test</button>
-        <button onclick="document.getElementById('currencies_table').lastElementChild.remove()
-        tmpvar0-=1
-        ">DeleteLast</button><br>
-        <label>delete</label>
-        <input type="number" onchange="let a=this.value;
-        let table= document.getElementById('currencies_table').childNodes[a].remove();
-        tmpvar0-=1
-         console.log(a);"><br>
- <label>delete2</label>
- <input type="number" onchange="
- let b = this;
- let a=this.value;
- let table= document.getElementById('currencies_table')
- table.childNodes.forEach( function(currentValue, currentIndex, listObj) {
-    if(currentValue.firstElementChild){ 
-        let val = currentValue.firstElementChild.firstElementChild
-    console.log(val.innerHTML,a);
-    if(val.innerHTML==a){
-        table.removeChild(currentValue);
-        b.onchange();
-    }
-}
-})
- ">
- <button onclick="curr_try_update_add('3','<tr><th>1</th><th>2</th></tr>')">update 3</button --> 
- <!-- <button onclick="update_currency('3','<tr><th>1</th><th>2</th></tr>')">update 3</button>  -->
- <!-- <button onclick="curr_add_row('<tr><th>1</th><th>2</th></tr>')">add row</button>  -->
+        
  <input type="text" id="add_curr_name_input" placeholder="Name">
 <button onclick="mock_add_cur()">Add</button></div></div>
 <script>
@@ -246,8 +244,10 @@ position: relative;
 <script id="mock_js" defer>
     function dev_init(){
         var key = {"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}
-        user.auth(key)
-        put_template()
+        user.auth(key);
+        put_template();
+        this_device="desktop";
+        document.getElementById("this_device_input").value=this_device;
     }
     setTimeout(dev_init,1000)//fixme: no mock in production
 </script>
@@ -467,7 +467,6 @@ var str=`<tr><td>${key}</td><td>${icon}<td>${description}</td><td><button onmous
 }
 
 var currency = {}
-currency.onHover="Hint text. Example: 'belongs to $pub, description, ammount..' "
 currency.history = "Db soul/source for logs"
 function refresh_curr(){
 
