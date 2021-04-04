@@ -24,20 +24,33 @@
     }
 </style>
 <!--  -->
+<script>
+     var pac = {};//pages active
+    pac.currs = false;
+    function curr_sub_off(){
+        user.get("test").get("currencies").off();
+    } 
+</script>
+<div id="fixme_form" class="layer" style="z-index: 999999; display:flex;" >
+<div style="position: absolute; display: block; right: 0; bottom: 0; height: 30vh; width: 50vw; background-color: #ff90f6" ></div></div>
+<div id="currency_details" class="layer" style="z-index: 999999; display: none;" >
+    <div style="background-color: aqua;"></div>
+</div>
 <div id="menu_outer" class="layer" style="z-index: 999999;">
-<div id="menu" style="position: absolute; display: block; float: right; top: 0; bottom: 0; right: 0;">
-    <button onclick="dev_init();">mock auth</button>
+<div id="menu" style="position: absolute; display: block; float: right; top: 0;  right: 0; background-color: rgb(200, 5, 158);">
+    <!-- <button onclick="dev_init();">mock auth</button> -->
 <button onclick="toggle(login_page)" style="background-color: beige;">Login</button>
 <button onclick="toggle(login_page_2)" style="background-color: beige;">Edit</button>
 <button onclick="toggle(triggers_page)" style="background-color: beige;">Triggers</button>
 <button onclick="toggle(social_page)" style="background-color: beige;">Social</button>
 <!-- todo: hover menu -->
 <button onclick="toggle(shop_page)" style="background-color: beige;">My stores</button>
-<button onclick="toggle(currencies_page)" style="background-color: beige;">My currencies</button>
+<button onclick="if(user.is){toggle(currencies_page);if(pac.currs)curr_sub_off(); else load_currencies(); pac.currs=!pac.currs;}else alert('Sign in');" style="background-color: beige;">My currencies</button>
 <br>
 <button onclick="hide_not_implemented()">Hide not implemented stuff</button>
 <button class="not_implemented" onclick="alert('todo')">Load last stable version</button><!-- Versioning, instead of second branch. Load from gun or fetching otherwise. Maybe cache -->
-<button onclick="toggle(menu2);toggle(menu_outer);">Second menu</button>
+<button onclick="toggle(menu2);toggle(menu_outer);">Second menu</button><br>
+<button onclick="toggle(fixme_form);">Toggle edit div</button>
 </div></div>
 <div id="menu2" class="layer" style="display: none; z-index: 9999999;">
     <div style="position: absolute; z-index: 9999999; display: block; float: right; top: 0; bottom: 0; right: 0;">
@@ -69,15 +82,15 @@
         var tmpvar0=0
     </script>
 <!-- #endregion -->
-<div id="currencies_page" class="layer" style="background-color: bisque; display: flex;"><!-- tmp, should be display none, fixme -->
+<div id="currencies_page" class="layer" style="background-color: bisque; display: none;"><!-- tmp, should be display none, fixme -->
     <div id="currencies_inner">
-        <p>Currencies <button onclick="load_currencies()">Load</button></p>
+        <!-- <p>Currencies <button onclick="if(user.is)load_currencies();else alert('Sign in')">Load</button></p> -->
         <div id="currencies_container" style="display: block;">
             <p id="tmpvar0_div"></p>
             <table id="currencies_table">
                 <tr><th>Icon</th><th>Name</th><th>Description</th><th>More</th></tr>
             </table>
-        <button onclick="fixme()/*document, add onclick listener, get table row id, modify*/">Edit field</button>
+        <!--button onclick="fixme()/*document, add onclick listener, get table row id, modify*/">Edit field</button>
         <button onclick="tmpvar0+=1; tmpvar0_div.innerHTML=tmpvar0; document.getElementById('currencies_table').insertAdjacentHTML('beforeend','<tr><th>'+tmpvar0+'</th><th>Name</th><th>Description</th><th>More</th></tr>'); 
         ">Test</button>
         <button onclick="document.getElementById('currencies_table').lastElementChild.remove()
@@ -104,9 +117,11 @@
 }
 })
  ">
- <button onclick="curr_try_update_add('3','<tr><th>1</th><th>2</th></tr>')">update 3</button> 
+ <button onclick="curr_try_update_add('3','<tr><th>1</th><th>2</th></tr>')">update 3</button --> 
  <!-- <button onclick="update_currency('3','<tr><th>1</th><th>2</th></tr>')">update 3</button>  -->
- <button onclick="curr_add_row('<tr><th>1</th><th>2</th></tr>')">add row</button> 
+ <!-- <button onclick="curr_add_row('<tr><th>1</th><th>2</th></tr>')">add row</button>  -->
+ <input type="text" id="add_curr_name_input" placeholder="Name">
+<button onclick="mock_add_cur()">Add</button></div></div>
 <script>
     function update_currency(id,text){
         let table= document.getElementById('currencies_table')
@@ -234,6 +249,7 @@ position: relative;
         user.auth(key)
         put_template()
     }
+    setTimeout(dev_init,1000)//fixme: no mock in production
 </script>
 <script id="test_js"></script>
 <script type="text/javascript" id="js_shops">
@@ -293,26 +309,83 @@ function close_parent(el){
 
 // el.style.display="none";
 }
-function hint(text,e,menu){//el-this
+function hint(text,e,menu){
+    let header = `<p> ${menu.data.id}</p>`
+    let result = header
+    result += `
+    <button onclick="edit_currency('${menu.data.id}');">Edit</button><br>
+    <button onclick="ecd_try_delete('${menu.data.id}');
+    let b = this;
+ let a='${menu.data.id}';
+ let table= document.getElementById('currencies_table')
+ table.childNodes.forEach( function(currentValue, currentIndex, listObj) {
+    if(currentValue.firstElementChild){ 
+        let val = currentValue.firstElementChild.firstElementChild
+        if(val.innerHTML==a){
+        table.removeChild(currentValue);
+        b.onclick();
+    }
+}
+})
+    ">Try Delete</button><br>
+    <button onclick="
+    open_currency_details('${menu.data.id}');
+    ">Details</button>
+    `
+    document.getElementById("fixme_form").firstElementChild.innerHTML = result
+}
+function hint_old(text,e,menu){//el-this
     let header = `<p> ${menu.data.id}</p>`
     console.log("hint log:")
     console.log(menu.data);
     console.log(menu.template);
     document.getElementById("hint_text").innerHTML=header+text;
     var parent = document.getElementById("hint_parent")
-    var xpos = e.clientX-3;
-    var ypos = e.clientY-3;
-    parent.style.left = e.clientX+'px';
-    parent.style.top = e.clientY+'px';
+    var xpos = e.clientX+10;
+    var ypos = e.clientY+10;
+    parent.style.left = xpos+'px';
+    parent.style.top = ypos+'px';
     parent.style.display="block";
     document.getElementById("hint_menu").innerHTML=`
     <button onclick="edit_currency('${menu.data.id}'); close_parent(this.parentNode); toggle(edit_currency_div);">Edit</button><br>
-    <button onclick="ecd_try_delete('${menu.data.id}'); close_parent(this.parentNode);">Try Delete</button><br>
-    <button>Details</button>
+    <button onclick="ecd_try_delete('${menu.data.id}'); close_parent(this.parentNode); 
+    let b = this;
+ let a='${menu.data.id}';
+ let table= document.getElementById('currencies_table')
+ table.childNodes.forEach( function(currentValue, currentIndex, listObj) {
+    if(currentValue.firstElementChild){ 
+        let val = currentValue.firstElementChild.firstElementChild
+        if(val.innerHTML==a){
+        table.removeChild(currentValue);
+        b.onclick();
+    }
+}
+})
+    ">Try Delete</button><br>
+    <button onclick="
+    open_currency_details('${menu.data.id}');
+    ">Details</button>
     `//fixme
     //details - emit, logs and more
 }
 // bookmark
+async function open_currency_details(id) {
+    let cont = document.getElementById("currency_details");
+    toggle(cont);
+    var menu_text = `<p onclick="close_parent(this.parentNode);">(x)</p>
+    <p>Details 4 ${id}:</p>`
+    await user.get("test").get("currencies_details").get(id).once((data, key)=>{
+        if(data){}
+        else menu_text += `<p>No details for ${key} has been found.</p>`;
+    })
+    menu_text+=`<button onclick="currency_logs('${id}')">Logs</button><br>
+    <button onclick="currency_emit('${id}')">Emit</button><br>
+
+    `
+console.log(id)
+cont.firstElementChild.innerHTML = menu_text
+    //get related
+}
 async function ecd_try_delete(id) {
     //fixme: validate++
     
@@ -324,6 +397,23 @@ function put_template(){
     user.get("test").get("templates").get("currencies").get("hint").put(curr_template).once(data=>console.log(data._['#']))
 }
 async function edit_currency(id){
+    document.getElementById("fixme_form").firstElementChild.innerHTML=`<p>Edit <a id="ecd_id"></a></p>
+    <label>Description</label>
+    <input type="text" id="ecd_description"><br>
+    <label>Icon base64</label>
+    <input type="text" id="ecd_img_base64" placeholder="paste your image's base64 here"><br>
+    <label>Hint text</label>
+    <input type="text" id="ecd_hint_text"><br>
+    <button onclick="ecd_submit()">Submit</button>`
+    user.get("test").get("currencies").get(id).once(result=>{
+    document.getElementById("ecd_id").innerHTML=result.name||""
+    document.getElementById("ecd_description").value=result.description||""
+    document.getElementById("ecd_img_base64").value=result.icon||""
+    document.getElementById("ecd_hint_text").value=result.hint_text||""
+    
+    })
+}
+async function edit_currency_old(id){
     user.get("test").get("currencies").get(id).once(result=>{
         console.log(result)
     document.getElementById("ecd_id").innerHTML=result.name||""
@@ -339,7 +429,6 @@ function ecd_submit(){
     icon=document.getElementById("ecd_img_base64").value
     hint_text=document.getElementById("ecd_hint_text").value
     user.get("test").get("currencies").get(id).put({"name":id,"description":description,"icon":icon,"hint_text":hint_text})
-    toggle(edit_currency_div)
 }
 var subs={}
 function sub_e()//fixme: rename
@@ -350,17 +439,20 @@ function update_currency_table(){
 }
 //bookmark
 function load_currencies(){
+    
     var menu_template = JSON.stringify({})
     var menu_data = JSON.stringify({"id":"Paper clips"})
     let img_size = 20
     var clip='iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHeSURBVDhPY/z//z8DNvDl/cd///7xCQtC+TCARcPT+49P7zp+7/R1bSdd96ggqCgMIDT8+P7j/KEzF/ee+PD09b/fP9mFOBWNtNk5WL3jwiEKIIAJSjMwPHnwZN/cdS9vP/jO8INVku/Xl9839p3//fUrVBoGWKA0AwMvPw8zHwfjd0bGvww/Hn4QURD3To+QVJb9+eMHIyMjGzs7RBlCw4Mb9/98+s7MxKhqrHX70m1hVZndC9Z/fv/pHxtLQkO2EEwDwg+fP31+9fS5rKI8Gwf7uhlLXzx+8u72M5Z/TC5ZoSZOVhA1QIASSl+/fH18+8H/f3///P+3Y97av7//qOprBufEQaXBAOGk79++zyzt+fXiA8P//3wKIl9efeRXF7cOdIVKwwAilJ49ePTjwxeG//9+//715t6z/4x/pcUkJKQlodIwgNAgoyjHKyHAwMbMwsFm6GWpbWnw9c1nqBwyAPoBDr59+Tq/bdLlY2f//f13ZPPeqQVt//7+hcrBAMIGIODk5vr85v21o2e/fvp87ei5989e/vr5EyoHA+hp6eTOA/vmbPzPzvj35x/bSE+HIE+oBAyga3h6/9HhDbuYmZnUjHX1rU2hokgAXQMy+PvnDzMLItxBgIEBAJ7T9FEBlGKvAAAAAElFTkSuQmCC'
     var hint_example="Some ..useful piece of intel.. about paper clips"
     var text = `<tr><td>Paper clips</td><td><img src="data:image/png;base64,${clip}" width="${img_size}" height="${img_size}"></td>
-        <td> Quest log files... </td><td><button onmouseover=\'hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})\'>?</button></td></tr>`
+        <td> Quest log files... </td><td><button>?</button></td></tr>`
+        // <td> Quest log files... </td><td><button onmouseover=\'hint("${hint_example}",event,{data:${menu_data}, template:${menu_template}})\'>?</button></td></tr>`
 
     curr_try_update_add('Paper clips',text);
 
     user.get("test").get("currencies").map().on((data, key) =>{
+        console.log('Loading',key)
         if(data){
         // let str = "<tr><th>1</th><th>2</th></tr>";
         var _menu_data = JSON.stringify({"id":key});
