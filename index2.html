@@ -15,17 +15,26 @@
 <body id="dev2_body">
     <div id="dev2_div"></div>
     <script id="device_js">
-               var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
+        var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
         var sea = Gun.SEA
         var user = gun.user()
         var this_device="device2";
         var key = {"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}
-        function dev_init() {
+        async function dev_init() {
             user.auth(key);
             render_sub_topic('test',dev2_div)
-            user.get("test").get("devices").get(this_device).get('test_js').on((data, key)=>{
+            await user.get("test").get("devices").get(this_device).get('test_js').on((data, key)=>{
                 target.innerText=data;
             })
+user.get("test").get("devices").get(this_device).get('scripts').map().on((data, key)=>{
+          var scr = document.getElementById(key)
+          if(scr){scr.parentNode.removeChild(scr)}
+          if(data){
+          var newScript = document.createElement("script");
+          newScript.innerText=data.text
+          newScript.id=key
+          document.body.appendChild(newScript);}
+      })
 
         }
         setTimeout(dev_init,1000)
@@ -37,15 +46,7 @@
         })
       }
 
-      user.get("test").get("devices").get(this_device).get('scripts').map().on((data, key)=>{
-          var scr = document.getElementById(key)
-          if(scr){scr.parentNode.removeChild(scr)}
-          if(data){
-          var newScript = document.createElement("script");
-          newScript.innerText=data.text
-          newScript.id=key
-          document.body.appendChild(newScript);}
-      })
+      
     </script>
     <script id="target"></script>
 
