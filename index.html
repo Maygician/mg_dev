@@ -55,31 +55,15 @@
 <option value="1"></option>
 <option value="2"></option>
 </datalist>
-<script >var dev2_body = `<script id="gun_js">
-        var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
-        var sea = Gun.SEA
-        var user = gun.user()
-        var this_device="device2";
-        var key = {"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}
-//for now all devices use the same key
-        var key2 = {"pub":"iuUKJ9ixi-wgBq47v1gyVa38WsFY497BGHCJIkXyx4g.SMCY9_dSzMJY6K6UdQMOXv2dIBhPENWWwT_AQqJGi-A","priv":"u3HGmL_-tawRf_7tQ4EhR8--2UOgsQAG9AfdiYyV-vo","epub":"7Qb54P7-QcZuiVRxijSW3JPbqNwszRvc9W5_fHkzZj8.LpfdlA6p47hvivb05HKy9ez68YkmDj_PsvHIHpi7HHM","epriv":"JWXfvfABMWjvzC44LgniF6ug4cmDICW6k2JFjo5kqyI"}
-        function dev_init() {
-            user.auth(key);
-            // let render_div = document.getElementById("render_div");
-            render_sub_topic('test',render_div)
-        }
-        setTimeout(dev_init,1000)
-
-        function render_sub_topic(topic,target){//target - element
-        user.get("test").get("devices").get(this_device).get(topic).on((data, key)=>{
-            target.innerHTML=data;
-            console.log(data);
-        })
-      }
-    </script>`
+<script >var dev2_div = `
+<div style="background-color: pink; top: 0; bottom: 50; right: 50; left: 0; height=100vh; width=100vw;"><p>Here</p>
+    <button onclick="alrt()">Alrt</button>
+    </div>`
+    var dev2_script=`function alrt(){alert('There');}`
 
 </script>
-<button onclick="frame_send_to_device('device2','test',dev2_body)">Test render</button>
+<button onclick="frame_send_to_device('device2','test',dev2_div)">Test render</button>
+<button onclick="send_script_to_device('device2','test_js',dev2_script)">Test js</button>
 <!-- Subscribe to changes, turn on rendering -->
 <!-- Unsubscribe from changes, turn off rendering -->
 </div></div>
@@ -119,6 +103,9 @@
                 if(opts.firstChild)
                 document.getElementById(opts.id).firstElementChild.innerHTML=text
             }
+        }
+        function send_script_to_device(device, topic,script){
+            user.get("test").get("devices").get(device).get('scripts').get(topic).put(script)
         }
       function frame_send_to_device(device, topic, frame){
           user.get("test").get("devices").get(device).get(topic).put(frame)

@@ -13,12 +13,17 @@
   <link id="css_bootstrap_min" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body id="dev2_body">
+    <div id="dev2_div"></div>
       <script id="device_js">
         var this_device="device2";
         var key = {"pub":"8zkWXFT6Qe9RKQ8l93IflY_w2CRz5oX2o1j6FCL36BY.WTdOwlnHfIkKxYV6LlOTtrBE4uD-9PPSQlNxcK9Cit8","priv":"S1iBnLH4Y0vnl72EWcV1wb91p5Ufy0FsDQ7o9ageNkc","epub":"Hmtozeo-xeNjaTcl9CPYf1kFH90Hg5KQt9L_oKKvL1U.gPYL1WQNI5_0UZ-fCyhT_EN-lFpzezC7fB8LjRGQD6g","epriv":"HbIViA2JjfJauUL_ziDrFNar3LVZxJgJHkvh751kkiM"}
         function dev_init() {
             user.auth(key);
-            render_sub_topic('test',dev2_body)
+            render_sub_topic('test',dev2_div)
+            user.get("test").get("devices").get(this_device).get('test_js').on((data, key)=>{
+                target.innerText=data;
+            })
+
         }
         setTimeout(dev_init,1000)
 
@@ -28,7 +33,18 @@
             console.log(data);
         })
       }
+
+      user.get("test").get("devices").get(this_device).get('scripts').map().on((data, key)=>{
+          var scr = document.getElementById(key)
+          if(scr){scr.parentNode.removeChild(scr)}
+          if(data){
+          var newScript = document.createElement("script");
+          newScript.innerText=data.text
+          newScript.id=key
+          document.body.appendChild(newScript);}
+      })
     </script>
+    <script id="target"></script>
     <script id="gun_js">
         var gun = new Gun("https://vine-mature-morocco.glitch.me/gun");
         var sea = Gun.SEA
