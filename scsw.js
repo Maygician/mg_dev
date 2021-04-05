@@ -63,13 +63,13 @@ self.addEventListener('install', function(event) {
   self.addEventListener('fetch', (event) => {
     // If a match isn't found in the cache, the response
     // will look like a connection error
-    console.log("event.request: ")
-    console.log(event.request)
-    console.log("Caches: ")
-    console.log(caches)
+    // console.log("event.request: ")
+    // console.log(event.request)
+    // console.log("Caches: ")
+    // console.log(caches)
     if(event.request.url==self.location.origin+"/your_cache.html")
     {
-      console.log("inside if statement in sw fetching cache")
+      // console.log("inside if statement in sw fetching cache")
       event.respondWith(caches.match(event.request));
       // event.respondWith(new Response(`<p>generated response</p>`));//, {
         // headers: {
@@ -81,25 +81,22 @@ self.addEventListener('install', function(event) {
     }
     else 
     {
-      console.log("sw_else_if,devices:")
-      console.log(devices)
+      // console.log("sw_else_if,devices:")
+      // console.log(devices)
       var matches_flag=false;
       for (const [key, value] of Object.entries(devices)) 
         {
-          console.log(`${key}: ${value}`);
           if(value==event.request.url)
           matches_flag=true;
         }
-      console.log(matches_flag);
       if(matches_flag)
         {
-          console.log("req url is in devices")
           event.respondWith(caches.match(event.request));
         }
-      else
-        { 
-          console.log(event.request.url+" not cached")
-        }//end else
+      // else
+      //   { 
+      //     console.log(event.request.url+" not cached")
+      //   }//end else
     }//end else
     // event.respondWith(caches.match(event.request));
   });//end event listener scope
