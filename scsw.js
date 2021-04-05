@@ -67,9 +67,9 @@ self.addEventListener('install', function(event) {
     console.log(event.request)
     console.log("Caches: ")
     console.log(caches)
-    // console.log("url: "+urlToOpen)
-    if(event.request.url==self.location.origin+"/your_cache.html"){
-          console.log("inside if statement in sw fetching cache")
+    if(event.request.url==self.location.origin+"/your_cache.html")
+    {
+      console.log("inside if statement in sw fetching cache")
       event.respondWith(caches.match(event.request));
       // event.respondWith(new Response(`<p>generated response</p>`));//, {
         // headers: {
@@ -80,21 +80,29 @@ self.addEventListener('install', function(event) {
       // }));
     }
     // else if(event.request.url in devices){
-    else {
+    else 
+    {
       console.log("sw_else_if,devices:")
       console.log(devices)
-      for (const [key, value] of Object.entries(devices)) {
-        console.log(`${key}: ${value}`);
-        if(value==event.request.url){
-          console.log("req url is in devices")
-      event.respondWith(caches.match(event.request));
+      var matches=false;
+      for (const [key, value] of Object.entries(devices)) 
+        {
+          console.log(`${key}: ${value}`);
+          if(value==event.request.url)
+          matches=true;
         }
-       else{console.log("inside if statement. not matches")
-    console.log(event.request.url)
-    console.log(self.location.origin+"/your_cache.html")
+          if(matches)
+          {
+            console.log("req url is in devices")
+            event.respondWith(caches.match(event.request));
+          }
+          else
+          { console.log("inside if statement. not matches")
+            console.log(event.request.url)
+            console.log(self.location.origin+"/your_cache.html")
+          }//end else
+        // }//end for
     }//end else
-  }//end for
-  }//end else
     // event.respondWith(caches.match(event.request));
   });//end event listener scope
 //#region push
