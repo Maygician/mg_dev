@@ -4,6 +4,7 @@
     <a id="res_link" href=""></a>
 </div>
 <script>
+
 const channel = new BroadcastChannel('sw-messages');
 channel.addEventListener('message', event => {
   console.log('On client, received')
@@ -51,7 +52,8 @@ caches.match('/'+href).then(r => r).then(console.log)
 
 channel.postMessage({
 type: 'PAGE_SUBMITED',
-data: 'Data?'
+data: self.location.origin+'/'+href,
+device: href
 });
 //#endregion
         return href

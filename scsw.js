@@ -9,7 +9,9 @@ const channel = new BroadcastChannel('sw-messages');
 channel.postMessage({title: 'Hello from SW'})
 channel.addEventListener('message',(event)=>{
   console.log('sw message (sw-messages channel)')
-  console.log(event);})
+  console.log(event.data.data);
+
+})
 // var urlsToCache = [
 //   '/',
 //   '/styles/main.css',
