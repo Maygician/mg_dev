@@ -90,7 +90,7 @@ self.addEventListener('install', function(event) {
           if(value==event.request.url)
           matches=true;
         }
-      сonsole.log(matches)
+      // сonsole.log(matches);
       if(matches)
         {
           сonsole.log("req url is in devices")
