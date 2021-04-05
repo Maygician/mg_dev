@@ -81,6 +81,8 @@ self.addEventListener('install', function(event) {
     }
     // else if(event.request.url in devices){
     else {
+      console.log("sw_else_if,devices:")
+      console.log(devices)
       for (const [key, value] of Object.entries(devices)) {
         console.log(`${key}: ${value}`);
         if(value==event.request.url){
