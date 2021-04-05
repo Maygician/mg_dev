@@ -83,15 +83,15 @@ self.addEventListener('install', function(event) {
     {
       console.log("sw_else_if,devices:")
       console.log(devices)
-      var matches=false;
+      var matches_flag=false;
       for (const [key, value] of Object.entries(devices)) 
         {
           console.log(`${key}: ${value}`);
           if(value==event.request.url)
-          matches=true;
+          matches_flag=true;
         }
-      // сonsole.log(matches);
-      if(matches)
+      сonsole.log(matches_flag);
+      if(matches_flag)
         {
           сonsole.log("req url is in devices")
           event.respondWith(caches.match(event.request));
