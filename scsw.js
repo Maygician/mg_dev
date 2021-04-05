@@ -90,12 +90,11 @@ self.addEventListener('install', function(event) {
        else{console.log("inside if statement. not matches")
     console.log(event.request.url)
     console.log(self.location.origin+"/your_cache.html")
-    }
-   
-
-  }
+    }//end else
+  }//end for
+  }//end else
     // event.respondWith(caches.match(event.request));
-  });
+  });//end event listener scope
 //#region push
 self.addEventListener('push', (event) => {
   // if (event.data.text() == 'new-email') {
