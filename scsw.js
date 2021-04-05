@@ -3,6 +3,13 @@ const urlToOpen = new URL('/', self.location.origin).href;
 self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
 var CACHE_NAME = 'cachee';
 var urlsToCache = []
+var devices={}
+var gun_user = undefined
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'PAGE_SUBMITED') {
+    console.log(event.data)
+  }
+});
 // var urlsToCache = [
 //   '/',
 //   '/styles/main.css',

@@ -23,7 +23,9 @@
   <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
 </head>
   `
-        var body=""
+        var body=`<body style="background-color: pink;">
+            </body>
+            `
         var footer="</html>"
         result+=header+body+footer
         // user.get("test").get("page").get(id).once((data, key)=>{        })
@@ -42,6 +44,10 @@ var response = new Response(response_text, {
 })
 caches.open('cachee').then(cache => cache.put('/'+href,response))
 caches.match('/'+href).then(r => r).then(console.log)
+
+navigator.serviceWorker.controller.postMessage({
+type: 'PAGE_SUBMITED',
+});
 //#endregion
         return href
     }
