@@ -1,0 +1,48 @@
+<div>
+    <textarea id="area"></textarea>
+    <button onclick="make_page('device3')">Make</button>
+    <a id="res_link" href=""></a>
+</div>
+<script>
+
+    function make_page(id){
+        var result=""
+        var header=`
+        <!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>MayGame</title>
+  <meta name="description" content="No description">
+  <meta name="author" content="Some dude">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- #region -->
+  <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"><`+`/script>
+  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"><`+`/script>
+  <script id="wsjs_innerscript" src="js/core/wsjs.js"><`+`/script>
+  <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
+</head>
+  `
+        var body=""
+        var footer="</html>"
+        result+=header+body+footer
+        // user.get("test").get("page").get(id).once((data, key)=>{        })
+        let href = id+'.html'
+        res_link.innerHTML=href
+        res_link.href=href
+        console.log(result)
+//#region 
+var response_text = result
+var response = new Response(response_text, {
+  // headers: {
+  url: self.location.origin+'/'+href, 
+  status: 200,
+  headers: {
+    'Content-Type': 'text/html'}
+})
+caches.open('cachee').then(cache => cache.put('/'+href,response))
+caches.match('/'+href).then(r => r).then(console.log)
+//#endregion
+        return href
+    }
+</script>

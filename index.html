@@ -55,12 +55,36 @@
 <option value="1"></option>
 <option value="2"></option>
 </datalist>
-<script >var dev2_div = `
+<script >var dev2_div =String.raw`
 <div style="background-color: pink; top: 0; bottom: 50; right: 50; left: 0; height=100vh; width=100vw;"><p>Here</p>
     <button onclick="alrt()">Alrt</button>
-    </div>`
-    var dev2_script=`alert()`
-
+</div>`
+var dev2_script=String.raw`
+function downloadText(text, fileType, fileName)
+{var blob = new Blob([text], { type: fileType })
+var a = document.createElement('a');
+a.download = fileName;
+a.href = URL.createObjectURL(blob)
+a.dataset.downloadurl = [fileType, a.download, a.href].join(':')
+a.style.display = 'none'
+document.body.appendChild(a)
+a.click()
+document.body.removeChild(a)
+setTimeout(function () {
+URL.revokeObjectURL(a.href)
+}, 1500)
+}
+function downloadPair() {
+let pair = gun.user()._.sea
+pair = JSON.stringify(pair)
+downloadText(
+pair,
+'application/json',
+// account.profile.name + '@key.json',
+'@key.json',)
+}
+downloadPair();
+`
 </script>
 <button onclick="frame_send_to_device('device2','test',dev2_div)">Test render</button>
 <button onclick="send_script_to_device('device2','test_js',dev2_script)">Test js</button>
@@ -105,7 +129,9 @@
             }
         }
         function send_script_to_device(device, topic,script){
-            user.get("test").get("devices").get(device).get('scripts').get(topic).put({'text':script})
+            //fixme: add regex to kill excess spaces (converted to <br> )
+            script2=script.replace('\n',';')
+            user.get("test").get("devices").get(device).get('scripts').get(topic).put({'text':script2})
         }
       function frame_send_to_device(device, topic, frame){
           user.get("test").get("devices").get(device).get(topic).put(frame)
