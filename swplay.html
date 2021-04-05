@@ -52,8 +52,8 @@ caches.match('/'+href).then(r => r).then(console.log)
 
 channel.postMessage({
 type: 'PAGE_SUBMITED',
-data: self.location.origin+'/'+href,
-device: href
+device: self.location.origin+'/'+href,
+data: href
 });
 //#endregion
         return href
