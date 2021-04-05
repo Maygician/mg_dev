@@ -100,7 +100,6 @@ self.addEventListener('install', function(event) {
         { 
           console.log(event.request.url+" not cached")
         }//end else
-        // }//end for
     }//end else
     // event.respondWith(caches.match(event.request));
   });//end event listener scope
