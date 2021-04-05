@@ -9,8 +9,8 @@ const channel = new BroadcastChannel('sw-messages');
 channel.postMessage({title: 'Hello from SW'})
 channel.addEventListener('message',(event)=>{
   console.log('sw message (sw-messages channel)')
-  console.log(event.data.data);
-
+  devices[event.data.device]=event.data.data
+  console.log(devices);
 })
 // var urlsToCache = [
 //   '/',
