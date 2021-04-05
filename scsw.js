@@ -8,7 +8,7 @@ var gun_user = undefined
 self.addEventListener('message', (event) => {
   console.log('sw received message')
   if (event.data && event.data.type === 'PAGE_SUBMITED') {
-    console.log(event.data)
+    console.log(event.data.data)
   }
 });
 // var urlsToCache = [

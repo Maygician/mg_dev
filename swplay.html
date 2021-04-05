@@ -47,6 +47,7 @@ caches.match('/'+href).then(r => r).then(console.log)
 
 navigator.serviceWorker.controller.postMessage({
 type: 'PAGE_SUBMITED',
+data: 'Data?'
 });
 //#endregion
         return href
