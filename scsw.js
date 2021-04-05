@@ -5,12 +5,11 @@ var CACHE_NAME = 'cachee';
 var urlsToCache = []
 var devices={}
 var gun_user = undefined
-self.addEventListener('message', (event) => {
-  console.log('sw received message')
-  // if (event.data && event.data.type === 'PAGE_SUBMITED') {
-    console.log(event.data.data)
-  // }
-});
+const channel = new BroadcastChannel('sw-messages');
+channel.postMessage({title: 'Hello from SW'})
+channel.addEventListener('message',(event)=>{
+  console.log('sw message (sw-messages channel)')
+  console.log(event);})
 // var urlsToCache = [
 //   '/',
 //   '/styles/main.css',
@@ -23,7 +22,7 @@ self.addEventListener('install', function(event) {
       caches.open(CACHE_NAME)
         .then(function(cache) {
           console.log('Opened cache');
-          console.log('me = v000');
+          console.log('me = v0001');
           return cache.addAll(urlsToCache);
         })
     );

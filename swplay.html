@@ -4,7 +4,11 @@
     <a id="res_link" href=""></a>
 </div>
 <script>
-
+const channel = new BroadcastChannel('sw-messages');
+channel.addEventListener('message', event => {
+  console.log('On client, received')
+  console.log(event.data);
+});
     function make_page(id){
         var result=""
         var header=`
@@ -45,7 +49,7 @@ var response = new Response(response_text, {
 caches.open('cachee').then(cache => cache.put('/'+href,response))
 caches.match('/'+href).then(r => r).then(console.log)
 
-navigator.serviceWorker.controller.postMessage({
+channel.postMessage({
 type: 'PAGE_SUBMITED',
 data: 'Data?'
 });
