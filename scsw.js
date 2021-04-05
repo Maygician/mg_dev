@@ -79,13 +79,19 @@ self.addEventListener('install', function(event) {
       //     'Content-Type': 'text/html'}
       // }));
     }
-    else if(event.request.url in devices){
-      console.log("req url is in devices")
+    // else if(event.request.url in devices){
+    else {
+      for (const [key, value] of Object.entries(devices)) {
+        console.log(`${key}: ${value}`);
+        if(value==event.request.url){
+          console.log("req url is in devices")
       event.respondWith(caches.match(event.request));
-    }
-    else{console.log("inside if statement. not matches")
+        }
+       else{console.log("inside if statement. not matches")
     console.log(event.request.url)
     console.log(self.location.origin+"/your_cache.html")
+    }
+   
 
   }
     // event.respondWith(caches.match(event.request));
