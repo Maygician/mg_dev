@@ -1,0 +1,34 @@
+ <!-- #region -->
+ <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+ <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+
+<script>
+var gun = new Gun();
+var sea = Gun.SEA
+var trustedKey={pub:'MJ'}//pub
+
+
+function apply_patch_text(patch){
+/*
+modify, cache
+*/
+
+}
+function apply_patch_rt(patch){
+    /*modify dom in runtime*/
+    patch.enytries.forEach(element => {
+        
+    });
+}
+
+async function cache_whole_page(page){
+    let verified = await sea.verify(page,trustedKey.pub)
+
+}
+/*
+all modules
+verify, apply checked.
+
+
+*/
+</script>

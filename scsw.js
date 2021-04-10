@@ -63,10 +63,6 @@ self.addEventListener('install', function(event) {
   self.addEventListener('fetch', (event) => {
     // If a match isn't found in the cache, the response
     // will look like a connection error
-    // console.log("event.request: ")
-    // console.log(event.request)
-    // console.log("Caches: ")
-    // console.log(caches)
     if(event.request.url==self.location.origin+"/your_cache.html")
     {
       // console.log("inside if statement in sw fetching cache")
@@ -127,3 +123,6 @@ self.addEventListener('notificationclick', function(event) {
   }
 });
 //#region 
+// self.addEventListener('fetch',(event) => {
+
+// })
