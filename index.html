@@ -2,8 +2,12 @@
 <br>
 <p><a href="https://maygame.xxx/default">Load sample</a></p>
 <br>
+<button onclick="
+fetch('https://templates.netlify.com/').then((response)=>{response.text().then((e)=>console.log(e))});
+
+">Test</button>
 <br>
-<button>Load from template</button>
+<button onclick="console.log(yaml.safeDump({'null':'null'}));">Load from template</button>
 <br>
 <button>Change default behavior</button>
 <br>
@@ -122,13 +126,31 @@ btn_to_local.disabled=!btn_to_local.disabled
             cdiv.innerHTML='newest '
         }
     };
+  function mod2text(modules){
+    let head=''//+get default head
+    let it1 = {}
+    it1.mod='quest'
+    it1.pos=1//priority
+    let it2 = {}
+    it2.mod='quest'
+    it2.pos=2//priority
+    var mlist = [];
+    mlist[1]=it1;
+    mlist[2]=it2;
+    mlist.forEach((it)=>{
+    head+=it?.head.text
+
+    })
+    
+  }
   function t2p(){
+    var mods = {'name':'a',}
     let result=''
     let header_close = '</head>'
     let header=modules.head.text
     let body=modules.body.text
     let footer=modules.footer.text
     result+=header+body+footer
-    console.log(result)
+    console.log(result) 
   }
 </script>
