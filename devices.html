@@ -1,0 +1,46 @@
+<input type="text" id="devices" list="devices_datalist" placeholder="cached pages" onchange="
+// let cached = devices_datalist.
+if(this.value=='e'){
+dev_link.innerHTML=this.value;
+dev_link.href='maygame.xxx';
+}
+">
+<datalist id="devices_datalist">
+    <optgroup></optgroup>
+</datalist>
+<input type="checkbox" id="cb_devices_new_tab" onchange=""><label for="cb_devices_new_tab">open in a new tab</label><br>
+<a href="" class="button" id="dev_link">Link</a><br>
+<button onclick="ask_version()">Ask for version</button>
+<div id="ask_version_popup"></div>
+
+<script>
+var init={}
+var reload={}
+
+var ask_version_last=''
+function ask_version(){
+var markup = `
+<br>
+<input type="radio" name="core" id="core_gun"><label for="core_gun">core gun</label>
+<br>
+<input type="radio" name="core">
+<br>
+<input type="radio" name="core">
+<br>
+`
+markup+=`<button onclick="ask_version_popup.innerHTML='';ask_submit();">Submit</button>`
+ask_version_popup.innerHTML=markup
+ask_version_last=''
+}
+function ask_submit(){
+    let rbs = document.querySelectorAll('input[name="core"]')
+    let checked 
+    for (const rb of rbs) {
+
+    }
+}
+</script>
+<script>
+    if(!reload['modulename'])reload['modulename'];
+    //cache (todo)
+</script>
