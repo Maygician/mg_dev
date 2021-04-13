@@ -22,8 +22,8 @@ dev_link.href='maygame.xxx';
 <br>
 <!--  -->
 <iframe width="600" height="500" id="test_frame" 
-src="https://maygame.xxx/device3.html" 
-frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+src="https://maygame.xxx.device3.html" 
+frameborder="0" scrolling="no" marginheight="0" marginwidth="0" sandbox="allow-scripts"></iframe>
 <!--  -->
 <a id="res_link" href=""></a>
 
@@ -61,17 +61,17 @@ function make_page(id){
 var response_text = result
 var response = new Response(response_text, {
   // headers: {
-  url: self.location.origin+'/'+href, 
+  url: self.location.origin+'.'+href, 
   status: 200,
   headers: {
     'Content-Type': 'text/html'}
 })
-caches.open('cachee').then(cache => cache.put('/'+href,response))
-caches.match('/'+href).then(r => r).then(console.log)
+caches.open('cachee').then(cache => cache.put('.'+href,response))
+// caches.match('/'+href).then(r => r).then(console.log)
 
 channel.postMessage({
 type: 'PAGE_SUBMITED',
-data: self.location.origin+'/'+href,
+data: self.location.origin+'.'+href,
 device: href
 });
 //#endregion
