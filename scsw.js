@@ -85,9 +85,9 @@ self.addEventListener('install', function(event) {
         {
           if(value==event.request.url.substr(0, event.request.url.indexOf('?')))
           matches_flag=true;
-          console.log("Fetch +2. matches, modules")
-          console.log(matches_flag)
-          console.log(modules)
+          // console.log("Fetch +2. matches, modules")
+          // console.log(matches_flag)
+          // console.log(modules)
         }
       if(matches_flag)
         { let resp=event.respondWith(caches.match(event.request,{'ignoreSearch':true}));
