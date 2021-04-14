@@ -29,6 +29,10 @@ frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 
 <script>
 const channel = new BroadcastChannel('sw-messages');
+channel.addEventListener('message', event => {
+  console.log('On client, received')
+  console.log(event.data);
+});
 function make_page(id){
         var result=""
         var header=`

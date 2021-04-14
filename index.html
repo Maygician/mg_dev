@@ -1,4 +1,5 @@
-<button style="background-color: #bb00bb; height: 20vh; width: 20vw; font-size: 3rem;" onclick="t2p();">Tap to play</button>
+<button style="background-color: #bb00bb; height: 20vh; width: 20vw; font-size: 3rem;" onclick="t2p();">Tap to
+  play</button>
 <br>
 <p><a href="https://maygame.xxx/default">Load sample</a></p>
 <br>
@@ -6,11 +7,13 @@
 fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 
 ">Test</button>
+
 <br>
 <button onclick="console.log(yaml.safeDump({'null':'null'}));">Load from template</button>
 <br>
 <button>Change default behavior</button>
 <br>
+<h1>Data server: <input type="text" placeholder="gun instance"></h1>
 <br>
 <h1>Default behavior:</h1>
 <label for="rb_load_last">Load last used</label>
@@ -32,49 +35,54 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <h1>Customization:</h1>
 <div id="customization_div" style="background: mediumorchid;">
 
-<p>Load modules:</p>
-<ul>
-  <li><label for="module_core_head">Core head</label><input type="checkbox" id="module_core_head" checked disabled></li>
-  <li><label for="module_%name%">Name</label><input type="checkbox" id="module_%name%" checked></li>
-  <li><label for="module_core_body">Core body</label><input type="checkbox" id="module_core_body" checked disabled></li>
-  <li><label for="module_core_footer">Core footer</label><input type="checkbox" id="module_core_footer" checked disabled></li>
-  <!-- groups: unchecking one unchecks related (todo) -->
-</ul>
+  <p>Load modules:</p>
+  <ul>
+    <li><label for="module_core_head">Core head</label><input type="checkbox" id="module_core_head" checked disabled>
+    </li>
+    <li><label for="module_%name%">Name</label><input type="checkbox" id="module_%name%" checked></li>
+    <li><label for="module_core_body">Core body</label><input type="checkbox" id="module_core_body" checked disabled>
+    </li>
+    <li><label for="module_core_footer">Core footer</label><input type="checkbox" id="module_core_footer" checked
+        disabled></li>
+    <!-- groups: unchecking one unchecks related (todo) -->
+  </ul>
 
-<label>Save template as</label>
-<input type="text" id='text_save_as' disabled>
-<input type="checkbox" id="cb_save_as" value="" onchange="
+  <label>Save template as</label>
+  <input type="text" id='text_save_as' disabled>
+  <input type="checkbox" id="cb_save_as" value="" onchange="
 text_save_as.disabled=!text_save_as.disabled;
 btn_to_gun.disabled=!btn_to_gun.disabled;
 btn_to_local.disabled=!btn_to_local.disabled
  ">
-<button id='btn_to_gun' disabled>To gun</button>
-<button disabled id="btn_to_local">To localStorage</button>
-<br>
+  <button id='btn_to_gun' disabled>To gun</button>
+  <button disabled id="btn_to_local">To localStorage</button>
+  <br>
 </div>
 <!-- #endregion -->
 <script id="js_sw" type="text/javascript">
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('scsw.js').then(function(registration) {
-          // Registration was successful
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-          // registration failed :(
-          console.log('ServiceWorker registration failed: ', err);
-        });
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('scsw.js').then(function (registration) {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }, function (err) {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
       });
-    }
+    });
+  }
 </script>
 <script id="js_init">
-  ;(()=>{
+  ; (() => {
     // localStorage.setItem('start_init_default','rb_load_newest')
     let def = localStorage.getItem('start_init_default');
-    
+
   })();
 </script>
 <script id="dev_js">
-  var modules={'head':{'text':`
+  var modules = {
+    'head': {
+      'text': `
 <!doctype html>
 <html lang="fr">
 <head>
@@ -83,75 +91,77 @@ btn_to_local.disabled=!btn_to_local.disabled
   <meta name="description" content="No description">
   <meta name="author" content="Some dude">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"><`+`/script>
-  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"><`+`/script>
-  <script id="wsjs_innerscript" src="js/core/wsjs.js"><`+`/script>
+  <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"><`+ `/script>
+  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"><`+ `/script>
+  <script id="wsjs_innerscript" src="js/core/wsjs.js"><`+ `/script>
   <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
 </head>
   `},
-  'body':{'text':`
+    'body': {
+      'text': `
 <body style="background-color: pink;">
             
             `},
-  'footer':{'text':`
+    'footer': {
+      'text': `
 </body>
-</html>`}}
-     var a = {'name':'core','version':1,'deps':[]}
-    var minmod={'name':'module_name','text':'','dom_place':'head'}
-    var minmod2={'name':'module_name','url':'modules/module_name/3.json'}
+</html>`}
+  }
+  var a = { 'name': 'core', 'version': 1, 'deps': [] }
+  var minmod = { 'name': 'module_name', 'text': '', 'dom_place': 'head' }
+  var minmod2 = { 'name': 'module_name', 'url': 'modules/module_name/3.json' }
     //fixme: load order, versioning, different sources (todo!)
     // alert(def)
-    /** 
-     * two versions (parts?) of modules: dom object, plain text. 
-     * first is used for dom modification, second is appended and cached
-    */
+  /**
+   * two versions (parts?) of modules: dom object, plain text.
+   * first is used for dom modification, second is appended and cached
+  */
 </script>
 <script>
-    function customize_submit(){
-        const rbs = document.querySelectorAll('input[name="def_beh"]');
-        let selectedValue;
-        let cdiv = customization_div
-            for (const rb of rbs) {
-                if (rb.checked) {
-                    selectedValue = rb.value;
-                    break;
-                }
-            }
-        let checked = cb_customize.checked
-        if(checked)
-        {   
-            if(selectedValue=='rb_load_last')
-            cdiv.innerHTML='customize last'
-            else if(selectedValue=='rb_load_newest')
-            cdiv.innerHTML='newest '
-        }
-    };
-  function mod2text(modules){
-    let head=''//+get default head
+  function customize_submit() {
+    const rbs = document.querySelectorAll('input[name="def_beh"]');
+    let selectedValue;
+    let cdiv = customization_div
+    for (const rb of rbs) {
+      if (rb.checked) {
+        selectedValue = rb.value;
+        break;
+      }
+    }
+    let checked = cb_customize.checked
+    if (checked) {
+      if (selectedValue == 'rb_load_last')
+        cdiv.innerHTML = 'customize last'
+      else if (selectedValue == 'rb_load_newest')
+        cdiv.innerHTML = 'newest '
+    }
+  };
+  function mod2text(modules) {
+    let head = ''//+get default head
     let it1 = {}
-    it1.mod='quest'
-    it1.pos=1//priority
+    it1.mod = 'quest'
+    it1.pos = 1//priority
     let it2 = {}
-    it2.mod='quest'
-    it2.pos=2//priority
+    it2.mod = 'quest'
+    it2.pos = 2//priority
     var mlist = [];
-    mlist[1]=it1;
-    mlist[2]=it2;
-    mlist.forEach((it)=>{
-    head+=it?.head.text
+    mlist[1] = it1;
+    mlist[2] = it2;
+    mlist.forEach((it) => {
+      head += it?.head.text
 
     })
-    
+
   }
-  function t2p(){
-    var mods = {'name':'a',}
-    let result=''
+  function t2p() {
+    var mods = { 'name': 'a', }
+    let result = ''
     let header_close = '</head>'
-    let header=modules.head.text
-    let body=modules.body.text
-    let footer=modules.footer.text
-    result+=header+body+footer
-    console.log(result) 
+    let header = modules.head.text
+    let body = modules.body.text
+    let footer = modules.footer.text
+    result += header + body + footer
+    console.log(result)
   }
   var lastCached
 </script>
