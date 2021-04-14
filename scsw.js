@@ -66,7 +66,7 @@ self.addEventListener('install', function(event) {
     if(event.request.url==self.location.origin+"/your_cache.html")
     {
       // console.log("inside if statement in sw fetching cache")
-      event.respondWith(caches.match(event.request));
+      event.respondWith(caches.match(event.request),{'ignoreSearch':true});
       // event.respondWith(new Response(`<p>generated response</p>`));//, {
         // headers: {
       //   url: self.location.origin+'/your_cache.html', 
@@ -87,7 +87,7 @@ self.addEventListener('install', function(event) {
         }
       if(matches_flag)
         {
-          event.respondWith(caches.match(event.request));
+          event.respondWith(caches.match(event.request),{'ignoreSearch':true});
         }
       // else
       //   { 
