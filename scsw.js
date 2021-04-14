@@ -6,12 +6,13 @@ var urlsToCache = []
 var modules={}
 var gun_user = undefined
 const channel = new BroadcastChannel('sw-messages');
-channel.postMessage({title: 'Hello from SW'})
+// channel.postMessage({title: 'Hello from SW'})
 channel.addEventListener('message',(event)=>{
+  if(event.type=='PAGE_SUBMITED'){
   console.log('sw message (sw-messages channel)')
   modules[event.data.module]=event.data.data
   console.log(modules);
-  channel.postMessage({'data':modules,'topic':'modules_updated'})
+  channel.postMessage({'data':modules,'type':'MODULES_UPDATED'})}
 })
 // var urlsToCache = [
 //   '/',

@@ -32,7 +32,7 @@ const channel = new BroadcastChannel('sw-messages');
 channel.addEventListener('message', event => {
   console.log('On client, received')
   console.log(event.data);
-  if(event.data?.topic=='modules_updated')
+  if(event.type=='MODULES_UPDATED')
   console.log("Modules updated");
 });
 function make_page(id){
@@ -76,6 +76,7 @@ var response = new Response(response_text, {
 caches.open('cachee').then(cache => cache.put(href,response))
 caches.match(href).then(r => r).then(console.log)
 
+// topic:''
 channel.postMessage({
 type: 'PAGE_SUBMITED',
 data: href,
