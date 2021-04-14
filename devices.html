@@ -1,14 +1,14 @@
-<input type="text" id="devices" list="devices_datalist" placeholder="cached pages" onchange="
-// let cached = devices_datalist.
+<input type="text" id="modules" list="modules_datalist" placeholder="cached pages" onchange="
+// let cached = modules_datalist.
 if(this.value=='e'){
 dev_link.innerHTML=this.value;
 dev_link.href='maygame.xxx';
 }
 ">
-<datalist id="devices_datalist">
+<datalist id="modules_datalist">
     <optgroup></optgroup>
 </datalist>
-<input type="checkbox" id="cb_devices_new_tab" onchange=""><label for="cb_devices_new_tab">open in a new tab</label><br>
+<input type="checkbox" id="cb_modules_new_tab" onchange=""><label for="cb_modules_new_tab">open in a new tab</label><br>
 <a href="" class="button" id="dev_link">Link</a><br>
 <button onclick="ask_version()">Ask for version</button>
 <div id="ask_version_popup"></div>
@@ -18,11 +18,11 @@ dev_link.href='maygame.xxx';
 <p>Modular. You can add/remove modules. Modules are signed by a specific key. That's for when you want to share those</p>
 <p>Sharing mechanisms: Gun. Can dump db to a file or sync via bluetooth. </p>
 <p></p>
-<button onclick="console.log(make_page('device3'));">Make</button>
+<button onclick="console.log(make_page('module3'));">Make</button>
 <br>
 <!--  -->
 <iframe width="600" height="500" id="test_frame" 
-src="/device3.html?param1=value1" 
+src="/module3.html?param1=value1" 
 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 <!--  -->
 <a id="res_link" href=""></a>
@@ -39,7 +39,7 @@ function make_page(id){
   <title>MayGame</title>
   <meta name="description" content="No description">
   <meta name="author" content="Some dude">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=module-width, initial-scale=1">
   <!-- #region -->
   <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"><`+`/script>
   <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"><`+`/script>
@@ -73,7 +73,7 @@ caches.match(href).then(r => r).then(console.log)
 channel.postMessage({
 type: 'PAGE_SUBMITED',
 data: href,
-device: id
+module: id
 });
 //#endregion
         return href

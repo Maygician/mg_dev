@@ -1,6 +1,6 @@
 <div>
     <textarea id="area"></textarea>
-    <button onclick="make_page('device3')">Make</button>
+    <button onclick="make_page('module3')">Make</button>
     <a id="res_link" href=""></a>
 </div>
 <script>
@@ -20,7 +20,7 @@ channel.addEventListener('message', event => {
   <title>MayGame</title>
   <meta name="description" content="No description">
   <meta name="author" content="Some dude">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=module-width, initial-scale=1">
   <!-- #region -->
   <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"><`+`/script>
   <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"><`+`/script>
@@ -53,7 +53,7 @@ caches.match('/'+href).then(r => r).then(console.log)
 channel.postMessage({
 type: 'PAGE_SUBMITED',
 data: self.location.origin+'/'+href,
-device: href
+module: href
 });
 //#endregion
         return href

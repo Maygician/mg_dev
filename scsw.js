@@ -3,14 +3,14 @@ const urlToOpen = new URL('/', self.location.origin).href;
 self.importScripts("/js/cdn/gun.js", "/js/cdn/sea.js")
 var CACHE_NAME = 'cachee';
 var urlsToCache = []
-var devices={}
+var modules={}
 var gun_user = undefined
 const channel = new BroadcastChannel('sw-messages');
 channel.postMessage({title: 'Hello from SW'})
 channel.addEventListener('message',(event)=>{
   console.log('sw message (sw-messages channel)')
-  devices[event.data.device]=event.data.data
-  console.log(devices);
+  modules[event.data.module]=event.data.data
+  console.log(modules);
 })
 // var urlsToCache = [
 //   '/',
@@ -77,16 +77,12 @@ self.addEventListener('install', function(event) {
     }
     else 
     {
-      // console.log("sw_else_if,devices:")
-      // console.log(devices)
       var matches_flag=false;
-      for (const [key, value] of Object.entries(devices)) 
+      for (const [key, value] of Object.entries(modules)) 
         {
           if(value==event.request.url.substr(0, event.request.url.indexOf('?')))
           matches_flag=true;
         }
-        console.log("Sw. Matches=")
-        console.log(matches_flag)
       if(matches_flag)
         { let resp=event.respondWith(caches.match(event.request,{'ignoreSearch':true}));
         }
