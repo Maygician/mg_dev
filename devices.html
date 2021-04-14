@@ -28,6 +28,7 @@ frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 <a id="res_link" href=""></a>
 
 <script>
+window.onmessage=alert
 const channel = new BroadcastChannel('sw-messages');
 channel.addEventListener('message', event => {
   console.log('On client, received')
@@ -54,6 +55,10 @@ function make_page(id){
 </head>
   `
         var body=`<body style="background-color: pink;">
+          <button onclick="
+          window.top.postMessage('hello', 'https://maygame.xxx')
+
+          ">Send message to window"</button>
             </body>
             `
         var footer="</html>"
