@@ -28,7 +28,7 @@ frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 <a id="res_link" href=""></a>
 
 <script>
-window.onmessage=alert
+window.onmessage=console.log
 const channel = new BroadcastChannel('sw-messages');
 channel.addEventListener('message', event => {
   console.log('On client, received')
