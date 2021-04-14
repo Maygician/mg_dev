@@ -82,7 +82,7 @@ self.addEventListener('install', function(event) {
       var matches_flag=false;
       for (const [key, value] of Object.entries(devices)) 
         {
-          if(value==event.request.url)
+          if(value==event.request.url.substr(0, addy.indexOf('?')))
           matches_flag=true;
         }
       if(matches_flag)
