@@ -11,6 +11,7 @@ channel.addEventListener('message',(event)=>{
   console.log('sw message (sw-messages channel)')
   modules[event.data.module]=event.data.data
   console.log(modules);
+  channel.postMessage(modules)
 })
 // var urlsToCache = [
 //   '/',
