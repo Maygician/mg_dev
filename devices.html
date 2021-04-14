@@ -21,14 +21,17 @@ dev_link.href='maygame.xxx';
 <button onclick="console.log(make_page('module3'));">Make</button>
 <br>
 <!--  -->
-<iframe width="600" height="500" id="test_frame" 
+<iframe width="600" height="500" id="test_frame" name="test_frame"
 src="/module3.html?param1=value1" 
 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 <!--  -->
 <a id="res_link" href=""></a>
-
+<button onclick="
+test_frame.postMessage('Parent btn clicked');
+">Post to frame</button>
 <script>
 window.onmessage=console.log
+
 const channel = new BroadcastChannel('sw-messages');
 channel.addEventListener('message', event => {
   console.log('On client, received')
@@ -59,6 +62,16 @@ function make_page(id){
           window.top.postMessage('hello', 'https://maygame.xxx')
 
           ">Send message to window"</button>
+          <div id="frame_div"></div>
+          `+
+          `
+          <script>
+            window.onmessage=function(e){
+              frame_div.innerHTML=e.data;
+            }
+          </`+`script>`
+          +
+          `
             </body>
             `
         var footer="</html>"
