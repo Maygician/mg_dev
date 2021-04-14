@@ -9,7 +9,7 @@ const channel = new BroadcastChannel('sw-messages');
 // channel.postMessage({title: 'Hello from SW'})
 channel.addEventListener('message',(event)=>{
   if(event.data.type=='PAGE_SUBMITED'){
-  console.log('sw message (sw-messages channel)')
+  console.log('Module Submited')
   modules[event.data.module]=event.data.data
   console.log(modules);
   channel.postMessage({'data':modules,'type':'MODULES_UPDATED'});}
@@ -85,6 +85,9 @@ self.addEventListener('install', function(event) {
         {
           if(value==event.request.url.substr(0, event.request.url.indexOf('?')))
           matches_flag=true;
+          console.log("Fetch +2. matches, modules")
+          console.log(matches_flag)
+          console.log(modules)
         }
       if(matches_flag)
         { let resp=event.respondWith(caches.match(event.request,{'ignoreSearch':true}));
