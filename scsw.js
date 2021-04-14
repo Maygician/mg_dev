@@ -82,9 +82,11 @@ self.addEventListener('install', function(event) {
       var matches_flag=false;
       for (const [key, value] of Object.entries(devices)) 
         {
-          if(value==event.request.url.substr(0, addy.indexOf('?')))
+          if(value==event.request.url.substr(0, event.request.url.indexOf('?')))
           matches_flag=true;
         }
+        console.log("Sw. Matches=")
+        console.log(matches_flag)
       if(matches_flag)
         {
           event.respondWith(caches.match(event.request),{'ignoreSearch':true});
