@@ -25,6 +25,11 @@
         function call_officer(){
             send_message('911');
         }
+        function sub(topic){
+            let text = {'topic':topic,'action':'sub','me':'test'}
+            //me => fixme. Should be identifier. This one's given as a url param to iframe
+            send_message(text)
+        }
     </script>
 </body>
 </html>
