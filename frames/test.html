@@ -8,12 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="margin: 0;">
-    <button onclick="send_message()">Send message</button>
+    <button onclick="send_message(tarea.value)">Send message</button>
     <textarea id="tarea"></textarea>
     <script>
-        function send_message(){
-            window.parent.postMessage(tarea.value,"https://maygame.xxx")
+        function send_message(text){
+            window.parent.postMessage(text,"https://maygame.xxx")
         }
+        window.onmessage((e)=>{
+            if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
+            call_officer();
+
+        }
+        else send_message("Reply from test.")
+        })
+        function call_officer(){}
     </script>
 </body>
 </html>
