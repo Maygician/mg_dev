@@ -1,0 +1,22 @@
+#Assumptions: 1 device - 1 user
+First visit ever:
+tap to play:
+  default config:
+    loads latest core (potentially, builds for this device).
+  Prompt to customize (later):
+  
+
+First time on this device:
+
+Consequent visits:
+tap to play:
+  cached version, defaults,
+
+_______________
+Default:
+t2p:
+  load some page with lots of hidden frames.
+  you can customize those later.
+  customization consists of:
+    add url of a similar functioned frame.
+    
