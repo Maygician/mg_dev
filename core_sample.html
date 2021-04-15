@@ -1,8 +1,37 @@
-<script src="/js/core/wsjs.js"></script>
-<p>Thy shall see no core</p>
-<iframe name="quests" src="quests" id="frame_quests"> </iframe>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>MayGame</title>
+  <meta name="description" content="No description">
+  <meta name="author" content="Some dude">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- #region -->
+  <!-- <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script> -->
+  <script id="wsjs_innerscript" src="js/core/wsjs.js"></script>
+  <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+    <button onclick="toggle(quests_layer)">Quests</button>
+    <button onclick="toggle(profile_layer)">Profile</button>
+    <button onclick="toggle(hud_layer)">Hud</button>
+
+    <br>
+<div id="quests_layer" class="layer"><div>
+    <iframe name="quests" src="quests" id="frame_quests"></iframe>
+</div></div>
+<div id="hud_layer" class="layer"><div>
+    <iframe name="hud" src="hud" id="frame_hud"></iframe>
+</div></div>
+<div id="profile_layer" class="layer"><div>
+    <iframe name="profile" src="profile" id="frame_profile"></iframe>
+</div></div>
 
 <script defer id="js_init">
     let def_frame_style = {"height":500,"width":500,"display":'block'}
     frame_quests.style=def_frame_style
 </script>
+</body>
+</html>
