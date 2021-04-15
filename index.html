@@ -163,7 +163,13 @@ btn_to_local.disabled=!btn_to_local.disabled
     result += header + body + footer
     console.log(result)
     let url = 'core_sample.html'
+    //#region second login 
+    console.log(localStorage.getItem('cached_core'))
+    //#endregion
+    //cache result, url = cached core link, if no cached version already
     window.open(url, '_blank');
+
+
   }
   var lastCached
 </script>
