@@ -19,9 +19,12 @@
             call_officer();
 
         }
-        else send_message("Reply from test.")
+        event.source.postMessage('Reply from test')
+        // else send_message("Reply from test.");
         })
-        function call_officer(){}
+        function call_officer(){
+            send_message('911');
+        }
     </script>
 </body>
 </html>
