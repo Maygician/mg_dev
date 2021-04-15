@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>MayGame</title>
+  <meta name="description" content="No description">
+  <meta name="author" content="Some dude">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin: 0;">
+    <button onclick="send_message()">Send message</button>
+    <textarea id="tarea"></textarea>
+    <script>
+        function send_message(){
+            window.parent.postMessage(tarea.value,"https://maygame.xxx")
+        }
+    </script>
+</body>
+</html>
