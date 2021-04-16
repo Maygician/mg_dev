@@ -17,10 +17,11 @@
         window.onmessage=(e)=>{
             if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
             call_officer();
-
+            return;
         }
         event.source.postMessage('Reply from test')
         // else send_message("Reply from test.");
+        tarea.value=e.data;
         }
         function call_officer(){
             send_message('911');
