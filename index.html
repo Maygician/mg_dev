@@ -17,8 +17,9 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <button>Cache it</button>
 <button>Template it</button>
 <br>
+<!-- Content security policy stuff: todo -->
 <button onclick="
-let config = {'core':{'url':'core_sample'}, 'replace':[]}
+let config = {'core':{'url':'templates/core_sample.html.ejs'}, 'replace':{'quests_url':'quests'}}
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
 let result = ejs.render(e,config.replace)
