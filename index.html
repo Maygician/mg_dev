@@ -39,7 +39,7 @@ ediv.innerHTML=ejs.render(config_div_template,config)
 <script>
 var config_div_template=`
 <p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
-<select id="config_select" onchange="edconf_key.value=this.value;">
+<select id="config_select" onchange="edconf_key.value=this.value;edconf_key.value=config_select.innertext">
     <% Object.keys(replace).forEach(function(key) { %>
        <option value="<%= replace[key] %>"><%= key %></option>
     <% }); %>
