@@ -19,13 +19,15 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <br>
 <button onclick="
 let config = {'core':{'url':'core_sample'}, 'replace':[]}
-var core = config.core.url;
-fetch(core).then((response)=>{response.text().then((e)=>core=e)});
-console.log(core)
+let core = config.core.url;
+fetch(core).then((response)=>{response.text().then((e)=>{
+let result = ejs.render(e,config.replace)
+cache_as(result,'core_something.html')//fixme, todo
+});
+});
 // config.replace.forEach(value=>{
 // })
-let result = ejs.render(core,config.replace)
-cache_as(result,'core_something.html')//fixme, todo
+
 ">Load from config</button>
 <script>function cache_as(html,link){
   console.log('cache_as +2. Link, html')
