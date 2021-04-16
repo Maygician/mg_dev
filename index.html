@@ -20,8 +20,10 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <!-- Content security policy stuff: todo -->
 <label for="confi_url">url to fetch your config from</label>
 <input type="text" value="config/sample.json" id="config_url">
+<button onclick="
+fetch_config(config_url.value)
+">Load config file</button>
 <button onclick=";(async ()=>{
-await fetch_config(config_url.value)
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
 let result = ejs.render(e,config.replace)
@@ -29,7 +31,8 @@ cache_as(result,'core_something.html')//fixme, todo
 });
 });
 })();
-">Load from config</button>
+">Load from config. Click me twice</button>
+<!-- fixme. proper awaits + chaining -->
 <script>function cache_as(html,link){
   console.log('cache_as +2. Link, html')
   console.log(link)
@@ -172,23 +175,7 @@ btn_to_local.disabled=!btn_to_local.disabled
         cdiv.innerHTML = 'newest '
     }
   };
-  function mod2text(modules) {
-    let head = ''//+get default head
-    let it1 = {}
-    it1.mod = 'quest'
-    it1.pos = 1//priority
-    let it2 = {}
-    it2.mod = 'quest'
-    it2.pos = 2//priority
-    var mlist = [];
-    mlist[1] = it1;
-    mlist[2] = it2;
-    mlist.forEach((it) => {
-      head += it?.head.text
 
-    })
-
-  }
   function t2p() {
     var mods = { 'name': 'a', }
     let result = ''
