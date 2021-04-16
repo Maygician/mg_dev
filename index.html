@@ -12,17 +12,15 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <br>
 <!--  -->
 <br>
-<h1>Init order</h1>
-<button>Check it</button>
-<button>Cache it</button>
-<button>Template it</button>
+<h1>Init</h1>
 <br>
 <!-- Content security policy stuff: todo -->
 <label for="config_url">url to fetch your config from</label>
 <input type="text" value="config/sample.json" id="config_url">
 <button onclick="
 fetch_config(config_url.value)
-">Load config file</button>
+">Load config file</button><br>
+<!-- todo: validate -->
 <button onclick=";(async ()=>{
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
