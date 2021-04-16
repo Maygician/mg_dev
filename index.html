@@ -39,12 +39,12 @@ ediv.innerHTML=ejs.render(config_div_template,config)
 <script>
 var config_div_template=`
 <p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
-<select id="config_select">
+<select id="config_select" onchange="console.log(this.value)">
     <% Object.keys(replace).forEach(function(key) { %>
        <option value="<%= replace[key] %>"><%= key %></option>
     <% }); %>
-    <button onclick="console.log(config_select.value)">Log</button>
 </select>
+<button onclick="console.log(config_select.value)">Log</button>
 `
 
 function cache_as(html,link){
