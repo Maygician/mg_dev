@@ -35,8 +35,8 @@ cache_as(result,'core_something.html')//fixme, todo
 }
 var config
 ;(async function(){
-  config = fetch('config/sample.json').then((response)=>{response.json()})
-  .then(cfg=>{return cfg})
+  fetch('config/sample.json').then((response)=>{response.json()})
+  .then(cfg=>{config = cfg; console.log(cfg)})
 })();
 console.log(cfg)
 </script>
