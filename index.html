@@ -41,6 +41,11 @@ ediv.innerHTML=ejs.render(config_div_template,config)
 <script>
 var config_div_template=`
 <p>Testing stuff: <%= core.url %></p>
+<select>
+    <% Object.keys(core).forEach(function(key) { %>
+       <option value="<%= core[key] %>"><%= key %></option>
+    <% }); %>
+</select>
 `
 
 function cache_as(html,link){
