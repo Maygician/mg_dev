@@ -1,1 +1,1 @@
-{"core":{"url":"templates/core_sample.html.ejs"}, "replace":{"quests_url":"quests"}}
+{"core":{"url":"templates/core_sample.html.ejs"}, "replace":{"quests_url":"quests","hud_url":"hud"}}
