@@ -19,7 +19,7 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <br>
 <!-- Content security policy stuff: todo -->
 <button onclick="
-
+fetch_config('config/sample.json')
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
 let result = ejs.render(e,config.replace)
@@ -34,10 +34,10 @@ cache_as(result,'core_something.html')//fixme, todo
   console.log(html)
 }
 var config
-;(async function(){
-  fetch('config/sample.json').then((response)=>{response.json()
+async function fetch_config(url){
+  fetch(url).then((response)=>{response.json()
   .then(cfg=>{config = cfg; console.log(cfg)})
-})})();
+})}
 </script>
 <br>
 <h1>-------------------------------</h1>
