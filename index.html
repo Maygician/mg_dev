@@ -18,8 +18,10 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <button>Template it</button>
 <br>
 <!-- Content security policy stuff: todo -->
+<label for="confi_url">url to fetch your config from</label>
+<input type="text" value="config/sample.json" id="config_url">
 <button onclick="
-fetch_config('config/sample.json')
+fetch_config(config_url.value)
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
 let result = ejs.render(e,config.replace)
