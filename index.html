@@ -19,16 +19,15 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <br>
 <!-- Content security policy stuff: todo -->
 <button onclick="
-let config = {'core':{'url':'templates/core_sample.html.ejs'}, 'replace':{'quests_url':'quests'}}
+fetch('config/sample.json').then((response)=>{response.json()})
+.then(config=>{
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
 let result = ejs.render(e,config.replace)
 cache_as(result,'core_something.html')//fixme, todo
 });
 });
-// config.replace.forEach(value=>{
-// })
-
+});
 ">Load from config</button>
 <script>function cache_as(html,link){
   console.log('cache_as +2. Link, html')
