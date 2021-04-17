@@ -51,7 +51,10 @@ edconf_old_value.innerText=config_initial.replace[t];
     <% }); %>
 </select><label for"edconf_key">Key</label><input type="text" id="edconf_key" disabled>
 <label for"edconf_value">value</label><input type="text" id="edconf_value"><p>old value: <a id="edconf_old_value"></a></p>
-<button onclick="console.log(edconf_value.value)">Apply</button>
+<button onclick="
+console.log(edconf_value.value);
+config.replace[edconf_key.value]=edconf_value.value;
+">Apply</button>
 `
 
 function cache_as(html,link){
