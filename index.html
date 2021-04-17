@@ -42,8 +42,8 @@ var config_div_template=`
 <p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
 <select id="config_select" onchange="
 let t = config_select.options[config_select.selectedIndex].text;
-edconf_key.value=this.value;
-edconf_value.value=t;
+edconf_key.value=t;
+edconf_value.value=this.value;
 edconf_old_value.innerText=config_initial.replace[t];
 ">
     <% Object.keys(replace).forEach(function(key) { %>
