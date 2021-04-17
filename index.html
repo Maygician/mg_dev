@@ -44,7 +44,7 @@ var config_div_template=`
 let t = config_select.options[config_select.selectedIndex].text;
 edconf_key.value=t;
 edconf_value.value=this.value;
-edconf_old_value.innerText=config_initial[replace][t];
+edconf_old_value.innerText=config_initial.replace.[t];
 ">
     <% Object.keys(replace).forEach(function(key) { %>
        <option value="<%= replace[key] %>"><%= key %></option>
