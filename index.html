@@ -37,13 +37,14 @@ ediv.innerHTML=ejs.render(config_div_template,config)
 <div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
 <!-- fixme. proper awaits + chaining -->
 <script>
+var config_initial
 var config_div_template=`
 <p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
 <select id="config_select" onchange="
 edconf_key.value=this.value;
 let t = config_select.options[config_select.selectedIndex].text;
 edconf_value.value=t;
-edconf_old_value.innerText=this.value;
+edconf_old_value.innerText=config_initial[this.value];
 ">
     <% Object.keys(replace).forEach(function(key) { %>
        <option value="<%= replace[key] %>"><%= key %></option>
@@ -60,7 +61,7 @@ function cache_as(html,link){
 var config
 async function fetch_config(url){
   fetch(url).then((response)=>{response.json()
-  .then(cfg=>{config = cfg; console.log(cfg)})
+  .then(cfg=>{config = cfg; config_initial = cfg; console.log(cfg)})
 })}
 </script>
 <br>
