@@ -48,7 +48,7 @@ edconf_old_value.innerText=t;
     <% Object.keys(replace).forEach(function(key) { %>
        <option value="<%= replace[key] %>"><%= key %></option>
     <% }); %>
-</select><input type="text" id="edconf_key"><input type="text" id="edconf_value"><a id="edconf_old_value"></a>
+</select><input type="text" id="edconf_key"><input type="text" id="edconf_value"><p>old value: <a id="edconf_old_value"></a></p>
 <button onclick="edconf_key.value=>console.log">Apply</button>
 `
 
