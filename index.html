@@ -36,9 +36,9 @@ cfg_render();
 "
 >Edit config</button>
 <button onclick="
-localStorage.setItem('saved_cfg',config);
+localStorage.setItem('saved_cfg',JSON.stringify(config));
 ">Save config (localStorage)</button><button onclick="
-config = localStorage.getItem('saved_cfg');
+config = JSON.parse(localStorage.getItem('saved_cfg'));
 config_initial = config_initial || JSON.parse(JSON.stringify(config));
 console.log(config);
 ">Load last stored config</button>
