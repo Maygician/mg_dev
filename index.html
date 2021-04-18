@@ -24,7 +24,8 @@ fetch_config(config_url.value)
 <button onclick=";(async ()=>{
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
-let result = ejs.render(e,config.replace)
+let result = ejs.render(e,config.replace);
+document.getElementById('template_showdown').innerText=e;
 cache_as(result,'core_something.html')//fixme, todo
 });
 });
@@ -35,6 +36,8 @@ cfg_render();
 "
 >Edit config</button>
 <div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
+<p id='template_showdown'></p>
+
 <!-- fixme. proper awaits + chaining -->
 <script>
 var config_initial
