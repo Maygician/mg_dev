@@ -35,6 +35,11 @@ onclick="
 cfg_render();
 "
 >Edit config</button>
+<button onclick="
+localStorage.setItem('saved_cfg',config);
+">Save config (localStorage)</button><button onclick="
+config = localStorage.getItem('saved_cfg');
+">Load last stored config</button>
 <div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
 <div style="position: relative; overflow: scroll; width: 500px; height: 500px; bottom: 0; right: 0; opacity: 0.7;">  
   <p id='template_showdown' style="pointer-events: none; position: relative; background-color: pink; bottom: 0; width: fit-content; height: fit-content;">
