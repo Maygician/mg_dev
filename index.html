@@ -25,7 +25,7 @@ fetch_config(config_url.value)
 let core = config.core.url;
 fetch(core).then((response)=>{response.text().then((e)=>{
 let result = ejs.render(e,config.replace);
-document.getElementById('template_showdown').innerText=e;
+document.getElementById('template_showdown').innerText+=e;
 cache_as(result,'core_something.html')//fixme, todo
 });
 });
