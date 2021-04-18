@@ -31,14 +31,18 @@ cache_as(result,'core_something.html')//fixme, todo
 })();
 ">Load from config</button><button
 onclick="
-ediv.innerHTML=ejs.render(config_div_template,config);
-sel_change(config_select.value);
+cfg_render();
 "
 >Edit config</button>
 <div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
 <!-- fixme. proper awaits + chaining -->
 <script>
 var config_initial
+var cfg_render = function(){
+
+ediv.innerHTML=ejs.render(config_div_template,config);
+sel_change(config_select.value);
+}
 var sel_change = function(e){
   let t = config_select.options[config_select.selectedIndex].text;
 edconf_key.value=t;
@@ -60,7 +64,7 @@ ediv.innerHTML=ejs.render(config_div_template,config);
 <button onclick="
 console.log(edconf_value.value);
 config.replace[edconf_key.value]=edconf_value.value;
-ediv.innerHTML=ejs.render(config_div_template,config);
+cfg_render();
 ">Apply</button>
 `
 
