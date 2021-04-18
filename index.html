@@ -13,6 +13,22 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <!--  -->
 <br>
 <h1>Init</h1>
+<p>Default behavior: </p>
+<p><a>Load config from localStorage. </a><button onclick="do_default()">Do.</button></p>
+<script>
+  function do_default(){
+    let url = 'core_sample.html'
+    //#region second login 
+    config = JSON.parse(localStorage.getItem('saved_cfg'));
+    console.log('config loaded:')
+    console.log(config)
+    console.log('cached_core:')
+    console.log(localStorage.getItem('cached_core'))
+    //#endregion
+    //cache result, url = cached core link, if no cached version already
+    window.open(url, '_blank');
+  }
+</script>
 <br>
 <!-- Content security policy stuff: todo -->
 <label for="config_url">url to fetch your config from</label>
@@ -224,14 +240,7 @@ btn_to_local.disabled=!btn_to_local.disabled
   };
 
   function t2p() {
-    var mods = { 'name': 'a', }
-    let result = ''
-    let header_close = '</head>'
-    let header = modules.head.text
-    let body = modules.body.text
-    let footer = modules.footer.text
-    result += header + body + footer
-    console.log(result)
+  
     let url = 'core_sample.html'
     //#region second login 
     console.log(localStorage.getItem('cached_core'))
