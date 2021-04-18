@@ -38,14 +38,16 @@ ediv.innerHTML=ejs.render(config_div_template,config)
 <!-- fixme. proper awaits + chaining -->
 <script>
 var config_initial
+var sel_change = function(e){
+  let t = config_select.options[config_select.selectedIndex].text;
+edconf_key.value=t;
+edconf_value.value=e;
+edconf_old_value.innerText=config_initial.replace[t];
+}
 var config_div_template=`
 <p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
-<select id="config_select" onchange="
-let t = config_select.options[config_select.selectedIndex].text;
-edconf_key.value=t;
-edconf_value.value=this.value;
-edconf_old_value.innerText=config_initial.replace[t];
-">
+<select id="config_select" onload="sel_change(this.value)" 
+onchange="sel_change(this.value)">
     <% Object.keys(replace).forEach(function(key) { %>
        <option value="<%= replace[key] %>"><%= key %></option>
     <% }); %>
@@ -73,6 +75,8 @@ async function fetch_config(url){
 })}
 </script>
 <br>
+<h1>-------------------------------</h1>
+<p></p>
 <h1>-------------------------------</h1>
 <!--  -->
 <br>
