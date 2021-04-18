@@ -19,15 +19,25 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
   function do_default(){
     let url = 'core_sample.html'
     //#region second login 
-    config = JSON.parse(localStorage.getItem('saved_cfg'));
-    console.log('config loaded:')
-    console.log(config)
-    console.log('cached_core:')
-    console.log(localStorage.getItem('cached_core'))
-    //#endregion
-    //cache result, url = cached core link, if no cached version already
-    window.open(url, '_blank');
-  }
+    let ls_cfg=localStorage.getItem('saved_cfg');
+    if(ls_cfg){
+      config = JSON.parse(ls_cfg);
+      console.log('config loaded:')
+      console.log(config)
+      let core = config.core.url;
+      fetch(core)
+      .then((response)=>{response.text()
+        .then((e)=>{
+        let result = ejs.render(e,config.replace);
+        localStorage.setItem('cached_core',result)
+        console.log('cached_core:')
+        console.log(localStorage.getItem('cached_core'))
+        //#endregion
+        //cache result, url = cached core link, if no cached version already
+        window.open(url, '_blank');
+        })
+      })    
+    } else {}
 </script>
 <br>
 <!-- Content security policy stuff: todo -->
