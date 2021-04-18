@@ -31,7 +31,8 @@ cache_as(result,'core_something.html')//fixme, todo
 })();
 ">Load from config</button><button
 onclick="
-ediv.innerHTML=ejs.render(config_div_template,config)
+ediv.innerHTML=ejs.render(config_div_template,config);
+sel_change(config_select.value);
 "
 >Edit config</button>
 <div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
@@ -46,7 +47,7 @@ edconf_old_value.innerText=config_initial.replace[t];
 }
 var config_div_template=`
 <p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
-<select id="config_select" onload="sel_change(this.value)" 
+<select id="config_select" 
 onchange="sel_change(this.value)">
     <% Object.keys(replace).forEach(function(key) { %>
        <option value="<%= replace[key] %>"><%= key %></option>
