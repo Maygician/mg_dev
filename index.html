@@ -43,7 +43,7 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
     //#region second login 
     let ls_cfg=localStorage.getItem('saved_cfg');
     if(ls_cfg){
-      config = await setTimeout(()=>JSON.parse(ls_cfg),30);
+      config = await setTimeout(()=>JSON.parse(ls_cfg),3000);
       console.log('config loaded:')
       console.log(config)
       let core = config.core.url;
