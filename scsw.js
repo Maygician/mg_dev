@@ -85,7 +85,7 @@ self.addEventListener('install', function(event) {
         {
           let qm_index=event.request.url.indexOf('?');
           let stripped_url = event.request.url
-          if(qm_index)
+          if(qm_index>0)
           stripped_url=stripped_url.substr(0, qm_index)
           if(value==stripped_url)//fixme: actual validation
           matches_flag=true;
