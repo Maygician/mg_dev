@@ -83,9 +83,13 @@ self.addEventListener('install', function(event) {
       var matches_flag=false;
       for (const [key, value] of Object.entries(modules)) 
         {
-          if(value==event.request.url.substr(0, event.request.url.indexOf('?')))
+          let qm_index=event.request.url.indexOf('?');
+          let stripped_url = event.request.url
+          if(qm_index)
+          stripped_url=stripped_urlsubstr(0, qm_index)
+          if(value==stripped_url)//fixme: actual validation
           matches_flag=true;
-          console.log("Fetch. matches")
+          // console.log("Fetch. matches")
           // console.log(matches_flag)
           // console.log(modules)
         }
