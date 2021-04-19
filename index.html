@@ -299,7 +299,9 @@ btn_to_local.disabled=!btn_to_local.disabled
     let cfg = JSON.stringify(config);
     btoa(cfg);
     let b64urlparam = Base64EncodeUrl(btoa(cfg));
-    return self.location.origin+'/'+'index.html?b64url='+b64urlparam
+    let res = self.location.origin+'/'+'index.html?b64url='+b64urlparam;
+    console.log("res_link: " + res)
+    return res
   }
   function url2cfg(url){
     let params=new URLSearchParams(url);
