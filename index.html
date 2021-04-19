@@ -134,6 +134,7 @@ config.replace[edconf_key.value]=edconf_value.value;
 cfg_render();
 ">Apply</button>
 `
+const channel = new BroadcastChannel('sw-messages');
 
 function cache_as(html,href){
   console.log('cache_as +2. Link, html')
