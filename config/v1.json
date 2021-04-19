@@ -1,7 +1,7 @@
 {"core":{"url":"content/v1/core.html.ejs"}, 
 "replace":{
-    "quests_url":"quests.html",
-    "profile_url":"profile.html",
-    "hud_url":"hud.html",
+    "quests_url":"content/v1/quests.html",
+    "profile_url":"content/v1/profile.html",
+    "hud_url":"content/v1/hud.html",
     "currency_url":"content/v1/currencies.html"
     }}
