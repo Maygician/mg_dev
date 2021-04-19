@@ -296,13 +296,15 @@ btn_to_local.disabled=!btn_to_local.disabled
   };
 
   function t2p() {
-  
-    let url = 'core_sample.html'
-    //#region second login 
-    console.log(localStorage.getItem('cached_core'))
+    fetch_config(config_url.value);
+    localStorage.setItem('saved_cfg',JSON.stringify(config));//save config
+    do_default();
+
+    // //#region second login 
+    // console.log(localStorage.getItem('cached_core'))
     //#endregion
     //cache result, url = cached core link, if no cached version already
-    window.open(url, '_blank');
+    // window.open(url, '_blank');
 
 
   }
