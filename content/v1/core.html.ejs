@@ -11,6 +11,7 @@
   <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script> -->
   <script id="wsjs_innerscript" src="js/core/wsjs.js"></script>
   <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
 </head>
 <body>
 <style>
@@ -41,7 +42,7 @@ html, body, iframe
 <div id="menu" style="position: fixed; z-index: 2147483210; bottom: 0;">
     <button onclick="toggle(quests_layer)">Quests</button>
     <button onclick="toggle(profile_layer)">Profile</button>
-    <button onclick="toggle(hud_layer)">Hud</button>
+    <button onclick="toggle_pevents(frame_hud)">Hud</button>
     <button onclick="toggle(curr_layer)">Currencies</button>
     <button onclick="toggle(test_layer)">Test</button>
     <br>
@@ -50,9 +51,9 @@ html, body, iframe
     <div id="message_div"></div>
 </div>
     <br>
-<div id="quests_layer" class="layer" style="display: none;">
+<div id="quests_layer" class="layer" style="display: none; ">
     <iframe name="quests" src="<%= quests_url %>" id="frame_quests" style="border: 0; width: 100%; height: 100%"></iframe>
-</div>
+</div></div>
 <div id="hud_layer" class="layer">
     <iframe name="hud" src="<%= hud_url %>" id="frame_hud" style="border: 0; width: 100%; height: 100%"></iframe>
 </div>
@@ -67,12 +68,18 @@ html, body, iframe
 </div>
 
 <script defer id="js_init">
-    // let def_frame_style = {"height":500,"width":500,"display":'block'}
-    // frame_quests.style=def_frame_style
+
 </script>
 <script>
     window.onmessage=(e)=>{message_div.innerText=e.data; console.log(e.data)}
 
 </script> 
+<script>
+    function toggle_pevents(target){
+        if(target.style.pointerEvents=='none')
+        target.style.pointerEvents='all'
+        else target.style.pointerEvents = 'none'
+    }
+</script>
 </body>
 </html>
