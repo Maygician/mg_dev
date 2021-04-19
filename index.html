@@ -297,9 +297,9 @@ btn_to_local.disabled=!btn_to_local.disabled
   };
 
   async function t2p() {
-    await localStorage.setItem('saved_cfg',JSON.stringify(config)).then(
-    fetch_config(config_url.value)).then(
-    do_default());
+    localStorage.setItem('saved_cfg',JSON.stringify(config));
+    fetch_config(config_url.value);
+    do_default();
 
     // //#region second login 
     // console.log(localStorage.getItem('cached_core'))
