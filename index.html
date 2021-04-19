@@ -1,5 +1,5 @@
 <script src="js/cdn/ejs.min.js"></script>
-<button style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap to
+<button style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap three times to
   play</button>
   <!-- fixme -->
 <br>
@@ -297,7 +297,7 @@ btn_to_local.disabled=!btn_to_local.disabled
   async function t2p() {
     localStorage.setItem('saved_cfg',JSON.stringify(config));
     fetch_config(config_url.value);
-    await do_default().then(do_default());
+    do_default();
 
     // //#region second login 
     // console.log(localStorage.getItem('cached_core'))
