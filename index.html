@@ -296,9 +296,9 @@ btn_to_local.disabled=!btn_to_local.disabled
     }
   };
 
-  function t2p() {
-    fetch_config(config_url.value);
-    localStorage.setItem('saved_cfg',JSON.stringify(config));//save config
+  async function t2p() {
+    await fetch_config(config_url.value);
+    await localStorage.setItem('saved_cfg',JSON.stringify(config));//save config
     do_default();
 
     // //#region second login 
