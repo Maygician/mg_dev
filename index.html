@@ -305,9 +305,13 @@ btn_to_local.disabled=!btn_to_local.disabled
   }
   function url2cfg(url){
     let params=new URLSearchParams(url);
+    console.log(params)
     let burl = params.get('b64url');
+    console.log(burl)
     let b64 = Base64DecodeUrl(burl);
+    console.log(b64)
     let plainText = atob(b64);
+    console.log(plainText)
     let cfg = JSON.parse(plainText);
     return cfg;
   }
