@@ -3,6 +3,5 @@
     "quests_url":"quests.html",
     "profile_url":"profile.html",
     "hud_url":"hud.html",
-    "currency_url":"frames/curr.html"
-    
+    "currency_url":"content/v1/currencies.html"
     }}
