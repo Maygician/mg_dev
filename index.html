@@ -39,12 +39,11 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
   // function dd2_init(){
   //   localStorage.setItem('default_do','cached_page')
   // }
-  function do_default(){
-    let url = 'core_sample.html'
+ async function do_default(){
     //#region second login 
     let ls_cfg=localStorage.getItem('saved_cfg');
     if(ls_cfg){
-      config = JSON.parse(ls_cfg);
+      config = await setTimeout(()=>JSON.parse(ls_cfg),30);
       console.log('config loaded:')
       console.log(config)
       let core = config.core.url;
