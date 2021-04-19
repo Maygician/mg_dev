@@ -16,6 +16,28 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <p>Default behavior: </p>
 <p><a>Load config from localStorage. </a><button onclick="do_default()">Do.</button></p>
 <script>
+  function do_cached_core(){
+    let cc=localStorage.getItem('cached_core');
+    if(cc){
+
+      return true;
+    }
+    else return false;
+  }
+  function dd2(){
+   let dd= localStorage.getItem('default_do');
+   if(!dd)do_default;//
+   else if(dd=='cached_page'){
+    let url = localStorage.getItem('cached_url')||'core_sample.html'
+    window.open(url, '_blank');
+   }
+   else if(dd==''){
+
+   }
+  }
+  // function dd2_init(){
+  //   localStorage.setItem('default_do','cached_page')
+  // }
   function do_default(){
     let url = 'core_sample.html'
     //#region second login 
@@ -34,6 +56,7 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
         console.log(localStorage.getItem('cached_core'))
         //#endregion
         //cache result, url = cached core link, if no cached version already
+        localStorage.setItem('default_do','cached_page')
         window.open(url, '_blank');
         })
       })    
