@@ -274,6 +274,7 @@ btn_to_local.disabled=!btn_to_local.disabled
    * first is used for dom modification, second is appended and cached
   */
 </script>
+<button onclick="testb64()">testb64</button>
 <script>
   function customize_submit() {
     const rbs = document.querySelectorAll('input[name="def_beh"]');
@@ -294,6 +295,32 @@ btn_to_local.disabled=!btn_to_local.disabled
     }
   };
 
+  function cfg2url(){
+    let cfg = JSON.stringify(config);
+    btoa(cfg);
+    let b64urlparam = Base64EncodeUrl(btoa(cfg));
+    return self.location.origin+'/'+'index.html?b64url='+b64urlparam
+  }
+  function url2cfg(url){
+    let params=new URLSearchParams(url);
+    let burl = params.get('b64url');
+    let b64 = Base64DecodeUrl(burl);
+    let plainText = atob(b64);
+    let cfg = JSON.parse(plainText);
+    return cfg;
+  }
+function testb64(){
+  let res = url2cfg(cfg2url());
+  console.log(res);
+}
+
+  function Base64EncodeUrl(str){
+    return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+}
+function Base64DecodeUrl(str){
+    str = (str + '===').slice(0, str.length + (str.length % 4));
+    return str.replace(/-/g, '+').replace(/_/g, '/');
+}
   async function t2p() {
     localStorage.setItem('saved_cfg',JSON.stringify(config));
     fetch_config(config_url.value);
