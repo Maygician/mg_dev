@@ -89,8 +89,9 @@ self.addEventListener('install', function(event) {
           // console.log(matches_flag)
           // console.log(modules)
         }
-      if(matches_flag)
-        { let resp=event.respondWith(caches.match(event.request,{'ignoreSearch':true}));
+      if(matches_flag){
+        // { let resp=
+          event.respondWith(caches.match(event.request,{'ignoreSearch':true}));
         }
       // else
       //   { 
