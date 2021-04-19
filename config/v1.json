@@ -1,0 +1,8 @@
+{"core":{"url":"content/v1/core.html.ejs"}, 
+"replace":{
+    "quests_url":"quests.html",
+    "profile_url":"profile.html",
+    "hud_url":"hud.html",
+    "currency_url":"frames/curr.html"
+    
+    }}

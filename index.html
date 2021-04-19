@@ -72,7 +72,7 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <br>
 <!-- Content security policy stuff: todo -->
 <label for="config_url">url to fetch your config from</label>
-<input type="text" value="config/sample.json" id="config_url">
+<input type="text" value="config/v1.json" id="config_url">
 <button onclick="
 fetch_config(config_url.value)
 ">Load config file</button><br>
@@ -99,7 +99,7 @@ config_initial = config_initial || JSON.parse(JSON.stringify(config));
 console.log(config);
 ">Load last stored config</button>
 <div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
-<div style="position: relative; overflow: scroll; width: 500px; height: 500px; bottom: 0; right: 0; opacity: 0.7;">  
+<div style="position: relative; overflow: scroll; width: 500px; height: 500px; bottom: 0; right: 0; opacity: 0.7; display: none;">  
   <p id='template_showdown' style="pointer-events: none; position: relative; background-color: pink; bottom: 0; width: fit-content; height: fit-content;">
     <a onclick="template_showdown.lastChild.innerText='';" style="background-color: plum; position: absolute; pointer-events: all;">Reset</a><a style="pointer-events: none;"></a></p>
 </div>
