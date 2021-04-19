@@ -51,17 +51,23 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
       .then((response)=>{response.text()
         .then((e)=>{
         let result = ejs.render(e,config.replace);
-        localStorage.setItem('cached_core',result)
-        console.log('cached_core:')
-        console.log(localStorage.getItem('cached_core'))
+        localStorage.setItem('cached_core',result);
+        console.log('cached_core:');
+        console.log(localStorage.getItem('cached_core'));
+        let url = undefined;
+        url=document.getElementById('url_to_cache').value;
+        console.log(url);
+        cache_as(result,url)
+        localStorage.setItem('cached_url',url);
         //#endregion
         //cache result, url = cached core link, if no cached version already
-        localStorage.setItem('default_do','cached_page')
+        localStorage.setItem('default_do','cached_page');
         window.open(url, '_blank');
         })
       })    
     } else {}}
 </script>
+<input type="text" id="url_to_cache" value="abraka-dabra">
 <br>
 <!-- Content security policy stuff: todo -->
 <label for="config_url">url to fetch your config from</label>
@@ -129,10 +135,26 @@ cfg_render();
 ">Apply</button>
 `
 
-function cache_as(html,link){
+function cache_as(html,href){
   console.log('cache_as +2. Link, html')
-  console.log(link)
+  console.log(self.location.origin+'/'+href)
   console.log(html)
+  var response = new Response(html, {
+  // headers: {
+  url: self.location.origin+'/'+href, 
+  status: 200,
+  headers: {
+    'Content-Type': 'text/html'}
+})
+caches.open('cachee').then(cache => cache.put('/'+href,response))
+caches.match('/'+href).then(r => r).then(console.log)
+
+channel.postMessage({
+type: 'PAGE_SUBMITED',
+data: self.location.origin+'/'+href,
+module: href
+});
+
 }
 var config
 async function fetch_config(url){
