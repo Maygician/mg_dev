@@ -316,7 +316,8 @@ btn_to_local.disabled=!btn_to_local.disabled
     return cfg;
   }
 function testb64(){
-  let res = url2cfg(cfg2url());
+  let res =cfg2url(); 
+  url2cfg(res);
   console.log(res);
 }
 
