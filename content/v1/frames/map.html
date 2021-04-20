@@ -21,9 +21,17 @@
 <button onclick="mapid.style.height='500px';mapid.style.width='500px';">+</button>
 <button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
 <button onclick="ask_geopos()">^</button><a id='my_coords'></a>
-<button>Get coords</button><input type="text">
+<button onclick="get_coords()">Get coords</button><input type="text">
+<p id="gps_last_action"></p>
+<p id="gps_lat"></p>
+<p id="gps_long"></p>
+<p id="gps_error"></p>
 <script>
     var lastClick;
+    function get_coords(){
+        mymap.on('click', cb_once());
+
+    }
 </script>
 <script>
         function send_message(text){
@@ -89,13 +97,17 @@ function success(pos) {
   console.log("from ask geopos, last_coord:")
   console.log(last_coord)
   var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters";
-alert(text);
+// alert(text);
 console.log('Current pos:');
 console.log(`Lat: ${crd.latitude}`);
 console.log(`Long: ${crd.longitude}`);
 console.log(`+- ${crd.accuracy} meters.`);
 document.getElementById("my_coords").innerHTML=text;
 };
+gps_last_action.innerHTML='my pos:';
+gps_lat.innerHTML=crd.latitude;
+gps_long.innerHTML=crd.longitude;
+gps_error.innerHTML=crd.accuracy;
 function error(err) {
 console.warn(`ERROR(${err.code}): ${err.message}`);
 };
