@@ -22,10 +22,13 @@
 <button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
 <button onclick="ask_geopos()">^</button><a id='my_coords'></a>
 <button onclick="get_coords()">Get coords</button><input type="text">
-<p id="gps_last_action"></p>
-<p id="gps_lat"></p>
-<p id="gps_long"></p>
-<p id="gps_error"></p>
+<button onclick="if(map_hint.style.display=='none')map_hint.style.display='block'; else map_hint.style.display='none';">Pos hint</button>
+<div id="map_hint">
+    <p>Last action: <a id="gps_last_action"></a></p>
+    <p>Latitude: <a id="gps_lat"></a></p>
+    <p>Longitude: <a id="gps_long"></a></p>
+    <p>Error margin: <a id="gps_error"></a></p>
+</div>
 <script>
     var lastClick;
     // function get_coords(){
