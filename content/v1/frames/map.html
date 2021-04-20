@@ -20,7 +20,11 @@
 <div id="mapid" style="height: 140px; width: 140px;"> </div>
 <button onclick="mapid.style.height='500px';mapid.style.width='500px';">+</button>
 <button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
-<button onclick="ask_geopos()">^</button>
+<button onclick="ask_geopos()">^</button><a id='my_coords'></a>
+<button>Get coords</button><input type="text">
+<script>
+    var lastClick;
+</script>
 <script>
         function send_message(text){
         window.parent.postMessage(text,"https://maygame.xxx")
@@ -53,6 +57,7 @@ zoomOffset: -1
 }).addTo(mymap);
 function onMapClick(e) {
   alert("You clicked the map at " + e.latlng);
+  lastClick=e.latlng;
 }
 mymap.on('click', onMapClick);
 var last_coord = undefined;
