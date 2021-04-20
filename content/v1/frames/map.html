@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MayGame</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+ crossorigin=""></script>
+ </head>
+<body style="opacity: 90%;">
+<div id="mapid" style="height: 140px; width: 140px;"> </div>
+<script>
+        function send_message(text){
+        window.parent.postMessage(text,"https://maygame.xxx")
+        }
+            window.onmessage=(e)=>{
+            if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
+            call_officer();
+            return;
+        }
+        event.source.postMessage('Reply from test')
+        // else send_message("Reply from test.");
+        tarea.value=e.data;
+        console.log(e.datas)
+        }
+        function call_officer(){
+            send_message('911');
+        }
+var msg_handlers={}
+</script>
+<script id="Js_map" type="text/javascript">
+    var map_radius = 13;
+  var mymap = L.map('mapid').setView([51.505, -0.09], map_radius);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+maxZoom: 18,
+// attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+//   'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+id: 'mapbox/streets-v11',
+tileSize: 512,
+zoomOffset: -1
+}).addTo(mymap);
+function onMapClick(e) {
+  alert("You clicked the map at " + e.latlng);
+}
+mymap.on('click', onMapClick);
+var last_coord = undefined;
+var circle = undefined;
+var marker = undefined;
+function show_position(pos){
+console.log("from show_position, last_coord:")
+  console.log(last_coord)
+mymap.setView([last_coord.latitude, last_coord.longitude],map_radius)
+if(circle != undefined)
+mymap.removeLayer(circle)//todo: trycatch
+  circle = L.circle([last_coord.latitude, last_coord.longitude], {
+  color: 'red',
+  fillColor: '#f03',
+  fillOpacity: 0.5,
+  radius: last_coord.accuracy
+}).addTo(mymap);
+if(marker != undefined)
+mymap.removeLayer(marker)
+marker=L.marker([last_coord.latitude, last_coord.longitude]).addTo(mymap)
+// let accuracy = crd.accuracy
+
+}
+function ask_geopos(){
+// alert(Geolocation.getCurrentPosition())
+function success(pos) {
+  var crd = pos.coords;
+  last_coord = crd;
+  console.log("from ask geopos, last_coord:")
+  console.log(last_coord)
+  var text = "Current pos:\nLat:"+crd.latitude+"\nLng:"+crd.longitude+"\n+- " + crd.accuracy +" meters";
+alert(text);
+console.log('Current pos:');
+console.log(`Lat: ${crd.latitude}`);
+console.log(`Long: ${crd.longitude}`);
+console.log(`+- ${crd.accuracy} meters.`);
+document.getElementById("my_coords").innerHTML=text;
+};
+function error(err) {
+console.warn(`ERROR(${err.code}): ${err.message}`);
+};
+var options = {
+enableHighAccuracy: true,
+timeout: 5000,
+maximumAge: 0
+};
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+}
+</script>
+
+</body>
+</html>
