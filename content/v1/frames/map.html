@@ -66,8 +66,8 @@ zoomOffset: -1
 function onMapClick(e) {
   alert("You clicked the map at " + e.latlng);
   gps_last_action.innerHTML='map click:';
-gps_lat.innerHTML=e.latlng[0];
-gps_long.innerHTML=e.latlng[1];
+gps_lat.innerHTML=e.latlng.lat;
+gps_long.innerHTML=e.latlng.lng;
 gps_error.innerHTML="";
 }
 mymap.on('click', onMapClick);
@@ -106,11 +106,12 @@ console.log(`Lat: ${crd.latitude}`);
 console.log(`Long: ${crd.longitude}`);
 console.log(`+- ${crd.accuracy} meters.`);
 document.getElementById("my_coords").innerHTML=text;
-};
 gps_last_action.innerHTML='my pos:';
 gps_lat.innerHTML=crd.latitude;
 gps_long.innerHTML=crd.longitude;
 gps_error.innerHTML=crd.accuracy;
+};
+
 function error(err) {
 console.warn(`ERROR(${err.code}): ${err.message}`);
 };
