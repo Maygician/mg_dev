@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>MayGame</title>
+  <meta name="description" content="No description">
+  <meta name="author" content="Some dude">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="margin: 0; background-color: mediumturquoise;">
+    <button onclick="send_message(tarea.value)">Send message</button>
+    <textarea id="tarea"></textarea>
+    <script>
+        function send_message(text){
+            window.parent.postMessage(text,"https://maygame.xxx")
+        }
+        window.onmessage=(e)=>{
+            if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
+            call_officer();
+            return;
+        }
+        event.source.postMessage('Reply from test')
+        // else send_message("Reply from test.");
+        tarea.value=e.data;
+        console.log(e.datas)
+        }
+        function call_officer(){
+            send_message('911');
+        }
+        function sub(topic){
+            let text = {'topic':topic,'action':'sub','me':'test'}
+            //me => fixme. Should be identifier. This one's given as a url param to iframe
+            send_message(text)
+        }
+    </script>
+</body>
+</html>
