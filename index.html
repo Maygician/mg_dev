@@ -313,6 +313,7 @@ btn_to_local.disabled=!btn_to_local.disabled
     let plainText = atob(b64);
     console.log(plainText)
     let cfg = JSON.parse(plainText);
+    //validate (for now core url is local. todo: unsafe context interpretation as NOT default behavior)
     return cfg;
   }
 function testb64(){
