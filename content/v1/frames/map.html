@@ -65,7 +65,10 @@ zoomOffset: -1
 }).addTo(mymap);
 function onMapClick(e) {
   alert("You clicked the map at " + e.latlng);
-  lastClick=e.latlng;
+  gps_last_action.innerHTML='map click:';
+gps_lat.innerHTML=e.latlng[0];
+gps_long.innerHTML=e.latlng[1];
+gps_error.innerHTML="";
 }
 mymap.on('click', onMapClick);
 var last_coord = undefined;
