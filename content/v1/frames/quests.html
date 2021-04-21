@@ -12,7 +12,7 @@
         .q_log{
             display:grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 0.2fr 3fr 0.2fr;
+            grid-template-rows: 0.2fr 5fr 0.2fr 0.2fr;
             gap: 10px;          
         }
         .header{
@@ -31,6 +31,10 @@
             grid-column: 2;
             grid-row: 2;
         }
+        .menu_bar{
+            grid-column: 1 / 2;
+            grid-row: 3;
+        }
     </style>
     <div class="q_log">
         <div class="header"><p>Quest Log</p></div>
@@ -46,6 +50,10 @@
 <div class="right_content">
     <p>Objective:</p>
     <p>Reward:</p>
+</div>
+<div class="menu_bar">
+    <button>Quest log</button>
+    <button>My quests</button>
 </div>
 </div>
     <script>
