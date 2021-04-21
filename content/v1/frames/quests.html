@@ -8,8 +8,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="margin: 0; background-color: mediumturquoise;">
-    <button onclick="send_message(tarea.value)">Send message</button>
-    <textarea id="tarea"></textarea>
+    <style>
+        .q_log{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 0.2fr 3fr 0.2fr;
+            gap: 10px;          
+        }
+        .header{
+            grid-column: 1 / 2;
+            grid-row: 1;
+        }
+        .footer{
+            grid-column: 1 / 2;
+            grid-row: 3;
+        }
+        .left_content{
+            grid-column: 1;
+            grid-row: 2;
+        }
+        .right_content{
+            grid-column: 2;
+            grid-row: 2;
+        }
+    </style>
+    <div class="q_log">
+        <div class="header"><p>Quest Log</p></div>
+    <div class="footer">
+
+        <button onclick="send_message(tarea.value)">Send message</button>
+        <textarea id="tarea"></textarea>
+    </div>
+<div class="left_content">
+    <p>Template entry 1</p>
+    <p>Template entry 2</p>
+</div>
+<div class="right_content">
+    <p>Objective:</p>
+    <p>Reward:</p>
+</div>
+</div>
     <script>
         function send_message(text){
             window.parent.postMessage(text,"https://maygame.xxx")
