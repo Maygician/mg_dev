@@ -61,12 +61,12 @@ req.body=data;
 let rid=generateUID();
 req.req_id=rid;
 send_message(req);
-pending_requests[rid]=cb;
+pending_requests.rid.cb=cb;
 return rid;
 }
 function onResponse(rid, data){
     console.log(pending_requests);
-pending_requests[rid](data);
+pending_requests[rid].cb(data);
 delete pending_requests[rid];
 }
 window.onmessage=(e)=>{
