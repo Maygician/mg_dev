@@ -95,9 +95,12 @@ html, body, iframe
     window.onmessage=(e)=>{
         // message_div.innerText=e.data; console.log(e.data)
         if(e.data.topic=='data_request'){
-            console.log('data request:')
-            console.log(e.data)
-            e.source.postMessage({'rid':e.data.rid,'body':'Mock response'})
+            console.log('data request:');
+            console.log(e.data);
+            console.log('from:');
+            console.log(e.source);
+            let msgSource=e.source;//todo:remember
+            msgSource.postMessage({'rid':e.data.rid,'body':'Mock response','topic':'req_response'});
         }
     }
 

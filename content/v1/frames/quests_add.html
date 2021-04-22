@@ -43,7 +43,6 @@
 </div>
 </div>
 <script>
-var frame_id="quest_edit"//todo: pass hash via url param instead
 var pending_requests={}
 function generateUID() {
     // I generate the UID from two parts here 
@@ -54,20 +53,9 @@ function generateUID() {
     secondPart = ("000" + secondPart.toString(36)).slice(-3);
     return firstPart + secondPart;
 }
-function init(){
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString); 
-    fid = urlParams.get['fid'];
-    if(fid){
-        frame_id=fid;
-        console.log("qed frame id: "+frame_id);
-    }
-    else console.log("qed, no frame id. using default: " +frame_id);
-}
-setTimeout(init,150);
+
 function ask_for_data(data,cb){
 let req = {};
-req.fid=frame_id;
 req.topic='data_request';
 req.body=data;
 let rid=generateUID();
