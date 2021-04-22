@@ -55,7 +55,7 @@ function init(){
     }
     else console.log("qed, no frame id. using default: " +frame_id);
 }
-init();
+setTimeout(init,150);
 function ask_for_data(data,cb){
 let req = {};
 req.fid=frame_id;
