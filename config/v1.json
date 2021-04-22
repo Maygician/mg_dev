@@ -1,6 +1,7 @@
 {"core":{"url":"content/v1/core.html.ejs"}, 
 "replace":{
     "quests_url":"content/v1/frames/quests.html",
+    "quests_add_url":"content/v1/frames/quests_add.html",
     "profile_url":"content/v1/frames/profile.html",
     "hud_url":"content/v1/frames/hud.html",
     "currency_url":"content/v1/frames/currencies.html",

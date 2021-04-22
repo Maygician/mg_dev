@@ -22,15 +22,15 @@
         }
     </style>
     <div class="q_cont">
-        <div class="header log"><p>Quest Log</p></div>
+        <div class="header log"><p>Quest Edit</p></div>
     <div class="footer">
     </div>
 <div class="left_content log">
-    <p>Quest log entry 1</p>
-    <p>Quest log entry 2</p>
+    <p>Quest edit entry 1</p>
+    <p>Quest edit entry 2</p>
 </div>
 <div class="footer log">
-    <p>Log footer</p>
+    <button onclick="ask_for_data('Cookies',function(text){console.log('Response for cookies:'+text)})">Footer</button>
 </div>
 <div class="right_content log">
     <p>Objective:</p>
@@ -43,21 +43,54 @@
 </div>
 </div>
 <script>
-var submit_quest = function(){}
+var frame_id="quest_edit"//todo: pass hash via url param instead
+var pending_requests={}
+function init(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString); 
+    fid = urlParams.get['fid'];
+    if(fid){
+        frame_id=fid;
+        console.log("qed frame id: "+frame_id);
+    }
+    else console.log("qed, no frame id. using default: " +frame_id);
+}
+init();
+function ask_for_data(data,cb){
+let req = {};
+req.fid=frame_id;
+req.topic='data_request';
+req.body=data;
+let rid=Math.random();
+req.req_id=rid;
+send_message(req);
+pending_requests[rid]=cb;
+return rid;
+}
+function onResponse(rid, data){
+pending_requests[rid](data);
+delete pending_requests[rid];
+}
+window.onmessage=(e)=>{
+    if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
+    call_officer();
+return;
+}
+let topic = e.data.topic;
+if(topic=='req_response'){
+    onResponse(e.data.rid, e.data.body)
+}
+    // event.source.postMessage('Reply from test')
+    // else send_message("Reply from test.");
+    // tarea.value=e.data;
+    // console.log(e.datas)
+}
 
         function send_message(text){
             window.parent.postMessage(text,"https://maygame.xxx")
         }
-        window.onmessage=(e)=>{
-            if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
-            call_officer();
-            return;
-        }
-        event.source.postMessage('Reply from test')
-        // else send_message("Reply from test.");
-        tarea.value=e.data;
-        console.log(e.datas)
-        }
+
+
         function call_officer(){
             send_message('911');
         }
