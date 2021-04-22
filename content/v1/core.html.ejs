@@ -86,9 +86,9 @@ html, body, iframe
 
 <script defer id="js_init">
     (()=>{
-
-        let newFid="quests_add_new_fid"
-        quests_add.src=quests_add.src.split('?')[0]+`?fid=${newFid}`
+        let newFid="quests_add_new_fid";
+        let qed=document.getElementById('quests_add');
+        qed.src=qed.src.split('?')[0]+`?fid=${newFid}`;
     })();
 </script>
 <script>
