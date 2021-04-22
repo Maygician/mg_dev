@@ -65,6 +65,7 @@ pending_requests[rid]=cb;
 return rid;
 }
 function onResponse(rid, data){
+    console.log(pending_requests);
 pending_requests[rid](data);
 delete pending_requests[rid];
 }
