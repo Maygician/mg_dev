@@ -45,6 +45,15 @@
 <script>
 var frame_id="quest_edit"//todo: pass hash via url param instead
 var pending_requests={}
+function generateUID() {
+    // I generate the UID from two parts here 
+    // to ensure the random number provide enough bits.
+    var firstPart = (Math.random() * 46656) | 0;
+    var secondPart = (Math.random() * 46656) | 0;
+    firstPart = ("000" + firstPart.toString(36)).slice(-3);
+    secondPart = ("000" + secondPart.toString(36)).slice(-3);
+    return firstPart + secondPart;
+}
 function init(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString); 
@@ -61,7 +70,7 @@ let req = {};
 req.fid=frame_id;
 req.topic='data_request';
 req.body=data;
-let rid=Math.random();
+let rid=generateUID();
 req.req_id=rid;
 send_message(req);
 pending_requests[rid]=cb;
