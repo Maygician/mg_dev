@@ -21,8 +21,9 @@ function context(context){
     context.on('in', handleMessage);
     this.to.next(context);
 }
-async function handleMessage(msg)
-console.log('catcher', msg);
+async function handleMessage(msg){
+    console.log('catcher', msg);
+}
 var gun = new Gun();
 //credits to Dletta
 function gun_test(){
