@@ -23,10 +23,12 @@ function context(context){
 }
 async function handleMessage(msg){
     console.log('catcher', msg);
+    window.parent.postMessage(msg);
 }
 var gun = new Gun();
 //credits to Dletta
 function gun_test(){
     gun.get('test').get('stuff').put({'hud_test':'val'})
 }
+gun.get('test').get('stuff').on((e)=>console.log('from within frame, on test/stuff: ',e))
 </script>

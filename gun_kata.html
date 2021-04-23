@@ -1,0 +1,25 @@
+
+<script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+
+<div><button onclick="btn_click()">Button</button></div>
+<iframe src="content/v1/frames/hud.html">
+    
+</iframe>
+
+<script>
+
+const appInterface = Gun({peers:peers, localStorage:false});
+/* setup listeners for debugging */
+
+appInterface._.on('in', function (msg) {
+  console.log('appInterface IN:', msg);
+})
+
+appInterface._.on('out', function (msg) {
+  console.log('appInterface OUT:', msg);
+  // send this msg to the other main User instance
+  apptoMain(msg);
+})
+window.onmessage(e=>console.log(e))
+</script>
