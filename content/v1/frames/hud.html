@@ -1,0 +1,31 @@
+<p>Gun interface sample (for now)</p>
+<button onclick="gun_test();">Send message</button>
+<!--  -->
+
+<script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+
+<!--  -->
+<script>
+
+    window.onmessage=(e)=>{
+        if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
+        call_officer();
+        return;
+    }
+    else {}
+    }
+
+Gun.on('opt', context)
+function context(context){
+    context.on('in', handleMessage);
+    this.to.next(context);
+}
+async function handleMessage(msg)
+console.log('catcher', msg);
+var gun = new Gun();
+//credits to Dletta
+function gun_test(){
+    gun.get('test').get('stuff').put({'hud_test':'val'})
+}
+</script>

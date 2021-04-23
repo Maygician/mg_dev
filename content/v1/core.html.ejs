@@ -7,8 +7,8 @@
   <meta name="author" content="Some dude">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- #region -->
-  <!-- <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
-  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script> -->
+<script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
   <script id="wsjs_innerscript" src="js/core/wsjs.js"></script>
   <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
 </head>
@@ -92,8 +92,17 @@ html, body, iframe
     })();
 </script>
 <script>
+    var gun = new Gun();
+    var sea = Gun.SEA;
+    var pairs={};
+    pairs.quests_add=sea.pair();
     window.onmessage=(e)=>{
         // message_div.innerText=e.data; console.log(e.data)
+        if(e.data.topic=='pair_request'){
+            if(pairs[e.source.name])
+            e.source.postMessage({'topic':'your_pair','pair':pairs[e.source.name]})
+            else(console.log('No pair found for '+e.source.name))
+        }
         if(e.data.topic=='data_request'){
             console.log('data request:');
             console.log(e.data);

@@ -6,6 +6,8 @@
   <meta name="description" content="No description">
   <meta name="author" content="Some dude">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 </head>
 <body style="margin: 0; background-color: mediumturquoise;">
     <style>
@@ -67,6 +69,7 @@ function onResponse(rid, data){
 pending_requests[rid].cb(data);
 delete pending_requests[rid];
 }
+var pair;
 window.onmessage=(e)=>{
     if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
     call_officer();
@@ -76,6 +79,9 @@ let topic = e.data.topic;
 if(topic=='req_response'){
     onResponse(e.data.rid, e.data.body)
 }
+if(topic=='your_pair')
+pair=e.data.pair;
+console.log(pair);
     // event.source.postMessage('Reply from test')
     // else send_message("Reply from test.");
     // tarea.value=e.data;
