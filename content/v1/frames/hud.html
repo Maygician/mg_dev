@@ -24,7 +24,7 @@ function context(context){
 var domain = 'https://maygame.xxx'
 async function handleMessage(msg){
     console.log('catcher', msg);
-    window.parent.postMessage(JSON.stringify(msg), domain);
+    window.parent.postMessage({gunrelay: JSON.stringify(msg)}, domain);
 }
 var gun = Gun();
 //credits to Dletta
