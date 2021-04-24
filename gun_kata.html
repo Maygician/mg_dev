@@ -13,7 +13,7 @@
 <script>
 var domain = 'https://maygame.xxx'
 let peers =[]
-var gun = new Gun({localStorage:false})
+var gun = Gun({localStorage:false})
 const appInterface = Gun({peers:peers, localStorage:false});
 /* setup listeners for debugging */
 
@@ -30,7 +30,7 @@ function apptoMain(){
 
 }
 window.onmessage=(e)=>{console.log('parent_onmessage',e);
-Gun._.on('in',msg);
+gun._.on('in',msg);
 }
 function btn_click(){
 gun.get('test').get('stuff').put({'kata':'btn_clicked'})
