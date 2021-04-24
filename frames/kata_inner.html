@@ -1,0 +1,53 @@
+<p>Gun interface sample (for now)</p>
+<button onclick="gun_test();">Send message</button>
+<!--  -->
+
+<script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+<script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+
+<!--  -->
+<script>
+
+    window.onmessage=(e)=>{
+        if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
+        call_officer(e.origin);
+        return;
+    }
+    else {console.log('frame got message: ', e)}
+    }
+//----------------------------------    
+//#region version 1
+Gun.on('opt', context)
+function context(context){
+    context.on('in', handleMessage);
+    this.to.next(context);
+}
+var domain = 'https://maygame.xxx'
+async function handleMessage(msg){
+    console.log('catcher', msg);
+    window.parent.postMessage({gunrelay: JSON.stringify(msg)}, domain);
+}
+//credits to Dletta
+//#endregion
+//----------------------------------    
+
+//#region version 2
+var gun = Gun();
+
+gun._.on('out',(msg)=>
+{window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx')})
+
+//#endregion
+
+//----------------------------------    
+
+function gun_test(){
+    gun.get('test').get('stuff').put({'hud_test':'val'})
+}
+function call_officer(origin){
+    console.log('officer here, baby, your origin is just wrong: ', origin)
+}
+gun._.on('out',(msg)=>
+{window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx')})
+gun.get('test').get('stuff').on((e)=>console.log('from within frame, on test/stuff: ',e))
+</script>
