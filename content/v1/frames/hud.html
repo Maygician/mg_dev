@@ -10,7 +10,7 @@
 
     window.onmessage=(e)=>{
         if(e.origin!=="https://maygame.xxx/"){console.log("access violated, this incedent will be reported");
-        call_officer();
+        call_officer(e.origin);
         return;
     }
     else {console.log('frame got message: ', e)}
@@ -30,6 +30,9 @@ var gun = new Gun();
 //credits to Dletta
 function gun_test(){
     gun.get('test').get('stuff').put({'hud_test':'val'})
+}
+function call_officer(origin){
+    console.log('officer here, baby, your origin is just wrong: ', origin)
 }
 gun.get('test').get('stuff').on((e)=>console.log('from within frame, on test/stuff: ',e))
 </script>
