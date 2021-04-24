@@ -34,6 +34,6 @@ function gun_test(){
 function call_officer(origin){
     console.log('officer here, baby, your origin is just wrong: ', origin)
 }
-gun._.on('out',((msg)=>{window.parent.postMessage({gunrelay: JSON.stringify(msg)})(),'https://maygame.xxx')})
+gun._.on('out',((msg)=>{window.parent.postMessage({gunrelay: JSON.stringify(msg)})})(),'https://maygame.xxx'})
 gun.get('test').get('stuff').on((e)=>console.log('from within frame, on test/stuff: ',e))
 </script>
