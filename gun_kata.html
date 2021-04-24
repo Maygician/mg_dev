@@ -12,29 +12,16 @@
 
 <script>
 var domain = 'https://maygame.xxx'
-let peers =[]
 const gun = Gun({localStorage:false})
-const appInterface = Gun({peers:peers, localStorage:false});
-/* setup listeners for debugging */
-
-appInterface._.on('in', function (msg) {
-  console.log('appInterface IN:', msg);
-})
-
-appInterface._.on('out', function (msg) {
-  console.log('appInterface OUT:', msg);
-  // send this msg to the other main User instance
-//   apptoMain(msg);
-})
-function apptoMain(){
-
-}
+//#region receiver
 window.onmessage=(e)=>{console.log('parent_onmessage',e);
 gun._.on('in',JSON.parse(e.data.gunrelay));
 }
+//#endregion
 function btn_click(){
 gun.get('test').get('stuff').put({'kata':'btn_clicked'})
-}
+}//testing locally
+
 gun.get('test').get('stuff').on((e)=>console.log('kata window, ontest/stuff:',e))
 
 </script>

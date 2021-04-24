@@ -15,7 +15,8 @@
     }
     else {console.log('frame got message: ', e)}
     }
-
+//----------------------------------    
+//#region version 1
 Gun.on('opt', context)
 function context(context){
     context.on('in', handleMessage);
@@ -26,8 +27,20 @@ async function handleMessage(msg){
     console.log('catcher', msg);
     window.parent.postMessage({gunrelay: JSON.stringify(msg)}, domain);
 }
-var gun = Gun();
 //credits to Dletta
+//#endregion
+//----------------------------------    
+
+//#region version 2
+var gun = Gun();
+
+gun._.on('out',(msg)=>
+{window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx')})
+
+//#endregion
+
+//----------------------------------    
+
 function gun_test(){
     gun.get('test').get('stuff').put({'hud_test':'val'})
 }
