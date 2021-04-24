@@ -21,7 +21,10 @@ appInterface._.on('in', function (msg) {
 appInterface._.on('out', function (msg) {
   console.log('appInterface OUT:', msg);
   // send this msg to the other main User instance
-  apptoMain(msg);
+//   apptoMain(msg);
 })
+function apptoMain(){
+
+}
 window.onmessage((e)=>console.log('parent_onmessage',e))
 </script>
