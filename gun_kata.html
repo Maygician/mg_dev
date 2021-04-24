@@ -30,7 +30,7 @@ function apptoMain(){
 
 }
 window.onmessage=(e)=>{console.log('parent_onmessage',e);
-gun._.on('in',e.data);
+gun._.on('in',JSON.parse(e.data.gunrelay));
 }
 function btn_click(){
 gun.get('test').get('stuff').put({'kata':'btn_clicked'})
