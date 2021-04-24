@@ -3,8 +3,8 @@
 <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
 
 <div><button onclick="btn_click()">Button</button>
-<button onclick="window.parent.postMessage('btn2',domain);">Btn2</button></div>
-<iframe src="content/v1/frames/hud.html">
+<button onclick="window.frames.frame.postMessage('btn2',domain);">Btn2</button></div>
+<iframe src="content/v1/frames/hud.html" name='frame'>
     
 </iframe>
 
