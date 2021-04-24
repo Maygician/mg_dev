@@ -21,7 +21,7 @@ function context(context){
     context.on('in', handleMessage);
     this.to.next(context);
 }
-let domain = 'https://maygame.xxx'
+var domain = 'https://maygame.xxx'
 async function handleMessage(msg){
     console.log('catcher', msg);
     window.parent.postMessage(msg, domain);
