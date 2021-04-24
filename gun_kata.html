@@ -29,7 +29,9 @@ appInterface._.on('out', function (msg) {
 function apptoMain(){
 
 }
-window.onmessage=(e)=>console.log('parent_onmessage',e)
+window.onmessage=(e)=>{console.log('parent_onmessage',e);
+Gun._.on('in',msg);
+}
 function btn_click(){
 gun.get('test').get('stuff').put({'kata':'btn_clicked'})
 }
