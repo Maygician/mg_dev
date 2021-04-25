@@ -47,7 +47,7 @@ html, body, iframe
 <div id="menu" style="position: fixed; z-index: 2147483210; bottom: 0; pointer-events: all;">
     <button onclick="default_sign_in();" style="color: seagreen;">Quick sign in</button>
     <button onclick="force_create_new_user();">Force new user</button>
-    <input type="text" id="text_pair" placeholder="past your key here or log in with default">
+    <input type="text" id="text_pair" placeholder="paste your key here or log in with default">
     <br>
     <button onclick="toggle(quests_layer)">Quests</button>
     <button onclick="toggle(quests_add_layer)">Quests Add/Edit</button>
@@ -108,6 +108,9 @@ html, body, iframe
     })
     window.onmessage=(e)=>{
         if(e.data.gunrelay){
+            let translated=JSON.parse(e.data.gunrelay)
+            translated._['#']=user.is+translated._['#']
+            console.log('translated', translated)
             gun._.on('in',JSON.parse(e.data.gunrelay));
             console.log(e.data.gunrelay);
         }
