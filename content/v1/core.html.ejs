@@ -44,10 +44,9 @@ html, body, iframe
  overflow: hidden;
 }
 </style>
-<div id="sign_in">
-<button onclick="default_sign_in();">Quick sign in</button>
-</div>
 <div id="menu" style="position: fixed; z-index: 2147483210; bottom: 0; pointer-events: all;">
+    <button onclick="default_sign_in();" style="color: seagreen;">Quick sign in</button>
+    <br>
     <button onclick="toggle(quests_layer)">Quests</button>
     <button onclick="toggle(quests_add_layer)">Quests Add/Edit</button>
     <button onclick="toggle(profile_layer)">Profile</button>
@@ -55,7 +54,6 @@ html, body, iframe
     <button onclick="toggle_pevents(frame_hud)">Hud</button>
     <button onclick="toggle(curr_layer)" style="background-color: mediumpurple;">Currencies</button>
     <button onclick="toggle(test_layer)" style="background-color: mediumturquoise;">Test</button>
-    <br>
     <!-- <input type="text" value=""> -->
     <!-- <button onclick="window.frames.test.postMessage('Lunar blessings to you all!','https://maygame.xxx')">Send test message</button> -->
     <!-- <button onclick="gun.get('test').get('stuff').put({'hud_test':'from_core'});">GUN TEST</button> -->
