@@ -6,5 +6,5 @@
     "hud_url":"content/v1/frames/hud.html",
     "currency_url":"content/v1/frames/currencies.html",
     "map_url":"content/v1/frames/map.html",
-    "peers":"\"https://vine-mature-morocco.glitch.me/gun\""
+    "peers":"https://vine-mature-morocco.glitch.me/gun"
     }}
