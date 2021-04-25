@@ -72,6 +72,8 @@ function onMapClick(e) {
 gps_lat.innerHTML=e.latlng.lat;
 gps_long.innerHTML=e.latlng.lng;
 gps_error.innerHTML="";
+gun.get('map').get('gps_map_click').put({lat: e.latlng.lat, long: e.latlng.lng});
+
 }
 mymap.on('click', onMapClick);
 var last_coord = undefined;
