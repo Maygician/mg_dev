@@ -46,14 +46,16 @@
 <script>
 const gun = Gun();
 Gun.on('opt', context)
-function context(context){
-    context.on('out', handleMessage);
-    this.to.next(context);
-}
-async function handleMessage(msg){
-    console.log("map gun catcher: ",msg);
-    window.parent.postMessage({gunrelay: JSON.stringify(msg)}, 'https://maygame.xxx');
-}
+// function context(context){
+//     context.on('out', handleMessage);
+//     this.to.next(context);
+// }
+// async function handleMessage(msg){
+//     console.log("map gun catcher: ",msg);
+//     window.parent.postMessage({gunrelay: JSON.stringify(msg)}, 'https://maygame.xxx');
+// }
+gun._.on('out',(msg)=>
+{window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx')})
 </script>
 <script id="Js_map" type="text/javascript">
     var map_radius = 13;
