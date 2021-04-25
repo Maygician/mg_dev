@@ -58,6 +58,11 @@ gun._.on('out',(msg)=>
 {window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx');
 // console.log('map gun out');
 })
+function parent_put(soul, obj){
+    // gun.get('map').get('gps_map_click').put({lat: e.latlng.lat, long: e.latlng.lng});
+    window.parent.postMessage({gunput: JSON.stringify(obj),soul: soul},'https://maygame.xxx');
+
+}
 </script>
 <script id="Js_map" type="text/javascript">
     var map_radius = 13;
@@ -76,8 +81,7 @@ function onMapClick(e) {
 gps_lat.innerHTML=e.latlng.lat;
 gps_long.innerHTML=e.latlng.lng;
 gps_error.innerHTML="";
-gun.get('map').get('gps_map_click').put({lat: e.latlng.lat, long: e.latlng.lng});
-
+parent_put('map/gps_map_click',{lat: e.latlng.lat, long: e.latlng.lng});
 }
 mymap.on('click', onMapClick);
 var last_coord = undefined;
@@ -119,7 +123,7 @@ gps_last_action.innerHTML='my pos:';
 gps_lat.innerHTML=crd.latitude;
 gps_long.innerHTML=crd.longitude;
 gps_error.innerHTML=crd.accuracy;
-gun.get('map').get('gps_my_pos').put({lat: crd.latitude,long: crd.longitude, error: crd.accuracy})
+parent_put('map/gps_my_pos',{lat: crd.latitude,long: crd.longitude, error: crd.accuracy})
 };
 
 function error(err) {

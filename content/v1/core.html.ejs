@@ -106,14 +106,21 @@ html, body, iframe
     var user = gun.user().recall({ sessionStorage: true }, () => {
       logIn()
     })
+    gun.on('auth', () => {
+        logIn()
+    })
+    var user_soul;
     window.onmessage=(e)=>{
-        if(e.data.gunrelay){
-            let translated=JSON.parse(e.data.gunrelay)
-            // translated?._.#=user.is+translated._['#']
-            console.log('translated', translated)
-            gun._.on('in',JSON.parse(e.data.gunrelay));
-            console.log(e.data.gunrelay);
+        if(e.data.gunput){
+            gun.get(user_soul+e.data.soul).put(e.data.gunput);
         }
+        // if(e.data.gunrelay){
+        //     let translated=JSON.parse(e.data.gunrelay)
+        //     // translated?._.#=user.is+translated._['#']
+        //     console.log('translated', translated)
+        //     gun._.on('in',JSON.parse(e.data.gunrelay));
+        //     console.log(e.data.gunrelay);
+        // }
         // message_div.innerText=e.data; console.log(e.data)
         if(e.data.topic=='pair_request'){
             if(pairs[e.source.name])
@@ -129,6 +136,10 @@ html, body, iframe
             let msgSource=e.source;//todo:remember
             msgSource.postMessage({'rid':e.data.rid,'body':'Mock response','topic':'req_response'});
         }
+
+    }
+    function modify_soul(gun_msg){
+
 
     }
     //#region Sign in
@@ -152,7 +163,9 @@ async function force_create_new_user(){
     localStorage.setItem('user_pair', JSON.stringify(pair))
     user.auth(pair);
 }
-    function logIn(){console.info('Logged in as ', user.is);}
+    function logIn(){console.info('Logged in as ', user.is);
+    user_soul=user.is;
+}
 
     async function create_key() {
 temp_key =  await sea.pair();
