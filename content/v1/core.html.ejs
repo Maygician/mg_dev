@@ -132,16 +132,16 @@ html, body, iframe
 async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;
     let pair = localStorage.getItem('user_pair');
-    if(text_pair){console.log('Logging in with a pasted key');
+    if(text_pair){console.log('Logging in with a pasted key', pair);
     pair=JSON.parse(text_pair);//fixme: validation
     }
     else{
     if(!pair){console.log('No pair stored. Creating.');
     pair = await sea.pair();
     localStorage.setItem('user_pair', JSON.stringify(pair))
-    console.log('Logged in as a new user.')
+    console.log('Logged in as a new user.', pair)
     }
-    else pair = JSON.parse(pair);}
+    else { pair = JSON.parse(pair); console.log('logged in using saved key: ',pair);}}
     user.auth(pair);
 }
 async function force_create_new_user(){
