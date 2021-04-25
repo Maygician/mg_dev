@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MayGame</title>
+
+    <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/styles.css" />
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
@@ -41,23 +44,15 @@
     // }
 </script>
 <script>
-        function send_message(text){
-        window.parent.postMessage(text,"https://maygame.xxx")
-        }
-            window.onmessage=(e)=>{
-            if(e.origin!=="https://maygame.xxx"){console.log("access violated, this incedent will be reported");
-            call_officer();
-            return;
-        }
-        event.source.postMessage('Reply from test')
-        // else send_message("Reply from test.");
-        tarea.value=e.data;
-        console.log(e.datas)
-        }
-        function call_officer(){
-            send_message('911');
-        }
-var msg_handlers={}
+const gun = Gun();
+Gun.on('opt', context)
+function context(context){
+    context.on('out', handleMessage);
+    this.to.next(context);
+}
+async function handleMessage(msg){
+    window.parent.postMessage({gunrelay: JSON.stringify(msg)}, 'https://maygame.xxx');
+}
 </script>
 <script id="Js_map" type="text/javascript">
     var map_radius = 13;
@@ -112,11 +107,12 @@ console.log('Current pos:');
 console.log(`Lat: ${crd.latitude}`);
 console.log(`Long: ${crd.longitude}`);
 console.log(`+- ${crd.accuracy} meters.`);
-document.getElementById("my_coords").innerHTML=text;
+// document.getElementById("my_coords").innerHTML=text;
 gps_last_action.innerHTML='my pos:';
 gps_lat.innerHTML=crd.latitude;
 gps_long.innerHTML=crd.longitude;
 gps_error.innerHTML=crd.accuracy;
+gun.get('map').get('gps_my_pos').put({lat: crd.latitude,long: crd.longitude, error: crd.accuracy})
 };
 
 function error(err) {

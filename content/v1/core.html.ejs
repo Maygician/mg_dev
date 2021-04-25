@@ -95,18 +95,20 @@ html, body, iframe
 </script>
 <script>
     var peers=[<%= peers %>]
-    var gun = new Gun({peers:peers});
+    var gun = Gun({peers:peers});
     var sea = Gun.SEA;
     gun.get('test').get('stuff').on(alert)
     var pairs={};
     pairs.quests_add=sea.pair();
     window.onmessage=(e)=>{
+        gun._.on('in',JSON.parse(e.data?.gunrelay));
         // message_div.innerText=e.data; console.log(e.data)
         if(e.data.topic=='pair_request'){
             if(pairs[e.source.name])
             e.source.postMessage({'topic':'your_pair','pair':pairs[e.source.name]})
             else(console.log('No pair found for '+e.source.name))
         }
+        else
         if(e.data.topic=='data_request'){
             console.log('data request:');
             console.log(e.data);
@@ -115,10 +117,7 @@ html, body, iframe
             let msgSource=e.source;//todo:remember
             msgSource.postMessage({'rid':e.data.rid,'body':'Mock response','topic':'req_response'});
         }
-        if(e.data.topic=='gun_relay')
-        {
 
-        }
     }
 
 </script> 
@@ -128,6 +127,9 @@ html, body, iframe
         target.style.pointerEvents='all'
         else target.style.pointerEvents = 'none'
     }
+</script>
+<script>
+    gun.get('map').get('gps_my_pos').on((crd)=>{console.log('core got gun gps, ',crd)})
 </script>
 </body>
 </html>
