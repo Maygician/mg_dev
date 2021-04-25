@@ -100,15 +100,16 @@ html, body, iframe
     var peers=["<%= peers %>"];//exactly one peer for now.
     var gun = Gun({peers:peers});
     var sea = Gun.SEA;
+    var user = gun.user().recall({ sessionStorage: true }, () => {
+      logIn()
+    });
     gun.get('map').get('gps_my_pos').on((crd)=>{console.log('core got gun gps pos, ',crd)});
     user.get('map').get('gps_my_pos').on((crd)=>{console.log('core got user gps pos, ',crd)});
     gun.get('map').get('gps_map_click').on((crd)=>{console.log('core got gps map_click, ',crd)});
     user.get('map').get('gps_map_click').on((crd)=>{console.log('core got user map_click, ',crd)});
-    // user.on(console.log)
+    user.on(console.log)
     var keyring = {};//todo
-    var user = gun.user().recall({ sessionStorage: true }, () => {
-      logIn()
-    });
+    
     gun.on('auth', () => {
         logIn();
     })
