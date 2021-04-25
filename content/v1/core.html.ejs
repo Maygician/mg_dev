@@ -46,6 +46,7 @@ html, body, iframe
 </style>
 <div id="menu" style="position: fixed; z-index: 2147483210; bottom: 0; pointer-events: all;">
     <button onclick="default_sign_in();" style="color: seagreen;">Quick sign in</button>
+    <button onclick="force_create_new_user();">Force new user</button>
     <input type="text" id="text_pair" placeholder="past your key here or log in with default">
     <br>
     <button onclick="toggle(quests_layer)">Quests</button>
@@ -132,7 +133,7 @@ async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;
     let pair = localStorage.getItem('user_pair');
     if(text_pair){console.log('Logging in with a pasted key');
-    pair=JSON.parse(text_pair);
+    pair=JSON.parse(text_pair);//fixme: validation
     }
     else{
     if(!pair){console.log('No pair stored. Creating.');
@@ -143,7 +144,11 @@ async function default_sign_in(){
     else pair = JSON.parse(pair);}
     user.auth(pair);
 }
-
+async function force_create_new_user(){
+    let pair = await sea.pair();
+    localStorage.setItem('user_pair', JSON.stringify(pair))
+    user.auth(pair);
+}
     function logIn(){console.info('Logged in as ', user.is);}
 
     async function create_key() {
