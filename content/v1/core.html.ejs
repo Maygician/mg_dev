@@ -101,7 +101,10 @@ html, body, iframe
     var pairs={};
     pairs.quests_add=sea.pair();
     window.onmessage=(e)=>{
-        gun._.on('in',JSON.parse(e.data?.gunrelay));
+        if(e.data.gunrelay){
+            gun._.on('in',JSON.parse(e.data.gunrelay));
+            console.log(e.data.gunrelay);
+        }
         // message_div.innerText=e.data; console.log(e.data)
         if(e.data.topic=='pair_request'){
             if(pairs[e.source.name])
