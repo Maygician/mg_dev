@@ -56,7 +56,7 @@ const gun = Gun();
 // }
 gun._.on('out',(msg)=>
 {window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx');
-console.log('map gun out');
+// console.log('map gun out');
 })
 </script>
 <script id="Js_map" type="text/javascript">

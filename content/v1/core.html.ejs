@@ -44,6 +44,9 @@ html, body, iframe
  overflow: hidden;
 }
 </style>
+<div id="sign_in">
+<button onclick="default_sign_in();">Quick sign in</button>
+</div>
 <div id="menu" style="position: fixed; z-index: 2147483210; bottom: 0; pointer-events: all;">
     <button onclick="toggle(quests_layer)">Quests</button>
     <button onclick="toggle(quests_add_layer)">Quests Add/Edit</button>
@@ -57,8 +60,8 @@ html, body, iframe
     <!-- <button onclick="window.frames.test.postMessage('Lunar blessings to you all!','https://maygame.xxx')">Send test message</button> -->
     <!-- <button onclick="gun.get('test').get('stuff').put({'hud_test':'from_core'});">GUN TEST</button> -->
     <!-- <div id="message_div"></div> -->
-</div>
-    <br>
+</div><br>
+<!-- #region -->
 <div id="quests_layer" class="layer" style="display: none; ">
     <iframe name="quests" src="<%= quests_url %>" id="frame_quests" style="border: 0; width: 100%; height: 100%"></iframe>
 </div></div>
@@ -85,7 +88,7 @@ html, body, iframe
 <div id="test_layer" class="layer" style="display: none;">
     <iframe name="test" src="frames/test" id="frame_test" style="border: 0; width: 100%; height: 100%"></iframe>
 </div>
-
+<!-- #endregion -->
 <script defer id="js_init">
     (()=>{
         let newFid="quests_add_new_fid";
@@ -99,9 +102,10 @@ html, body, iframe
     var sea = Gun.SEA;
     gun.get('map').get('gps_my_pos').on((crd)=>{console.log('core got gun gps pos, ',crd)});
     gun.get('map').get('gps_map_click').on((crd)=>{console.log('core got gps map_click, ',crd)});
-    // gun.get('test').get('stuff').on(alert)
-    var pairs={};
-    pairs.quests_add=sea.pair();
+    var keyring = {};//todo
+    var user = gun.user().recall({ sessionStorage: true }, () => {
+      logIn()
+    })
     window.onmessage=(e)=>{
         if(e.data.gunrelay){
             gun._.on('in',JSON.parse(e.data.gunrelay));
@@ -124,7 +128,25 @@ html, body, iframe
         }
 
     }
+    //#region Sign in
+async function default_sign_in(){
+    let pair = localStorage.getItem('user_pair');
+    if(!pair){console.log('No pair stored. Creating.');
+    pair = await sea.pair();
+    localStorage.setItem('user_pair', JSON.stringify(pair))
+    console.log('Logged in as a new user.')
+    }
+    else pair = JSON.parse(pair);
+    user.auth(pair);
 
+}
+
+    function logIn(){console.info('Logged in as ', user.is);}
+
+    async function create_key() {
+temp_key =  await sea.pair();
+document.getElementById("current_key").value=JSON.stringify(temp_key);
+}
 </script> 
 <script>
     function toggle_pevents(target){
