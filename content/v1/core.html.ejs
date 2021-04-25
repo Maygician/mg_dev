@@ -112,6 +112,7 @@ html, body, iframe
     var user_soul;
     window.onmessage=(e)=>{
         if(e.data.gunput){
+            console.log("gunput: ",user_soul+e.data.soul)
             gun.get(user_soul+e.data.soul).put(e.data.gunput);
         }
         // if(e.data.gunrelay){
