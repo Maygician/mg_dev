@@ -55,7 +55,9 @@ const gun = Gun();
 //     window.parent.postMessage({gunrelay: JSON.stringify(msg)}, 'https://maygame.xxx');
 // }
 gun._.on('out',(msg)=>
-{window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx')})
+{window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx');
+console.log('map gun out');
+})
 </script>
 <script id="Js_map" type="text/javascript">
     var map_radius = 13;
