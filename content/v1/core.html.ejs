@@ -109,7 +109,7 @@ html, body, iframe
     window.onmessage=(e)=>{
         if(e.data.gunrelay){
             let translated=JSON.parse(e.data.gunrelay)
-            translated?._['#']=user.is+translated._['#']
+            // translated?._.#=user.is+translated._['#']
             console.log('translated', translated)
             gun._.on('in',JSON.parse(e.data.gunrelay));
             console.log(e.data.gunrelay);
