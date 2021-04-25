@@ -113,11 +113,11 @@ html, body, iframe
     gun.on('auth', () => {
         logIn();
     })
-    var user_soul;
+    var user_pub;
     window.onmessage=(e)=>{
         if(e.data.gunput){
-            console.log("gunput: ",user_soul+e.data.soul)
-            gun.get(user_soul+e.data.soul).put(JSON.parse(e.data.gunput));
+            console.log("gunput: ",
+            user.get(e.data.soul).put(JSON.parse(e.data.gunput)))
         }
         // if(e.data.gunrelay){
         //     let translated=JSON.parse(e.data.gunrelay)
@@ -165,7 +165,7 @@ async function force_create_new_user(){
     user.auth(pair);
 }
     function logIn(){console.info('Logged in as ', user.is);
-    user_soul=user.is.pub;
+    user_pub=user.is.pub;
 }
 
     async function create_key() {
