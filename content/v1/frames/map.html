@@ -51,7 +51,7 @@ function context(context){
     this.to.next(context);
 }
 async function handleMessage(msg){
-    console.log("map gun catcher: ",msg)
+    console.log("map gun catcher: ",msg);
     window.parent.postMessage({gunrelay: JSON.stringify(msg)}, 'https://maygame.xxx');
 }
 </script>
