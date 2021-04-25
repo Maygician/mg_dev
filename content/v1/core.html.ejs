@@ -129,15 +129,19 @@ html, body, iframe
     }
     //#region Sign in
 async function default_sign_in(){
+    let text_pair = document.getElementById('text_pair').value;
     let pair = localStorage.getItem('user_pair');
+    if(text_pair){console.log('Logging in with a pasted key');
+    pair=JSON.parse(text_pair);
+    }
+    else{
     if(!pair){console.log('No pair stored. Creating.');
     pair = await sea.pair();
     localStorage.setItem('user_pair', JSON.stringify(pair))
     console.log('Logged in as a new user.')
     }
-    else pair = JSON.parse(pair);
+    else pair = JSON.parse(pair);}
     user.auth(pair);
-
 }
 
     function logIn(){console.info('Logged in as ', user.is);}
