@@ -108,9 +108,9 @@ html, body, iframe
     var keyring = {};//todo
     var user = gun.user().recall({ sessionStorage: true }, () => {
       logIn()
-    })
+    });
     gun.on('auth', () => {
-        logIn()
+        logIn();
     })
     var user_soul;
     window.onmessage=(e)=>{
@@ -140,10 +140,6 @@ html, body, iframe
             let msgSource=e.source;//todo:remember
             msgSource.postMessage({'rid':e.data.rid,'body':'Mock response','topic':'req_response'});
         }
-
-    }
-    function modify_soul(gun_msg){
-
 
     }
     //#region Sign in
