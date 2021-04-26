@@ -104,9 +104,11 @@ html, body, iframe
     var peers=["<%= peers %>"];//exactly one peer for now.
     var gun = Gun({peers:peers});
     var sea = Gun.SEA;
+    const store_dir="nouveau_dossier"
     var user = gun.user().recall({ sessionStorage: true }, () => {
       logIn()
     });
+    var userN = user.get(store_dir)
     var keyring = {};//todo
     
     gun.on('auth', () => {
@@ -120,18 +122,18 @@ html, body, iframe
     window.onmessage=(e)=>{
         if(e.data.gunput){
             console.log("gunput: ",
-            user.get(e.data.soul).put(JSON.parse(e.data.gunput)))
+            user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput)))
         }
         if(e.data.gundelete){
             console.log('gundelete: ', e.data);
-            gun.path(e.data.gundelete).put(null);
+            user.get(store_dir).get(e.data.gundelete).put(null);
         }
         if(e.data.gun_sub)
         {
             let frame_subscriber = e.source;
             let soul = e.data.gun_sub;
             console.log(frame_subscriber, "subscribed to ", soul, "topic")
-            gun.get(soul).on((e)=>{
+            user.get(store_dir).get(soul).on((e)=>{
                 frame_pub(frame_subscriber,e);
                 frame_subscriber.postMessage({'your_topic_pub':{e}});
                 console.log('items/bookmarks fires pub: ',e)
@@ -185,9 +187,9 @@ async function force_create_new_user(){
 }
     function logIn(){console.info('Logged in as ', user.is);
     user_pub=user.is.pub;
-    user.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)});
-    user.get('map/gps_my_pos').on((crd)=>{console.log('core got user/gps pos, ',crd)});//tmp, fixme
-    user.get('map/gps_map_click').on((crd)=>{console.log('core got user/map_click, ',crd)});//rmmmber, then off on relog
+    userN.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)});
+    userN.get('map/gps_my_pos').on((crd)=>{console.log('core got user/gps pos, ',crd)});//tmp, fixme
+    userN.get('map/gps_map_click').on((crd)=>{console.log('core got user/map_click, ',crd)});//rmmmber, then off on relog
 }
 
     async function create_key() {
