@@ -120,8 +120,8 @@ html, body, iframe
     var user_pub;
     window.onmessage=(e)=>{
         if(e.data.gunput){
-            console.log("gunput: ",
-            user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput)))
+            // console.log("gunput: ", e.data.gunput);
+            user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput))
         }
         if(e.data.gundelete){
             console.log('gundelete: ', e.data);
@@ -131,11 +131,11 @@ html, body, iframe
         {
             let frame_subscriber = e.source;
             let soul = e.data.gun_sub;
-            console.log(frame_subscriber, "subscribed to ", soul, "topic")
+            // console.log(frame_subscriber, "subscribed to ", soul, "topic")
             user.get(store_dir).get(soul).on((e)=>{
                 frame_pub(frame_subscriber,e);
-                frame_subscriber.postMessage({'your_topic_pub':{e}});
-                console.log('items/bookmarks fires pub: ',e)
+                // frame_subscriber.postMessage({'your_topic_pub':{e}});
+                // console.log('items/bookmarks fires pub: ',e)
             })
         }
         // if(e.data.gunrelay){
