@@ -13,7 +13,7 @@
     <div class="header1">Your items</div>
     <div class="header2">Description</div>
 <div class="c"><button onclick="item_list.insertAdjacentHTML('afterbegin','<li>New el</li>');">Add</button>
-    <button onclick="parent_sub_on('items/bookmarks');">BM sub</button>
+    <button onclick="parent_sub_on('items/bookmarks');">Track bookmarks</button>
 </div>
 <div class="d">Content d</div>
 <div class="footer"><button onclick="item_list.innerHTML=ejs.render(items.template, items.list)">Populate</button></div>
@@ -97,9 +97,9 @@ function parent_ask_once(soul){
 window.onmessage=(e)=>{
     console.log(e.data);
     if(e.data['your_topic_pub']){
-        if(e.data.soul=='items/bookmarks'){
+        // if(e.data.soul=='items/bookmarks'){
             console.log('items onmessage bookmark: ',e.data)
-        }
+        // }
     }
 }
 var my_subs={}
