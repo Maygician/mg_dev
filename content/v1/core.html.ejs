@@ -112,6 +112,10 @@ html, body, iframe
     gun.on('auth', () => {
         logIn();
     })
+    function frame_pub(frame, e){
+        frame.postMessage({'your_topic_pub':{e}});
+        console.log('from frame pub: ',frame, e)
+    }
     var user_pub;
     window.onmessage=(e)=>{
         if(e.data.gunput){
@@ -124,6 +128,7 @@ html, body, iframe
             let soul = e.data.gun_sub;
             console.log(frame_subscriber, "subscribed to ", soul, "topic")
             gun.get(soul).on((e)=>{
+                frame_pub(frame_subscriber,e);
                 frame_subscriber.postMessage({'your_topic_pub':{e}});
                 console.log('items/bookmarks fires pub: ',e)
             })
