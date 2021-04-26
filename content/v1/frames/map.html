@@ -138,7 +138,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 }
 function create_gps_bookmark(){
     let msg = {};
-    let timestamp=Date.now();
+    let timestamp=Date.now().toString();
     msg[timestamp].lat=gps_lat.innerText;
     msg[timestamp].long=gps_long.innerText;
     parent_put('items/bookmarks', msg);
