@@ -162,9 +162,7 @@ async function force_create_new_user(){
     function logIn(){console.info('Logged in as ', user.is);
     user_pub=user.is.pub;
 
-    user.get('map').get('gps_my_pos').on((crd)=>{console.log('core got user gps pos, ',crd)});//tmp, fixme
     user.get('map/gps_my_pos').on((crd)=>{console.log('core got user/gps pos, ',crd)});//tmp, fixme
-    user.get('map').get('gps_map_click').on((crd)=>{console.log('core got user map_click, ',crd)});//rmmmber, then off on relog
     user.get('map/gps_map_click').on((crd)=>{console.log('core got user/map_click, ',crd)});//rmmmber, then off on relog
 }
 

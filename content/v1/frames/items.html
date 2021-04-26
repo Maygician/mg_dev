@@ -1,0 +1,86 @@
+<script src="../../../js/cdn/ejs.min.js"></script>
+<!-- <script src="js/cdn/ejs.min.js"></script> prod -->
+
+<div class="container" >
+    <div class="a" style="overflow: auto; max-width: 100%;">
+        <div>
+            <ul id="item_list" onclick="el_click(event.target);  ">
+            </ul>
+        </div>
+    </div>
+    <div class="b"></div>
+    <div class="header">Items</div>
+    <div class="header1">Your items</div>
+    <div class="header2">Description</div>
+<div class="c"><button onclick="item_list.insertAdjacentHTML('afterbegin','<li>New el</li>');">Add</button></div>
+<div class="d">Content d</div>
+<div class="footer"><button onclick="item_list.innerHTML=ejs.render(items.template, items.list)">Populate</button></div>
+<div style="background-color: red;">Not in grid</div>
+</div>
+<style>
+.container{
+    display: grid;
+    grid-template-rows: auto auto 1fr 0.3fr auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "header header"
+    "header1 header2"
+    "a b"
+    "c d"
+    "footer footer";
+    height: 500px;
+    width: 500px;
+}
+.header{
+    grid-area: header;
+    background-color: pink;
+}
+.header2{
+    grid-area: header2;
+    background-color: palevioletred;
+}
+.header1{
+    grid-area: header1;
+    background-color: palegreen;
+}
+.a{
+    grid-area: a;
+    background-color: seagreen;
+}
+.b{
+    grid-area: b;
+    background-color: turquoise;
+}
+.c{
+    grid-area: c;
+    background-color: seagreen;
+}
+.d{
+    grid-area: d;
+    background-color: seagreen;
+}
+.footer{
+    grid-area: footer;
+    background-color: rebeccapurple;
+}
+</style>
+<script>
+var items={}
+items.template=`
+<% for (var i =0; i < items.list.length;  i++ ) { %>
+<li>ID: <a><%= items.list[i].id %></a> Name:<a><%= items.list[i].name %></a></li>
+<%#  will output the numbers 1-10 %>
+<% } %>
+
+`
+items.list=[{name: '1', id: '000001'},{name: '2', id: '000002'},{name: '4', id: '000004'},{name: '3', id: '000003'}]
+function el_click(el){
+    if(el.nodeName!='LI'){
+        console.log(el, el.parentElement)
+        el=el.parentElement;
+    }
+    let text = el.children[0].innerHTML;
+    console.log(text)
+    document.getElementsByClassName('b')[0].innerText="ID"+text+" name: " + el.children[1].innerText;
+}
+</script>
