@@ -124,7 +124,8 @@ html, body, iframe
             let soul = e.data.gun_sub;
             console.log(frame_subscriber, "subscribed to ", soul, "topic")
             gun.get(soul).on((e)=>{
-                frame_subscriber.postMessage({'your_topic_pub':{e}})
+                frame_subscriber.postMessage({'your_topic_pub':{e}});
+                console.log('items/bookmarks fires pub: ',e)
             })
         }
         // if(e.data.gunrelay){
