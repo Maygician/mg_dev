@@ -154,6 +154,7 @@ html, body, iframe
 
     }
     //#region Sign in
+    ;(()=>{user.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)})})();
 async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;
     let pair = localStorage.getItem('user_pair');
