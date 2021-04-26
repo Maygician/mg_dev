@@ -122,6 +122,10 @@ html, body, iframe
             console.log("gunput: ",
             user.get(e.data.soul).put(JSON.parse(e.data.gunput)))
         }
+        if(e.data.gundelete){
+            console.log('gundelete: ', e.data);
+            gun.path(e.data.gundelete).put(null);
+        }
         if(e.data.gun_sub)
         {
             let frame_subscriber = e.source;
