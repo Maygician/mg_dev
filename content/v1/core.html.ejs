@@ -55,6 +55,7 @@ html, body, iframe
     <button onclick="toggle(map_layer)">Map</button>
     <button onclick="toggle_pevents(frame_hud)">Hud</button>
     <button onclick="toggle(curr_layer)" style="background-color: mediumpurple;">Currencies</button>
+    <button onclick="toggle(items_layer)" style="background-color: mediumpurple;">Items</button>
     <button onclick="toggle(test_layer)" style="background-color: mediumturquoise;">Test</button>
     <!-- <input type="text" value=""> -->
     <!-- <button onclick="window.frames.test.postMessage('Lunar blessings to you all!','https://maygame.xxx')">Send test message</button> -->
@@ -76,6 +77,9 @@ html, body, iframe
 </div>
 <div id="profile_layer" class="layer" style="display: none;">
     <iframe name="profile" src="<%= profile_url %>" id="frame_profile" style="border: 0; width: 100%; height: 100%"></iframe>
+</div>
+<div id="items_layer" class="layer" style="display: none;">
+    <iframe name="items" src="<%= items_url %>" id="frame_items" style="border: 0; width: 100%; height: 100%"></iframe>
 </div>
 <div id="curr_layer" class="layer" style="display: none;">
 <div style="
@@ -114,6 +118,15 @@ html, body, iframe
             console.log("gunput: ",
             user.get(e.data.soul).put(JSON.parse(e.data.gunput)))
         }
+        if(e.data.gun_sub)
+        {
+            let frame_subscriber = e.source;
+            let soul = e.data.gun_sub;
+            console.log(frame_subscriber, "subscribed to ", soul, "topic")
+            gun.get(soul).on((e)=>{
+                frame_subscriber.postMessage({'your_topic_pub':{e}})
+            })
+        }
         // if(e.data.gunrelay){
         //     let translated=JSON.parse(e.data.gunrelay)
         //     // translated?._.#=user.is+translated._['#']
@@ -122,6 +135,7 @@ html, body, iframe
         //     console.log(e.data.gunrelay);
         // }
         // message_div.innerText=e.data; console.log(e.data)
+
         if(e.data.topic=='pair_request'){
             if(pairs[e.source.name])
             e.source.postMessage({'topic':'your_pair','pair':pairs[e.source.name]})

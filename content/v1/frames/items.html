@@ -12,7 +12,8 @@
     <div class="header">Items</div>
     <div class="header1">Your items</div>
     <div class="header2">Description</div>
-<div class="c"><button onclick="item_list.insertAdjacentHTML('afterbegin','<li>New el</li>');">Add</button></div>
+<div class="c"><button onclick="item_list.insertAdjacentHTML('afterbegin','<li>New el</li>');">Add</button>
+</div>
 <div class="d">Content d</div>
 <div class="footer"><button onclick="item_list.innerHTML=ejs.render(items.template, items.list)">Populate</button></div>
 <div style="background-color: red;">Not in grid</div>
@@ -67,20 +68,39 @@
 <script>
 var items={}
 items.template=`
-<% for (var i =0; i < items.list.length;  i++ ) { %>
-<li>ID: <a><%= items.list[i].id %></a> Name:<a><%= items.list[i].name %></a></li>
-<%#  will output the numbers 1-10 %>
-<% } %>
+<% Object.keys(items.list).forEach(key=> { %>
+<li>ID: <a><%= items.list[key].id %></a> Name:<a><%= key %></a></li>
+<% }) %>
 
 `
-items.list=[{name: '1', id: '000001'},{name: '2', id: '000002'},{name: '4', id: '000004'},{name: '3', id: '000003'}]
+items.list={'Coin':{ id: '000001', img_url: '../resources/Coin_03.png'},'2':{id: '000002'}}
 function el_click(el){
     if(el.nodeName!='LI'){
         console.log(el, el.parentElement)
         el=el.parentElement;
     }
-    let text = el.children[0].innerHTML;
-    console.log(text)
-    document.getElementsByClassName('b')[0].innerText="ID"+text+" name: " + el.children[1].innerText;
+    let name = el.children[1].innerText
+    document.getElementsByClassName('b')[0].innerHTML='<img src="' +items.list[name].img_url+'">'+"<br>ID"+items.list[name].id+
+    " name: " + name;
 }
+function parent_sub_on(soul){
+    let msg={gun_sub: soul};
+    my_subs[soul]=true;
+    window.parent.postMessage(msg, "https://maygame.xxx");
+    //extra code to remember it on this page
+}
+function parent_ask_once(soul){
+    let msg={gun_once: soul};
+    window.parent.postMessage(msg, "https://maygame.xxx");
+}
+window.onmessage=(e)=>{
+    console.log(e.data);
+    if(e.data.topic='your_topic_pub'){
+        if(e.data.soul=='items/bookmarks'){
+            console.log('items onmessage bookmark: ',e.data)
+        }
+    }
+}
+var my_subs={}
+parent_sub_on('items/bookmarks');
 </script>

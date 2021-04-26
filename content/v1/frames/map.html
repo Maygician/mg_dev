@@ -24,7 +24,6 @@
 <button onclick="mapid.style.height='300px';mapid.style.width='300px';">+</button>
 <button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
 <button onclick="ask_geopos()">^</button>
-<button></button>
 <!-- 0negzu5d.epizy.com/map.html -->
 <!-- https://map-external-sample-maygame.infinityfree.net/map.html  -->
 <!-- <a id='my_coords'></a> -->
@@ -35,6 +34,7 @@
     <p>Latitude: <a id="gps_lat"></a></p>
     <p>Longitude: <a id="gps_long"></a></p>
     <p>Error margin: <a id="gps_error"></a></p>
+    <button onclick="create_gps_bookmark()">Create a bookmark</button>
 </div>
 <script>
     var lastClick;
@@ -135,6 +135,13 @@ maximumAge: 0
 };
 
 navigator.geolocation.getCurrentPosition(success, error, options);
+}
+function create_gps_bookmark(){
+    let msg = {};
+    let timestamp=Date.now();
+    msg[timestamp].lat=gps_lat.innerText;
+    msg[timestamp].long=gps_long.innerText;
+    parent_put('items/bookmarks', msg);
 }
 </script>
 
