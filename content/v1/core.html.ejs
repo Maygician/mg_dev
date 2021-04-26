@@ -159,7 +159,6 @@ html, body, iframe
 
     }
     //#region Sign in
-    ;(()=>{user.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)})})();
 async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;
     let pair = localStorage.getItem('user_pair');
@@ -182,7 +181,7 @@ async function force_create_new_user(){
 }
     function logIn(){console.info('Logged in as ', user.is);
     user_pub=user.is.pub;
-
+    user.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)});
     user.get('map/gps_my_pos').on((crd)=>{console.log('core got user/gps pos, ',crd)});//tmp, fixme
     user.get('map/gps_map_click').on((crd)=>{console.log('core got user/map_click, ',crd)});//rmmmber, then off on relog
 }
