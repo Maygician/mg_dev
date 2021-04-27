@@ -119,7 +119,7 @@ window.onmessage=(e)=>{
         console.log('items onmessage bookmark: ',e.data)
         if(e.data.soul=='map/last_bookmark'){
             console.log('items processing bookmark');
-            let bm = e.data['your_topic_pub']
+            let bm = e.data['your_topic_pub'].e
             console.log(bm.time)
             let desc=`Gps bookmark. Coordinates, x: ${bm.lat}, y: ${bm.long}, z: ${bm.alt}.`
             items.bookmarks[bm.time]={

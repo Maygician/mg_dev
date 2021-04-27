@@ -143,7 +143,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 }
 function create_gps_bookmark(){
     let timestamp=Date.now().toString();
-    let msg = {lat: gps_lat.innerText,long: gps_long.innerText, time: timestamp, alt: gps_alt.innerText};
+    let msg = {lat: gps_lat.innerText,long: gps_long.innerText, time: timestamp, alt: gps_alt.innerText, map_type: 'gps'};
     parent_put('map/last_bookmark', msg);
 }
 </script>
