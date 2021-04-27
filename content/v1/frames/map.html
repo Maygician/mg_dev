@@ -31,6 +31,7 @@
     <p>Last action: <a id="gps_last_action"></a></p>
     <p>Latitude: <a id="gps_lat"></a></p>
     <p>Longitude: <a id="gps_long"></a></p>
+    <p>Altitude: <a id="gps_alt"></a></p>
     <p>Error margin: <a id="gps_error"></a></p>
     <button onclick="create_gps_bookmark()">Create a bookmark</button>
 </div>
@@ -81,6 +82,7 @@ function onMapClick(e) {
   gps_last_action.innerHTML='map click:';
 gps_lat.innerHTML=e.latlng.lat;
 gps_long.innerHTML=e.latlng.lng;
+gps_alt.innerHTML='';
 gps_error.innerHTML="";
 parent_put('map/gps_map_click',{lat: e.latlng.lat, long: e.latlng.lng});
 }
@@ -123,6 +125,7 @@ console.log(`+- ${crd.accuracy} meters.`);
 gps_last_action.innerHTML='my pos:';
 gps_lat.innerHTML=crd.latitude;
 gps_long.innerHTML=crd.longitude;
+gps_alt.innerHTML=crd.altitude;
 gps_error.innerHTML=crd.accuracy;
 parent_put('map/gps_my_pos',{lat: crd.latitude,long: crd.longitude, error: crd.accuracy})
 };
@@ -140,7 +143,7 @@ navigator.geolocation.getCurrentPosition(success, error, options);
 }
 function create_gps_bookmark(){
     let timestamp=Date.now().toString();
-    let msg = {lat: gps_lat.innerText,long: gps_long.innerText, time: timestamp};
+    let msg = {lat: gps_lat.innerText,long: gps_long.innerText, time: timestamp, alt: gps_alt.innerText};
     parent_put('map/last_bookmark', msg);
 }
 </script>

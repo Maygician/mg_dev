@@ -121,7 +121,9 @@ window.onmessage=(e)=>{
             console.log('items processing bookmark');
             let bm = e.data['your_topic_pub']
             console.log(bm.time)
-            items.bookmarks[bm.time]={id: time, img_url: '../resources/Parchment_02.png', description: 'Just a gps bookmark'}
+            let desc=`Gps bookmark. Coordinates, x: ${bm.lat}, y: ${bm.long}, z: ${bm.alt}.`
+            items.bookmarks[bm.time]={
+                id: time, img_url: '../resources/Parchment_02.png', description: 'Just a gps bookmark'}
         }
     }
     else if(e.data.login){
