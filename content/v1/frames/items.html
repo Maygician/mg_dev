@@ -123,7 +123,7 @@ window.onmessage=(e)=>{
             console.log(bm.time)
             let desc=`Gps bookmark. Coordinates, x: ${bm.lat}, y: ${bm.long}, z: ${bm.alt}.`
             items.bookmarks[bm.time]={
-                id: time, img_url: '../resources/Parchment_02.png', description: 'Just a gps bookmark'}
+                id: bm.time, img_url: '../resources/Parchment_02.png', description: desc}
         }
     }
     else if(e.data.login){
