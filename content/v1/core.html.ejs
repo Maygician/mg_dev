@@ -113,8 +113,8 @@ html, body, iframe
     gun.on('auth', () => {
         logIn();
     })
-    function frame_pub(frame, e){
-        frame.postMessage({'your_topic_pub':{e}});
+    function frame_pub(frame, e, topic){
+        frame.postMessage({'your_topic_pub':{e},'topic': topic});
         console.log('from frame pub: ',frame, e)
     }
     var user_pub;
@@ -138,7 +138,7 @@ html, body, iframe
             let soul = e.data.gun_sub;
             // console.log(frame_subscriber, "subscribed to ", soul, "topic")
             user.get(store_dir).get(soul).on((e)=>{
-                frame_pub(frame_subscriber,e);
+                frame_pub(frame_subscriber,e, soul);
                 // frame_subscriber.postMessage({'your_topic_pub':{e}});
                 // console.log('items/bookmarks fires pub: ',e)
             }),{change: true}
