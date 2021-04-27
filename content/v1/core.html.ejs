@@ -138,7 +138,7 @@ html, body, iframe
                 frame_pub(frame_subscriber,e);
                 // frame_subscriber.postMessage({'your_topic_pub':{e}});
                 // console.log('items/bookmarks fires pub: ',e)
-            })
+            }),{change: true}
         }
         // if(e.data.gunrelay){
         //     let translated=JSON.parse(e.data.gunrelay)
