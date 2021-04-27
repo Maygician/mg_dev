@@ -187,7 +187,7 @@ async function force_create_new_user(){
     function logIn(){console.info('Logged in as ', user.is);
     user_pub=user.is.pub;
     let userN= user.get(store_dir)
-    userN.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)});
+    userN.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)},{change: true});
     userN.get('map/gps_my_pos').on((crd)=>{console.log('core got user/gps pos, ',crd)});//tmp, fixme
     userN.get('map/gps_map_click').on((crd)=>{console.log('core got user/map_click, ',crd)});//rmmmber, then off on relog
 }
