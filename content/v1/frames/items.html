@@ -4,7 +4,7 @@
 <div class="container" >
     <div class="a" style="overflow: auto; max-width: 100%;">
         <div>
-            <ul id="item_list" onclick="el_click(event.target);  ">
+            <ul id="item_list"> 
             </ul>
         </div>
     </div>
@@ -18,8 +18,11 @@
 </div>
 <div class="d">Content d</div>
 <div class="footer">
-    <button onclick="item_list.innerHTML=ejs.render(items.template, items.list)">Populate</button>
-    <button onclick="item_list.innerHTML=ejs.render(items.bmtemplate, items.bookmarks)">Populate bm</button>
+    <button onclick="item_list.innerHTML=ejs.render(items.template, items.list);
+    item_list.onclick='el_click(event.target);'"></button>">Populate</button>
+    <button onclick="item_list.innerHTML=ejs.render(items.bmtemplate, items.bookmarks);
+    item_list.onclick='el_bm(event.target)'
+    ">Populate bm</button>
 </div>
 <div style="background-color: red;">Not in grid</div>
 </div>
