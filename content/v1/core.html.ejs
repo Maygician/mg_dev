@@ -121,14 +121,17 @@ html, body, iframe
     window.onmessage=(e)=>{
         if(e.data.gunput_sub){
             user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gunput_sub))}
+        else
         if(e.data.gunput){
             // console.log("gunput: ", e.data.gunput);
             user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput))
         }
+        else
         if(e.data.gundelete){
             console.log('gundelete: ', e.data);
             user.get(store_dir).get(e.data.gundelete).put(null);
         }
+        else
         if(e.data.gun_sub)
         {
             let frame_subscriber = e.source;
@@ -175,21 +178,22 @@ async function default_sign_in(){
     else{
     if(!pair){console.log('No pair stored. Creating.');
     pair = await sea.pair();
-    localStorage.setItem('user_pair', JSON.stringify(pair))
-    console.log('Logged in as a new user.', pair)
+    localStorage.setItem('user_pair', JSON.stringify(pair));
+    console.log('Logged in as a new user.', pair);
     }
     else { pair = JSON.parse(pair); console.log('logged in using saved key: ',pair);}}
     user.auth(pair);
 }
 async function force_create_new_user(){
     let pair = await sea.pair();
-    localStorage.setItem('user_pair', JSON.stringify(pair))
+    localStorage.setItem('user_pair', JSON.stringify(pair));
     user.auth(pair);
 }
     function logIn(){console.info('Logged in as ', user.is);
     user_pub=user.is.pub;
-    let userN= user.get(store_dir)
-    userN.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)},{change: true});
+    let userN= user.get(store_dir);
+    // userN.get('items/bookmarks').on((e)=>{console.log('core bookmarks gunfire',e)},{change: true});
+    userN.get('map/last_bookmark').on((msg)=>{console.log('core map bm: ', msg)});
     userN.get('map/gps_my_pos').on((crd)=>{console.log('core got user/gps pos, ',crd)});//tmp, fixme
     userN.get('map/gps_map_click').on((crd)=>{console.log('core got user/map_click, ',crd)});//rmmmber, then off on relog
 }

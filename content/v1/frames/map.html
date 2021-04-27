@@ -139,10 +139,9 @@ maximumAge: 0
 navigator.geolocation.getCurrentPosition(success, error, options);
 }
 function create_gps_bookmark(){
-    let msg = {};
     let timestamp=Date.now().toString();
-    msg = {lat: gps_lat.innerText,long: gps_long.innerText};
-    parent_put_sub('items/bookmarks', msg, timestamp);
+    let msg = {lat: gps_lat.innerText,long: gps_long.innerText, time: timestamp};
+    parent_put('map/last_bookmark', msg);
 }
 </script>
 
