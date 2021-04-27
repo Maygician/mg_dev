@@ -114,7 +114,7 @@ html, body, iframe
         logIn();
     })
     function frame_pub(frame, e, topic){
-        frame.postMessage({'your_topic_pub':{e},'topic': topic});
+        frame.postMessage({'your_topic_pub':{e},'soul': topic});
         console.log('from frame pub: ',frame, e)
     }
     var user_pub;

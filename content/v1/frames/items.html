@@ -98,9 +98,12 @@ function parent_ask_once(soul){
 window.onmessage=(e)=>{
     console.log(e.data);
     if(e.data['your_topic_pub']){
-        // if(e.data.soul=='items/bookmarks'){
-            console.log('items onmessage bookmark: ',e.data)
-        // }
+        console.log('items onmessage bookmark: ',e.data)
+        if(e.data.soul=='map/last_bookmark'){
+            console.log('items processing bookmark');
+            let bm = e.data['your_topic_pub']
+            console.log(bm.time)
+        }
     }
     else if(e.data.login){
         parent_sub_on('map/last_bookmark');//dev   
