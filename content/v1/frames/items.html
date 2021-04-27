@@ -102,6 +102,10 @@ window.onmessage=(e)=>{
             console.log('items onmessage bookmark: ',e.data)
         // }
     }
+    else if(e.data.login){
+        parent_sub_on('map/last_bookmark');//dev   
+        console.log('items got login')
+    }
 }
 var my_subs={}
 </script>
