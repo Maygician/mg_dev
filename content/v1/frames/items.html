@@ -97,7 +97,6 @@ function el_c(el){
 }
 function el_click(el){
     if(el.nodeName!='LI'){
-        console.log(el, el.parentElement)
         el=el.parentElement;
     }
     let name = el.children[1].innerText
@@ -106,7 +105,6 @@ function el_click(el){
 }
 function el_bm(el){
     if(el.nodeName!='LI'){
-        console.log(el, el.parentElement)
         el=el.parentElement;
     }
     let name = el.children[1].innerText
