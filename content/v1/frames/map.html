@@ -146,6 +146,23 @@ function create_gps_bookmark(){
     let msg = {lat: gps_lat.innerText,long: gps_long.innerText, time: timestamp, alt: gps_alt.innerText, map_type: 'gps'};
     parent_put('map/last_bookmark', msg);
 }
+
+//#region common part?
+window.onmessage=(e)=>{
+    console.log(e.data);
+    if(e.data['your_topic_pub']){
+        if(e.data.soul=='map/show'){
+            console.log('show on map request');
+
+        }
+    }
+    else if(e.data.login){
+        parent_sub_on('map/show');//dev   
+        console.log('items got login')
+    }
+}
+var my_subs={}
+//#endregion
 </script>
 
 </body>
