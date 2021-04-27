@@ -161,6 +161,13 @@ window.onmessage=(e)=>{
         console.log('items got login')
     }
 }
+
+function parent_sub_on(soul){
+    let msg={gun_sub: soul};
+    my_subs[soul]=true;
+    window.parent.postMessage(msg, "https://maygame.xxx");
+    //extra code to remember it on this page
+}
 var my_subs={}
 //#endregion
 </script>
