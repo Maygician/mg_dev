@@ -119,6 +119,8 @@ html, body, iframe
     }
     var user_pub;
     window.onmessage=(e)=>{
+        if(e.data.gunput_sub){
+            user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gunput_sub))}
         if(e.data.gunput){
             // console.log("gunput: ", e.data.gunput);
             user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput))
