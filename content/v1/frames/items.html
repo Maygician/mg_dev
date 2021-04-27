@@ -17,7 +17,10 @@
     <!-- <button onclick="window.parent.postMessage({gundelete: 'items/bookmarks'},'https://maygame.xxx')">Clear bookmarks:</button> -->
 </div>
 <div class="d">Content d</div>
-<div class="footer"><button onclick="item_list.innerHTML=ejs.render(items.template, items.list)">Populate</button></div>
+<div class="footer">
+    <button onclick="item_list.innerHTML=ejs.render(items.template, items.list)">Populate</button>
+    <button onclick="item_list.innerHTML=ejs.render(items.bmtemplate, items.bookmarks)">Populate bm</button>
+</div>
 <div style="background-color: red;">Not in grid</div>
 </div>
 <style>
@@ -73,9 +76,15 @@ items.template=`
 <% Object.keys(items.list).forEach(key=> { %>
 <li>ID: <a><%= items.list[key].id %></a> Name:<a><%= key %></a></li>
 <% }) %>
-
 `
+items.bmtemplate=`
+<% Object.keys(items.bookmarks).forEach(key=> { %>
+<li>ID: <a><%= items.bookmarks[key].id %></a> Name:<a><%= key %></a></li>
+<% }) %>
+`
+
 items.list={'Coin':{ id: '000001', img_url: '../resources/Coin_03.png'},'2':{id: '000002'}}
+items.bookmarks={}
 function el_click(el){
     if(el.nodeName!='LI'){
         console.log(el, el.parentElement)
@@ -84,6 +93,15 @@ function el_click(el){
     let name = el.children[1].innerText
     document.getElementsByClassName('b')[0].innerHTML='<img src="' +items.list[name].img_url+'">'+"<br>ID"+items.list[name].id+
     " name: " + name;
+}
+function el_bm(el){
+    if(el.nodeName!='LI'){
+        console.log(el, el.parentElement)
+        el=el.parentElement;
+    }
+    let name = el.children[1].innerText
+    document.getElementsByClassName('b')[0].innerHTML='<img src="' +items.bookmarks[name].img_url+'">'+"<br>ID"+items.bookmarks[name].id+
+    " name: " + name + '<br><p>Description:'+items.bookmarks[name].description+' </p>';
 }
 function parent_sub_on(soul){
     let msg={gun_sub: soul};
@@ -103,6 +121,7 @@ window.onmessage=(e)=>{
             console.log('items processing bookmark');
             let bm = e.data['your_topic_pub']
             console.log(bm.time)
+            items.bookmarks[bm.time]={id: time, img_url: '../resources/Parchment_02.png', description: 'Just a gps bookmark'}
         }
     }
     else if(e.data.login){
