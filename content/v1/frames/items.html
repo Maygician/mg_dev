@@ -4,7 +4,7 @@
 <div class="container" >
     <div class="a" style="overflow: auto; max-width: 100%;">
         <div>
-            <ul id="item_list"> 
+            <ul id="item_list" onclick="el_c(event.target)"> 
             </ul>
         </div>
     </div>
@@ -19,9 +19,9 @@
 <div class="d">Content d</div>
 <div class="footer">
     <button onclick="item_list.innerHTML=ejs.render(items.template, items.list);
-    item_list.onclick=()=>el_click(event.target);">Populate</button>
+    pop_mode='items';">Populate</button>
     <button onclick="item_list.innerHTML=ejs.render(items.bmtemplate, items.bookmarks);
-    item_list.onclick=()=>el_bm(event.target)
+    pop_mode='bookmarks';
     ">Populate bm</button>
 </div>
 <div style="background-color: red;">Not in grid</div>
@@ -74,6 +74,7 @@
 }
 </style>
 <script>
+    var pop_mode='';
 var items={}
 items.template=`
 <% Object.keys(items.list).forEach(key=> { %>
@@ -88,6 +89,12 @@ items.bmtemplate=`
 
 items.list={'Coin':{ id: '000001', img_url: '../resources/Coin_03.png'},'2':{id: '000002'}}
 items.bookmarks={}
+function el_c(el){
+    if(pop_mode=='items')
+    el_click(el);
+    else if(pop_mode=='bookmarks')
+    el_bm(el);
+}
 function el_click(el){
     if(el.nodeName!='LI'){
         console.log(el, el.parentElement)
