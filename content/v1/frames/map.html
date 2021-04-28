@@ -162,7 +162,10 @@ window.onmessage=(e)=>{
     }
     else if(e.data.login){
         parent_sub_on('map/show');//dev   
-        window.parent.postMessage({frame_resize:{width: container.offsetWidth+'px', height: container.offsetHeight+'px'}},'https://maygame.xxx');
+        let wdt = window.getComputedStyle(container).getPropertyValue(width);
+        let ht = window.getComputedStyle(container).getPropertyValue(height);
+        let fr={frame_resize:{width: wdt+'px', height: ht+'px'}};
+        window.parent.postMessage(fr,'https://maygame.xxx');
         console.log('map got login')
     }
 }
