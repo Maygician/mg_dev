@@ -151,7 +151,7 @@ html, body, iframe
         }
         if(e.data.frame_resize){
             let fname = e.source.name;
-            console.log('resize',fname,e.data.frame_resize,document.getElementsByName(fname)[0].parentElement.style)
+            // console.log('resize',fname,e.data.frame_resize,document.getElementsByName(fname)[0].parentElement.style)
             document.getElementsByName(fname)[0].style.width=e.data.frame_resize.width;
             document.getElementsByName(fname)[0].style.height=e.data.frame_resize.height;
         }
