@@ -124,7 +124,7 @@ html, body, iframe
         // else
         if(e.data.gunput){
             // console.log("gunput: ", e.data.gunput);
-            if(validate_access(e.source,e.data.gunput))//todo: memoize
+            if(validate_access(e.source,e.data.soul))//todo: memoize
             user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput))
         }
         else
