@@ -178,7 +178,7 @@ html, body, iframe
         if(pubres[soul]){console.log('access to', soul, "granted to frame: ", source); return true;}
         else{console.log('access to', soul, "denied to frame: ", source); return false;};
     }
-    pubres={}
+    pubres={'map/gps_map_click':true,'map/gps_my_pos':true,'map/last_bookmark':true}
     //#region Sign in
 async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;
