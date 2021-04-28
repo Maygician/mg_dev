@@ -164,7 +164,7 @@ window.onmessage=(e)=>{
         parent_sub_on('map/show');//dev   
         let wdt = window.getComputedStyle(container).getPropertyValue('width');
         let ht = window.getComputedStyle(container).getPropertyValue('height');
-        let fr={frame_resize:{width: wdt+'px', height: ht+'px'}};
+        let fr={frame_resize:{width: wdt, height: ht}};
         window.parent.postMessage(fr,'https://maygame.xxx');
         console.log('map got login')
     }
