@@ -145,8 +145,8 @@ window.onmessage=(e)=>{
         parent_sub_on('items/edit/bookmark');//dev   
         parent_sub_on('items/show/bookmark');//dev   
         console.log('items got login');
-        let wdt = window.getComputedStyle(container).getPropertyValue(width);
-        let ht = window.getComputedStyle(container).getPropertyValue(height);
+        let wdt = window.getComputedStyle(container).getPropertyValue('width');
+        let ht = window.getComputedStyle(container).getPropertyValue('height');
         let fr={frame_resize:{width: wdt+'px', height: ht+'px'}};
         console.log('items_resize:',fr)
         window.parent.postMessage(fr,'https://maygame.xxx');
