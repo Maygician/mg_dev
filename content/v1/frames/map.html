@@ -23,7 +23,7 @@
 <div id="mapid" style="height: 140px; width: 140px;"> </div>
 <button onclick="mapid.style.height='300px';mapid.style.width='300px';">+</button>
 <button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
-<button onclick="ask_geopos();goto_pos(gps_lat.innerHTML,gps_long.innerHTML);">^</button>
+<button onclick="ask_geopos();goto_pos(parseFloat(gps_lat.innerHTML),parseFloat(gps_long.innerHTML));">^</button>
 <!-- <a id='my_coords'></a> -->
 <!-- <button onclick="get_coords()">Get coords</button><input type="text"> -->
 <button onclick="if(map_hint.style.display=='none')map_hint.style.display='block'; else map_hint.style.display='none';">Pos hint</button>
