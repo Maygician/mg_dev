@@ -109,7 +109,7 @@ function el_bm(el){
     let name = el.children[1].innerText
     document.getElementsByClassName('b')[0].innerHTML='<img src="' +items.bookmarks[name].img_url+'">'+"<br>ID"+items.bookmarks[name].id+
     " name: " + name + '<br><p>Description:'+items.bookmarks[name].description+' </p>'+`
-    <br><button onclick="window.parent.postMessage({gunput: {lat: ${items.bookmarks[name].meta.lat},long: ${items.bookmarks[name].meta.long}},soul: 'map/show'},'https://maygame.xxx');">Show on map</button><button onclick="console.log('edit not implemented')">Edit</button>
+    <br><button onclick="window.parent.postMessage({gunput: JSON.stringify({lat: ${items.bookmarks[name].meta.lat},long: ${items.bookmarks[name].meta.long}}),soul: 'map/show'},'https://maygame.xxx');">Show on map</button><button onclick="console.log('edit not implemented')">Edit</button>
     `;
 }
 function parent_sub_on(soul){
