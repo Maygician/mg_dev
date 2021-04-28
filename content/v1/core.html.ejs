@@ -122,6 +122,9 @@ html, body, iframe
         // if(e.data.gunput_sub){
         //     user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gunput_sub))}
         // else
+        if(e.data.frame_click){
+            console.log('click on', e.source, e.data)
+        }
         if(e.data.gunput){
             // console.log("gunput: ", e.data.gunput);
             if(validate_access(e.source,e.data.soul))//todo: memoize
