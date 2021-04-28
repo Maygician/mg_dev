@@ -119,23 +119,29 @@ html, body, iframe
     }
     var user_pub;
     window.onmessage=(e)=>{
-        if(e.data.gunput_sub){
-            user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gunput_sub))}
-        else
+        // if(e.data.gunput_sub){
+        //     user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gunput_sub))}
+        // else
         if(e.data.gunput){
             // console.log("gunput: ", e.data.gunput);
+            if(validate_access(e.source,e.data.gunput))//todo: memoize
             user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput))
         }
         else
         if(e.data.gundelete){
+            if(validate_access(e.source,e.data.gunput))//todo: memoize
+            {
             console.log('gundelete: ', e.data);
             user.get(store_dir).get(e.data.gundelete).put(null);
+            }
         }
         else
         if(e.data.gun_sub)
         {
             let frame_subscriber = e.source;
             let soul = e.data.gun_sub;
+            if(!validate_access(frame_subscriber,soul))
+            return false;
             // console.log(frame_subscriber, "subscribed to ", soul, "topic")
             user.get(store_dir).get(soul).on((e)=>{
                 frame_pub(frame_subscriber,e, soul);
@@ -168,6 +174,11 @@ html, body, iframe
         }
 
     }
+    function validate_access(source,soul){
+        if(pubres[soul]){console.log('access to', soul, "granted to frame: ", source); return true;}
+        else return false;
+    }
+    pubres={}
     //#region Sign in
 async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;

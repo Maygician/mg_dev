@@ -135,12 +135,21 @@ window.onmessage=(e)=>{
             items.bookmarks[bm.time]={
                 id: bm.time, img_url: '../resources/Parchment_02.png', description: desc, meta: {bm}}
         }
+        else if(e.data.soul=='items/edit/bookmark')//todo: generalize
+        {
+
+        }
     }
     else if(e.data.login){
         parent_sub_on('map/last_bookmark');//dev   
+        parent_sub_on('items/edit/bookmark');//dev   
+        parent_sub_on('items/show/bookmark');//dev   
         console.log('items got login')
     }
 }
 var my_subs={}
+/*
+entity_link: soul
+*/
 //#endregion
 </script>
