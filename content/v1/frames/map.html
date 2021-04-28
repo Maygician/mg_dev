@@ -146,14 +146,16 @@ function create_gps_bookmark(){
     let msg = {lat: gps_lat.innerText,long: gps_long.innerText, time: timestamp, alt: gps_alt.innerText, map_type: 'gps'};
     parent_put('map/last_bookmark', msg);
 }
-
+function goto_pos(lat, long){
+mymap.setView([lat, long], map_radius);
+}
 //#region common part?
 window.onmessage=(e)=>{
     console.log(e.data);
     if(e.data['your_topic_pub']){
         if(e.data.soul=='map/show'){
-            console.log('show on map request');
-
+          console.log('show on map request',e.data);
+          goto_pos(e.data['your_topic_pub'].lat, e.data['your_topic_pub'].long)
         }
     }
     else if(e.data.login){

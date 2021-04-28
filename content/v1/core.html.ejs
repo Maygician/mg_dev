@@ -129,7 +129,7 @@ html, body, iframe
         }
         else
         if(e.data.gundelete){
-            if(validate_access(e.source,e.data.gunput))//todo: memoize
+            if(validate_access(e.source,e.data.gundelete))//todo: memoize
             {
             console.log('gundelete: ', e.data);
             user.get(store_dir).get(e.data.gundelete).put(null);
@@ -177,8 +177,15 @@ html, body, iframe
     function validate_access(source,soul){
         if(pubres[soul]){console.log('access to', soul, "granted to frame: ", source); return true;}
         else{console.log('access to', soul, "denied to frame: ", source); return false;};
+        //todo: better access management
     }
-    pubres={'map/gps_map_click':true,'map/gps_my_pos':true,'map/last_bookmark':true}
+    pubres={'map/gps_map_click':true,
+    'map/gps_my_pos':true,
+    'map/last_bookmark':true,
+    'map/show':true,
+    'items/edit':true,
+    'items/list':true
+}
     //#region Sign in
 async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;
