@@ -50,7 +50,7 @@ html, body, iframe
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: auto auto 0.3fr 0.2fr;
     grid-template-columns: 1fr 1fr 0.3fr;
     grid-template-areas: 
     "a b map"
@@ -83,7 +83,7 @@ html, body, iframe
 }
 </style>
 <div class="container">
-<div id="menu" style="z-index: 2147483210;grid-area: menu_bar; bottom: 0; pointer-events: all;">
+<div id="menu" style="position: absolute; z-index: 2147483210;grid-area: menu_bar; bottom: 0; pointer-events: all;">
     <button onclick="default_sign_in();" style="color: seagreen;">Quick sign in</button>
     <button onclick="force_create_new_user();">Force new user</button>
     <input type="text" id="text_pair" placeholder="paste your key here or log in with default">
