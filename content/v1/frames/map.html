@@ -180,7 +180,7 @@ function parent_sub_on(soul){
     //extra code to remember it on this page
 }
 var my_subs={}
-window.onclick=(e)=>window.parent.postMessage({frame_click: e},'https://maygame.xxx');
+window.onclick=(e)=>window.parent.postMessage({frame_click: JSON.parse(JSON.stringify(e))},'https://maygame.xxx');
 //#endregion
 
 </script>
