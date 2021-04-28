@@ -20,7 +20,10 @@
  crossorigin=""></script>
  </head>
 <body style="opacity: 90%; right: 0; float: right;">
-  <div id="container" style="display: block;">
+  <style>
+    html, body { overflow: hidden; }
+  </style>
+  <div id="container" style="display: block; height: 100%; width: 100%;">
 <div id="mapid" style="height: 140px; width: 140px;"> </div>
 <button onclick="mapid.style.height='300px';mapid.style.width='300px';">+</button>
 <button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
