@@ -160,7 +160,7 @@ window.onmessage=(e)=>{
     }
     else if(e.data.login){
         parent_sub_on('map/show');//dev   
-        window.parent.postMessage({frame_resize:{width: container.offsetWidth, height: container.offsetHeight}},'https://maygame.xxx');
+        window.parent.postMessage({frame_resize:{width: container.offsetWidth+'px', height: container.offsetHeight+'px'}},'https://maygame.xxx');
         console.log('map got login')
     }
 }
