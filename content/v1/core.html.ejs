@@ -150,7 +150,8 @@ html, body, iframe
             }),{change: true}
         }
         if(e.data.frame_resize){
-            let fname = e.source.name
+            let fname = e.source.name;
+            console.log('resize',fname)
             window.frames[fname].style.width=e.data.frame_resize.width;
             window.frames[fname].style.height=e.data.frame_resize.height;
         }
