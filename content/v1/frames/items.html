@@ -145,7 +145,6 @@ window.onmessage=(e)=>{
         parent_sub_on('items/edit/bookmark');//dev   
         parent_sub_on('items/show/bookmark');//dev   
         console.log('items got login');
-        window.frames[fname].style.width=e.data.frame_resize.width;
         window.parent.postMessage({frame_resize:{width: '200px', height: '200px'}},'https://maygame.xxx');
     }
 }
