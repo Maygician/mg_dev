@@ -80,7 +80,7 @@ html, body, iframe
     <button onclick="toggle(quests_add_layer)">Quests Add/Edit</button>
     <button onclick="toggle(profile_layer)">Profile</button>
     <button onclick="toggle(map_layer)">Map</button>
-    <button onclick="toggle_pevents(frame_hud)">Hud</button>
+    <!-- <button onclick="toggle_pevents(frame_hud)">Hud</button> -->
     <button onclick="toggle(curr_layer)" style="background-color: mediumpurple;">Currencies</button>
     <button onclick="toggle(items_layer)" style="background-color: mediumpurple;">Items</button>
     <!-- <button onclick="toggle(test_layer)" style="background-color: mediumturquoise;">Test</button> -->
@@ -97,9 +97,9 @@ html, body, iframe
 <div id="quests_add_layer" class="layer_b b" style="display: none; ">
     <iframe scrolling="no"name="quests_add" src="<%= quests_add_url %>" id="frame_quests_add" style="border: 0; width: 100%; height: 100%"></iframe>
 </div>
-<div id="hud_layer" class="layer_b" style="z-index: -5;">
+<!-- <div id="hud_layer" class="layer_b" style="z-index: -5;">
     <iframe scrolling="no"name="hud" src="<%= hud_url %>" id="frame_hud" style="border: 0; width: 100%; height: 100%; z-index: -5;"></iframe>
-</div>
+</div> -->
 <div id="map_layer" class="layer_b map" style="display: none; right: 0;">
     <iframe scrolling="no"name="map" src="<%= map_url %>" id="frame_map" style="border: 0; width: 100%; height: 100%"></iframe>
 </div>
