@@ -45,11 +45,12 @@ html, body, iframe
 }
 .container{
     display: grid;
-    grid-template-rows: auto auto 1fr 0.3fr auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-columns: 1fr 1fr 0.3fr;
     grid-template-areas: 
     "a b map"
     "a b reserved"
+    "footer footer footerb"
     "menu_bar menu_bar menu_bar"
     ;
     }
@@ -68,6 +69,12 @@ html, body, iframe
 }
 .map{
     grid-area: map;
+}
+.footer{
+    grid-area: footer;
+}
+.footerb{
+    grid-area: footerb;
 }
 </style>
 <div class="container">
