@@ -19,7 +19,8 @@
  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
  crossorigin=""></script>
  </head>
-<body style="opacity: 90%; right: 0; float: right;" id="container">
+<body style="opacity: 90%; right: 0; float: right;">
+  <div id="container" style="display: block;">
 <div id="mapid" style="height: 140px; width: 140px;"> </div>
 <button onclick="mapid.style.height='300px';mapid.style.width='300px';">+</button>
 <button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
@@ -35,6 +36,7 @@
     <p>Error margin: <a id="gps_error"></a></p>
     <button onclick="create_gps_bookmark()">Create a bookmark</button>
 </div>
+  </div>
 <script>
     var lastClick;
     // function get_coords(){
