@@ -121,12 +121,12 @@ function el_bm(el){
     let name = el.children[1].innerText
     document.getElementsByClassName('b')[0].innerHTML='<img src="' +items.bookmarks[name].img_url+'">'+"<br>ID"+items.bookmarks[name].id+
     " name: " + name + '<br><p>Description:'+items.bookmarks[name].description+' </p>'+`
-    <br><button onclick="bm_show_on_map(${name}">Show on map</button><button onclick="console.log('edit not implemented')">Edit</button>
+    <br><button onclick="bm_show_on_map('${name}')">Show on map</button><button onclick="console.log('edit not implemented')">Edit</button>
     `;
 }
 function bm_show_on_map(name){
     console.log('from bm_show.. items: ', items)
-    let msg={gunput: JSON.stringify({lat: items.bookmarks[name].meta.lat,long: items.bookmarks[name].meta.long}),soul: 'map/show'};
+    let msg={gunput: JSON.stringify({lat: items.bookmarks[name].meta.bm.lat,long: items.bookmarks[name].meta.bm.long}),soul: 'map/show'};
     window.parent.postMessage(msg,'https://maygame.xxx');
 }
 function parent_sub_on(soul){
