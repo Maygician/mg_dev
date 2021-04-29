@@ -31,9 +31,21 @@
             <p class="header">Item add</p>
             <div class="body">
                 <label for="name">Name: </label>
-                <input type="text" id="name">
+                <input type="text" id="name"><br>
+                <label for="user_pub">User_id: </label><input type="text" disabled id="user_pub"><button
+                onclick="window.parent.postMessage({get_id: 'user'},'https://maygame.xxx');
+                user_pub.innerText=user_id;
+                "
+                >get</button>
             </div>
             <button class="footer" onclick="alert('created',name.value);">Create</button>
         </div>
+        <script>
+            var user_id;
+            window.onmessage=(e)=>{if(e.data.user_id)
+            user_id=e.data.user_id;
+            else console.log('item_add got weird msg: ', e)
+        }
+        </script>
     </body>
 </html>
