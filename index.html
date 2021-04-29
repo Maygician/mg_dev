@@ -196,9 +196,9 @@ btn_to_local.disabled=!btn_to_local.disabled
 </script>
 <!-- fixme. proper awaits + chaining -->
 <script>
-var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-window.onload=()=>{
-  device_width.innerText='Width:'+width;
+  window.onload=()=>{
+  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  device_width.innerText='Width: '+width;
 }
 var config_initial
 var cfg_render = function(){

@@ -52,7 +52,7 @@ html, body, iframe
     grid-template-areas: 
     "a b map"
     "footer footer footer_b"
-    "menu_bar menu_bar footer_b"
+    "menu_bar menu_bar menu_bar_right"
     ;
     margin-left: calc(-50vw + 50%);
     }
@@ -62,6 +62,9 @@ html, body, iframe
 }
 .menu_bar{
     grid-area: menu_bar;
+}
+.menu_bar_right{
+    grid-area: menu_bar_right;
 }
 .a{
     grid-area: a;
@@ -81,7 +84,7 @@ html, body, iframe
 }
 .footer_b{
     background-color: rgb(172, 77, 172);
-    grid-area: footerb;
+    grid-area: footer_b;
 }
 </style>
 <div class="container">
@@ -102,7 +105,8 @@ html, body, iframe
     <!-- <button onclick="window.frames.test.postMessage('Lunar blessings to you all!','https://maygame.xxx')">Send test message</button> -->
     <!-- <button onclick="gun.get('test').get('stuff').put({'hud_test':'from_core'});">GUN TEST</button> -->
     <!-- <div id="message_div"></div> -->
-</div><br>
+</div>
+<div class="menu_bar_right"><button>menu right</button></div>
 <!-- #region -->
 <div id="quests_layer" class="layer_b b" style="display: none; ">
     <!-- there's no styling for the layer_b. temporaly disabling 'layer' this way -->
