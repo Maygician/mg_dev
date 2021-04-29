@@ -1,11 +1,46 @@
 <meta name="robots" content="noindex">
 <script src="js/cdn/ejs.min.js"></script>
-<button style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap three times to
+<style>
+  *{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 10vh 60vh  auto 10vh;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+    grid-template-areas: 
+    "header header header"
+    "pad_left big_button pad_right"
+    "pad_left settings pad_right"
+    "footer footer footer";
+    }
+.big_button{
+  grid-area: big_button;
+}
+.header{
+  grid-area: header;
+}
+.settings{
+  grid-area: settings;
+}
+  
+</style>
+<button style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;"
+ onclick="if(stuff.style.display=='block')stuff.style.display='none';else stuff.style.display='block';">Stuff</button>
+
+<div class="container">
+<button class="big_button" style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap three times to
   play</button>
   <!-- fixme -->
 <br>
-<p><a href="https://maygame.xxx/default">Load sample</a></p>
+<p class="footer"><a href="https://maygame.xxx/default">Load sample</a></p>
 <br>
+</div>
+<div id="stuff" style="background-color: lightcoral; position: fixed; display: none;">
 <button onclick="
 fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 
@@ -17,6 +52,7 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <h1>Init</h1>
 <p>Default behavior: </p>
 <p><a>Load config from localStorage. </a><button onclick="do_default()">Do.</button></p>
+</div>
 <script>
   function do_cached_core(){
     let cc=localStorage.getItem('cached_core');
