@@ -52,6 +52,96 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
 <h1>Init</h1>
 <p>Default behavior: </p>
 <p><a>Load config from localStorage. </a><button onclick="do_default()">Do.</button></p>
+<input type="text" id="url_to_cache" value="abraka-dabra">
+<br>
+<!-- Content security policy stuff: todo -->
+<label for="config_url">url to fetch your config from</label>
+<input type="text" value="config/v1.json" id="config_url">
+<button onclick="
+fetch_config(config_url.value)
+">Load config file</button><br>
+<!-- todo: validate -->
+<button onclick=";(async ()=>{
+let core = config.core.url;
+fetch(core).then((response)=>{response.text().then((e)=>{
+let result = ejs.render(e,config.replace);
+document.getElementById('template_showdown').lastChild.innerText+=e;
+cache_as(result,'core_something.html')//fixme, todo
+});
+});
+})();
+">Load from config</button><button
+onclick="
+cfg_render();
+"
+>Edit config</button>
+<button onclick="
+localStorage.setItem('saved_cfg',JSON.stringify(config));
+">Save config (localStorage)</button><button onclick="
+config = JSON.parse(localStorage.getItem('saved_cfg'));
+config_initial = config_initial || JSON.parse(JSON.stringify(config));
+console.log(config);
+">Load last stored config</button>
+<div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
+<div style="position: relative; overflow: scroll; width: 500px; height: 500px; bottom: 0; right: 0; opacity: 0.7; display: none;">  
+  <p id='template_showdown' style="pointer-events: none; position: relative; background-color: pink; bottom: 0; width: fit-content; height: fit-content;">
+    <a onclick="template_showdown.lastChild.innerText='';" style="background-color: plum; position: absolute; pointer-events: all;">Reset</a><a style="pointer-events: none;"></a></p>
+</div>
+<br>
+<h1>-------------------------------</h1>
+<p></p>
+<h1>-------------------------------</h1>
+<!--  -->
+<br>
+<button>Change default behavior</button>
+<br>
+<h1>Data server: <input type="text" placeholder="gun instance"></h1>
+<br>
+<h1>Default behavior:</h1>
+<label for="rb_load_last">Load last used</label>
+<input type="radio" checked name="def_beh" value="rb_load_last" id="rb_load_last"><br>
+
+<label for="rb_load_newest">Load newest</label>
+<input type="radio" name="def_beh" value="rb_load_newest" id="rb_load_newest"><br>
+
+<label for="rb_load_template">Load from template</label>
+<input type="radio" name="def_beh" value="rb_load_template" id="rb_load_template"><br>
+
+<label>Customize</label>
+<input type="checkbox" id="cb_customize" value=""><br>
+
+
+<button id="btn_customize_submit" onclick="customize_submit();">Submit</button>
+
+<!-- #region -->
+<h1>Customization:</h1>
+<div id="customization_div" style="background: mediumorchid;">
+
+  <p>Load modules:</p>
+  <ul>
+    <li><label for="module_core_head">Core head</label><input type="checkbox" id="module_core_head" checked disabled>
+    </li>
+    <li><label for="module_%name%">Name</label><input type="checkbox" id="module_%name%" checked></li>
+    <li><label for="module_core_body">Core body</label><input type="checkbox" id="module_core_body" checked disabled>
+    </li>
+    <li><label for="module_core_footer">Core footer</label><input type="checkbox" id="module_core_footer" checked
+        disabled></li>
+    <!-- groups: unchecking one unchecks related (todo) -->
+  </ul>
+
+  <label>Save template as</label>
+  <input type="text" id='text_save_as' disabled>
+  <input type="checkbox" id="cb_save_as" value="" onchange="
+text_save_as.disabled=!text_save_as.disabled;
+btn_to_gun.disabled=!btn_to_gun.disabled;
+btn_to_local.disabled=!btn_to_local.disabled
+ ">
+  <button id='btn_to_gun' disabled>To gun</button>
+  <button disabled id="btn_to_local">To localStorage</button>
+  <br>
+</div>
+
+
 </div>
 <script>
   function do_cached_core(){
@@ -103,42 +193,6 @@ fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
       })    
     } else {}}
 </script>
-<input type="text" id="url_to_cache" value="abraka-dabra">
-<br>
-<!-- Content security policy stuff: todo -->
-<label for="config_url">url to fetch your config from</label>
-<input type="text" value="config/v1.json" id="config_url">
-<button onclick="
-fetch_config(config_url.value)
-">Load config file</button><br>
-<!-- todo: validate -->
-<button onclick=";(async ()=>{
-let core = config.core.url;
-fetch(core).then((response)=>{response.text().then((e)=>{
-let result = ejs.render(e,config.replace);
-document.getElementById('template_showdown').lastChild.innerText+=e;
-cache_as(result,'core_something.html')//fixme, todo
-});
-});
-})();
-">Load from config</button><button
-onclick="
-cfg_render();
-"
->Edit config</button>
-<button onclick="
-localStorage.setItem('saved_cfg',JSON.stringify(config));
-">Save config (localStorage)</button><button onclick="
-config = JSON.parse(localStorage.getItem('saved_cfg'));
-config_initial = config_initial || JSON.parse(JSON.stringify(config));
-console.log(config);
-">Load last stored config</button>
-<div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
-<div style="position: relative; overflow: scroll; width: 500px; height: 500px; bottom: 0; right: 0; opacity: 0.7; display: none;">  
-  <p id='template_showdown' style="pointer-events: none; position: relative; background-color: pink; bottom: 0; width: fit-content; height: fit-content;">
-    <a onclick="template_showdown.lastChild.innerText='';" style="background-color: plum; position: absolute; pointer-events: all;">Reset</a><a style="pointer-events: none;"></a></p>
-</div>
-
 <!-- fixme. proper awaits + chaining -->
 <script>
 var config_initial
@@ -199,59 +253,6 @@ async function fetch_config(url){
   .then(cfg=>{config = cfg; config_initial = JSON.parse(JSON.stringify(cfg)); console.log(cfg)})
 })}
 </script>
-<br>
-<h1>-------------------------------</h1>
-<p></p>
-<h1>-------------------------------</h1>
-<!--  -->
-<br>
-<button>Change default behavior</button>
-<br>
-<h1>Data server: <input type="text" placeholder="gun instance"></h1>
-<br>
-<h1>Default behavior:</h1>
-<label for="rb_load_last">Load last used</label>
-<input type="radio" checked name="def_beh" value="rb_load_last" id="rb_load_last"><br>
-
-<label for="rb_load_newest">Load newest</label>
-<input type="radio" name="def_beh" value="rb_load_newest" id="rb_load_newest"><br>
-
-<label for="rb_load_template">Load from template</label>
-<input type="radio" name="def_beh" value="rb_load_template" id="rb_load_template"><br>
-
-<label>Customize</label>
-<input type="checkbox" id="cb_customize" value=""><br>
-
-
-<button id="btn_customize_submit" onclick="customize_submit();">Submit</button>
-
-<!-- #region -->
-<h1>Customization:</h1>
-<div id="customization_div" style="background: mediumorchid;">
-
-  <p>Load modules:</p>
-  <ul>
-    <li><label for="module_core_head">Core head</label><input type="checkbox" id="module_core_head" checked disabled>
-    </li>
-    <li><label for="module_%name%">Name</label><input type="checkbox" id="module_%name%" checked></li>
-    <li><label for="module_core_body">Core body</label><input type="checkbox" id="module_core_body" checked disabled>
-    </li>
-    <li><label for="module_core_footer">Core footer</label><input type="checkbox" id="module_core_footer" checked
-        disabled></li>
-    <!-- groups: unchecking one unchecks related (todo) -->
-  </ul>
-
-  <label>Save template as</label>
-  <input type="text" id='text_save_as' disabled>
-  <input type="checkbox" id="cb_save_as" value="" onchange="
-text_save_as.disabled=!text_save_as.disabled;
-btn_to_gun.disabled=!btn_to_gun.disabled;
-btn_to_local.disabled=!btn_to_local.disabled
- ">
-  <button id='btn_to_gun' disabled>To gun</button>
-  <button disabled id="btn_to_local">To localStorage</button>
-  <br>
-</div>
 <!-- #endregion -->
 <script id="js_sw" type="text/javascript">
   if ('serviceWorker' in navigator) {
