@@ -160,7 +160,7 @@ window.onmessage=(e)=>{
     if(e.data['your_topic_pub']){
         if(e.data.soul=='map/show'){
           console.log('show on map request',e.data);
-          goto_pos(e.data['your_topic_pub'].lat, e.data['your_topic_pub'].long);
+          goto_pos(e.data['your_topic_pub'].e.lat, e.data['your_topic_pub'].e.long);
         }
         else console.log('wrong topic (map sub)', e);
     }
