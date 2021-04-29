@@ -31,6 +31,7 @@
   grid-area: footer;
 }
 </style>
+<a style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;" id="device_width"></a>
 <button style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;"
  onclick="if(stuff.style.display=='block')stuff.style.display='none';else stuff.style.display='block';">Stuff</button>
 
@@ -197,8 +198,7 @@ btn_to_local.disabled=!btn_to_local.disabled
 <script>
 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 window.onload=()=>{
-  if(width<=700)
-  alert('Mobile?', width)
+  device_width.innerText='Width:'+width;
 }
 var config_initial
 var cfg_render = function(){

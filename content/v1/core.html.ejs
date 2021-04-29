@@ -26,8 +26,6 @@ iframe{
     width: 100%;
     height: 100%;
     border: none;
-    overflow-y: auto;
-    overflow-x: hidden;
     top: 0;
     bottom: 0;
     right: 0;
@@ -44,19 +42,19 @@ html, body, iframe
     height: 100vh; 
     width: 100vw;
     border: none;
-    overflow: hidden;
 }
 .container{
     width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-rows: 80vh 10vh 10vh;
-    grid-template-columns: 1fr 1fr 0.4fr;
+    grid-template-columns: 1fr 1fr auto;
     grid-template-areas: 
     "a b map"
     "footer footer footer_b"
     "menu_bar menu_bar footer_b"
     ;
+    margin-left: calc(-50vw + 50%);
     }
 .header{
     grid-area: header;
