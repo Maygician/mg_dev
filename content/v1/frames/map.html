@@ -171,8 +171,8 @@ window.onmessage=(e)=>{
         // window.parent.postMessage(fr,'https://maygame.xxx');
         console.log('map got login')
     }
+    else console.log('map, got meaningless message: ', e)
 }
-
 function parent_sub_on(soul){
     let msg={gun_sub: soul};
     my_subs[soul]=true;
