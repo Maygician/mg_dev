@@ -1,389 +1,383 @@
-<meta name="robots" content="noindex">
-<script src="js/cdn/ejs.min.js"></script>
-<style>
-  *{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-.container{
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 10vh 60vh  auto 10vh;
-    grid-template-columns: 0.2fr 1fr 0.2fr;
-    grid-template-areas: 
-    "header header header"
-    "pad_left big_button pad_right"
-    "pad_left settings pad_right"
-    "footer footer footer";
-    }
-.big_button{
-  grid-area: big_button;
-}
-.header{
-  grid-area: header;
-}
-.settings{
-  grid-area: settings;
-}
-.footer{
-  grid-area: footer;
-}
-</style>
-<a style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;" id="device_width"></a>
-<button style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;"
- onclick="if(stuff.style.display=='block')stuff.style.display='none';else stuff.style.display='block';">Stuff</button>
-
-<div class="container">
-<button class="big_button" style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap three times to
-  play</button>
-  <!-- fixme -->
-<p class="footer"><a href="https://maygame.xxx/default">Load sample</a></p>
-</div>
-<div id="stuff" style="background-color: lightcoral; position: absolute; display: none; height: 100vh; width: 100vw; z-index: 300; top: 0;">
-<button onclick="
-fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
-
-">Test</button>
-
-<br>
-<!--  -->
-<br>
-<h1>Init</h1>
-<p>Default behavior: </p>
-<p><a>Load config from localStorage. </a><button onclick="do_default()">Do.</button></p>
-<input type="text" id="url_to_cache" value="abraka-dabra">
-<br>
-<!-- Content security policy stuff: todo -->
-<label for="config_url">url to fetch your config from</label>
-<input type="text" value="config/v1.json" id="config_url">
-<button onclick="
-fetch_config(config_url.value)
-">Load config file</button><br>
-<!-- todo: validate -->
-<button onclick=";(async ()=>{
-let core = config.core.url;
-fetch(core).then((response)=>{response.text().then((e)=>{
-let result = ejs.render(e,config.replace);
-document.getElementById('template_showdown').lastChild.innerText+=e;
-cache_as(result,'core_something.html')//fixme, todo
-});
-});
-})();
-">Load from config</button><button
-onclick="
-cfg_render();
-"
->Edit config</button>
-<button onclick="
-localStorage.setItem('saved_cfg',JSON.stringify(config));
-">Save config (localStorage)</button><button onclick="
-config = JSON.parse(localStorage.getItem('saved_cfg'));
-config_initial = config_initial || JSON.parse(JSON.stringify(config));
-console.log(config);
-">Load last stored config</button>
-<div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
-<div style="position: relative; overflow: scroll; width: 500px; height: 500px; bottom: 0; right: 0; opacity: 0.7; display: none;">  
-  <p id='template_showdown' style="pointer-events: none; position: relative; background-color: pink; bottom: 0; width: fit-content; height: fit-content;">
-    <a onclick="template_showdown.lastChild.innerText='';" style="background-color: plum; position: absolute; pointer-events: all;">Reset</a><a style="pointer-events: none;"></a></p>
-</div>
-<br>
-<h1>-------------------------------</h1>
-<p></p>
-<h1>-------------------------------</h1>
-<!--  -->
-<br>
-<button>Change default behavior</button>
-<br>
-<h1>Data server: <input type="text" placeholder="gun instance"></h1>
-<br>
-<h1>Default behavior:</h1>
-<label for="rb_load_last">Load last used</label>
-<input type="radio" checked name="def_beh" value="rb_load_last" id="rb_load_last"><br>
-
-<label for="rb_load_newest">Load newest</label>
-<input type="radio" name="def_beh" value="rb_load_newest" id="rb_load_newest"><br>
-
-<label for="rb_load_template">Load from template</label>
-<input type="radio" name="def_beh" value="rb_load_template" id="rb_load_template"><br>
-
-<label>Customize</label>
-<input type="checkbox" id="cb_customize" value=""><br>
-
-
-<button id="btn_customize_submit" onclick="customize_submit();">Submit</button>
-
-<!-- #region -->
-<h1>Customization:</h1>
-<div id="customization_div" style="background: mediumorchid;">
-
-  <p>Load modules:</p>
-  <ul>
-    <li><label for="module_core_head">Core head</label><input type="checkbox" id="module_core_head" checked disabled>
-    </li>
-    <li><label for="module_%name%">Name</label><input type="checkbox" id="module_%name%" checked></li>
-    <li><label for="module_core_body">Core body</label><input type="checkbox" id="module_core_body" checked disabled>
-    </li>
-    <li><label for="module_core_footer">Core footer</label><input type="checkbox" id="module_core_footer" checked
-        disabled></li>
-    <!-- groups: unchecking one unchecks related (todo) -->
-  </ul>
-
-  <label>Save template as</label>
-  <input type="text" id='text_save_as' disabled>
-  <input type="checkbox" id="cb_save_as" value="" onchange="
-text_save_as.disabled=!text_save_as.disabled;
-btn_to_gun.disabled=!btn_to_gun.disabled;
-btn_to_local.disabled=!btn_to_local.disabled
- ">
-  <button id='btn_to_gun' disabled>To gun</button>
-  <button disabled id="btn_to_local">To localStorage</button>
+<html><head><meta name="robots" content="noindex">
+  <script src="js/cdn/ejs.min.js"></script>
+  <style>
+    *{
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+  }
+  .container{
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      grid-template-rows: 10vh 60vh  auto 10vh;
+      grid-template-columns: 0.2fr 1fr 0.2fr;
+      grid-template-areas: 
+      "header header header"
+      "pad_left big_button pad_right"
+      "pad_left settings pad_right"
+      "footer footer footer";
+      }
+  .big_button{
+    grid-area: big_button;
+  }
+  .header{
+    grid-area: header;
+  }
+  .settings{
+    grid-area: settings;
+  }
+  .footer{
+    grid-area: footer;
+  }
+  </style>
+  </head><body data-new-gr-c-s-check-loaded="8.872.0" data-gr-ext-installed=""><a style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;" id="device_width">Width: 1858</a>
+  <button style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;" onclick="if(stuff.style.display=='block')stuff.style.display='none';else stuff.style.display='block';">Stuff</button>
+  
+  <div class="container">
+  <button class="big_button" style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap three times to
+    play</button>
+    <!-- fixme -->
+  <p class="footer"><a href="https://maygame.xxx/default">Load sample</a></p>
+  </div>
+  <div id="stuff" style="background-color: lightcoral; position: absolute; display: none; height: 100vh; width: 100vw; z-index: 300; top: 0;">
+  <button onclick="
+  fetch('').then((response)=>{response.text().then((e)=>console.log(e))});
+  
+  ">Test</button>
+  
   <br>
-</div>
-
-
-</div>
-<script>
-  function do_cached_core(){
-    let cc=localStorage.getItem('cached_core');
-    if(cc){
-
-      return true;
+  <!--  -->
+  <br>
+  <h1>Init</h1>
+  <p>Default behavior: </p>
+  <p><a>Load config from localStorage. </a><button onclick="do_default()">Do.</button></p>
+  <input type="text" id="url_to_cache" value="abraka-dabra">
+  <br>
+  <!-- Content security policy stuff: todo -->
+  <label for="config_url">url to fetch your config from</label>
+  <input type="text" value="config/v1.json" id="config_url">
+  <button onclick="
+  fetch_config(config_url.value)
+  ">Load config file</button><br>
+  <!-- todo: validate -->
+  <button onclick=";(async ()=>{
+  let core = config.core.url;
+  fetch(core).then((response)=>{response.text().then((e)=>{
+  let result = ejs.render(e,config.replace);
+  document.getElementById('template_showdown').lastChild.innerText+=e;
+  cache_as(result,'core_something.html')//fixme, todo
+  });
+  });
+  })();
+  ">Load from config</button><button onclick="
+  cfg_render();
+  ">Edit config</button>
+  <button onclick="
+  localStorage.setItem('saved_cfg',JSON.stringify(config));
+  ">Save config (localStorage)</button><button onclick="
+  config = JSON.parse(localStorage.getItem('saved_cfg'));
+  config_initial = config_initial || JSON.parse(JSON.stringify(config));
+  console.log(config);
+  ">Load last stored config</button>
+  <div id="ediv" style="position: absolute; right: 0; bottom: 0; background-color: pink;"></div>
+  <div style="position: relative; overflow: scroll; width: 500px; height: 500px; bottom: 0; right: 0; opacity: 0.7; display: none;">  
+    <p id="template_showdown" style="pointer-events: none; position: relative; background-color: pink; bottom: 0; width: fit-content; height: fit-content;">
+      <a onclick="template_showdown.lastChild.innerText='';" style="background-color: plum; position: absolute; pointer-events: all;">Reset</a><a style="pointer-events: none;"></a></p>
+  </div>
+  <br>
+  <h1>-------------------------------</h1>
+  <p></p>
+  <h1>-------------------------------</h1>
+  <!--  -->
+  <br>
+  <button>Change default behavior</button>
+  <br>
+  <h1>Data server: <input type="text" placeholder="gun instance"></h1>
+  <br>
+  <h1>Default behavior:</h1>
+  <label for="rb_load_last">Load last used</label>
+  <input type="radio" checked="" name="def_beh" value="rb_load_last" id="rb_load_last"><br>
+  
+  <label for="rb_load_newest">Load newest</label>
+  <input type="radio" name="def_beh" value="rb_load_newest" id="rb_load_newest"><br>
+  
+  <label for="rb_load_template">Load from template</label>
+  <input type="radio" name="def_beh" value="rb_load_template" id="rb_load_template"><br>
+  
+  <label>Customize</label>
+  <input type="checkbox" id="cb_customize" value=""><br>
+  
+  
+  <button id="btn_customize_submit" onclick="customize_submit();">Submit</button>
+  
+  <!-- #region -->
+  <h1>Customization:</h1>
+  <div id="customization_div" style="background: mediumorchid;">
+  
+    <p>Load modules:</p>
+    <ul>
+      <li><label for="module_core_head">Core head</label><input type="checkbox" id="module_core_head" checked="" disabled="">
+      </li>
+      <li><label for="module_%name%">Name</label><input type="checkbox" id="module_%name%" checked=""></li>
+      <li><label for="module_core_body">Core body</label><input type="checkbox" id="module_core_body" checked="" disabled="">
+      </li>
+      <li><label for="module_core_footer">Core footer</label><input type="checkbox" id="module_core_footer" checked="" disabled=""></li>
+      <!-- groups: unchecking one unchecks related (todo) -->
+    </ul>
+  
+    <label>Save template as</label>
+    <input type="text" id="text_save_as" disabled="">
+    <input type="checkbox" id="cb_save_as" value="" onchange="
+  text_save_as.disabled=!text_save_as.disabled;
+  btn_to_gun.disabled=!btn_to_gun.disabled;
+  btn_to_local.disabled=!btn_to_local.disabled
+   ">
+    <button id="btn_to_gun" disabled="">To gun</button>
+    <button disabled="" id="btn_to_local">To localStorage</button>
+    <br>
+  </div>
+  
+  
+  </div>
+  <script>
+    function do_cached_core(){
+      let cc=localStorage.getItem('cached_core');
+      if(cc){
+  
+        return true;
+      }
+      else return false;
     }
-    else return false;
-  }
-  function dd2(){
-   let dd= localStorage.getItem('default_do');
-   if(!dd)do_default;//
-   else if(dd=='cached_page'){
-    let url = localStorage.getItem('cached_url')||'core_sample.html'
-    window.open(url, '_blank');
-   }
-   else if(dd==''){
-
-   }
-  }
-  // function dd2_init(){
-  //   localStorage.setItem('default_do','cached_page')
-  // }
- async function do_default(){
-    //#region second login 
-    if(localStorage.getItem('saved_cfg')){
+    function dd2(){
+     let dd= localStorage.getItem('default_do');
+     if(!dd)do_default;//
+     else if(dd=='cached_page'){
+      let url = localStorage.getItem('cached_url')||'core_sample.html'
+      window.open(url, '_blank');
+     }
+     else if(dd==''){
+  
+     }
+    }
+    // function dd2_init(){
+    //   localStorage.setItem('default_do','cached_page')
+    // }
+  async function do_default(){
+  //#region second login 
+    if (localStorage.getItem('saved_cfg')) {
       config = JSON.parse(localStorage.getItem('saved_cfg'));
-      console.log('config loaded:')
-      console.log(config)
-      let core = config.core.url;
-      fetch(core)
-      .then((response)=>{response.text()
-        .then((e)=>{
-        let result = ejs.render(e,config.replace);
-        localStorage.setItem('cached_core',result);
-        console.log('cached_core:');
-        console.log(localStorage.getItem('cached_core'));
-        let url = undefined;
-        url=document.getElementById('url_to_cache').value;
-        console.log(url);
-        cache_as(result,url)
-        localStorage.setItem('cached_url',url);
-        //#endregion
-        //cache result, url = cached core link, if no cached version already
-        localStorage.setItem('default_do','cached_page');
-        window.open(url, '_blank');
-        })
-      })    
-    } else {}}
-</script>
-<!-- fixme. proper awaits + chaining -->
-<script>
-  window.onload=()=>{
-  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  device_width.innerText='Width: '+width;
-}
-var config_initial
-var cfg_render = function(){
-
-ediv.innerHTML=ejs.render(config_div_template,config);
-sel_change(config_select.value);
-}
-var sel_change = function(e){
-  let t = config_select.options[config_select.selectedIndex].text;
-edconf_key.value=t;
-edconf_value.value=e;
-edconf_old_value.innerText=config_initial.replace[t];
-}
-var config_div_template=`
-<p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
-<select id="config_select" 
-onchange="sel_change(this.value)">
-    <% Object.keys(replace).forEach(function(key) { %>
-       <option value="<%= replace[key] %>"><%= key %></option>
-    <% }); %>
-</select><label for"edconf_key">Key</label><input type="text" id="edconf_key" disabled>
-<label for"edconf_value">value</label><input type="text" id="edconf_value"><p>old value: <a id="edconf_old_value"></a><button onclick="
-  config.replace[edconf_key.value]=config_initial.replace[edconf_key.value];
-cfg_render();">Reset to default</button></p>
-<button onclick="
-console.log(edconf_value.value);
-config.replace[edconf_key.value]=edconf_value.value;
-cfg_render();
-">Apply</button>
-`
-const channel = new BroadcastChannel('sw-messages');
-
-function cache_as(html,href){
-  console.log('cache_as +2. Link, html')
-  console.log(self.location.origin+'/'+href)
-  console.log(html)
-  var response = new Response(html, {
-  // headers: {
-  url: self.location.origin+'/'+href, 
-  status: 200,
-  headers: {
-    'Content-Type': 'text/html'}
-})
-caches.open('cachee').then(cache => cache.put('/'+href,response))
-caches.match('/'+href).then(r => r).then(console.log)
-
-channel.postMessage({
-type: 'PAGE_SUBMITED',
-data: self.location.origin+'/'+href,
-module: href
-});
-
-}
-var config
-async function fetch_config(url){
-  fetch(url).then((response)=>{response.json()
-  .then(cfg=>{config = cfg; config_initial = JSON.parse(JSON.stringify(cfg)); console.log(cfg)})
-})}
-</script>
-<!-- #endregion -->
-<script id="js_sw" type="text/javascript">
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('scsw.js').then(function (registration) {
-        // Registration was successful
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      }, function (err) {
-        // registration failed :(
-        console.log('ServiceWorker registration failed: ', err);
+      console.log('saved config:', config);
+      let core_url = config.core.url;
+      let text = await fetch(core_url).then((response) => response.text());
+      let result = ejs.render(text, config.replace);
+      localStorage.setItem('cached_core', result);
+      console.log('cached_core:', localStorage.getItem('cached_core'));
+      let url = document.getElementById('url_to_cache').value;
+      console.log('url_to_cache:', url);
+      await cache_as(result, url);
+      localStorage.setItem('cached_url',url);
+  //#endregion
+      //cache result, url = cached core link, if no cached version already
+      localStorage.setItem('default_do', 'cached_page');
+      window.open(url, '_blank');
+    }
+  }
+  </script>
+  <!-- fixme. proper awaits + chaining -->
+  <script>
+    window.onload=()=>{
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    device_width.innerText='Width: '+width;
+  }
+  var config_initial
+  var cfg_render = function(){
+  
+  ediv.innerHTML=ejs.render(config_div_template,config);
+  sel_change(config_select.value);
+  }
+  var sel_change = function(e){
+    let t = config_select.options[config_select.selectedIndex].text;
+  edconf_key.value=t;
+  edconf_value.value=e;
+  edconf_old_value.innerText=config_initial.replace[t];
+  }
+  var config_div_template=`
+  <p>Testing stuff: <input type="text" value="<%= core.url %>" disabled></p>
+  <select id="config_select" 
+  onchange="sel_change(this.value)">
+      <% Object.keys(replace).forEach(function(key) { %>
+         <option value="<%= replace[key] %>"><%= key %></option>
+      <% }); %>
+  </select><label for"edconf_key">Key</label><input type="text" id="edconf_key" disabled>
+  <label for"edconf_value">value</label><input type="text" id="edconf_value"><p>old value: <a id="edconf_old_value"></a><button onclick="
+    config.replace[edconf_key.value]=config_initial.replace[edconf_key.value];
+  cfg_render();">Reset to default</button></p>
+  <button onclick="
+  console.log(edconf_value.value);
+  config.replace[edconf_key.value]=edconf_value.value;
+  cfg_render();
+  ">Apply</button>
+  `
+  const channel = new BroadcastChannel('sw-messages');
+  
+  async function cache_as(html, href) {
+    console.log('cache_as +2. Link, html');
+    console.log(self.location.origin + '/' + href);
+    console.log(html);
+    var response = new Response(html, {
+      url: self.location.origin+'/'+href, 
+      status: 200,
+      headers: { 'Content-Type': 'text/html' }
+    });
+  
+    let cache = await caches.open('cachee');
+    await cache.put('/' + href, response);
+    let content = caches.match('/' + href);
+    console.log('cached content:', content);
+  
+    channel.postMessage({
+      type: 'PAGE_SUBMITED',
+      data: self.location.origin+'/'+href,
+      module: href
+    });
+  }
+  
+  var config
+  async function fetch_config(url) {
+    return fetch(url).then((response) => {
+      response.json().then((cfg) => {
+        config = cfg;
+        config_initial = JSON.parse(JSON.stringify(cfg));
+        console.log('fetched config: ', cfg);
       });
     });
   }
-</script>
-<script id="js_init">
-  ; (() => {
-    // localStorage.setItem('start_init_default','rb_load_newest')
-    let def = localStorage.getItem('start_init_default');
-
-  })();
-</script>
-<script id="dev_js">
-  var modules = {
-    'head': {
-      'text': `
-<!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>MayGame</title>
-  <meta name="description" content="No description">
-  <meta name="author" content="Some dude">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"><`+ `/script>
-  <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"><`+ `/script>
-  <script id="wsjs_innerscript" src="js/core/wsjs.js"><`+ `/script>
-  <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
-</head>
-  `},
-    'body': {
-      'text': `
-<body style="background-color: pink;">
-            
-            `},
-    'footer': {
-      'text': `
-</body>
-</html>`}
-  }
-  var a = { 'name': 'core', 'version': 1, 'deps': [] }
-  var minmod = { 'name': 'module_name', 'text': '', 'dom_place': 'head' }
-  var minmod2 = { 'name': 'module_name', 'url': 'modules/module_name/3.json' }
-    //fixme: load order, versioning, different sources (todo!)
-    // alert(def)
-  /**
-   * two versions (parts?) of modules: dom object, plain text.
-   * first is used for dom modification, second is appended and cached
-  */
-</script>
-<button onclick="testb64()">testb64</button>
-<script>
-  function customize_submit() {
-    const rbs = document.querySelectorAll('input[name="def_beh"]');
-    let selectedValue;
-    let cdiv = customization_div
-    for (const rb of rbs) {
-      if (rb.checked) {
-        selectedValue = rb.value;
-        break;
+  </script>
+  <!-- #endregion -->
+  <script id="js_sw" type="text/javascript">
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('scsw.js').then(function (registration) {
+          // Registration was successful
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function (err) {
+          // registration failed :(
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+  <script id="js_init">
+    ; (() => {
+      // localStorage.setItem('start_init_default','rb_load_newest')
+      let def = localStorage.getItem('start_init_default');
+  
+    })();
+  </script>
+  <script id="dev_js">
+    var modules = {
+      'head': {
+        'text': `
+  <!doctype html>
+  <html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>MayGame</title>
+    <meta name="description" content="No description">
+    <meta name="author" content="Some dude">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script id="gun_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/gun.js"><`+ `/script>
+    <script id="sea_cdn_script" src="https://cdn.jsdelivr.net/npm/gun/sea.js"><`+ `/script>
+    <script id="wsjs_innerscript" src="js/core/wsjs.js"><`+ `/script>
+    <link id="css_styles_core" rel="stylesheet" href="css/styles.css" />
+  </head>
+    `},
+      'body': {
+        'text': `
+  <body style="background-color: pink;">
+              
+              `},
+      'footer': {
+        'text': `
+  </body>
+  </html>`}
+    }
+    var a = { 'name': 'core', 'version': 1, 'deps': [] }
+    var minmod = { 'name': 'module_name', 'text': '', 'dom_place': 'head' }
+    var minmod2 = { 'name': 'module_name', 'url': 'modules/module_name/3.json' }
+      //fixme: load order, versioning, different sources (todo!)
+      // alert(def)
+    /**
+     * two versions (parts?) of modules: dom object, plain text.
+     * first is used for dom modification, second is appended and cached
+    */
+  </script>
+  <button onclick="testb64()">testb64</button>
+  <script>
+    function customize_submit() {
+      const rbs = document.querySelectorAll('input[name="def_beh"]');
+      let selectedValue;
+      let cdiv = customization_div
+      for (const rb of rbs) {
+        if (rb.checked) {
+          selectedValue = rb.value;
+          break;
+        }
       }
+      let checked = cb_customize.checked
+      if (checked) {
+        if (selectedValue == 'rb_load_last')
+          cdiv.innerHTML = 'customize last'
+        else if (selectedValue == 'rb_load_newest')
+          cdiv.innerHTML = 'newest '
+      }
+    };
+  
+    function cfg2url(){
+      let cfg = JSON.stringify(config);
+      btoa(cfg);
+      let b64urlparam = Base64EncodeUrl(btoa(cfg));
+      let res = self.location.origin+'/'+'index.html?b64url='+b64urlparam;
+      console.log("res_link: " + res)
+      return res
     }
-    let checked = cb_customize.checked
-    if (checked) {
-      if (selectedValue == 'rb_load_last')
-        cdiv.innerHTML = 'customize last'
-      else if (selectedValue == 'rb_load_newest')
-        cdiv.innerHTML = 'newest '
+    function url2cfg(url){
+      let params=new URLSearchParams(url);
+      console.log(params)
+      let burl = params.get('b64url');
+      console.log(burl)
+      let b64 = Base64DecodeUrl(burl);
+      console.log(b64)
+      let plainText = atob(b64);
+      console.log(plainText)
+      let cfg = JSON.parse(plainText);
+      //validate (for now core url is local. todo: unsafe context interpretation as NOT default behavior)
+      return cfg;
     }
-  };
-
-  function cfg2url(){
-    let cfg = JSON.stringify(config);
-    btoa(cfg);
-    let b64urlparam = Base64EncodeUrl(btoa(cfg));
-    let res = self.location.origin+'/'+'index.html?b64url='+b64urlparam;
-    console.log("res_link: " + res)
-    return res
+  function testb64(){
+    let res =cfg2url(); 
+    url2cfg(res);
+    console.log(res);
   }
-  function url2cfg(url){
-    let params=new URLSearchParams(url);
-    console.log(params)
-    let burl = params.get('b64url');
-    console.log(burl)
-    let b64 = Base64DecodeUrl(burl);
-    console.log(b64)
-    let plainText = atob(b64);
-    console.log(plainText)
-    let cfg = JSON.parse(plainText);
-    //validate (for now core url is local. todo: unsafe context interpretation as NOT default behavior)
-    return cfg;
+  
+    function Base64EncodeUrl(str){
+      return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
   }
-function testb64(){
-  let res =cfg2url(); 
-  url2cfg(res);
-  console.log(res);
-}
-
-  function Base64EncodeUrl(str){
-    return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
-}
-function Base64DecodeUrl(str){
-    str = (str + '===').slice(0, str.length + (str.length % 4));
-    return str.replace(/-/g, '+').replace(/_/g, '/');
-}
+  function Base64DecodeUrl(str){
+      str = (str + '===').slice(0, str.length + (str.length % 4));
+      return str.replace(/-/g, '+').replace(/_/g, '/');
+  }
   async function t2p() {
     localStorage.setItem('saved_cfg',JSON.stringify(config));
-    fetch_config(config_url.value);
-    do_default();
-
+    await fetch_config(config_url.value);
+    await do_default();
+  
     // //#region second login 
     // console.log(localStorage.getItem('cached_core'))
     //#endregion
     //cache result, url = cached core link, if no cached version already
     // window.open(url, '_blank');
-
-
   }
-  var lastCached
-</script>
+    var lastCached
+  </script></body></html>
