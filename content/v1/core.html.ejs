@@ -247,8 +247,8 @@ html, body, iframe
 
     }
     function validate_access(source,soul){
-        if(pubres[soul]){console.log('access to', soul, "granted to frame: ", source); return true;}
-        else{console.log('access to', soul, "denied to frame: ", source); return false;};
+        if(pubres[soul]){console.log('access to', soul, "granted to frame: ", source.name); return true;}
+        else{console.log('access to', soul, "denied to frame: ", source.name); return false;};
         //todo: better access management
     }
     pubres={'map/gps_map_click':true,
