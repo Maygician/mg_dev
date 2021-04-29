@@ -27,9 +27,13 @@
             background-color: salmon;
         }
         </style>
-        <div style="background-color: royalblue; height: 100vh; width: 100vw;">
-            <p>Item add</p>
-            <button>Create:</button>
+        <div class="container" style="background-color: royalblue; height: 100vh; width: 100vw;">
+            <p class="header">Item add</p>
+            <div class="body">
+                <label for="name">Name: </label>
+                <input type="text" id="name">
+            </div>
+            <button class="footer" onclick="alert('created',name.value);">Create</button>
         </div>
     </body>
 </html>
