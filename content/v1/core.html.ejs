@@ -207,7 +207,7 @@ html, body, iframe
             let soul = e.data.gun_sub;
             if(!validate_access(frame_subscriber,soul))
             return false;
-            // console.log(frame_subscriber, "subscribed to ", soul, "topic")
+            console.log(frame_subscriber, "subscribed to ", soul, "topic")
             user.get(store_dir).get(soul).on((e)=>{
                 frame_pub(frame_subscriber,e, soul);
                 // frame_subscriber.postMessage({'your_topic_pub':{e}});
