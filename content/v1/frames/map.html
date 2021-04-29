@@ -162,6 +162,7 @@ window.onmessage=(e)=>{
           console.log('show on map request',e.data);
           goto_pos(e.data['your_topic_pub'].lat, e.data['your_topic_pub'].long)
         }
+        else console.log('wrong topic (map sub)', e)
     }
     else if(e.data.login){
         parent_sub_on('map/show');//dev   
