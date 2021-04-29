@@ -55,7 +55,7 @@ html, body, iframe
     grid-template-areas: 
     "a b map"
     "a b reserved"
-    "footer footer footerb"
+    "footer footer footer_b"
     "menu_bar menu_bar menu_bar"
     ;
     }
@@ -82,13 +82,13 @@ html, body, iframe
     grid-area: footer;
     background-color: pink;
 }
-.footerb{
+.footer_b{
     background-color: rgb(172, 77, 172);
     grid-area: footerb;
 }
 </style>
 <div class="container">
-<div id="menu" style="position: absolute; z-index: 2147483210;grid-area: menu_bar; bottom: 0; pointer-events: all;">
+<div id="menu" class="menu_bar" style="position: absolute; z-index: 2147483210; bottom: 0; pointer-events: all;">
     <button onclick="default_sign_in();" style="color: seagreen;">Quick sign in</button>
     <button onclick="force_create_new_user();">Force new user</button>
     <input type="text" id="text_pair" placeholder="paste your key here or log in with default">
