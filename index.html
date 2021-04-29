@@ -27,7 +27,9 @@
 .settings{
   grid-area: settings;
 }
-  
+.footer{
+  grid-area: footer;
+}
 </style>
 <button style="position: fixed; z-index: 200000; display: block; top: 0; right: 0; float: right;"
  onclick="if(stuff.style.display=='block')stuff.style.display='none';else stuff.style.display='block';">Stuff</button>
@@ -36,9 +38,7 @@
 <button class="big_button" style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap three times to
   play</button>
   <!-- fixme -->
-<br>
 <p class="footer"><a href="https://maygame.xxx/default">Load sample</a></p>
-<br>
 </div>
 <div id="stuff" style="background-color: lightcoral; position: absolute; display: none; height: 100vh; width: 100vw; z-index: 300;">
 <button onclick="
