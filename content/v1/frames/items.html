@@ -25,7 +25,9 @@
     pop_mode='items';">Populate</button>
     <button onclick="item_list.innerHTML=ejs.render(items.bmtemplate, items.bookmarks);
     pop_mode='bookmarks';
-    ">Populate bm</button>
+    ">Populate bm</button><button onclick="
+    parent_put(items, 'items/list');
+    ">Dev_gunput_items</button>
 </div>
 </div>
 <style>
@@ -129,6 +131,10 @@ function bm_show_on_map(name){
     let msg={gunput: JSON.stringify({lat: items.bookmarks[name].meta.bm.lat,long: items.bookmarks[name].meta.bm.long}),soul: 'map/show'};
     window.parent.postMessage(msg,'https://maygame.xxx');
 }
+function parent_put(obj, soul){
+    let msg = {gunput: JSON.stringify(obj), soul: soul};
+    window.parent.postMessage(msg, "https://maygame.xxx");
+}
 function parent_sub_on(soul){
     let msg={gun_sub: soul};
     my_subs[soul]=true;
@@ -155,6 +161,9 @@ window.onmessage=(e)=>{
         else if(e.data.soul=='items/edit/bookmark')//todo: generalize
         {
 
+        }
+        else if(e.data.soul=='items/list'){
+            console.log('Got items list: ', e.data);
         }
         else if(e.data.soul=='item/add'){
             let data=e.data['your_topic_pub'];
