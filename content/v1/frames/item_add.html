@@ -41,9 +41,12 @@
             <button class="footer" onclick="alert('created',name.value);">Create</button>
         </div>
         <script>
-            var user_id;
-            window.onmessage=(e)=>{if(e.data.user_id)
+            var user_id=0;
+            window.onmessage=(e)=>{if(e.data.user_id){
             user_id=e.data.user_id;
+            console.log("item_add",e)
+            }
+
             else console.log('item_add got weird msg: ', e)
         }
         </script>
