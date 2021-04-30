@@ -204,7 +204,7 @@ html, body, iframe
         if(e.data.sign_add){
             if(validate_access(e.source,e.data.soul))//todo: memoize
             {
-                let data= await sea.sign(JSON.parse(e.data.sign_add),user.is)
+                let data= await sea.sign(JSON.parse(e.data.sign_add),user._.sea)
                 console.log('signed: ',data)
                 user.get(store_dir).get(e.data.soul).put(data)
             }
