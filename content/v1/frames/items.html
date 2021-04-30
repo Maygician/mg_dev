@@ -156,12 +156,17 @@ window.onmessage=(e)=>{
         {
 
         }
+        else if(e.data.soul=='item/add'){
+            let data=e.data['your_topic_pub'];
+            console.log('items got item add: ', data);
+        }
     }
     else if(e.data.login){
         parent_sub_on('map/last_bookmark');//dev   
         parent_sub_on('items/edit/bookmark');//dev   
         parent_sub_on('items/show/bookmark');//dev   
         parent_sub_on('items/list');//dev   
+        parent_sub_on('item/add');//dev   
         console.log('items got login');
         // let wdt = window.getComputedStyle(container).getPropertyValue('width');
         // let ht = window.getComputedStyle(container).getPropertyValue('height');
