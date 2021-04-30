@@ -60,7 +60,7 @@
             let timestamp = Date.now();
             result.timestamp=timestamp;
             console.log(result)
-            window.parent.postMessage({sign_add: result},'https://maygame.xxx');
+            window.parent.postMessage({sign_add: JSON.stringify(result),soul:'item/add'},'https://maygame.xxx');
         }
         </script>
     </body>

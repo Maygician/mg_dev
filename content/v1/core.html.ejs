@@ -175,7 +175,7 @@ html, body, iframe
         console.log('from frame pub: ',frame, e)
     }
     var user_pub;
-    window.onmessage=(e)=>{
+    window.onmessage=async(e)=>{
         // if(e.data.gunput_sub){
         //     user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gunput_sub))}
         // else
@@ -193,11 +193,20 @@ html, body, iframe
             user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput))
         }
         else
-        if(e.data.gundelete){
-            if(validate_access(e.source,e.data.gundelete))//todo: memoize
+        // if(e.data.gundelete){
+        //     if(validate_access(e.source,e.data.gundelete))//todo: memoize
+        //     {
+        //     console.log('gundelete: ', e.data);
+        //     user.get(store_dir).get(e.data.gundelete).put(null);
+        //     }
+        // }
+        // else Doesn't work anyways.
+        if(e.data.sign_add){
+            if(validate_access(e.source,e.data.soul))//todo: memoize
             {
-            console.log('gundelete: ', e.data);
-            user.get(store_dir).get(e.data.gundelete).put(null);
+                let data= await sea.sign(JSON.parse(e.data.sign_add))
+                console.log('signed: ',data)
+                user.get(store_dir).get(e.data.soul).put(data)
             }
         }
         else
@@ -259,7 +268,8 @@ html, body, iframe
     'map/last_bookmark':true,
     'map/show':true,
     'items/edit':true,
-    'items/list':true
+    'items/list':true,
+    'item/add':true
 }
     //#region Sign in
 async function default_sign_in(){
