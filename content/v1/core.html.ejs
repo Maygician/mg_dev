@@ -87,8 +87,14 @@ html, body, iframe
     grid-area: footer_b;
 }
 </style>
+<div class="layer" id="top_layer">
+    <div class="container" style="position: absolute; z-index: 2147483212; bottom: 0;" >
+        <button style="background-color: red;" class="menu_bar"
+         onclick="toggle(top_layer); toggle(menu);">Big red button</button>
+    </div>
+</div>
 <div class="container">
-<div id="menu" class="menu_bar" style="position: absolute; z-index: 2147483210; bottom: 0; pointer-events: all;">
+<div id="menu" class="menu_bar" style="display: none; position: absolute; z-index: 2147483210; bottom: 0; pointer-events: all;">
     <button onclick="default_sign_in();" style="color: seagreen;">Quick sign in</button>
     <button onclick="force_create_new_user();">Force new user</button>
     <input type="text" id="text_pair" placeholder="paste your key here or log in with default">
