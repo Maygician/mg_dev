@@ -25,8 +25,12 @@
   </style>
   <div id="container" style="display: block; height: 100%; width: 100%;">
 <div id="mapid" style="height: 140px; width: 140px;"> </div>
-<button onclick="mapid.style.height='300px';mapid.style.width='300px';">+</button>
-<button onclick="mapid.style.height='140px';mapid.style.width='140px';">-</button>
+<button onclick="mapid.style.height='300px';mapid.style.width='300px';
+window.parent.postMessage({frame_resize:{width: '320px'}},'https://maygame.xxx')
+">+</button>
+<button onclick="mapid.style.height='140px';mapid.style.width='140px';
+window.parent.postMessage({frame_resize:{width: '160px'}},'https://maygame.xxx')
+">-</button>
 <button onclick="ask_geopos();goto_pos(parseFloat(gps_lat.innerHTML),parseFloat(gps_long.innerHTML));">^</button>
 <!-- <a id='my_coords'></a> -->
 <!-- <button onclick="get_coords()">Get coords</button><input type="text"> -->

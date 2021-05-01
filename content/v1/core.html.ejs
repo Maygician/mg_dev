@@ -217,7 +217,7 @@ html, body, iframe
             if(!validate_access(frame_subscriber,soul))
             return false;
             console.log(frame_subscriber, "subscribed to ", soul, "topic")
-            user.get(store_dir).get(soul).on((e)=>{
+            user.get(store_dir).get(soul).on((e)=>{//fixme? e persists as e in storage objects :-(
                 frame_pub(frame_subscriber,e, soul);
                 // frame_subscriber.postMessage({'your_topic_pub':{e}});
                 // console.log('items/bookmarks fires pub: ',e)
@@ -230,7 +230,9 @@ html, body, iframe
         if(e.data.frame_resize){
             let fname = e.source.name;
             // console.log('resize',fname,e.data.frame_resize,document.getElementsByName(fname)[0].parentElement.style)
+            if(e.data.frame_resize.width)
             document.getElementsByName(fname)[0].style.width=e.data.frame_resize.width;
+            if(e.data.frame_resize.height)
             document.getElementsByName(fname)[0].style.height=e.data.frame_resize.height;
         }
         // if(e.data.gunrelay){

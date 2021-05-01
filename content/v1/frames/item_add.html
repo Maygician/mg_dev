@@ -9,6 +9,7 @@
         .container{
             display: grid;
             grid-template-rows: 1fr 5fr 2fr;
+            gap: 2px ;
             grid-template-areas: 
             "header"
             "body"
@@ -16,18 +17,18 @@
         }
         .footer{
             grid-area: footer;
-            background-color: sandybrown;
+            background-color: slategray;
         }
         .body{
             grid-area: body;
-            background-color: silver;
+            background-color: slategray;
         }
         .header{
             grid-area: header;
-            background-color: salmon;
+            background-color: slategray;
         }
         </style>
-        <div class="container" style="background-color: royalblue; height: 100vh; width: 100vw;">
+        <div class="container" style="background-color: silver; height: 100vh; width: 100vw;">
             <p class="header">Item add</p>
             <div class="body">
                 <label for="item_name">Name: </label>
