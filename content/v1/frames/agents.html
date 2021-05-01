@@ -1,0 +1,68 @@
+<html>
+<head></head>
+<body style="background-color: snow;">
+<style>
+    .container{
+        display: grid;
+        /* background-color: slategray; */
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content auto max-content;
+        grid-template-areas: 
+        "header"
+        "body"
+        "footer";
+        gap: 2px;
+        width: 100vw;
+        height: 100vh;
+    }
+    .header{
+        grid-area: header;
+        display: grid;
+    }
+    .body{
+        grid-area: body;
+        display: grid;
+        grid-template-areas: "body1 body2";
+    }
+    .footer{
+        height: 100%;
+        grid-area: footer;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "footer1 footer2 footer3";
+    }
+    .bg{
+        background-color: steelblue;
+    }
+    *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+</style>
+<div class="container">
+    <div class="header bg">
+<p id="header_p">Header</p>
+
+    </div>
+    <div class="body bg" id="body_">
+
+
+    </div>
+    <div class="footer bg">
+        <div style="grid-area: footer1;"><button style="width: 100%; height: 100%;" onclick="
+            btn_all();
+            ">All</button></div>
+        <div style="grid-area: footer2;"><button style="width: 100%; height: 100%;">F2</button></div>
+        <div style="grid-area: footer3;"><button style="width: 100%; height: 100%;">F3</button></div>
+    </div>
+</div>
+<script>
+function btn_all(){
+    body_.innerHTML="All";
+}
+</script>
+
+</body>
+</html>

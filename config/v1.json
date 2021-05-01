@@ -8,5 +8,6 @@
     "items_url":"content/v1/frames/items.html",
     "item_add_url":"content/v1/frames/item_add.html",
     "map_url":"content/v1/frames/map.html",
+    "agents_url":"content/v1/frames/agents.html",
     "peers":"https://vine-mature-morocco.glitch.me/gun"
 }}

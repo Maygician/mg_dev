@@ -110,6 +110,7 @@ html, body, iframe
     <button onclick="toggle(map_layer)">Map</button>
     <!-- <button onclick="toggle_pevents(frame_hud)">Hud</button> -->
     <button onclick="toggle(curr_layer)" style="background-color: mediumpurple;">Currencies</button>
+    <button onclick="toggle(agents_layer)" style="background-color: mediumpurple;">AGents</button>
     <button onclick="toggle(items_layer)" style="background-color: mediumpurple;">Items</button>
     <!-- <button onclick="toggle(test_layer)" style="background-color: mediumturquoise;">Test</button> -->
     <!-- <input type="text" value=""> -->
@@ -137,6 +138,9 @@ html, body, iframe
 </div>
 <div id="items_layer" class="layer_b a" style="display: none;">
     <iframe scrolling="auto"name="items" src="<%= items_url %>" id="frame_items" style="border: 0; width: 100%; height: 100%"></iframe>
+</div>
+<div id="agents_layer" class=" a" style="display: none;">
+    <iframe scrolling="auto"name="agents" src="<%= agents_url %>" id="frame_agents" style="border: 0; width: 100%; height: 100%"></iframe>
 </div>
 <div id="item_add" class="b " style="display: none;">
     <iframe scrolling="auto"name="item_add" src="<%= item_add_url %>" id="frame_item_add" style="border: 0; width: 100%; height: 100%"></iframe>
