@@ -56,7 +56,7 @@
         <div style="grid-area: footer1;"><button style="width: 100%; height: 100%;" onclick="
             btn_all();
             ">All</button></div>
-        <div style="grid-area: footer2;"><button style="width: 100%; height: 100%;">F2</button></div>
+        <div style="grid-area: footer2;"><button onclick="test_populate();" style="width: 100%; height: 100%;">Populate</button></div>
         <div style="grid-area: footer3;"><button style="width: 100%; height: 100%;">F3</button></div>
     </div>
 </div>
@@ -83,6 +83,11 @@ pub1:0.2,//utility of it to pub1. declared or calculated
 
 }
 let node={data:{},access_level:{},access_fallback_function: {}}
+function test_populate(){
+    let obj={}
+    window.parent.postMessage({gun_put: obj,soul:'agents'},'htps://maygame.xxx');
+}
+
 </script>
 
 </body>

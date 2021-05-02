@@ -192,8 +192,8 @@ html, body, iframe
     }
     var user_pub;
     window.onmessage=async(e)=>{
-        // if(e.data.gunput_sub){
-        //     user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gunput_sub))}
+        // if(e.data.gun_put_sub){
+        //     user.get(store_dir).get(e.data.soul).get(e.data.subdir).put(JSON.parse(e.data.gun_put_sub))}
         // else
         // if(e.data.frame_click){
         //     console.log('click on', e.source, e.data)
@@ -203,10 +203,10 @@ html, body, iframe
             toggle(document.getElementById(e.data.open_window));
         }
         else
-        if(e.data.gunput){
-            // console.log("gunput: ", e.data.gunput);
+        if(e.data.gun_put){
+            // console.log("gun_put: ", e.data.gun_put);
             if(validate_access(e.source,e.data.soul))//todo: memoize
-            user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gunput))
+            user.get(store_dir).get(e.data.soul).put(JSON.parse(e.data.gun_put))
         }
         else
         // if(e.data.gundelete){
@@ -279,6 +279,7 @@ html, body, iframe
     function validate_access(source,soul){
         let fname = source.name;//fixme, in case it's not an iframe
         if(pubres[soul]){console.log('access to', soul, "granted to frame: ", fname); return true;}
+        //starts with for directory access?
         else if(access_list[soul]?.frames.includes(fname)){
             {console.log('access to', soul, "granted to frame: ", fname, "in white list"); return true;}
         }
@@ -288,7 +289,7 @@ html, body, iframe
         //wip
         //fixme
     }
-    pubres={'map/gps_map_click':true,
+   let pubres={'map/gps_map_click':true,
     'map/last_bookmark':true,
     'map/show':true,
     'items/edit':true,
@@ -300,8 +301,13 @@ html, body, iframe
     let access_list={
         'map/gps_my_pos':{frames:['map',//frame name, not an id
     'items']},
-    'item/add':{frames:['items','item_add']}
+    'item/add':{frames:['items','item_add']},
+    'agents':{frames:[agents]},
     }
+    function add_agent(){
+        user.get('nouveau_dossier').get('agents').put()
+    }
+    //todo: manage access in runtime, validation access deny fallback to request
     const default_ti=0.0;//trust index for anyone
     const default_access_level=1.0;//ti required to get access
     //#region Sign in

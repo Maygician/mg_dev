@@ -66,12 +66,12 @@ gun._.on('out',(msg)=>
 {window.parent.postMessage({gunrelay: JSON.stringify(msg)},'https://maygame.xxx');
 })
 // function parent_put_sub(soul, obj, child){
-//   window.parent.postMessage({gunput_sub: JSON.stringify(obj),soul: soul, subdir: child},'https://maygame.xxx');
+//   window.parent.postMessage({gun_put_sub: JSON.stringify(obj),soul: soul, subdir: child},'https://maygame.xxx');
 // }
 
 function parent_put(soul, obj){
     // gun.get('map').get('gps_map_click').put({lat: e.latlng.lat, long: e.latlng.lng});
-    window.parent.postMessage({gunput: JSON.stringify(obj),soul: soul},'https://maygame.xxx');
+    window.parent.postMessage({gun_put: JSON.stringify(obj),soul: soul},'https://maygame.xxx');
 
 }
 </script>
