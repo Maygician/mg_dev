@@ -277,18 +277,33 @@ html, body, iframe
 
     }
     function validate_access(source,soul){
-        if(pubres[soul]){console.log('access to', soul, "granted to frame: ", source.name); return true;}
-        else{console.log('access to', soul, "denied to frame: ", source.name); return false;};
+        let fname = source.name;//fixme, in case it's not an iframe
+        if(pubres[soul]){console.log('access to', soul, "granted to frame: ", fname); return true;}
+        else if(access_list[soul].frames.includes(fname)){
+            {console.log('access to', soul, "granted to frame: ", fname, "in white list"); return true;}
+        }
+        else
+        {console.log('access to', soul, "denied to frame: ", source.name); return false;};
         //todo: better access management
+        //wip
+        //fixme
     }
     pubres={'map/gps_map_click':true,
-    'map/gps_my_pos':true,
     'map/last_bookmark':true,
     'map/show':true,
     'items/edit':true,
     'items/list':true,
-    'item/add':true
 }
+    let access_levels={
+
+    }
+    let access_list={
+        'map/gps_my_pos':{frames:['map',//frame name, not an id
+    'items']},
+    'item/add':{frames:['items','item_add']}
+    }
+    const default_ti=0.0;//trust index for anyone
+    const default_access_level=1.0;//ti required to get access
     //#region Sign in
 async function default_sign_in(){
     let text_pair = document.getElementById('text_pair').value;
