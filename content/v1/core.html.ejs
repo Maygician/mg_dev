@@ -279,7 +279,7 @@ html, body, iframe
     function validate_access(source,soul){
         let fname = source.name;//fixme, in case it's not an iframe
         if(pubres[soul]){console.log('access to', soul, "granted to frame: ", fname); return true;}
-        else if(access_list[soul].frames.includes(fname)){
+        else if(access_list[soul]?.frames.includes(fname)){
             {console.log('access to', soul, "granted to frame: ", fname, "in white list"); return true;}
         }
         else
