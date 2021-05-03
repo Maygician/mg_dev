@@ -104,12 +104,12 @@ html, body, iframe
     <!-- <button onclick="default_sign_in();" style="color: seagreen;">Quick sign in</button> -->
     <!-- <br> -->
     <button onclick="toggle(top_layer); toggle(main_layer);">Login menu</button>
-    <button onclick="toggle(quests_layer)">Quests</button>
-    <button onclick="toggle(quests_add_layer)">Quests Add/Edit</button>
-    <button onclick="toggle(profile_layer)">Profile</button>
+    <button onclick="toggle(quests_layer)" disabled>Quests</button>
+    <button onclick="toggle(quests_add_layer)" disabled>Quests Add/Edit</button>
+    <button onclick="toggle(profile_layer)" disabled>Profile</button>
     <button onclick="toggle(map_layer)">Map</button>
     <!-- <button onclick="toggle_pevents(frame_hud)">Hud</button> -->
-    <button onclick="toggle(curr_layer)" style="background-color: mediumpurple;">Currencies</button>
+    <button onclick="toggle(curr_layer)" style="background-color: mediumpurple;" disabled>Currencies</button>
     <button onclick="toggle(agents_layer)" style="background-color: mediumpurple;">AGents</button>
     <button onclick="toggle(items_layer)" style="background-color: mediumpurple;">Items</button>
     <!-- <button onclick="toggle(test_layer)" style="background-color: mediumturquoise;">Test</button> -->
@@ -172,6 +172,10 @@ html, body, iframe
         let qed=document.getElementById('frame_quests_add');
         qed.src=qed.src.split('?')[0]+`?fid=${newFid}`;
     })();
+    /**
+     * todo: memorize frames domains and check em or drop this feature.
+     * Fixme: It works only with main domain like this.
+     */
 </script>
 <script>
     var peers=["<%= peers %>"];//exactly one peer for now.
@@ -241,6 +245,17 @@ html, body, iframe
         }else if(e.data.get_id){
             if(e.data.get_id=='user')
             e.source.postMessage({user_id: user.is.pub})
+        }
+        else if(e.data.gun_map_once){
+            let frame = e.source;
+            let soul = e.data.gun_map_once;
+            if(!validate_access(frame,soul))
+            return false;
+            user.get(store_dir).get(soul).map().once((e)=>
+            {
+                frame.postMessage()
+            }
+            );
         }
         else
         if(e.data.frame_resize){
