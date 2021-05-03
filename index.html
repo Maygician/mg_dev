@@ -17,9 +17,11 @@
     "pad_left big_button pad_right"
     "pad_left settings pad_right"
     "footer footer footer";
+    background-color: transparent pink;
     }
 .big_button{
   grid-area: big_button;
+  background-color: #bb00bb;
 }
 .header{
   grid-area: header;
@@ -36,7 +38,7 @@
  onclick="if(stuff.style.display=='block')stuff.style.display='none';else stuff.style.display='block';">Stuff</button>
 
 <div class="container">
-<button class="big_button" style="background-color: #bb00bb; text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap a few times to
+<button class="big_button" style=" text-overflow: ellipsis; white-space: nowrap; font-size: 1.7rem;" onclick="t2p();">Tap a few times to
   play</button>
   <!-- fixme -->
 <p class="footer"><a href="https://maygame.xxx/default">Load sample</a></p>
