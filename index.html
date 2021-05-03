@@ -196,10 +196,10 @@ btn_to_local.disabled=!btn_to_local.disabled
 </script>
 <!-- fixme. proper awaits + chaining -->
 <script>
-  window.onload=()=>{
-  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  device_width.innerText='Width: '+width;
-}
+//   window.onload=()=>{
+//   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+//   device_width.innerText='Width: '+width;
+// }
 var config_initial
 var cfg_render = function(){
 
@@ -317,7 +317,7 @@ async function fetch_config(url){
    * first is used for dom modification, second is appended and cached
   */
 </script>
-<button onclick="testb64()">testb64</button>
+<!-- <button onclick="testb64()">testb64</button> -->
 <script>
   function customize_submit() {
     const rbs = document.querySelectorAll('input[name="def_beh"]');

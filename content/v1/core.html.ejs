@@ -255,11 +255,12 @@ html, body, iframe
             let soul = e.data.gun_map_once;
             if(!validate_access(frame,soul))
             return false;
-            user.get(store_dir).get(soul).map().once((e)=>
+            var result=[]
+            await user.get(store_dir).get(soul).map().once((e)=>
             {
-                frame.postMessage()
-            }
-            );
+                result.push(e);
+            })
+            frame.postMessage({data: result,map_once_reply: soul});
         }
         else
         if(e.data.frame_resize){
